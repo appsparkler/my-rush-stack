@@ -399,6 +399,10 @@
     {
       "packageName": "react-mark.js",
       "projectFolder": "libs/react-mark.js"
+    },
+    {
+      "packageName": "react-mark-js-docs",
+      "projectFolder": "docs/react-mark.js"
     }
     // {
     //   /**
