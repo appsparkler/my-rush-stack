@@ -80,6 +80,12 @@ const config = {
             position: 'left',
             label: 'API',
           },
+          {
+            type: 'doc',
+            docId: 'intro',
+            position: 'left',
+            label: 'Configurator',
+          },
           // { to: '/blog', label: 'Blog', position: 'left' },
           {
             href: 'https://github.com/appsparkler/my-rush-stack/tree/main/libs/react-mark.js',
