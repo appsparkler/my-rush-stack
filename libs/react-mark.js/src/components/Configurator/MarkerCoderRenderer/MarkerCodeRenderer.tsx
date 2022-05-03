@@ -28,20 +28,21 @@ export const MarkerCodeRenderer = ({
     return `
 />`;
   }, []);
-  const firstLine = `<Marker`;
-  const finalText = useMemo(
-    () => `${firstLine}
+  const code = useMemo(
+    () => `<Marker
   mark="${mark}"${optionsRender}`,
-    [firstLine, mark, optionsRender]
+    [mark, optionsRender]
   );
 
   useEffect(() => {
-    onChange(finalText);
+    onChange(code);
   }, [mark, options]);
 
   return (
     <Box bgcolor={'grey.200'} p={1} {...wrapperProps}>
-      <pre>{finalText}</pre>
+      <pre>
+        <code>{code}</code>
+      </pre>
     </Box>
   );
 };
