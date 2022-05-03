@@ -1,10 +1,10 @@
 import { Add, Delete } from '@mui/icons-material';
 import { Box, Button, IconButton, TextField, Typography } from '@mui/material';
+import { StringOrNumber } from 'common-types';
 import { filter, uniqueId } from 'lodash/fp';
 import React, { useCallback, useState } from 'react';
 
 const uniqueIdSynonymItem = () => uniqueId('synonym-item');
-type StringOrNumber = string | number;
 
 /**
  * Filters out items in an array
