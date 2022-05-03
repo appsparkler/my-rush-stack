@@ -10,6 +10,7 @@ export default {
 const Template: ComponentStory<typeof MarkerCodeRendererWithCopy> = (args) => (
   <MarkerCodeRendererWithCopy {...args} />
 );
+
 Template.args = {
   mark: 'Hello World',
   options: { foo: 'foo', ignore: ['h1', 'h4', 'span'] },

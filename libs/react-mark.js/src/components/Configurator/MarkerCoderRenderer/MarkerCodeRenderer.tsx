@@ -1,16 +1,19 @@
 import { Box, BoxProps } from '@mui/material';
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
+import { noop } from 'lodash/fp';
 
 export type MarkerCodeRendererProps = {
   mark?: string;
   options?: {};
   wrapperProps?: BoxProps;
+  onChange: (updatedCode: string) => void;
 };
 
 export const MarkerCodeRenderer = ({
   mark = '',
   options = {},
   wrapperProps = {},
+  onChange,
 }: MarkerCodeRendererProps) => {
   const optionsString = useMemo(
     () => JSON.stringify(options, null, 4).replace('}', `  }`),
@@ -27,10 +30,19 @@ export const MarkerCodeRenderer = ({
 />`;
   }, []);
   const firstLine = `<Marker`;
+  const finalText = useMemo(
+    () => `${firstLine}
+  mark="${mark}"${optionsRender}`,
+    [firstLine, mark, optionsRender]
+  );
+
+  useEffect(() => {
+    onChange(finalText);
+  }, [mark, options]);
+
   return (
     <Box bgcolor={'grey.200'} p={1} {...wrapperProps}>
-      <pre>{`${firstLine}
-  mark="${mark}"${optionsRender}`}</pre>
+      <pre>{finalText}</pre>
     </Box>
   );
 };
