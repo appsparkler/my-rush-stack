@@ -3,7 +3,7 @@ import { MarkerCodeRenderer } from './MarkerCodeRenderer';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 export default {
-  title: 'Web/Configurator/Marker Code Renderer',
+  title: 'Web/Configurator/Marker Code Renderer With Copy',
   component: MarkerCodeRenderer,
 } as ComponentMeta<typeof MarkerCodeRenderer>;
 
