@@ -11,9 +11,8 @@ const Template: ComponentStory<typeof MarkerCodeRenderer> = (args) => (
   <MarkerCodeRenderer {...args} />
 );
 
-Template.args = {
+export const markerCodeRenderer = Template.bind({});
+markerCodeRenderer.args = {
   mark: 'Hello World',
   options: { foo: 'foo', ignore: ['h1', 'h4', 'span'] },
 };
-
-export const markerCodeRenderer = Template.bind({});

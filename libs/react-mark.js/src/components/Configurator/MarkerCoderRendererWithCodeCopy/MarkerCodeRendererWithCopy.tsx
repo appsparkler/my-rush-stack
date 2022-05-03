@@ -13,6 +13,7 @@ export const MarkerCodeRendererWithCopy = ({
   options,
 }: MarkerCodeRendererWithCopyProps) => {
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+
   const [openSnackbar, setOpenSnackbar] = useState(false);
 
   const [textToCopy, setTextToCopy] = useState<string>('');
