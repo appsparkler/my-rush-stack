@@ -402,6 +402,10 @@
     {
       "packageName": "common-types",
       "projectFolder": "libs/common-types"
+    },
+    {
+      "packageName": "common-utils",
+      "projectFolder": "libs/common-utils"
     }
     // {
     //   /**
