@@ -1,30 +1,39 @@
-import { Box, BoxProps, IconButton } from '@mui/material';
-import React, { useCallback, useState } from 'react';
+import { Alert, Box, IconButton, Snackbar } from '@mui/material';
+import React, { useCallback, useRef, useState } from 'react';
 import {
   MarkerCodeRenderer,
   MarkerCodeRendererProps,
 } from '../MarkerCoderRenderer/MarkerCodeRenderer';
 import { ContentCopy as ContentCopyIcon } from '@mui/icons-material';
 
-export type MarkerCodeRendererWithCopyProps = MarkerCodeRendererProps & {
-  onCopy: (copiedText: string) => void;
-};
+export type MarkerCodeRendererWithCopyProps = MarkerCodeRendererProps & {};
 
 export const MarkerCodeRendererWithCopy = ({
   mark,
   options,
-  onCopy,
 }: MarkerCodeRendererWithCopyProps) => {
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+
   const [textToCopy, setTextToCopy] = useState<string>('');
+
   const handleClickCopy = useCallback(() => {
-    navigator.clipboard.writeText(textToCopy);
+    textareaRef.current?.select();
+    document.execCommand('copy');
+    setOpenSnackbar(true);
   }, []);
+
   const handleChange = useCallback<MarkerCodeRendererProps['onChange']>(
     (textToCopy) => {
       setTextToCopy(textToCopy);
     },
     []
   );
+
+  const handleClose = useCallback(() => {
+    setOpenSnackbar(false);
+  }, []);
+
   return (
     <Box position="relative">
       <MarkerCodeRenderer
@@ -37,6 +46,28 @@ export const MarkerCodeRendererWithCopy = ({
         <IconButton aria-label="copy" color="primary" onClick={handleClickCopy}>
           <ContentCopyIcon />
         </IconButton>
+      </Box>
+
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={1000}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+      >
+        <Alert
+          onClose={handleClose}
+          severity="success"
+          variant="filled"
+          sx={{ width: '100%' }}
+        >
+          copied!
+        </Alert>
+      </Snackbar>
+
+      <Box position="absolute" left={10000}>
+        <textarea ref={textareaRef} value={textToCopy}>
+          {textToCopy}
+        </textarea>
       </Box>
     </Box>
   );

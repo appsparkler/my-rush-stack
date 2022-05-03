@@ -1,6 +1,5 @@
 import { Box, BoxProps } from '@mui/material';
 import React, { useEffect, useMemo } from 'react';
-import { noop } from 'lodash/fp';
 
 export type MarkerCodeRendererProps = {
   mark?: string;
