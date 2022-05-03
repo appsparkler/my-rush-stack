@@ -1,19 +1,11 @@
 import { Add, Delete } from '@mui/icons-material';
 import { Box, Button, IconButton, TextField, Typography } from '@mui/material';
 import { StringOrNumber } from 'common-types';
-import { filter, uniqueId } from 'lodash/fp';
+import { filterOutWithId } from 'common-utils';
+import { uniqueId } from 'lodash/fp';
 import React, { useCallback, useState } from 'react';
 
 const uniqueIdSynonymItem = () => uniqueId('synonym-item');
-
-/**
- * Filters out items in an array
- * @param id - the id of the item you want to filter out
- * @returns A new array without the items having the `id`
- */
-const filterOutWithId = <T extends { id: StringOrNumber }>(
-  id: StringOrNumber
-) => filter<T>((item) => item.id !== id);
 
 type SynonymItem = {
   id: StringOrNumber;

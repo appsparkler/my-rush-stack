@@ -22,8 +22,7 @@
     "build-storybook": "build-storybook"
   },
   "peerDependencies": {
-    "react": ">=16",
-    "mark.js": "~8.11.1"
+    "react": ">=16"
   },
   "husky": {
     "hooks": {
@@ -36,16 +35,16 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "react-mark.js",
+  "name": "mui",
   "author": "Aakash Shah",
-  "module": "dist/react-mark.js.esm.js",
+  "module": "dist/common-mui.esm.js",
   "size-limit": [
     {
-      "path": "dist/react-mark.js.cjs.production.min.js",
+      "path": "dist/common-mui.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/react-mark.js.esm.js",
+      "path": "dist/common-mui.esm.js",
       "limit": "10 KB"
     }
   ],
@@ -61,24 +60,12 @@
     "@types/react-dom": "^18.0.3",
     "babel-loader": "^8.2.5",
     "husky": "^7.0.4",
-    "mark.js": "~8.11.1",
-    "prettier": "~2.6.2",
-    "react": "^17.0.2",
+    "react": "^18.1.0",
     "react-dom": "^17.0.2",
-    "react-is": "^18.1.0",
+    "react-is": "^17.0.2",
     "size-limit": "^7.0.8",
     "tsdx": "^0.14.1",
     "tslib": "^2.4.0",
-    "typescript": "^4.6.4",
-    "@mui/material": "~5.6.4",
-    "@emotion/react": "~11.9.0",
-    "@mui/icons-material": "~5.6.2",
-    "lodash": "~4.17.21",
-    "@types/lodash": "~4.14.182"
-  },
-  "dependencies": {
-    "lodash": "~4.17.21",
-    "common-types": "workspace:*",
-    "common-utils": "workspace:*"
+    "typescript": "^4.6.4"
   }
 }

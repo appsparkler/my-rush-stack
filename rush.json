@@ -406,6 +406,10 @@
     {
       "packageName": "common-utils",
       "projectFolder": "libs/common-utils"
+    },
+    {
+      "packageName": "mui",
+      "projectFolder": "libs/mui"
     }
     // {
     //   /**
