@@ -2,9 +2,9 @@ import { Add, Delete } from '@mui/icons-material';
 import { Box, Button, IconButton, TextField, Typography } from '@mui/material';
 import React from 'react';
 
-export const Synonyms = () => {
+export const Synonyms = (props: {}) => {
   return (
-    <>
+    <Box display="flex" gap={1} flexDirection="column">
       <Typography variant="h6">Synonyms</Typography>
       <Box display="flex" gap={2} flexDirection="column">
         {[
@@ -27,6 +27,6 @@ export const Synonyms = () => {
           </Button>
         </Box>
       </Box>
-    </>
+    </Box>
   );
 };
