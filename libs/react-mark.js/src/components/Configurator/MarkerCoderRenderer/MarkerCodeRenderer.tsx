@@ -1,5 +1,7 @@
 import { Box, BoxProps } from '@mui/material';
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
+import Prism from './prism.js';
+import './prism.css';
 
 export type MarkerCodeRendererProps = {
   mark?: string;
@@ -14,6 +16,7 @@ export const MarkerCodeRenderer = ({
   wrapperProps = {},
   onChange,
 }: MarkerCodeRendererProps) => {
+  const codeRef = useRef(null);
   const optionsString = useMemo(
     () => JSON.stringify(options, null, 4).replace('}', `  }`),
     []
@@ -36,12 +39,18 @@ export const MarkerCodeRenderer = ({
 
   useEffect(() => {
     onChange(code);
+    const highlightedCode = Prism.highlight(
+      code,
+      (Prism.languages as any).jsx,
+      'jsx'
+    );
+    (codeRef.current as any).innerHTML = highlightedCode;
   }, [mark, options]);
 
   return (
-    <Box bgcolor={'grey.200'} p={1} {...wrapperProps}>
-      <pre>
-        <code>{code}</code>
+    <Box {...wrapperProps} sx={{ pre: { borderRadius: 4 } }}>
+      <pre className="language-jsx">
+        <code className="language-jsx" ref={codeRef}></code>
       </pre>
     </Box>
   );
