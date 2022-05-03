@@ -1,1 +1,1 @@
-export * from './MarkerCodeRenderer';
+export * from './MarkerCodeRendererWithCopy';

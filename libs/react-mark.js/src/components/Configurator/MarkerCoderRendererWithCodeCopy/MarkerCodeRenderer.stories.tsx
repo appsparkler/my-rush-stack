@@ -1,18 +1,18 @@
 import React from 'react';
-import { MarkerCodeRenderer } from './MarkerCodeRenderer';
+import { MarkerCodeRendererWithCopy } from './MarkerCodeRendererWithCopy';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 export default {
   title: 'Web/Configurator/Marker Code Renderer With Copy',
-  component: MarkerCodeRenderer,
-} as ComponentMeta<typeof MarkerCodeRenderer>;
+  component: MarkerCodeRendererWithCopy,
+} as ComponentMeta<typeof MarkerCodeRendererWithCopy>;
 
-const Template: ComponentStory<typeof MarkerCodeRenderer> = (args) => (
-  <MarkerCodeRenderer {...args} />
+const Template: ComponentStory<typeof MarkerCodeRendererWithCopy> = (args) => (
+  <MarkerCodeRendererWithCopy {...args} />
 );
 Template.args = {
   mark: 'Hello World',
   options: { foo: 'foo', ignore: ['h1', 'h4', 'span'] },
 };
 
-export const markerCodeRenderer = Template.bind({});
+export const markerCodeRendererWithCopy = Template.bind({});

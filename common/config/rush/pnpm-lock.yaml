@@ -30,6 +30,7 @@ importers:
     specifiers:
       '@babel/core': ^7.17.10
       '@emotion/react': ~11.9.0
+      '@mui/icons-material': ~5.6.2
       '@mui/material': ~5.6.4
       '@size-limit/preset-small-lib': ^7.0.8
       '@storybook/addon-essentials': ^6.4.22
@@ -53,6 +54,7 @@ importers:
     devDependencies:
       '@babel/core': 7.17.10
       '@emotion/react': 11.9.0_e307289084c0d0f4b25b50629c6033a9
+      '@mui/icons-material': 5.6.2_ffec98b3e12398b2317b58001456d1ef
       '@mui/material': 5.6.4_3f43a853b5eb9406bb6547da8d134831
       '@size-limit/preset-small-lib': 7.0.8_size-limit@7.0.8
       '@storybook/addon-essentials': 6.4.22_c969bf064ddb0a7e489d2523713710cd
@@ -2846,6 +2848,23 @@ packages:
       react: 18.1.0
       react-dom: 18.1.0_react@18.1.0
       react-is: 17.0.2
+    dev: true
+
+  /@mui/icons-material/5.6.2_ffec98b3e12398b2317b58001456d1ef:
+    resolution: {integrity: sha512-9QdI7axKuBAyaGz4mtdi7Uy1j73/thqFmEuxpJHxNC7O8ADEK1Da3t2veK2tgmsXsUlAHcAG63gg+GvWWeQNqQ==}
+    engines: {node: '>=12.0.0'}
+    peerDependencies:
+      '@mui/material': ^5.0.0
+      '@types/react': ^17.0.0 || ^18.0.0
+      react: ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.17.9
+      '@mui/material': 5.6.4_3f43a853b5eb9406bb6547da8d134831
+      '@types/react': 18.0.8
+      react: 18.1.0
     dev: true
 
   /@mui/material/5.6.4_3f43a853b5eb9406bb6547da8d134831:

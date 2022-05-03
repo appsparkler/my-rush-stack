@@ -2,14 +2,14 @@ import { Box, BoxProps } from '@mui/material';
 import React, { useMemo } from 'react';
 
 export type MarkerCodeRendererProps = {
-  mark: string;
-  options: {};
-  wrapperProps: BoxProps;
+  mark?: string;
+  options?: {};
+  wrapperProps?: BoxProps;
 };
 
 export const MarkerCodeRenderer = ({
-  mark = 'hello world',
-  options = { foo: 'foo', ignore: ['h1', '.hello'] },
+  mark = '',
+  options = {},
   wrapperProps = {},
 }: MarkerCodeRendererProps) => {
   const optionsString = useMemo(
