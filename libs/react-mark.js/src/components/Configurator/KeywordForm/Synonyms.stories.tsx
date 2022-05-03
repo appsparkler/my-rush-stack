@@ -12,3 +12,9 @@ const Template: ComponentStory<typeof Synonyms> = (args) => (
 );
 
 export const synonyms = Template.bind({});
+synonyms.args = {
+  value: [
+    { id: 1, key: 'foo', value: 'foolto' },
+    { id: 2, key: 'bar', value: 'barto' },
+  ],
+};
