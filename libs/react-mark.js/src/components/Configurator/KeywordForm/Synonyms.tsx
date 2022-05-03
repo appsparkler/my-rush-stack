@@ -2,15 +2,22 @@ import { Add, Delete } from '@mui/icons-material';
 import { Box, Button, IconButton, TextField, Typography } from '@mui/material';
 import React from 'react';
 
-export const Synonyms = (props: {}) => {
+type SynonymItem = {
+  id: number;
+  key: string;
+  value: string;
+};
+
+export type SynonymProps = {
+  value?: SynonymItem[];
+};
+
+export const Synonyms = ({ value = [] }: SynonymProps) => {
   return (
     <Box display="flex" gap={1} flexDirection="column">
       <Typography variant="h6">Synonyms</Typography>
       <Box display="flex" gap={2} flexDirection="column">
-        {[
-          { id: 1, key: 'foo', value: 'foolto' },
-          { id: 2, key: 'bar', value: 'barto' },
-        ].map(({ id, key, value }) => (
+        {value.map(({ id, key, value }) => (
           <Box key={id} display="flex" gap={2} alignItems="center">
             <TextField label="Word" value={key} size="small" />
             <TextField label="Synonym" value={value} size="small" />
