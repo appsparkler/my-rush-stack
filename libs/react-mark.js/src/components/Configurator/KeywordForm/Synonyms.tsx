@@ -1,14 +1,25 @@
 import { Add, Delete } from '@mui/icons-material';
-import { Box, Button, IconButton, TextField, Typography } from '@mui/material';
-import { StringOrNumber } from 'common-types';
-import { filterOutWithId } from 'common-utils';
-import { uniqueId } from 'lodash/fp';
-import React, { useCallback, useState } from 'react';
+import {
+  Box,
+  Button,
+  IconButton,
+  TextField,
+  Typography,
+  TextFieldProps,
+} from '@mui/material';
+import {
+  filterOutWithId,
+  updateItemWithMatchingId,
+  findById,
+} from 'common-utils';
+import { noop } from 'lodash';
+import { reduce, uniqueId } from 'lodash/fp';
+import React, { useCallback, useEffect, useState } from 'react';
 
 const uniqueIdSynonymItem = () => uniqueId('synonym-item');
 
 type SynonymItem = {
-  id: StringOrNumber;
+  id: string;
   key: string;
   value: string;
 };
@@ -18,21 +29,54 @@ export type SynonymProps = {
   onChange?: (updatedSynonyms: SynonymItem[]) => void;
 };
 
-export const Synonyms = ({ onChange }: SynonymProps) => {
+const getDefaultSynonymItem = () => ({
+  id: uniqueIdSynonymItem(),
+  key: '',
+  value: '',
+});
+export const Synonyms = ({ onChange = noop }: SynonymProps) => {
   const [$value, set$value] = useState<SynonymItem[]>([
-    { id: uniqueIdSynonymItem(), key: '', value: '' },
+    getDefaultSynonymItem(),
   ]);
 
   const handleClickAdd = useCallback(() => {
-    set$value((prevValue) => [
-      ...prevValue,
-      { id: uniqueIdSynonymItem(), key: '', value: '' },
-    ]);
+    set$value((prevValue) => [...prevValue, getDefaultSynonymItem()]);
   }, []);
 
   const handleClickDelete = useCallback(
-    (id: StringOrNumber) => () =>
+    (id: string) => () =>
       set$value((prevValue) => filterOutWithId<SynonymItem>(id)(prevValue)),
+    []
+  );
+
+  const reduceToValidSynonyms = reduce<SynonymItem, SynonymItem[]>(
+    (acc, item) => {
+      if (item.key.length > 0 && item.value.length > 0) {
+        return [...acc, item];
+      }
+      return [...acc];
+    },
+    []
+  );
+  useEffect(() => {
+    const validSynonyms = reduceToValidSynonyms($value);
+    onChange(validSynonyms);
+  }, [$value]);
+
+  const handleChangeInput = useCallback<
+    (id: string) => TextFieldProps['onChange']
+  >(
+    (id) =>
+      ({ target: { value, name } }) => {
+        const itemToUpdate = findById<SynonymItem>(id)($value);
+        if (itemToUpdate) {
+          const updatedItems = updateItemWithMatchingId<SynonymItem>({
+            ...itemToUpdate,
+            [name]: value,
+          })($value);
+          onChange(updatedItems);
+        }
+      },
     []
   );
 
@@ -42,8 +86,20 @@ export const Synonyms = ({ onChange }: SynonymProps) => {
       <Box display="flex" gap={2} flexDirection="column">
         {$value.map(({ id, key, value }, index) => (
           <Box key={id} display="flex" gap={2} alignItems="center">
-            <TextField label="Word" value={key} size="small" />
-            <TextField label="Synonym" value={value} size="small" />
+            <TextField
+              label="Word"
+              value={key}
+              size="small"
+              name="key"
+              onChange={handleChangeInput(id)}
+            />
+            <TextField
+              label="Synonym"
+              value={value}
+              size="small"
+              name="value"
+              onChange={handleChangeInput(id)}
+            />
             <Box>
               <IconButton
                 aria-label="add synonym"
