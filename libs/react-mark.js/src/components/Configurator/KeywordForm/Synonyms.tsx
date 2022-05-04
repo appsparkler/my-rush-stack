@@ -16,8 +16,6 @@ import { noop } from 'lodash';
 import { reduce, uniqueId } from 'lodash/fp';
 import React, { useCallback, useEffect, useState } from 'react';
 
-const uniqueIdSynonymItem = () => uniqueId('synonym-item');
-
 type SynonymItem = {
   id: string;
   key: string;
@@ -28,6 +26,9 @@ export type SynonymProps = {
   value?: SynonymItem[];
   onChange?: (updatedSynonyms: SynonymItem[]) => void;
 };
+
+// Utils
+const uniqueIdSynonymItem = () => uniqueId('synonym-item');
 
 const getDefaultSynonymItem = () => ({
   id: uniqueIdSynonymItem(),
@@ -45,6 +46,7 @@ const reduceToValidSynonyms = reduce<SynonymItem, SynonymItem[]>(
   []
 );
 
+// JSX
 export const Synonyms = ({ onChange = noop }: SynonymProps) => {
   const [$value, set$value] = useState<SynonymItem[]>([
     getDefaultSynonymItem(),
