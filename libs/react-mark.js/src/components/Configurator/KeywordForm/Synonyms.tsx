@@ -34,6 +34,17 @@ const getDefaultSynonymItem = () => ({
   key: '',
   value: '',
 });
+
+const reduceToValidSynonyms = reduce<SynonymItem, SynonymItem[]>(
+  (acc, item) => {
+    if (item.key.length > 0 && item.value.length > 0) {
+      return [...acc, item];
+    }
+    return [...acc];
+  },
+  []
+);
+
 export const Synonyms = ({ onChange = noop }: SynonymProps) => {
   const [$value, set$value] = useState<SynonymItem[]>([
     getDefaultSynonymItem(),
@@ -49,20 +60,6 @@ export const Synonyms = ({ onChange = noop }: SynonymProps) => {
     []
   );
 
-  const reduceToValidSynonyms = reduce<SynonymItem, SynonymItem[]>(
-    (acc, item) => {
-      if (item.key.length > 0 && item.value.length > 0) {
-        return [...acc, item];
-      }
-      return [...acc];
-    },
-    []
-  );
-  useEffect(() => {
-    const validSynonyms = reduceToValidSynonyms($value);
-    onChange(validSynonyms);
-  }, [$value]);
-
   const handleChangeInput = useCallback<
     (id: string) => TextFieldProps['onChange']
   >(
@@ -74,11 +71,16 @@ export const Synonyms = ({ onChange = noop }: SynonymProps) => {
             ...itemToUpdate,
             [name]: value,
           })($value);
-          onChange(updatedItems);
+          set$value(updatedItems);
         }
       },
-    []
+    [$value]
   );
+
+  useEffect(() => {
+    const validSynonyms = reduceToValidSynonyms($value);
+    onChange(validSynonyms);
+  }, [$value]);
 
   return (
     <Box display="flex" gap={1} flexDirection="column">
