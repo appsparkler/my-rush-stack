@@ -132,6 +132,7 @@ importers:
       husky: ^7.0.4
       lodash: ~4.17.21
       mark.js: ~8.11.1
+      mui: workspace:*
       prettier: ~2.6.2
       react: ^17.0.2
       react-dom: ^17.0.2
@@ -145,6 +146,7 @@ importers:
       common-types: link:../common-types
       common-utils: link:../common-utils
       lodash: 4.17.21
+      mui: link:../mui
     devDependencies:
       '@babel/core': 7.17.10
       '@emotion/react': 11.9.0_a4a99b534afdd8fd51ea9aa1fe028faa

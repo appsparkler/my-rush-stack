@@ -8,12 +8,13 @@ import {
 } from '@mui/material';
 import React from 'react';
 import { Synonyms } from './Synonyms';
+import { Horizontal, Vertical } from 'mui';
 
 export const KeywordForm = (props: {}) => {
   return (
-    <Box {...props} display="flex" flexDirection="column" gap={2}>
+    <Vertical gap={2} {...props}>
       {/* ROW 1 */}
-      <Box display="flex" gap={2}>
+      <Horizontal gap={2}>
         <TextField label="Keyword" fullWidth size="small" />
         <FormControl fullWidth>
           <InputLabel>Accurracy</InputLabel>
@@ -30,7 +31,7 @@ export const KeywordForm = (props: {}) => {
             <MenuItem value="complimentary">complimentary</MenuItem>
           </Select>
         </FormControl>
-      </Box>
+      </Horizontal>
       {/** ROW 2 */}
       <Box display="flex" gap={2}>
         <TextField label="Element" fullWidth size="small" />
@@ -39,6 +40,6 @@ export const KeywordForm = (props: {}) => {
 
       {/* ROW 3 */}
       <Synonyms />
-    </Box>
+    </Vertical>
   );
 };

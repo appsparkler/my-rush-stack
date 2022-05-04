@@ -80,6 +80,7 @@
     "lodash": "~4.17.21",
     "common-types": "workspace:*",
     "common-utils": "workspace:*",
-    "@emotion/styled": "~11.8.1"
+    "@emotion/styled": "~11.8.1",
+    "mui": "workspace:*"
   }
 }
