@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
-import { Synonyms, uniqueIdSynonymItem } from './Synonyms';
+import { Synonyms } from './Synonyms';
 
 export default {
   title: 'Web/Configurator/Synonyms',
@@ -13,8 +13,5 @@ const Template: ComponentStory<typeof Synonyms> = (args) => (
 
 export const synonyms = Template.bind({});
 synonyms.args = {
-  value: [
-    { id: uniqueIdSynonymItem(), key: 'foo', value: 'foolto' },
-    { id: uniqueIdSynonymItem(), key: 'bar', value: 'barto' },
-  ],
+  name: 'synonyms',
 };

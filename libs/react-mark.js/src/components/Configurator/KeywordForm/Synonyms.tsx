@@ -23,8 +23,8 @@ type SynonymItem = {
 };
 
 export type SynonymProps = {
-  value?: SynonymItem[];
-  onChange?: (updatedSynonyms: SynonymItem[]) => void;
+  name?: string;
+  onChange?: (name: string, updatedSynonyms: SynonymItem[]) => void;
 };
 
 // Utils
@@ -47,7 +47,7 @@ const reduceToValidSynonyms = reduce<SynonymItem, SynonymItem[]>(
 );
 
 // JSX
-export const Synonyms = ({ onChange = noop }: SynonymProps) => {
+export const Synonyms = ({ name = '', onChange = noop }: SynonymProps) => {
   const [$value, set$value] = useState<SynonymItem[]>([
     getDefaultSynonymItem(),
   ]);
@@ -81,8 +81,10 @@ export const Synonyms = ({ onChange = noop }: SynonymProps) => {
 
   useEffect(() => {
     const validSynonyms = reduceToValidSynonyms($value);
-    onChange(validSynonyms);
-  }, [$value, onChange]);
+    if (validSynonyms.length > 0) {
+      onChange(name, validSynonyms);
+    }
+  }, [$value, name, onChange]);
 
   return (
     <Box display="flex" gap={1} flexDirection="column">
