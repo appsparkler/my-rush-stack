@@ -11,4 +11,7 @@ const Template: ComponentStory<typeof Excludes> = (args) => (
   <Excludes {...args} />
 );
 
-export const keywordForm = Template.bind({});
+export const excludes = Template.bind({});
+excludes.args = {
+  name: 'excludes',
+};
