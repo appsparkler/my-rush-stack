@@ -11,7 +11,7 @@ import { Synonyms } from './Synonyms';
 import { Horizontal, Vertical } from 'mui';
 import { Excludes } from './Excludes';
 
-export const KeywordForm = (props: {}) => {
+export const KeywordForm = (props = {}) => {
   return (
     <Vertical gap={2} {...props}>
       {/* ROW 1 */}
@@ -43,7 +43,14 @@ export const KeywordForm = (props: {}) => {
       <Synonyms name="synonyms" />
 
       {/* ROW 4 */}
-      <Excludes name="excludes" />
+      <Excludes
+        name="excludes"
+        title="Exclusions"
+        label="Exclude Item"
+        ariaLabelAdd="add exclusion"
+        btnLabel="Add Exclusion"
+        ariaLabelDelete="delete exclusion"
+      />
     </Vertical>
   );
 };
