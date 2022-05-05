@@ -26,11 +26,24 @@ const getDefaultExcludeItem = (): ExcludeItem => {
 };
 
 export type ExcludesProps = {
+  title?: string;
+  label?: string;
+  ariaLabelAdd?: string;
+  btnLabel?: string;
+  ariaLabelDelete?: string;
   name?: string;
   onChange?: (name: string, value: ExcludeItem[]) => void;
 };
 
-export const Excludes = ({ name = '', onChange = noop }: ExcludesProps) => {
+export const Excludes = ({
+  title = '',
+  label = '',
+  ariaLabelAdd = '',
+  btnLabel = '',
+  ariaLabelDelete = '',
+  name = '',
+  onChange = noop,
+}: ExcludesProps) => {
   const [value, setValue] = useState<ExcludeItem[]>([getDefaultExcludeItem()]);
   const handleChangeItem = useCallback<
     (id: string) => TextFieldProps['onChange']
@@ -71,12 +84,12 @@ export const Excludes = ({ name = '', onChange = noop }: ExcludesProps) => {
 
   return (
     <Vertical gap={1}>
-      <Typography variant="h6">Exclusions</Typography>
+      <Typography variant="h6">{title}</Typography>
       <Vertical gap={2}>
         {value.map((item, index) => (
           <Horizontal>
             <TextField
-              label="Exclude Item"
+              label={label}
               size="small"
               fullWidth
               type="text"
@@ -86,7 +99,7 @@ export const Excludes = ({ name = '', onChange = noop }: ExcludesProps) => {
             />
             <Box>
               <IconButton
-                aria-label="delete exclusion"
+                aria-label={ariaLabelDelete}
                 color="warning"
                 size="small"
                 onClick={handleClickDelete(item.id)}
@@ -102,9 +115,10 @@ export const Excludes = ({ name = '', onChange = noop }: ExcludesProps) => {
             variant="contained"
             type="button"
             onClick={handleClickAdd}
+            aria-label={ariaLabelAdd}
             startIcon={<Add />}
           >
-            Add Exclusion
+            {btnLabel}
           </Button>
         </Box>
       </Vertical>

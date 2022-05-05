@@ -14,4 +14,9 @@ const Template: ComponentStory<typeof Excludes> = (args) => (
 export const excludes = Template.bind({});
 excludes.args = {
   name: 'excludes',
+  title: 'Exclusions',
+  label: 'Exclude Item',
+  ariaLabelAdd: 'add exclusion',
+  btnLabel: 'Add Exclusion',
+  ariaLabelDelete: 'delete exclusion',
 };
