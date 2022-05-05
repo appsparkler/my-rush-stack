@@ -9,6 +9,7 @@ import {
 import React from 'react';
 import { Synonyms } from './Synonyms';
 import { Horizontal, Vertical } from 'mui';
+import { Excludes } from './Excludes';
 
 export const KeywordForm = (props: {}) => {
   return (
@@ -39,7 +40,10 @@ export const KeywordForm = (props: {}) => {
       </Box>
 
       {/* ROW 3 */}
-      <Synonyms />
+      <Synonyms name="synonyms" />
+
+      {/* ROW 4 */}
+      <Excludes name="excludes" />
     </Vertical>
   );
 };
