@@ -28,9 +28,9 @@ export type SynonymProps = {
 };
 
 // Utils
-const uniqueIdSynonymItem = () => uniqueId('synonym-item');
+export const uniqueIdSynonymItem = () => uniqueId('synonym-item');
 
-const getDefaultSynonymItem = () => ({
+export const getDefaultSynonymItem = () => ({
   id: uniqueIdSynonymItem(),
   key: '',
   value: '',
@@ -82,7 +82,7 @@ export const Synonyms = ({ onChange = noop }: SynonymProps) => {
   useEffect(() => {
     const validSynonyms = reduceToValidSynonyms($value);
     onChange(validSynonyms);
-  }, [$value]);
+  }, [$value, onChange]);
 
   return (
     <Box display="flex" gap={1} flexDirection="column">
