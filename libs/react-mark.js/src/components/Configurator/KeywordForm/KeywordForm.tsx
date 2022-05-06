@@ -8,12 +8,68 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  SelectProps,
   TextField,
 } from '@mui/material';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Synonyms } from './Synonyms';
 import { Horizontal, Vertical } from 'mui';
 import { Excludes } from './Excludes';
+import { noop } from 'lodash/fp';
+
+// const label = 'Accurracy';
+// const onChange = console.log;
+// const value = 'complimentary';
+// const menuItems = [
+//   { id: '1', name: 'partially', value: 'partially' },
+//   { id: '2', name: 'exactly', value: 'partially' },
+//   { id: '3', name: 'complimentary', value: 'complimentary' },
+// ];
+
+export type CustomSelectProps = {
+  onChange?: (name: string, value: string) => void;
+  name?: string;
+  label?: string;
+  value?: string;
+  menuItems?: {
+    id?: string;
+    name?: string;
+    value?: string;
+  }[];
+};
+
+const CustomSelect = ({
+  name = '',
+  label = '',
+  value = '',
+  menuItems = [],
+  onChange = noop,
+}: CustomSelectProps) => {
+  const handleChange = useCallback<() => SelectProps<string>['onChange']>(
+    () =>
+      ({ target: { value } }) => {
+        onChange(name, value);
+      },
+    [name, onChange]
+  );
+  return (
+    <FormControl fullWidth>
+      <InputLabel>{label}</InputLabel>
+      <Select<string>
+        onChange={handleChange()}
+        value={value}
+        label={label}
+        size={'small'}
+      >
+        {menuItems.map(({ name, value, id }) => (
+          <MenuItem selected key={id} value={value}>
+            {name}
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
+  );
+};
 
 export const KeywordForm = (props = {}) => {
   return (
@@ -21,21 +77,7 @@ export const KeywordForm = (props = {}) => {
       {/* ROW 1 */}
       <Horizontal gap={2}>
         <TextField label="Keyword" fullWidth size="small" />
-        <FormControl fullWidth>
-          <InputLabel>Accurracy</InputLabel>
-          <Select
-            onChange={console.log}
-            defaultValue="complimentary"
-            label="Accurracy"
-            size="small"
-          >
-            <MenuItem selected value="partially">
-              partially
-            </MenuItem>
-            <MenuItem value="exactly">exactly</MenuItem>
-            <MenuItem value="complimentary">complimentary</MenuItem>
-          </Select>
-        </FormControl>
+        {<CustomSelect />}
       </Horizontal>
       {/** ROW 2 */}
       <Horizontal gap={2}>
