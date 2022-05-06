@@ -77,7 +77,19 @@ export const KeywordForm = (props = {}) => {
       {/* ROW 1 */}
       <Horizontal gap={2}>
         <TextField label="Keyword" fullWidth size="small" />
-        {<CustomSelect />}
+        {
+          <CustomSelect
+            label="Accurracy"
+            onChange={console.log}
+            value="complimentary"
+            name="accuracy"
+            menuItems={[
+              { id: '1', name: 'partially', value: 'partially' },
+              { id: '2', name: 'exactly', value: 'exactly' },
+              { id: '3', name: 'complimentary', value: 'complimentary' },
+            ]}
+          />
+        }
       </Horizontal>
       {/** ROW 2 */}
       <Horizontal gap={2}>
