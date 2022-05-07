@@ -6,6 +6,5 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": true,
     "source.fixAll.eslint": true
-  },
-  "eslint.codeActionsOnSave.rules": ["react-hooks/exhaustive-deps"]
+  }
 }

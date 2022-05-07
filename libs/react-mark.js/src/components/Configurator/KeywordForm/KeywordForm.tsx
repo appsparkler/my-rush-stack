@@ -9,22 +9,12 @@ import {
   Select,
   SelectProps,
   TextField,
-  TextFieldProps,
 } from '@mui/material';
 import React, { useCallback } from 'react';
 import { Synonyms } from './Synonyms';
-import { Horizontal, Vertical } from 'mui';
+import { Horizontal, SimpleTextField, Vertical } from 'mui';
 import { InteactiveSimpleList } from './InteactiveSimpleList';
 import { noop } from 'lodash/fp';
-
-// const label = 'Accurracy';
-// const onChange = console.log;
-// const value = 'complimentary';
-// const menuItems = [
-//   { id: '1', name: 'partially', value: 'partially' },
-//   { id: '2', name: 'exactly', value: 'partially' },
-//   { id: '3', name: 'complimentary', value: 'complimentary' },
-// ];
 
 export type CustomSelectProps = {
   onChange?: (name: string, value: string) => void;
@@ -71,27 +61,12 @@ const CustomSelect = ({
   );
 };
 
-export type TextFieldChangeHandler = NonNullable<TextFieldProps['onChange']>;
-
-export const CustomTextField = ({
-  onChange,
-  ...props
-}: { onChange: (name: string, value: string) => void } & TextFieldProps) => {
-  const handleChange = useCallback<TextFieldChangeHandler>(
-    ({ target: { value, name } }) => {
-      onChange(name, value);
-    },
-    [onChange]
-  );
-  return <TextField onChange={handleChange} {...props} />;
-};
-
 export const KeywordForm = (props = {}) => {
   return (
     <Vertical gap={2} {...props}>
       {/* ROW 1 */}
       <Horizontal gap={2}>
-        <CustomTextField
+        <SimpleTextField
           label="Keyword"
           fullWidth
           size="small"
