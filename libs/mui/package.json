@@ -75,9 +75,12 @@
     "@emotion/styled": "~11.8.1",
     "eslint-config-react-app": "~7.0.1",
     "@types/lodash": "~4.14.182",
-    "eslint": "~8.14.0"
+    "eslint": "~8.14.0",
+    "@mui/icons-material": "~5.6.2",
+    "common-types": "workspace:*"
   },
   "dependencies": {
-    "lodash": "~4.17.21"
+    "lodash": "~4.17.21",
+    "common-utils": "workspace:*"
   }
 }

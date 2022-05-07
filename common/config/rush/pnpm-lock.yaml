@@ -29,14 +29,18 @@ importers:
   ../../libs/common-types:
     specifiers:
       '@size-limit/preset-small-lib': ^7.0.8
+      '@types/react': ~18.0.9
       husky: ^7.0.4
+      react: ~18.1.0
       size-limit: ^7.0.8
       tsdx: ^0.14.1
       tslib: ^2.4.0
       typescript: ^4.6.4
     devDependencies:
       '@size-limit/preset-small-lib': 7.0.8_size-limit@7.0.8
+      '@types/react': 18.0.9
       husky: 7.0.4
+      react: 18.1.0
       size-limit: 7.0.8
       tsdx: 0.14.1
       tslib: 2.4.0
@@ -69,6 +73,7 @@ importers:
       '@babel/core': ^7.17.10
       '@emotion/react': ~11.9.0
       '@emotion/styled': ~11.8.1
+      '@mui/icons-material': ~5.6.2
       '@mui/material': ~5.6.4
       '@size-limit/preset-small-lib': ^7.0.8
       '@storybook/addon-essentials': ^6.4.22
@@ -80,6 +85,8 @@ importers:
       '@types/react': ^18.0.8
       '@types/react-dom': ^18.0.3
       babel-loader: ^8.2.5
+      common-types: workspace:*
+      common-utils: workspace:*
       eslint: ~8.14.0
       eslint-config-react-app: ~7.0.1
       husky: ^7.0.4
@@ -92,11 +99,13 @@ importers:
       tslib: ^2.4.0
       typescript: ^4.6.4
     dependencies:
+      common-utils: link:../common-utils
       lodash: 4.17.21
     devDependencies:
       '@babel/core': 7.17.10
       '@emotion/react': 11.9.0_a4a99b534afdd8fd51ea9aa1fe028faa
       '@emotion/styled': 11.8.1_4db9f72bcc1ceffe01a092a8f9429f40
+      '@mui/icons-material': 5.6.2_40582e77e286000e842fbd2a389b200f
       '@mui/material': 5.6.4_4b679efbf41ecda4d7cb0d28585e9630
       '@size-limit/preset-small-lib': 7.0.8_size-limit@7.0.8
       '@storybook/addon-essentials': 6.4.22_4941892a670a6d858304780ffb5d109e
@@ -108,6 +117,7 @@ importers:
       '@types/react': 18.0.8
       '@types/react-dom': 18.0.3
       babel-loader: 8.2.5_@babel+core@7.17.10
+      common-types: link:../common-types
       eslint: 8.14.0
       eslint-config-react-app: 7.0.1_eslint@8.14.0+typescript@4.6.4
       husky: 7.0.4
@@ -2180,7 +2190,7 @@ packages:
     peerDependencies:
       react: '*'
     dependencies:
-      '@types/react': 18.0.8
+      '@types/react': 18.0.9
       prop-types: 15.8.1
       react: 17.0.2
     dev: false
@@ -5354,6 +5364,13 @@ packages:
 
   /@types/react/18.0.8:
     resolution: {integrity: sha512-+j2hk9BzCOrrOSJASi5XiOyBbERk9jG5O73Ya4M0env5Ixi6vUNli4qy994AINcEF+1IEHISYFfIT4zwr++LKw==}
+    dependencies:
+      '@types/prop-types': 15.7.5
+      '@types/scheduler': 0.16.2
+      csstype: 3.0.11
+
+  /@types/react/18.0.9:
+    resolution: {integrity: sha512-9bjbg1hJHUm4De19L1cHiW0Jvx3geel6Qczhjd0qY5VKVE2X5+x77YxAepuCwVh4vrgZJdgEJw48zrhRIeF4Nw==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
@@ -15232,6 +15249,13 @@ packages:
     dependencies:
       loose-envify: 1.4.0
       object-assign: 4.1.1
+
+  /react/18.1.0:
+    resolution: {integrity: sha512-4oL8ivCz5ZEPyclFQXaNksK3adutVS8l2xzZU0cqEFrE9Sb7fC0EFK5uEk74wIreL1DERyjvsU915j1pcT2uEQ==}
+    engines: {node: '>=0.10.0'}
+    dependencies:
+      loose-envify: 1.4.0
+    dev: true
 
   /read-pkg-up/7.0.1:
     resolution: {integrity: sha512-zK0TB7Xd6JpCLmlLmufqykGE+/TlOePD6qKClNW7hHDKFh/J7/7gCWGR7joEQEW1bKq3a3yUZSObOoWLFQ4ohg==}

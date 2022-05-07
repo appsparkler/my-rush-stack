@@ -1,6 +1,7 @@
 import { TextField, TextFieldProps } from '@mui/material';
 import React, { useCallback } from 'react';
 import { noop } from 'lodash/fp';
+import { TextFieldChangeEventHandler } from 'common-types';
 
 export type SimpleTextFieldProps = {
   onChange: (name: string, value: string) => void;
@@ -10,9 +11,7 @@ export const SimpleTextField = ({
   onChange = noop,
   ...props
 }: SimpleTextFieldProps) => {
-  const handleChange = useCallback<
-    React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>
-  >(
+  const handleChange = useCallback<TextFieldChangeEventHandler>(
     (evt) => {
       const {
         target: { value = '', name = '' },
