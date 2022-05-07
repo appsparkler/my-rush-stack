@@ -1,10 +1,10 @@
 {
   "version": "0.1.0",
   "license": "MIT",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
   "files": [
-    "dist",
+    "lib",
     "src"
   ],
   "engines": {
@@ -17,11 +17,6 @@
     "size": "size-limit",
     "analyze": "size-limit --why"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "tsdx lint"
-    }
-  },
   "prettier": {
     "printWidth": 80,
     "semi": true,
@@ -30,7 +25,7 @@
   },
   "name": "common-types",
   "author": "Aakash Shah",
-  "module": "dist/common-types.esm.js",
+  "module": "lib/index.js",
   "size-limit": [
     {
       "path": "lib/index.js",

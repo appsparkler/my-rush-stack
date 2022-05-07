@@ -4,7 +4,7 @@
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
-    "dist",
+    "lib",
     "src"
   ],
   "engines": {
@@ -15,11 +15,6 @@
     "build": "heft build --clean",
     "size": "size-limit",
     "analyze": "size-limit --why"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "tsdx lint"
-    }
   },
   "prettier": {
     "printWidth": 80,
