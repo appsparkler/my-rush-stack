@@ -4,12 +4,12 @@ import {
   FormControl,
   FormControlLabel,
   FormGroup,
-  Grid,
   InputLabel,
   MenuItem,
   Select,
   SelectProps,
   TextField,
+  TextFieldProps,
 } from '@mui/material';
 import React, { useCallback } from 'react';
 import { Synonyms } from './Synonyms';
@@ -71,12 +71,33 @@ const CustomSelect = ({
   );
 };
 
+export type TextFieldChangeHandler = NonNullable<TextFieldProps['onChange']>;
+
+export const CustomTextField = ({
+  onChange,
+  ...props
+}: { onChange: (name: string, value: string) => void } & TextFieldProps) => {
+  const handleChange = useCallback<TextFieldChangeHandler>(
+    ({ target: { value, name } }) => {
+      onChange(name, value);
+    },
+    [onChange]
+  );
+  return <TextField onChange={handleChange} {...props} />;
+};
+
 export const KeywordForm = (props = {}) => {
   return (
     <Vertical gap={2} {...props}>
       {/* ROW 1 */}
       <Horizontal gap={2}>
-        <TextField label="Keyword" fullWidth size="small" />
+        <CustomTextField
+          label="Keyword"
+          fullWidth
+          size="small"
+          onChange={console.log}
+          name="keyword"
+        />
         {
           <CustomSelect
             label="Accurracy"
