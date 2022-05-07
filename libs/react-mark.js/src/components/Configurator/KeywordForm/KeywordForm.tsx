@@ -12,8 +12,12 @@ import {
 } from '@mui/material';
 import React, { useCallback } from 'react';
 import { Synonyms } from './Synonyms';
-import { Horizontal, SimpleTextField, Vertical } from 'mui';
-import { InteactiveSimpleList } from './InteactiveSimpleList';
+import {
+  Horizontal,
+  InteactiveSimpleList,
+  SimpleTextField,
+  Vertical,
+} from 'mui';
 import { noop } from 'lodash/fp';
 
 export type CustomSelectProps = {
