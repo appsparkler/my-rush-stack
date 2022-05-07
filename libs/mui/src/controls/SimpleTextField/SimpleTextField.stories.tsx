@@ -8,7 +8,7 @@ const Template: ComponentStory<typeof SimpleTextField> = (args) => (
 
 export const simpleTextField = Template.bind({});
 simpleTextField.args = {
-  name: 'firstName',
+  name: 'firstNames',
   label: 'First Name',
 };
 

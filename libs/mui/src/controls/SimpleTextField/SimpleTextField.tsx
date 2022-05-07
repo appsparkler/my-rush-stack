@@ -4,16 +4,15 @@ import { noop } from 'lodash/fp';
 
 export type SimpleTextFieldProps = {
   onChange: (name: string, value: string) => void;
-} & TextFieldProps;
+} & Omit<TextFieldProps, 'onChange'>;
 
-export type TextFieldChangeHandler = React.ChangeEventHandler<
-  HTMLTextAreaElement | HTMLInputElement
->;
 export const SimpleTextField = ({
   onChange = noop,
   ...props
 }: SimpleTextFieldProps) => {
-  const handleChange = useCallback<TextFieldChangeHandler>(
+  const handleChange = useCallback<
+    React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>
+  >(
     (evt) => {
       const {
         target: { value = '', name = '' },
