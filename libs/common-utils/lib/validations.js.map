@@ -1,0 +1,1 @@
+{"version":3,"file":"validations.js","sourceRoot":"","sources":["../src/validations.ts"],"names":[],"mappings":";;;AAAO,MAAM,aAAa,GAAG,CAAC,GAAW,EAAE,EAAE,CAAC,CAAC,CAAC,GAAG,CAAC,KAAK,CAAC,UAAU,CAAC,CAAC;AAAzD,QAAA,aAAa,iBAA4C","sourcesContent":["export const isPunctuation = (str: string) => !!str.match(/^[.,:!?]/);\n"]}

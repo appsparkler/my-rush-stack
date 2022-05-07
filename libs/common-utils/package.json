@@ -1,8 +1,8 @@
 {
   "version": "0.1.0",
   "license": "MIT",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
   "files": [
     "dist",
     "src"
@@ -11,11 +11,8 @@
     "node": ">=10"
   },
   "scripts": {
-    "start": "tsdx watch",
-    "build": "tsdx build",
-    "test": "tsdx test",
-    "lint": "tsdx lint",
-    "prepare": "tsdx build",
+    "start": "heft start",
+    "build": "heft build --clean",
     "size": "size-limit",
     "analyze": "size-limit --why"
   },
@@ -35,24 +32,20 @@
   "module": "dist/common-utils.esm.js",
   "size-limit": [
     {
-      "path": "dist/common-utils.cjs.production.min.js",
-      "limit": "10 KB"
-    },
-    {
-      "path": "dist/common-utils.esm.js",
+      "path": "lib/index.js",
       "limit": "10 KB"
     }
   ],
   "devDependencies": {
     "@size-limit/preset-small-lib": "^7.0.8",
-    "husky": "^7.0.4",
     "size-limit": "^7.0.8",
-    "tsdx": "^0.14.1",
-    "tslib": "^2.4.0",
-    "typescript": "^4.6.4",
+    "typescript": "~4.6.4",
     "@types/lodash": "~4.14.182",
     "lodash": "~4.17.21",
-    "common-types": "workspace:*"
+    "common-types": "workspace:*",
+    "@types/node": "~17.0.31"
   },
-  "peerDependencies": {}
+  "peerDependencies": {
+    "lodash": "~4.17.21"
+  }
 }
