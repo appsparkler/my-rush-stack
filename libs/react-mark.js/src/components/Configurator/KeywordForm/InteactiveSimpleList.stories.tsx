@@ -1,14 +1,14 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
-import { Excludes } from './Excludes';
+import { InteactiveSimpleList } from './InteactiveSimpleList';
 
 export default {
-  title: 'Web/Configurator/Excludes',
-  component: Excludes,
-} as ComponentMeta<typeof Excludes>;
+  title: 'Web/Configurator/Interactive Simple List',
+  component: InteactiveSimpleList,
+} as ComponentMeta<typeof InteactiveSimpleList>;
 
-const Template: ComponentStory<typeof Excludes> = (args) => (
-  <Excludes {...args} />
+const Template: ComponentStory<typeof InteactiveSimpleList> = (args) => (
+  <InteactiveSimpleList {...args} />
 );
 
 export const excludes = Template.bind({});

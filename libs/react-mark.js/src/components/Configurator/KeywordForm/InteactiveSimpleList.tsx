@@ -21,10 +21,12 @@ type ExcludeItem = {
   value: string;
 };
 
+// utils
 const getDefaultExcludeItem = (): ExcludeItem => {
   return { id: uniqueId('exclude'), value: '' };
 };
 
+// jsx
 export type ExcludesProps = {
   title?: string;
   label?: string;
@@ -35,7 +37,7 @@ export type ExcludesProps = {
   onChange?: (name: string, value: ExcludeItem[]) => void;
 };
 
-export const Excludes = ({
+export const InteactiveSimpleList = ({
   title = '',
   label = '',
   ariaLabelAdd = '',

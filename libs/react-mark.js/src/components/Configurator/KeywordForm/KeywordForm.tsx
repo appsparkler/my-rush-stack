@@ -14,7 +14,7 @@ import {
 import React, { useCallback } from 'react';
 import { Synonyms } from './Synonyms';
 import { Horizontal, Vertical } from 'mui';
-import { Excludes } from './Excludes';
+import { InteactiveSimpleList } from './InteactiveSimpleList';
 import { noop } from 'lodash/fp';
 
 // const label = 'Accurracy';
@@ -101,7 +101,7 @@ export const KeywordForm = (props = {}) => {
       <Synonyms name="synonyms" />
 
       {/* ROW 4 */}
-      <Excludes
+      <InteactiveSimpleList
         name="excludes"
         title="Exclusions"
         label="Exclude Item"
@@ -111,7 +111,7 @@ export const KeywordForm = (props = {}) => {
       />
 
       {/* ROW 5 */}
-      <Excludes
+      <InteactiveSimpleList
         name="ignorePunctuation"
         title="Ignore Punctuations"
         label="punctuation"
