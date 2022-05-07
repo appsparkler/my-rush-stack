@@ -1,0 +1,1 @@
+{"version":3,"file":"mui.js","sourceRoot":"","sources":["../src/mui.ts"],"names":[],"mappings":"","sourcesContent":["import React from 'react';\n\nexport type TextFieldChangeEventHandler = React.ChangeEventHandler<\n  HTMLTextAreaElement | HTMLInputElement\n>;\n"]}
