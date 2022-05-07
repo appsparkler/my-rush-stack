@@ -11,8 +11,8 @@ const Template: ComponentStory<typeof InteactiveSimpleList> = (args) => (
   <InteactiveSimpleList {...args} />
 );
 
-export const excludes = Template.bind({});
-excludes.args = {
+export const interactiveSimpleList = Template.bind({});
+interactiveSimpleList.args = {
   name: 'excludes',
   title: 'Exclusions',
   label: 'Exclude Item',
