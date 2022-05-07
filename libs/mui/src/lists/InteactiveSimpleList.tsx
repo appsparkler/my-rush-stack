@@ -1,5 +1,5 @@
 import { Add, Delete as DeleteIcon } from '@mui/icons-material';
-import { Box, Button, IconButton, TextField, Typography } from '@mui/material';
+import { Box, IconButton, TextField, Typography } from '@mui/material';
 import {
   filterOutWithId,
   findById,
@@ -25,7 +25,6 @@ export type ExcludesProps = {
   title?: string;
   label?: string;
   ariaLabelAdd?: string;
-  btnLabel?: string;
   ariaLabelDelete?: string;
   name?: string;
   onChange?: (name: string, value: ExcludeItem[]) => void;
@@ -35,7 +34,6 @@ export const InteactiveSimpleList = ({
   title = '',
   label = '',
   ariaLabelAdd = '',
-  btnLabel = '',
   ariaLabelDelete = '',
   name = '',
   onChange = noop,
@@ -94,29 +92,29 @@ export const InteactiveSimpleList = ({
               onChange={handleChangeItem(item.id)}
             />
             <Box>
-              <IconButton
-                aria-label={ariaLabelDelete}
-                color="warning"
-                size="small"
-                onClick={handleClickDelete(item.id)}
-                disabled={index === 0}
-              >
-                <DeleteIcon />
-              </IconButton>
+              {index === 0 ? (
+                <IconButton
+                  aria-label={ariaLabelAdd}
+                  color="primary"
+                  size="small"
+                  onClick={handleClickAdd}
+                >
+                  <Add />
+                </IconButton>
+              ) : (
+                <IconButton
+                  aria-label={ariaLabelDelete}
+                  color="warning"
+                  size="small"
+                  onClick={handleClickDelete(item.id)}
+                  disabled={index === 0}
+                >
+                  <DeleteIcon />
+                </IconButton>
+              )}
             </Box>
           </Horizontal>
         ))}
-        <Box display="flex">
-          <Button
-            variant="contained"
-            type="button"
-            onClick={handleClickAdd}
-            aria-label={ariaLabelAdd}
-            startIcon={<Add />}
-          >
-            {btnLabel}
-          </Button>
-        </Box>
       </Vertical>
     </Vertical>
   );

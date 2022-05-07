@@ -106,7 +106,6 @@ export const KeywordForm = (props = {}) => {
         title="Exclusions"
         label="Exclude Item"
         ariaLabelAdd="add exclusion"
-        btnLabel="Add Exclusion"
         ariaLabelDelete="delete exclusion"
       />
 
@@ -116,7 +115,6 @@ export const KeywordForm = (props = {}) => {
         title="Ignore Punctuations"
         label="punctuation"
         ariaLabelAdd="add punctuation to ignore"
-        btnLabel="Add Punctuation"
         ariaLabelDelete="delete punctuation to ignore"
       />
 
