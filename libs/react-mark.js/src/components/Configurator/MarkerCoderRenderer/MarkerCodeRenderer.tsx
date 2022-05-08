@@ -30,7 +30,7 @@ export const MarkerCodeRenderer = ({
     }
     return `
 />`;
-  }, []);
+  }, [options, optionsString]);
   const code = useMemo(
     () => `<Marker
   mark="${mark}"${optionsRender}`,
@@ -45,7 +45,7 @@ export const MarkerCodeRenderer = ({
       'jsx'
     );
     (codeRef.current as any).innerHTML = highlightedCode;
-  }, [mark, options]);
+  }, [code, mark, onChange, options]);
 
   return (
     <Box {...wrapperProps} sx={{ pre: { borderRadius: 4 } }}>

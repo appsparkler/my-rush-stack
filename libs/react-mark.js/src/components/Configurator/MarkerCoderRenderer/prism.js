@@ -1,4 +1,8 @@
+// @ts-nocheck
+
 //prismjs.com/download.html#themes=prism-tomorrow&languages=markup+css+clike+javascript+css-extras+jsx&plugins=line-numbers+inline-color */
+
+/* eslint-disable */
 https: var _self =
     'undefined' != typeof window
         ? window

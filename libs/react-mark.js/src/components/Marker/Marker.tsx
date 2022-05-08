@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import MarkJS, {MarkOptions} from 'mark.js';
+import MarkJS, { MarkOptions } from 'mark.js';
 
 export const Marker = ({
   children,
@@ -31,7 +31,7 @@ export const Marker = ({
         markInstance.mark(mark, options);
       });
     }
-  }, [mark, options]);
+  }, [mark, markInstance, options]);
 
   return <div ref={markerRef}>{children}</div>;
 };
