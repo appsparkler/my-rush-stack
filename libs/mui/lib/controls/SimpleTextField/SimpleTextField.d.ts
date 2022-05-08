@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { TextFieldProps } from '@mui/material';
 export declare type SimpleTextFieldProps = {
     onChange: (name: string, value: string) => void;
