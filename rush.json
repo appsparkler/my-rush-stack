@@ -407,12 +407,12 @@
     {
       "packageName": "common-utils",
       "projectFolder": "libs/common-utils"
-    }
+    },
     // LIBS - MUI
-    // {
-    //   "packageName": "mui",
-    //   "projectFolder": "libs/mui"
-    // }
+    {
+      "packageName": "mui",
+      "projectFolder": "libs/mui"
+    }
     // {
     //   /**
     //    * The NPM package name of the project (must match package.json)
