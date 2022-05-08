@@ -1,3 +1,2 @@
-export * from './SimpleTextField';
 export * from './SimpleSelectField';
 //# sourceMappingURL=index.d.ts.map

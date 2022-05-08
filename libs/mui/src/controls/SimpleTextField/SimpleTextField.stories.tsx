@@ -6,7 +6,8 @@ const Template: ComponentStory<typeof SimpleTextField> = (args) => (
   <SimpleTextField {...args} />
 );
 
-export const simpleTextField = Template.bind({});
+export const simpleTextField: ComponentStory<typeof SimpleTextField> =
+  Template.bind({});
 simpleTextField.args = {
   name: 'firstNames',
   label: 'First Name',
