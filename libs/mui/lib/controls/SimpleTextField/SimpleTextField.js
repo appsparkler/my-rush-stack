@@ -44,7 +44,8 @@ const SimpleTextField = (_a) => {
         const { target: { value = '', name = '' }, } = evt;
         onChange(name, value);
     }, [onChange]);
-    return react_1.default.createElement(material_1.TextField, Object.assign({ onChange: handleChange }, props));
+    return (react_1.default.createElement("div", null,
+        react_1.default.createElement(material_1.TextField, Object.assign({ onChange: handleChange }, props))));
 };
 exports.SimpleTextField = SimpleTextField;
 //# sourceMappingURL=SimpleTextField.js.map

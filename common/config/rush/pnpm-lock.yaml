@@ -97,6 +97,72 @@ importers:
       size-limit: 7.0.8
       typescript: 4.6.4
 
+  ../../libs/react-mark.js:
+    specifiers:
+      '@babel/core': ^7.17.10
+      '@emotion/react': ~11.9.0
+      '@emotion/styled': ~11.8.1
+      '@mui/icons-material': ~5.6.2
+      '@mui/material': ~5.6.4
+      '@size-limit/preset-small-lib': ^7.0.8
+      '@storybook/addon-essentials': ^6.4.22
+      '@storybook/addon-info': ^5.3.21
+      '@storybook/addon-links': ^6.4.22
+      '@storybook/addons': ^6.4.22
+      '@storybook/react': ^6.4.22
+      '@types/lodash': ~4.14.182
+      '@types/node': ~17.0.31
+      '@types/prismjs': ~1.26.0
+      '@types/react': 18.0.9
+      '@types/react-dom': 18.0.3
+      babel-loader: ^8.2.5
+      common-types: workspace:*
+      common-utils: workspace:*
+      eslint: ~8.14.0
+      eslint-config-react-app: ~7.0.1
+      lodash: ~4.17.21
+      mark.js: ~8.11.1
+      mui: workspace:*
+      prettier: ~2.6.2
+      prism: ~4.1.2
+      react: 18.1.0
+      react-dom: 18.1.0
+      react-is: ^17.0.2
+      size-limit: ^7.0.8
+      typescript: ~4.6.4
+    devDependencies:
+      '@babel/core': 7.17.10
+      '@emotion/react': 11.9.0_d908371fa8c3a45db35e2a9314323716
+      '@emotion/styled': 11.8.1_09a3baf8b2a38f1939741f5fe66386aa
+      '@mui/icons-material': 5.6.2_0991d5596f3fcc8ee58e8e679d08e1a4
+      '@mui/material': 5.6.4_e5e28a2031fc018063ccc89f0e979b61
+      '@size-limit/preset-small-lib': 7.0.8_size-limit@7.0.8
+      '@storybook/addon-essentials': 6.4.22_18ecce294924132ae4185fe3786943bb
+      '@storybook/addon-info': 5.3.21_ab193c5e866d36a1a536e0999bc972ab
+      '@storybook/addon-links': 6.4.22_react-dom@18.1.0+react@18.1.0
+      '@storybook/addons': 6.4.22_react-dom@18.1.0+react@18.1.0
+      '@storybook/react': 6.4.22_119505dc26cbd948e3fc94bc51897a3c
+      '@types/lodash': 4.14.182
+      '@types/node': 17.0.31
+      '@types/prismjs': 1.26.0
+      '@types/react': 18.0.9
+      '@types/react-dom': 18.0.3
+      babel-loader: 8.2.5_@babel+core@7.17.10
+      common-types: link:../common-types
+      common-utils: link:../common-utils
+      eslint: 8.14.0
+      eslint-config-react-app: 7.0.1_eslint@8.14.0+typescript@4.6.4
+      lodash: 4.17.21
+      mark.js: 8.11.1
+      mui: link:../mui
+      prettier: 2.6.2
+      prism: 4.1.2_react@18.1.0
+      react: 18.1.0
+      react-dom: 18.1.0_react@18.1.0
+      react-is: 17.0.2
+      size-limit: 7.0.8
+      typescript: 4.6.4
+
 packages:
 
   /@ampproject/remapping/2.2.0:
@@ -3905,6 +3971,10 @@ packages:
     resolution: {integrity: sha512-VjID5MJb1eGKthz2qUerWT8+R4b9N+CHvGCzg9fn4kWZgaF9AhdYikQio3R7wV8YY1NsQKPaCwKz1Yff+aHNUQ==}
     dev: true
 
+  /@types/prismjs/1.26.0:
+    resolution: {integrity: sha512-ZTaqn/qSqUuAq1YwvOFQfVW1AR/oQJlLSZVustdjwI+GZ8kr0MSHBj0tsXPW1EqHubx50gtBEjbPGsdZwQwCjQ==}
+    dev: true
+
   /@types/prop-types/15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
     dev: true
@@ -5267,6 +5337,10 @@ packages:
     dependencies:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
+    dev: true
+
+  /change-emitter/0.1.6:
+    resolution: {integrity: sha1-6LL+PX8at9aaMhma/5HqaTFAlRU=}
     dev: true
 
   /character-entities-legacy/1.1.4:
@@ -7703,6 +7777,10 @@ packages:
       minimalistic-crypto-utils: 1.0.1
     dev: true
 
+  /hoist-non-react-statics/1.2.0:
+    resolution: {integrity: sha1-qkSM8JhtVcxAdzsXF0t90GbLfPs=}
+    dev: true
+
   /hoist-non-react-statics/3.3.2:
     resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==}
     dependencies:
@@ -8701,6 +8779,10 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       object-visit: 1.0.1
+    dev: true
+
+  /mark.js/8.11.1:
+    resolution: {integrity: sha1-GA8fnr74sOY45BZq1S24eb6y/8U=}
     dev: true
 
   /markdown-escapes/1.0.4:
@@ -9819,6 +9901,28 @@ packages:
     engines: {node: '>= 0.8'}
     dev: true
 
+  /prism-react/1.0.2_react@18.1.0:
+    resolution: {integrity: sha1-xWjFNHYPc4MwKVxjP2Rzla+pcvQ=}
+    peerDependencies:
+      react: ^15.0.2 || ^0.14.8
+    dependencies:
+      react: 18.1.0
+      recompose: 0.22.0_react@18.1.0
+    dev: true
+
+  /prism-redux/1.0.2:
+    resolution: {integrity: sha1-PbtUY8lSeBLPiQ0bG6KcjZAvgu0=}
+    dev: true
+
+  /prism/4.1.2_react@18.1.0:
+    resolution: {integrity: sha1-eD28CMTdIOo7p2eRNcpB1X3rJJY=}
+    dependencies:
+      prism-react: 1.0.2_react@18.1.0
+      prism-redux: 1.0.2
+    transitivePeerDependencies:
+      - react
+    dev: true
+
   /prismjs/1.17.1:
     resolution: {integrity: sha512-PrEDJAFdUGbOP6xK/UsfkC5ghJsPJviKgnQOoxaDbBjwc8op68Quupwt1DeAFoG8GImPhiKXAvvsH7wDSLsu1Q==}
     optionalDependencies:
@@ -10440,6 +10544,18 @@ packages:
     engines: {node: '>=8.10.0'}
     dependencies:
       picomatch: 2.3.1
+    dev: true
+
+  /recompose/0.22.0_react@18.1.0:
+    resolution: {integrity: sha1-8JnRg4WILKQdnuyJFxja3dwyBO8=}
+    peerDependencies:
+      react: ^0.14.0 || ^15.0.0
+    dependencies:
+      change-emitter: 0.1.6
+      fbjs: 0.8.18
+      hoist-non-react-statics: 1.2.0
+      react: 18.1.0
+      symbol-observable: 1.2.0
     dev: true
 
   /refractor/2.10.1:
@@ -11338,6 +11454,11 @@ packages:
   /supports-preserve-symlinks-flag/1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
+    dev: true
+
+  /symbol-observable/1.2.0:
+    resolution: {integrity: sha512-e900nM8RRtGhlV36KGEU9k65K3mPb1WV70OdjfxlG2EAuM1noi/E/BaW/uMhL7bPEssK8QV57vN3esixjUvcXQ==}
+    engines: {node: '>=0.10.0'}
     dev: true
 
   /symbol.prototype.description/1.0.5:

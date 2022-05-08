@@ -12,7 +12,7 @@
    */
   "commands": [
     {
-      "name": "build",
+      "name": "build:watch",
       "incremental": true,
       "watchForChanges": true,
       "commandKind": "bulk",

@@ -20,5 +20,9 @@ export const SimpleTextField = ({
     },
     [onChange]
   );
-  return <TextField onChange={handleChange} {...props} />;
+  return (
+    <div>
+      <TextField onChange={handleChange} {...props} />
+    </div>
+  );
 };

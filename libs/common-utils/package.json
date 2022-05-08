@@ -13,6 +13,7 @@
   "scripts": {
     "start": "heft start",
     "build": "heft build --clean",
+    "build:watch": "heft build",
     "size": "size-limit",
     "analyze": "size-limit --why"
   },
