@@ -402,12 +402,12 @@
     {
       "packageName": "common-types",
       "projectFolder": "libs/common-types"
-    }
+    },
     // LIBS - COMMON UTILS
-    // {
-    //   "packageName": "common-utils",
-    //   "projectFolder": "libs/common-utils"
-    // },
+    {
+      "packageName": "common-utils",
+      "projectFolder": "libs/common-utils"
+    }
     // LIBS - MUI
     // {
     //   "packageName": "mui",

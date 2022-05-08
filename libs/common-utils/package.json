@@ -34,13 +34,14 @@
   "devDependencies": {
     "@size-limit/preset-small-lib": "^7.0.8",
     "size-limit": "^7.0.8",
+    "common-types": "workspace:*",
     "typescript": "~4.6.4",
     "@types/lodash": "~4.14.182",
     "lodash": "~4.17.21",
-    "common-types": "workspace:*",
     "@types/node": "~17.0.31"
   },
   "peerDependencies": {
-    "lodash": "~4.17.21"
+    "lodash": "~4.17.21",
+    "common-types": "workspace:*"
   }
 }
