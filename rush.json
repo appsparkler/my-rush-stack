@@ -391,26 +391,28 @@
    * 3. It's useful to have a centralized inventory of all projects and their important metadata.
    */
   "projects": [
-    {
-      "packageName": "react-mark.js",
-      "projectFolder": "libs/react-mark.js"
-    },
-    {
-      "packageName": "react-mark-js-docs",
-      "projectFolder": "docs/react-mark.js"
-    },
+    // LIBS - REACT MARK JS
+    // {
+    // DOCS - REACT MARK JS
+    // {
+    //   "packageName": "react-mark-js-docs",
+    //   "projectFolder": "docs/react-mark.js"
+    // },
+    // LIBS - COMMON TYPES
     {
       "packageName": "common-types",
       "projectFolder": "libs/common-types"
-    },
-    {
-      "packageName": "common-utils",
-      "projectFolder": "libs/common-utils"
-    },
-    {
-      "packageName": "mui",
-      "projectFolder": "libs/mui"
     }
+    // LIBS - COMMON UTILS
+    // {
+    //   "packageName": "common-utils",
+    //   "projectFolder": "libs/common-utils"
+    // },
+    // LIBS - MUI
+    // {
+    //   "packageName": "mui",
+    //   "projectFolder": "libs/mui"
+    // }
     // {
     //   /**
     //    * The NPM package name of the project (must match package.json)
