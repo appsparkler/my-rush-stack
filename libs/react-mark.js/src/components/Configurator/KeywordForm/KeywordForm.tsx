@@ -5,33 +5,53 @@ import {
   FormGroup,
   TextField,
 } from '@mui/material';
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { Synonyms } from './Synonyms';
 import {
   Horizontal,
   InteactiveSimpleList,
   SimpleSelect,
   SimpleTextField,
+  SimpleTextFieldProps,
   Vertical,
 } from 'mui';
 
 export const KeywordForm = (props = {}) => {
+  const [config, setConfig] = useState({
+    keyword: '',
+    accuracy: 'complimentary',
+    element: '',
+    className: '',
+  });
+
+  const handleChange = useCallback<SimpleTextFieldProps['onChange']>(
+    (key, value) => {
+      setConfig((prevConfig) => ({
+        ...prevConfig,
+        [key]: value,
+      }));
+    },
+    []
+  );
+
   return (
     <Vertical gap={2} {...props}>
+      <pre>{JSON.stringify(config, null, 2)}</pre>
       {/* ROW 1 */}
       <Horizontal gap={2}>
         <SimpleTextField
           label="Keyword"
           fullWidth
           size="small"
-          onChange={console.log}
+          onChange={handleChange}
           name="keyword"
+          value={config.keyword}
         />
         {
           <SimpleSelect
             label="Accurracy"
-            onChange={console.log}
-            value="complimentary"
+            onChange={handleChange}
+            value={config.accuracy}
             name="accuracy"
             menuItems={[
               { id: '1', name: 'partially', value: 'partially' },
@@ -43,8 +63,22 @@ export const KeywordForm = (props = {}) => {
       </Horizontal>
       {/** ROW 2 */}
       <Horizontal gap={2}>
-        <TextField label="Element" fullWidth size="small" />
-        <TextField label="Class name" fullWidth size="small" />
+        <SimpleTextField
+          label="Element"
+          fullWidth
+          size="small"
+          value={config.element}
+          name="element"
+          onChange={handleChange}
+        />
+        <SimpleTextField
+          label="Class name"
+          fullWidth
+          size="small"
+          onChange={handleChange}
+          name="className"
+          value={config.className}
+        />
       </Horizontal>
 
       {/* ROW 3 */}
