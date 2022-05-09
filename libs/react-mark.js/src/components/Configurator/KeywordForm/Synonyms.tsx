@@ -1,7 +1,6 @@
 import { Add, Delete } from '@mui/icons-material';
 import {
   Box,
-  Button,
   IconButton,
   TextField,
   Typography,
@@ -106,29 +105,31 @@ export const Synonyms = ({ name = '', onChange = noop }: SynonymProps) => {
               name="value"
               onChange={handleChangeInput(id)}
             />
-            <Box>
-              <IconButton
-                aria-label="add synonym"
-                color="warning"
-                size="small"
-                onClick={handleClickDelete(id)}
-                disabled={index === 0}
-              >
-                <Delete />
-              </IconButton>
-            </Box>
+            {index === 0 ? (
+              <Box>
+                <IconButton
+                  aria-label="add synonym"
+                  color="primary"
+                  size="small"
+                  onClick={handleClickAdd}
+                >
+                  <Add />
+                </IconButton>
+              </Box>
+            ) : (
+              <Box>
+                <IconButton
+                  aria-label="delete synonym"
+                  color="warning"
+                  size="small"
+                  onClick={handleClickDelete(id)}
+                >
+                  <Delete />
+                </IconButton>
+              </Box>
+            )}
           </Box>
         ))}
-        <Box display="flex">
-          <Button
-            variant="contained"
-            type="button"
-            onClick={handleClickAdd}
-            startIcon={<Add />}
-          >
-            Add Synonym
-          </Button>
-        </Box>
       </Box>
     </Box>
   );
