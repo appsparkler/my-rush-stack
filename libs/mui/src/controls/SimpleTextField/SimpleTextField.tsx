@@ -1,10 +1,13 @@
 import { TextField, TextFieldProps } from '@mui/material';
 import React, { useCallback } from 'react';
 import { noop } from 'lodash/fp';
-import { TextFieldChangeEventHandler } from 'common-types';
+import {
+  SimpleFormControlChange,
+  TextFieldChangeEventHandler,
+} from 'common-types';
 
 export type SimpleTextFieldProps = {
-  onChange: (name: string, value: string) => void;
+  onChange: SimpleFormControlChange<string>;
 } & Omit<TextFieldProps, 'onChange'>;
 
 export const SimpleTextField = ({

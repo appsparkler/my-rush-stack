@@ -15,4 +15,5 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./mui"), exports);
+__exportStar(require("./event-handlers"), exports);
 //# sourceMappingURL=index.js.map

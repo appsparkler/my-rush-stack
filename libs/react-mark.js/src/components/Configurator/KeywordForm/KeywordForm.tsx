@@ -12,9 +12,9 @@ import {
   InteactiveSimpleList,
   SimpleSelect,
   SimpleTextField,
-  SimpleTextFieldProps,
   Vertical,
 } from 'mui';
+import { SimpleFormControlChange } from 'common-types';
 
 export const KeywordForm = (props = {}) => {
   const [config, setConfig] = useState({
@@ -24,7 +24,7 @@ export const KeywordForm = (props = {}) => {
     className: '',
   });
 
-  const handleChange = useCallback<SimpleTextFieldProps['onChange']>(
+  const handleChange = useCallback<SimpleFormControlChange<string | any[]>>(
     (key, value) => {
       setConfig((prevConfig) => ({
         ...prevConfig,
@@ -82,7 +82,7 @@ export const KeywordForm = (props = {}) => {
       </Horizontal>
 
       {/* ROW 3 */}
-      <Synonyms name="synonyms" />
+      <Synonyms name="synonyms" onChange={handleChange} />
 
       {/* ROW 4 */}
       <InteactiveSimpleList
