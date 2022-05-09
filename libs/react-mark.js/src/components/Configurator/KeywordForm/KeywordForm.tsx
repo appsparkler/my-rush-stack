@@ -16,11 +16,20 @@ import {
 } from 'mui';
 import { SimpleFormControlChange } from 'common-types';
 
+const SimpleCheckbox = () => (
+  <FormControlLabel
+    control={<Checkbox defaultChecked />}
+    label="Separate Word Search"
+  />
+);
 export const KeywordForm = (props = {}) => {
   const [config, setConfig] = useState({
     keyword: '',
+    excludes: [],
     accuracy: 'complimentary',
     element: '',
+    iframesTimeout: 0,
+    wildcards: '',
     className: '',
   });
 
@@ -91,6 +100,7 @@ export const KeywordForm = (props = {}) => {
         label="Exclude Item"
         ariaLabelAdd="add exclusion"
         ariaLabelDelete="delete exclusion"
+        onChange={handleChange}
       />
 
       {/* ROW 5 */}
@@ -100,17 +110,29 @@ export const KeywordForm = (props = {}) => {
         label="punctuation"
         ariaLabelAdd="add punctuation to ignore"
         ariaLabelDelete="delete punctuation to ignore"
+        onChange={handleChange}
       />
 
       {/* ROW 6 */}
       <Horizontal gap={2}>
-        <TextField
+        <SimpleTextField
           type="number"
           label="IFrames Timeout"
           fullWidth
           size="small"
+          name="iframesTimeout"
+          value={config.iframesTimeout}
+          onChange={handleChange}
         />
-        <TextField type="text" label="Wildcards" fullWidth size="small" />
+        <SimpleTextField
+          type="text"
+          label="Wildcards"
+          fullWidth
+          size="small"
+          value={config.wildcards}
+          name="wildcards"
+          onChange={handleChange}
+        />
       </Horizontal>
 
       {/* ROW 7 */}
@@ -123,10 +145,7 @@ export const KeywordForm = (props = {}) => {
             'repeat(4, 1fr)',
           ]}
         >
-          <FormControlLabel
-            control={<Checkbox defaultChecked />}
-            label="Separate Word Search"
-          />
+          <SimpleCheckbox />
           <FormControlLabel
             control={<Checkbox defaultChecked />}
             label="Diacritics"
