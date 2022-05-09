@@ -2,8 +2,8 @@ import {
   Box,
   Checkbox,
   FormControlLabel,
+  FormControlLabelProps,
   FormGroup,
-  TextField,
 } from '@mui/material';
 import React, { useCallback, useState } from 'react';
 import { Synonyms } from './Synonyms';
@@ -15,13 +15,37 @@ import {
   Vertical,
 } from 'mui';
 import { SimpleFormControlChange } from 'common-types';
+import { noop } from 'lodash/fp';
 
-const SimpleCheckbox = () => (
-  <FormControlLabel
-    control={<Checkbox defaultChecked />}
-    label="Separate Word Search"
-  />
-);
+export type SimpleCheckboxProps = Partial<
+  Omit<FormControlLabelProps, 'onChange'>
+> & {
+  onChange?: SimpleFormControlChange<boolean>;
+  label?: string;
+};
+
+const SimpleCheckbox = ({
+  checked,
+  name = '',
+  label = '',
+  onChange = noop,
+}: SimpleCheckboxProps) => {
+  const handleChange = useCallback<
+    (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void
+  >(
+    ({ target: { checked, name } }) => {
+      onChange(name, checked);
+    },
+    [onChange]
+  );
+  return (
+    <FormControlLabel
+      name={name}
+      control={<Checkbox checked={checked} onChange={handleChange} />}
+      label={label}
+    />
+  );
+};
 export const KeywordForm = (props = {}) => {
   const [config, setConfig] = useState({
     keyword: '',
@@ -31,17 +55,23 @@ export const KeywordForm = (props = {}) => {
     iframesTimeout: 0,
     wildcards: '',
     className: '',
+    separateWordSearch: false,
+    diacritics: false,
+    iframes: false,
+    caseSensitive: false,
+    ignoreJoiners: false,
+    acrossElements: false,
+    debug: false,
   });
 
-  const handleChange = useCallback<SimpleFormControlChange<string | any[]>>(
-    (key, value) => {
-      setConfig((prevConfig) => ({
-        ...prevConfig,
-        [key]: value,
-      }));
-    },
-    []
-  );
+  const handleChange = useCallback<
+    SimpleFormControlChange<string | any[] | boolean>
+  >((key, value) => {
+    setConfig((prevConfig) => ({
+      ...prevConfig,
+      [key]: value,
+    }));
+  }, []);
 
   return (
     <Vertical gap={2} {...props}>
@@ -145,30 +175,47 @@ export const KeywordForm = (props = {}) => {
             'repeat(4, 1fr)',
           ]}
         >
-          <SimpleCheckbox />
-          <FormControlLabel
-            control={<Checkbox defaultChecked />}
+          <SimpleCheckbox
+            label="Separate World Search"
+            checked={config.separateWordSearch}
+            name="separateWordSearch"
+            onChange={handleChange}
+          />
+          <SimpleCheckbox
             label="Diacritics"
+            name="diacritics"
+            checked={config.diacritics}
+            onChange={handleChange}
           />
-          <FormControlLabel
-            control={<Checkbox defaultChecked />}
+          <SimpleCheckbox
             label="IFrames"
+            name="iframes"
+            onChange={handleChange}
+            checked={config.iframes}
           />
-          <FormControlLabel
-            control={<Checkbox defaultChecked />}
+          <SimpleCheckbox
             label="Case Sensitive"
+            name="caseSensitive"
+            onChange={handleChange}
+            checked={config.caseSensitive}
           />
-          <FormControlLabel
-            control={<Checkbox defaultChecked />}
+          <SimpleCheckbox
             label="Ignore Joiners"
+            name="ignoreJoiners"
+            onChange={handleChange}
+            checked={config.ignoreJoiners}
           />
-          <FormControlLabel
-            control={<Checkbox defaultChecked />}
+          <SimpleCheckbox
             label="Across Elements"
+            name="acrossElements"
+            onChange={handleChange}
+            checked={config.acrossElements}
           />
-          <FormControlLabel
-            control={<Checkbox defaultChecked />}
+          <SimpleCheckbox
             label="Debug"
+            name="debug"
+            onChange={handleChange}
+            checked={config.debug}
           />
         </Box>
       </FormGroup>

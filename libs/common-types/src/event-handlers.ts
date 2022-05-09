@@ -1,1 +1,4 @@
-export type SimpleFormControlChange<T> = (name: string, value: T) => void;
+export type SimpleFormControlChange<T = string> = (
+  name: string,
+  value: T
+) => void;
