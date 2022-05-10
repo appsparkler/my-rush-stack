@@ -1,2 +1,2 @@
-export declare type SimpleFormControlChange<T> = (name: string, value: T) => void;
+export declare type SimpleFormControlChange<T = string> = (name: string, value: T) => void;
 //# sourceMappingURL=event-handlers.d.ts.map
