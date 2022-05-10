@@ -27,7 +27,7 @@ export type ExcludesProps = {
   ariaLabelAdd?: string;
   ariaLabelDelete?: string;
   name?: string;
-  onChange?: (name: string, value: ExcludeItem[]) => void;
+  onChange?: (name: string, value: ExcludeItem[] | undefined) => void;
 };
 
 export const InteactiveSimpleList = ({
@@ -74,6 +74,7 @@ export const InteactiveSimpleList = ({
     );
     const refinedValues = filterOutEmptyValues(value);
     if (refinedValues.length > 0) onChange(name, refinedValues);
+    else onChange(name, undefined);
   }, [name, onChange, value]);
 
   return (

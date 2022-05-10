@@ -54,6 +54,8 @@ const InteactiveSimpleList = ({ title = '', label = '', ariaLabelAdd = '', ariaL
         const refinedValues = filterOutEmptyValues(value);
         if (refinedValues.length > 0)
             onChange(name, refinedValues);
+        else
+            onChange(name, undefined);
     }, [name, onChange, value]);
     return (react_1.default.createElement(layouts_1.Vertical, { gap: 1 },
         react_1.default.createElement(material_1.Typography, { variant: "h6" }, title),

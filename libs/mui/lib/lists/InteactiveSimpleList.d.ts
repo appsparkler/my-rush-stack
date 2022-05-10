@@ -9,7 +9,7 @@ export declare type ExcludesProps = {
     ariaLabelAdd?: string;
     ariaLabelDelete?: string;
     name?: string;
-    onChange?: (name: string, value: ExcludeItem[]) => void;
+    onChange?: (name: string, value: ExcludeItem[] | undefined) => void;
 };
 export declare const InteactiveSimpleList: ({ title, label, ariaLabelAdd, ariaLabelDelete, name, onChange, }: ExcludesProps) => JSX.Element;
 export {};
