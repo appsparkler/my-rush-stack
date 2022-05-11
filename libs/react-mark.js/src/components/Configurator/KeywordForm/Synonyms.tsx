@@ -23,7 +23,7 @@ type SynonymItem = {
 
 export type SynonymProps = {
   name?: string;
-  onChange?: (name: string, updatedSynonyms: SynonymItem[] | undefined) => void;
+  onChange?: (name: string, updatedSynonyms: SynonymItem[]) => void;
 };
 
 // Utils
@@ -83,7 +83,7 @@ export const Synonyms = ({ name = '', onChange = noop }: SynonymProps) => {
     if (validSynonyms.length > 0) {
       onChange(name, validSynonyms);
     } else {
-      onChange(name, undefined);
+      onChange(name, []);
     }
   }, [$value, name, onChange]);
 

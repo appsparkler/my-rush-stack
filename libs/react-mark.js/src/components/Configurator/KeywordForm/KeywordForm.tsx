@@ -15,7 +15,7 @@ import {
   Vertical,
 } from 'mui';
 import { SimpleFormControlChange } from 'common-types';
-import { noop } from 'lodash/fp';
+import { isArray, isBoolean, isString, noop } from 'lodash/fp';
 
 export type SimpleCheckboxProps = Partial<
   Omit<FormControlLabelProps, 'onChange'>
@@ -46,6 +46,16 @@ const SimpleCheckbox = ({
     />
   );
 };
+
+// Utils
+const getRefinedValue = (val: string | any[] | boolean) => {
+  if (isString(val) && Boolean(val)) return val;
+  if (isBoolean(val) && !val) return val;
+  if (isArray(val) && Boolean(val.length)) return val;
+  return undefined;
+};
+
+// JSX
 export const KeywordForm = (props = {}) => {
   const [config, setConfig] = useState({
     keyword: '',
@@ -67,9 +77,10 @@ export const KeywordForm = (props = {}) => {
   const handleChange = useCallback<
     SimpleFormControlChange<string | any[] | boolean>
   >((key, value) => {
+    const refinedValue = getRefinedValue(value);
     setConfig((prevConfig) => ({
       ...prevConfig,
-      [key]: value,
+      [key]: refinedValue,
     }));
   }, []);
 
