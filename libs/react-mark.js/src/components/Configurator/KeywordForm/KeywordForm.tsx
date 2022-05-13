@@ -47,14 +47,6 @@ const SimpleCheckbox = ({
   );
 };
 
-// Utils
-const getRefinedValue = (val: string | any[] | boolean) => {
-  if (isString(val) && Boolean(val)) return val;
-  if (isBoolean(val) && !val) return val;
-  if (isArray(val) && Boolean(val.length)) return val;
-  return undefined;
-};
-
 // JSX
 export const KeywordForm = (props = {}) => {
   const [config, setConfig] = useState({
@@ -62,8 +54,7 @@ export const KeywordForm = (props = {}) => {
     excludes: [],
     accuracy: 'complimentary',
     element: '',
-    iframesTimeout: 0,
-    wildcards: '',
+    iframesTimeout: '0',
     className: '',
     separateWordSearch: false,
     diacritics: false,
@@ -72,15 +63,15 @@ export const KeywordForm = (props = {}) => {
     ignoreJoiners: false,
     acrossElements: false,
     debug: false,
+    wildCards: 'disabled',
   });
 
   const handleChange = useCallback<
     SimpleFormControlChange<string | any[] | boolean>
   >((key, value) => {
-    const refinedValue = getRefinedValue(value);
     setConfig((prevConfig) => ({
       ...prevConfig,
-      [key]: refinedValue,
+      [key]: value,
     }));
   }, []);
 
@@ -97,19 +88,17 @@ export const KeywordForm = (props = {}) => {
           name="keyword"
           value={config.keyword}
         />
-        {
-          <SimpleSelect
-            label="Accurracy"
-            onChange={handleChange}
-            value={config.accuracy}
-            name="accuracy"
-            menuItems={[
-              { id: '1', name: 'partially', value: 'partially' },
-              { id: '2', name: 'exactly', value: 'exactly' },
-              { id: '3', name: 'complimentary', value: 'complimentary' },
-            ]}
-          />
-        }
+        <SimpleSelect
+          label="Accurracy"
+          onChange={handleChange}
+          value={config.accuracy}
+          name="accuracy"
+          menuItems={[
+            { id: '1', name: 'partially', value: 'partially' },
+            { id: '2', name: 'exactly', value: 'exactly' },
+            { id: '3', name: 'complimentary', value: 'complimentary' },
+          ]}
+        />
       </Horizontal>
       {/** ROW 2 */}
       <Horizontal gap={2}>
@@ -165,14 +154,16 @@ export const KeywordForm = (props = {}) => {
           value={config.iframesTimeout}
           onChange={handleChange}
         />
-        <SimpleTextField
-          type="text"
-          label="Wildcards"
-          fullWidth
-          size="small"
-          value={config.wildcards}
-          name="wildcards"
+        <SimpleSelect
+          label="Wild Cards"
           onChange={handleChange}
+          value={config.wildCards}
+          name="wildCards"
+          menuItems={[
+            { id: '1', name: 'disabled', value: 'disabled' },
+            { id: '2', name: 'enabled', value: 'enabled' },
+            { id: '3', name: 'withSpaces', value: 'withSpaces' },
+          ]}
         />
       </Horizontal>
 
