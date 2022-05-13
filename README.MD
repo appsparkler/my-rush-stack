@@ -18,4 +18,4 @@ rush update
 
 1. [React Mark JS][react-mark-js]
 
-[react-mark-js]: libs/react-mark.js/
+[react-mark-js]: libs/react-mark.js#react-mark-js
