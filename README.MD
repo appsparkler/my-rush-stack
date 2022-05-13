@@ -14,7 +14,7 @@ npm i -g @microsoft/rush pnpm
 rush update
 ```
 
-## Select project to develop
+## Select The Project You Would Like To Develop
 
 1. [React Mark JS][react-mark-js]
 2. [MUI][mui]
