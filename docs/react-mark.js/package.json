@@ -35,6 +35,7 @@
     ]
   },
   "devDependencies": {
+    "@rushstack/heft": "0.45.2",
     "@docusaurus/types": "~2.0.0-beta.18"
   }
 }

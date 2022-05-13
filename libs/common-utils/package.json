@@ -33,6 +33,7 @@
     }
   ],
   "devDependencies": {
+    "@rushstack/heft": "0.45.2",
     "@size-limit/preset-small-lib": "^7.0.8",
     "size-limit": "^7.0.8",
     "common-types": "workspace:*",

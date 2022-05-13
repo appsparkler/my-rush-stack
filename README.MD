@@ -1,11 +1,19 @@
-### Remove all the symlinks created by Rush:
+# My Rush Stack
 
-```zsh
-rush unlink
+## Getting Started
+
+After cloning the respository; ensure you have the following global dependencies installed:
+
+```bash
+npm i -g @microsoft/rush pnpm
 ```
 
-### Remove all the temporary files created by Rush, including deleting all the NPM packages that were installed in your common folder:
+## Update Project
 
-```zsh
-rush purge
+```bash
+rush update
 ```
+
+## Select project to develop
+
+1. [React Mark JS](/tree/libs/react-mark.js/)
