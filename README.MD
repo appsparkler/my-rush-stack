@@ -16,4 +16,6 @@ rush update
 
 ## Select project to develop
 
-1. [React Mark JS](libs/react-mark.js/)
+1. [React Mark JS][react-mark-js]
+
+[react-mark-js]: libs/react-mark.js/
