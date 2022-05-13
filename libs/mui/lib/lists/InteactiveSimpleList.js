@@ -50,12 +50,13 @@ const InteactiveSimpleList = ({ title = '', label = '', ariaLabelAdd = '', ariaL
         setValue((prevValue) => (0, common_utils_1.filterOutWithId)(id)(prevValue));
     }, []);
     (0, react_1.useEffect)(() => {
-        const filterOutEmptyValues = (0, fp_1.filter)((item) => Boolean(item.value));
-        const refinedValues = filterOutEmptyValues(value);
-        if (refinedValues.length > 0)
-            onChange(name, refinedValues);
-        else
-            onChange(name, []);
+        // const filterOutEmptyValues = filter<ExcludeItem>((item) =>
+        //   Boolean(item.value)
+        // );
+        // const refinedValues = filterOutEmptyValues(value);
+        // if (refinedValues.length > 0) onChange(name, refinedValues);
+        // else onChange(name, value);
+        onChange(name, value);
     }, [name, onChange, value]);
     return (react_1.default.createElement(layouts_1.Vertical, { gap: 1 },
         react_1.default.createElement(material_1.Typography, { variant: "h6" }, title),

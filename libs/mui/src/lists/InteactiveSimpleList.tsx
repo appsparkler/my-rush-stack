@@ -69,12 +69,13 @@ export const InteactiveSimpleList = ({
   );
 
   useEffect(() => {
-    const filterOutEmptyValues = filter<ExcludeItem>((item) =>
-      Boolean(item.value)
-    );
-    const refinedValues = filterOutEmptyValues(value);
-    if (refinedValues.length > 0) onChange(name, refinedValues);
-    else onChange(name, []);
+    // const filterOutEmptyValues = filter<ExcludeItem>((item) =>
+    //   Boolean(item.value)
+    // );
+    // const refinedValues = filterOutEmptyValues(value);
+    // if (refinedValues.length > 0) onChange(name, refinedValues);
+    // else onChange(name, value);
+    onChange(name, value);
   }, [name, onChange, value]);
 
   return (
