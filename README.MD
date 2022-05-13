@@ -16,4 +16,4 @@ rush update
 
 ## Select project to develop
 
-1. [React Mark JS](/tree/libs/react-mark.js/)
+1. [React Mark JS](libs/react-mark.js/)
