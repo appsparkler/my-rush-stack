@@ -12,7 +12,7 @@ import {
   findById,
 } from 'common-utils';
 import { noop } from 'lodash';
-import { reduce, uniqueId } from 'lodash/fp';
+import { uniqueId } from 'lodash/fp';
 import React, { useCallback, useEffect, useState } from 'react';
 
 type SynonymItem = {
@@ -34,16 +34,6 @@ export const getDefaultSynonymItem = () => ({
   key: '',
   value: '',
 });
-
-const reduceToValidSynonyms = reduce<SynonymItem, SynonymItem[]>(
-  (acc, item) => {
-    if (item.key.length > 0 && item.value.length > 0) {
-      return [...acc, item];
-    }
-    return [...acc];
-  },
-  []
-);
 
 // JSX
 export const Synonyms = ({ name = '', onChange = noop }: SynonymProps) => {
@@ -79,12 +69,7 @@ export const Synonyms = ({ name = '', onChange = noop }: SynonymProps) => {
   );
 
   useEffect(() => {
-    const validSynonyms = reduceToValidSynonyms($value);
-    if (validSynonyms.length > 0) {
-      onChange(name, validSynonyms);
-    } else {
-      onChange(name, []);
-    }
+    onChange(name, $value);
   }, [$value, name, onChange]);
 
   return (

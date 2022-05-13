@@ -19,7 +19,7 @@ export const MarkerCodeRenderer = ({
   const codeRef = useRef(null);
   const optionsString = useMemo(
     () => JSON.stringify(options, null, 4).replace('}', `  }`),
-    []
+    [options]
   );
   const optionsRender = useMemo(() => {
     const showOptions = Object.keys(options).length > 0 ? true : false;

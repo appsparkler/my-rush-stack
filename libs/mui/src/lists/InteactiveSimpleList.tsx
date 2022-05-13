@@ -6,7 +6,7 @@ import {
   updateItemWithMatchingId,
 } from 'common-utils';
 import { TextFieldChangeEventHandler } from 'common-types';
-import { filter, noop, uniqueId } from 'lodash/fp';
+import { noop, uniqueId } from 'lodash/fp';
 import { Horizontal, Vertical } from '../layouts';
 import React, { useCallback, useEffect, useState } from 'react';
 
@@ -69,12 +69,6 @@ export const InteactiveSimpleList = ({
   );
 
   useEffect(() => {
-    // const filterOutEmptyValues = filter<ExcludeItem>((item) =>
-    //   Boolean(item.value)
-    // );
-    // const refinedValues = filterOutEmptyValues(value);
-    // if (refinedValues.length > 0) onChange(name, refinedValues);
-    // else onChange(name, value);
     onChange(name, value);
   }, [name, onChange, value]);
 
