@@ -18,7 +18,8 @@
     "size": "size-limit",
     "analyze": "size-limit --why",
     "storybook": "start-storybook -p 4000",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "watch:dependencies": "rush build:watch --to-except mui"
   },
   "prettier": {
     "printWidth": 80,
