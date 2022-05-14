@@ -7,7 +7,7 @@ import {
   TextFieldProps,
 } from '@mui/material';
 import React, { useCallback, useEffect, useState } from 'react';
-import { Synonyms } from './Synonyms';
+import { getDefaultSynonymItem, SynonymItem, Synonyms } from './Synonyms';
 import {
   Horizontal,
   InteactiveSimpleList,
@@ -16,15 +16,7 @@ import {
   Vertical,
 } from 'mui';
 import { SimpleFormControlChange } from 'common-types';
-import {
-  filter,
-  isArray,
-  isBoolean,
-  isString,
-  map,
-  noop,
-  pipe,
-} from 'lodash/fp';
+import { filter, keys, map, noop, pipe, reduce } from 'lodash/fp';
 
 export type SimpleCheckboxProps = Partial<
   Omit<FormControlLabelProps, 'onChange'>
@@ -34,7 +26,6 @@ export type SimpleCheckboxProps = Partial<
 };
 
 //
-
 const SimpleCheckbox = ({
   checked,
   name = '',
@@ -60,39 +51,41 @@ const SimpleCheckbox = ({
 
 // types
 export type KeywordFormRawConfig = {
-  keyword: string;
-  excludes: TextFieldProps[];
   accuracy: string;
-  element: string;
-  iframesTimeout: string;
-  className: string;
-  separateWordSearch: boolean;
-  diacritics: boolean;
-  iframes: boolean;
-  caseSensitive: boolean;
-  ignoreJoiners: boolean;
   acrossElements: boolean;
+  caseSensitive: boolean;
+  className: string;
   debug: boolean;
-  wildCards: string;
+  diacritics: boolean;
+  element: string;
+  excludes: TextFieldProps[];
+  iframes: boolean;
+  iframesTimeout: string;
+  ignoreJoiners: boolean;
   ignorePunctuation: TextFieldProps[];
+  keyword: string;
+  separateWordSearch: boolean;
+  synonyms: SynonymItem[];
+  wildCards: string;
 };
 
 export type KeywordFormRefinedConfig = {
-  keyword: string;
-  excludes?: string[];
   accuracy?: string;
-  element?: string;
-  iframesTimeout?: string;
-  className?: string;
-  separateWordSearch?: boolean;
-  diacritics?: boolean;
-  iframes?: boolean;
-  caseSensitive?: boolean;
-  ignoreJoiners?: boolean;
   acrossElements?: boolean;
+  caseSensitive?: boolean;
+  className?: string;
   debug?: boolean;
-  wildCards?: string;
+  diacritics?: boolean;
+  element?: string;
+  excludes?: string[];
+  iframes?: boolean;
+  iframesTimeout?: string;
+  ignoreJoiners?: boolean;
   ignorePunctuation?: string[];
+  keyword: string;
+  separateWordSearch?: boolean;
+  synonyms?: Record<string, string>;
+  wildCards?: string;
 };
 
 export type TextFieldPropsValue = TextFieldProps['value'];
@@ -107,44 +100,70 @@ export const mapExcludesToValue = <T extends { value?: unknown }>(
 
 export const filterOutFalsy = filter<string>((item) => Boolean(item));
 
-const getExcludes = <T extends { value?: unknown }>(values: T[]) =>
-  pipe<[{ value?: unknown }[]], (string | undefined)[], string[]>(
+const getExcludes = <T extends { value?: ValueType }, ValueType = string>(
+  values: T[]
+) =>
+  pipe<[{ value?: ValueType }[]], (string | undefined)[], string[]>(
     mapExcludesToValue,
     filterOutFalsy
   )(values);
 
+const getRefinedSynonyms = (
+  synonyms: SynonymItem[]
+): Record<string, string> => {
+  return reduce<SynonymItem, Record<string, string>>((acc, { key, value }) => {
+    if (Boolean(key) && Boolean(value)) {
+      return {
+        ...acc,
+        [key]: value,
+      };
+    }
+    return acc;
+  }, {})(synonyms);
+};
+
 export const getRefinedConfig = ({
   keyword,
   excludes,
+  element,
+  className,
+  accuracy,
+  synonyms,
   ignorePunctuation: punctuations,
 }: KeywordFormRawConfig): KeywordFormRefinedConfig => {
-  const excludesValue = getExcludes<TextFieldProps>(excludes);
-  const punctuationsValue = getExcludes<TextFieldProps>(punctuations);
+  const excludesValue = getExcludes<TextFieldProps, unknown>(excludes);
+  const punctuationsValue = getExcludes<TextFieldProps, unknown>(punctuations);
+  const synonymsValue = getRefinedSynonyms(synonyms);
   return {
-    keyword: keyword || '',
+    accuracy,
+    className: className || undefined,
+    element: element || undefined,
     excludes: excludesValue.length ? excludesValue : undefined,
     ignorePunctuation: punctuationsValue.length ? punctuationsValue : undefined,
+    keyword: keyword || '',
+    synonyms: keys(synonymsValue).length ? synonymsValue : undefined,
   };
 };
 
 // JSX
 export const KeywordForm = (props = {}) => {
   const [config, setConfig] = useState<KeywordFormRawConfig>({
-    keyword: '',
-    excludes: [],
     accuracy: 'complimentary',
-    element: '',
-    iframesTimeout: '0',
-    className: '',
-    separateWordSearch: false,
-    diacritics: false,
-    iframes: false,
-    caseSensitive: false,
-    ignoreJoiners: false,
     acrossElements: false,
+    caseSensitive: false,
+    className: '',
     debug: false,
-    wildCards: 'disabled',
+    diacritics: false,
+    element: '',
+    excludes: [],
+    iframes: false,
+    iframesTimeout: '0',
+    ignoreJoiners: false,
     ignorePunctuation: [],
+    keyword: '',
+    separateWordSearch: false,
+    synonyms: [getDefaultSynonymItem()],
+    wildCards: 'disabled',
   });
 
   const handleChange = useCallback<
@@ -156,9 +175,9 @@ export const KeywordForm = (props = {}) => {
     }));
   }, []);
 
-  // useEffect(() => {
-  //   console.log(getRefinedConfig(config));
-  // }, [config]);
+  useEffect(() => {
+    console.log(getRefinedConfig(config));
+  }, [config]);
 
   return (
     <Vertical gap={2} {...props}>

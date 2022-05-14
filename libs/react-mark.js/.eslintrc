@@ -1,3 +1,10 @@
 {
-  "extends": "react-app"
+  "extends": "react-app",
+  "rules": {
+    "sort-keys": [
+      "error",
+      "asc",
+      { "caseSensitive": true, "natural": false, "minKeys": 2 }
+    ]
+  }
 }

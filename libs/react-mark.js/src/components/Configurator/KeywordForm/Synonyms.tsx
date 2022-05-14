@@ -15,7 +15,7 @@ import { noop } from 'lodash';
 import { uniqueId } from 'lodash/fp';
 import React, { useCallback, useEffect, useState } from 'react';
 
-type SynonymItem = {
+export type SynonymItem = {
   id: string;
   key: string;
   value: string;
@@ -80,17 +80,17 @@ export const Synonyms = ({ name = '', onChange = noop }: SynonymProps) => {
           <Box key={id} display="flex" gap={2} alignItems="center">
             <TextField
               label="Word"
-              value={key}
-              size="small"
               name="key"
               onChange={handleChangeInput(id)}
+              size="small"
+              value={key}
             />
             <TextField
               label="Synonym"
-              value={value}
-              size="small"
               name="value"
               onChange={handleChangeInput(id)}
+              size="small"
+              value={value}
             />
             {index === 0 ? (
               <Box>
