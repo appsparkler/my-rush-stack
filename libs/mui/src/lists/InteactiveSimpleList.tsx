@@ -77,10 +77,6 @@ export const InteactiveSimpleList = ({
     [name, onChange, value]
   );
 
-  useEffect(() => {
-    onChange(name, value);
-  }, [name, onChange, value]);
-
   return (
     <Vertical gap={1}>
       <Typography variant="h6">{title}</Typography>

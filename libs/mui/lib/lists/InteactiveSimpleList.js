@@ -23,7 +23,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.InteactiveSimpleList = void 0;
+exports.InteactiveSimpleList = exports.getDefaultInteactiveSimpleListItem = void 0;
 const icons_material_1 = require("@mui/icons-material");
 const material_1 = require("@mui/material");
 const common_utils_1 = require("common-utils");
@@ -31,31 +31,33 @@ const fp_1 = require("lodash/fp");
 const layouts_1 = require("../layouts");
 const react_1 = __importStar(require("react"));
 // utils
-const getDefaultExcludeItem = () => {
+const getDefaultInteactiveSimpleListItem = () => {
     return { id: (0, fp_1.uniqueId)('exclude'), value: '' };
 };
-const InteactiveSimpleList = ({ title = '', label = '', ariaLabelAdd = '', ariaLabelDelete = '', name = '', onChange = fp_1.noop, }) => {
-    const [value, setValue] = (0, react_1.useState)([getDefaultExcludeItem()]);
+exports.getDefaultInteactiveSimpleListItem = getDefaultInteactiveSimpleListItem;
+const InteactiveSimpleList = ({ title = '', label = '', ariaLabelAdd = '', ariaLabelDelete = '', name = '', onChange = fp_1.noop, value = [], }) => {
+    // const [value, setValue] = useState<TextFieldProps[]>([getDefaultListItem()]);
     const handleChangeItem = (0, react_1.useCallback)((id) => ({ target: { value: $value } }) => {
-        const ctxItem = (0, common_utils_1.findById)(id)(value);
-        if (ctxItem) {
-            const updatedItems = (0, common_utils_1.updateItemWithMatchingId)(Object.assign(Object.assign({}, ctxItem), { value: $value }))(value);
-            setValue(updatedItems);
+        if (id) {
+            const ctxItem = (0, common_utils_1.findById)(id)(value);
+            if (ctxItem) {
+                const updatedItems = (0, common_utils_1.updateItemWithMatchingId)(Object.assign(Object.assign({}, ctxItem), { value: $value }))(value);
+                onChange(name, updatedItems);
+            }
         }
-    }, [value]);
+    }, [name, onChange, value]);
     const handleClickAdd = (0, react_1.useCallback)(() => {
-        setValue((prevValue) => [...prevValue, getDefaultExcludeItem()]);
-    }, []);
+        onChange(name, [...value, (0, exports.getDefaultInteactiveSimpleListItem)()]);
+    }, [name, onChange, value]);
     const handleClickDelete = (0, react_1.useCallback)((id) => () => {
-        setValue((prevValue) => (0, common_utils_1.filterOutWithId)(id)(prevValue));
-    }, []);
-    (0, react_1.useEffect)(() => {
-        onChange(name, value);
+        if (id) {
+            onChange(name, (0, common_utils_1.filterOutWithId)(id)(value));
+        }
     }, [name, onChange, value]);
     return (react_1.default.createElement(layouts_1.Vertical, { gap: 1 },
         react_1.default.createElement(material_1.Typography, { variant: "h6" }, title),
         react_1.default.createElement(layouts_1.Vertical, { gap: 2 }, value.map((item, index) => (react_1.default.createElement(layouts_1.Horizontal, { key: item.id },
-            react_1.default.createElement(material_1.TextField, { label: label, size: "small", fullWidth: true, type: "text", key: item.id, value: item.value, onChange: handleChangeItem(item.id) }),
+            react_1.default.createElement(material_1.TextField, Object.assign({ label: label, size: "small", fullWidth: true, type: "text", key: item.id, onChange: handleChangeItem(item.id) }, item)),
             react_1.default.createElement(material_1.Box, null, index === 0 ? (react_1.default.createElement(material_1.IconButton, { "aria-label": ariaLabelAdd, color: "primary", size: "small", onClick: handleClickAdd },
                 react_1.default.createElement(icons_material_1.Add, null))) : (react_1.default.createElement(material_1.IconButton, { "aria-label": ariaLabelDelete, color: "warning", size: "small", onClick: handleClickDelete(item.id), disabled: index === 0 },
                 react_1.default.createElement(icons_material_1.Delete, null))))))))));

@@ -4,12 +4,11 @@ import {
   FormControlLabel,
   FormControlLabelProps,
   FormGroup,
+  TextFieldProps,
 } from '@mui/material';
 import React, { useCallback, useEffect, useState } from 'react';
 import { Synonyms } from './Synonyms';
 import {
-  ExcludeItem,
-  ExcludesProps,
   Horizontal,
   InteactiveSimpleList,
   SimpleSelect,
@@ -62,7 +61,7 @@ const SimpleCheckbox = ({
 // types
 export type KeywordFormRawConfig = {
   keyword: string;
-  excludes: ExcludeItem[];
+  excludes: TextFieldProps[];
   accuracy: string;
   element: string;
   iframesTimeout: string;
@@ -75,7 +74,7 @@ export type KeywordFormRawConfig = {
   acrossElements: boolean;
   debug: boolean;
   wildCards: string;
-  ignorePunctuation: ExcludeItem[];
+  ignorePunctuation: TextFieldProps[];
 };
 
 export type KeywordFormRefinedConfig = {
@@ -96,16 +95,20 @@ export type KeywordFormRefinedConfig = {
   ignorePunctuation?: string[];
 };
 
+export type TextFieldPropsValue = TextFieldProps['value'];
+
 // utils
-export const mapExcludesToValue = <T extends { value: string }>(values: T[]) =>
-  map<{ value: string }, string>(({ value }) =>
-    Boolean(value) ? value : undefined
+export const mapExcludesToValue = <T extends { value?: unknown }>(
+  values: T[]
+) =>
+  map<{ value?: unknown }, string>(({ value }) =>
+    Boolean(value) && typeof value === 'string' ? value : undefined
   )(values);
 
 export const filterOutFalsy = filter<string>((item) => Boolean(item));
 
-const getExcludes = <T extends { value: string }>(values: T[]) =>
-  pipe<[{ value: string }[]], (string | undefined)[], string[]>(
+const getExcludes = <T extends { value?: unknown }>(values: T[]) =>
+  pipe<[{ value?: unknown }[]], (string | undefined)[], string[]>(
     mapExcludesToValue,
     filterOutFalsy
   )(values);
@@ -115,8 +118,8 @@ export const getRefinedConfig = ({
   excludes,
   ignorePunctuation: punctuations,
 }: KeywordFormRawConfig): KeywordFormRefinedConfig => {
-  const excludesValue = getExcludes<ExcludeItem>(excludes);
-  const punctuationsValue = getExcludes<ExcludeItem>(punctuations);
+  const excludesValue = getExcludes<TextFieldProps>(excludes);
+  const punctuationsValue = getExcludes<TextFieldProps>(punctuations);
   return {
     keyword: keyword || '',
     excludes: excludesValue.length ? excludesValue : undefined,
@@ -153,9 +156,9 @@ export const KeywordForm = (props = {}) => {
     }));
   }, []);
 
-  useEffect(() => {
-    console.log(getRefinedConfig(config));
-  }, [config]);
+  // useEffect(() => {
+  //   console.log(getRefinedConfig(config));
+  // }, [config]);
 
   return (
     <Vertical gap={2} {...props}>
