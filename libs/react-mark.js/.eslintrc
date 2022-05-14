@@ -2,7 +2,7 @@
   "extends": "react-app",
   "rules": {
     "sort-keys": [
-      "error",
+      "warn",
       "asc",
       { "caseSensitive": true, "natural": false, "minKeys": 2 }
     ]

@@ -123,6 +123,8 @@ const getRefinedSynonyms = (
   }, {})(synonyms);
 };
 
+const getRefinedBoolean = (value: boolean) => (value ? undefined : false);
+
 export const getRefinedConfig = ({
   keyword,
   excludes,
@@ -130,24 +132,46 @@ export const getRefinedConfig = ({
   className,
   accuracy,
   synonyms,
+  iframesTimeout,
+  wildCards,
+  iframes,
+  ignoreJoiners,
+  acrossElements,
+  caseSensitive,
+  debug,
+  diacritics,
   ignorePunctuation: punctuations,
+  separateWordSearch,
 }: KeywordFormRawConfig): KeywordFormRefinedConfig => {
   const excludesValue = getExcludes<TextFieldProps, unknown>(excludes);
   const punctuationsValue = getExcludes<TextFieldProps, unknown>(punctuations);
   const synonymsValue = getRefinedSynonyms(synonyms);
   return {
     accuracy,
+    acrossElements: getRefinedBoolean(acrossElements),
+    caseSensitive: getRefinedBoolean(caseSensitive),
     className: className || undefined,
+    debug: getRefinedBoolean(debug),
+    diacritics: getRefinedBoolean(diacritics),
     element: element || undefined,
     excludes: excludesValue.length ? excludesValue : undefined,
+    iframes: getRefinedBoolean(iframes),
+    iframesTimeout: Number(iframesTimeout) > 0 ? iframesTimeout : undefined,
+    ignoreJoiners: getRefinedBoolean(ignoreJoiners),
     ignorePunctuation: punctuationsValue.length ? punctuationsValue : undefined,
     keyword: keyword || '',
+    separateWordSearch: getRefinedBoolean(separateWordSearch),
     synonyms: keys(synonymsValue).length ? synonymsValue : undefined,
+    wildCards,
   };
 };
 
+export type KeywordFormProps = {
+  onChange: (keywordFormConfig: KeywordFormRefinedConfig) => void;
+};
+
 // JSX
-export const KeywordForm = (props = {}) => {
+export const KeywordForm = ({ onChange }: KeywordFormProps) => {
   const [config, setConfig] = useState<KeywordFormRawConfig>({
     accuracy: 'complimentary',
     acrossElements: false,
@@ -177,11 +201,11 @@ export const KeywordForm = (props = {}) => {
   }, []);
 
   useEffect(() => {
-    console.log(getRefinedConfig(config));
-  }, [config]);
+    onChange(getRefinedConfig(config));
+  }, [config, onChange]);
 
   return (
-    <Vertical gap={2} {...props}>
+    <Vertical gap={2}>
       <pre>{JSON.stringify(config, null, 2)}</pre>
       {/* ROW 1 */}
       <Horizontal gap={2}>
