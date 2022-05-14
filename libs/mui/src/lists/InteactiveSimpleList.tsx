@@ -10,7 +10,7 @@ import { noop, uniqueId } from 'lodash/fp';
 import { Horizontal, Vertical } from '../layouts';
 import React, { useCallback, useEffect, useState } from 'react';
 
-type ExcludeItem = {
+export type ExcludeItem = {
   id: string;
   value: string;
 };
