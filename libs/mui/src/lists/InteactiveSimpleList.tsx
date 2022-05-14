@@ -14,7 +14,7 @@ import {
 import { TextFieldChangeEventHandler } from 'common-types';
 import { noop, uniqueId } from 'lodash/fp';
 import { Horizontal, Vertical } from '../layouts';
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 
 // utils
 export const getDefaultInteactiveSimpleListItem = (): TextFieldProps => {
@@ -41,7 +41,6 @@ export const InteactiveSimpleList = ({
   onChange = noop,
   value = [],
 }: InteactiveSimpleListProps) => {
-  // const [value, setValue] = useState<TextFieldProps[]>([getDefaultListItem()]);
   const handleChangeItem = useCallback<
     (id: TextFieldProps['id']) => TextFieldChangeEventHandler
   >(

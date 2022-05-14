@@ -36,7 +36,6 @@ const getDefaultInteactiveSimpleListItem = () => {
 };
 exports.getDefaultInteactiveSimpleListItem = getDefaultInteactiveSimpleListItem;
 const InteactiveSimpleList = ({ title = '', label = '', ariaLabelAdd = '', ariaLabelDelete = '', name = '', onChange = fp_1.noop, value = [], }) => {
-    // const [value, setValue] = useState<TextFieldProps[]>([getDefaultListItem()]);
     const handleChangeItem = (0, react_1.useCallback)((id) => ({ target: { value: $value } }) => {
         if (id) {
             const ctxItem = (0, common_utils_1.findById)(id)(value);
