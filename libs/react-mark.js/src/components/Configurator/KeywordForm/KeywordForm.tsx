@@ -5,9 +5,11 @@ import {
   FormControlLabelProps,
   FormGroup,
 } from '@mui/material';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Synonyms } from './Synonyms';
 import {
+  ExcludeItem,
+  ExcludesProps,
   Horizontal,
   InteactiveSimpleList,
   SimpleSelect,
@@ -15,7 +17,15 @@ import {
   Vertical,
 } from 'mui';
 import { SimpleFormControlChange } from 'common-types';
-import { isArray, isBoolean, isString, noop } from 'lodash/fp';
+import {
+  filter,
+  isArray,
+  isBoolean,
+  isString,
+  map,
+  noop,
+  pipe,
+} from 'lodash/fp';
 
 export type SimpleCheckboxProps = Partial<
   Omit<FormControlLabelProps, 'onChange'>
@@ -23,6 +33,8 @@ export type SimpleCheckboxProps = Partial<
   onChange?: SimpleFormControlChange<boolean>;
   label?: string;
 };
+
+//
 
 const SimpleCheckbox = ({
   checked,
@@ -47,9 +59,74 @@ const SimpleCheckbox = ({
   );
 };
 
+// types
+export type KeywordFormRawConfig = {
+  keyword: string;
+  excludes: ExcludeItem[];
+  accuracy: string;
+  element: string;
+  iframesTimeout: string;
+  className: string;
+  separateWordSearch: boolean;
+  diacritics: boolean;
+  iframes: boolean;
+  caseSensitive: boolean;
+  ignoreJoiners: boolean;
+  acrossElements: boolean;
+  debug: boolean;
+  wildCards: string;
+  ignorePunctuation: ExcludeItem[];
+};
+
+export type KeywordFormRefinedConfig = {
+  keyword: string;
+  excludes?: string[];
+  accuracy?: string;
+  element?: string;
+  iframesTimeout?: string;
+  className?: string;
+  separateWordSearch?: boolean;
+  diacritics?: boolean;
+  iframes?: boolean;
+  caseSensitive?: boolean;
+  ignoreJoiners?: boolean;
+  acrossElements?: boolean;
+  debug?: boolean;
+  wildCards?: string;
+  ignorePunctuation?: string[];
+};
+
+// utils
+export const mapExcludesToValue = <T extends { value: string }>(values: T[]) =>
+  map<{ value: string }, string>(({ value }) =>
+    Boolean(value) ? value : undefined
+  )(values);
+
+export const filterOutFalsy = filter<string>((item) => Boolean(item));
+
+const getExcludes = <T extends { value: string }>(values: T[]) =>
+  pipe<[{ value: string }[]], (string | undefined)[], string[]>(
+    mapExcludesToValue,
+    filterOutFalsy
+  )(values);
+
+export const getRefinedConfig = ({
+  keyword,
+  excludes,
+  ignorePunctuation: punctuations,
+}: KeywordFormRawConfig): KeywordFormRefinedConfig => {
+  const excludesValue = getExcludes<ExcludeItem>(excludes);
+  const punctuationsValue = getExcludes<ExcludeItem>(punctuations);
+  return {
+    keyword: keyword || '',
+    excludes: excludesValue.length ? excludesValue : undefined,
+    ignorePunctuation: punctuationsValue.length ? punctuationsValue : undefined,
+  };
+};
+
 // JSX
 export const KeywordForm = (props = {}) => {
-  const [config, setConfig] = useState({
+  const [config, setConfig] = useState<KeywordFormRawConfig>({
     keyword: '',
     excludes: [],
     accuracy: 'complimentary',
@@ -64,6 +141,7 @@ export const KeywordForm = (props = {}) => {
     acrossElements: false,
     debug: false,
     wildCards: 'disabled',
+    ignorePunctuation: [],
   });
 
   const handleChange = useCallback<
@@ -74,6 +152,10 @@ export const KeywordForm = (props = {}) => {
       [key]: value,
     }));
   }, []);
+
+  useEffect(() => {
+    console.log(getRefinedConfig(config));
+  }, [config]);
 
   return (
     <Vertical gap={2} {...props}>
@@ -137,7 +219,7 @@ export const KeywordForm = (props = {}) => {
       <InteactiveSimpleList
         name="ignorePunctuation"
         title="Ignore Punctuations"
-        label="punctuation"
+        label="for ex: ."
         ariaLabelAdd="add punctuation to ignore"
         ariaLabelDelete="delete punctuation to ignore"
         onChange={handleChange}
