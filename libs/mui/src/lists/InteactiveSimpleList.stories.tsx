@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 import {
-  getDefaultListItem,
+  getDefaultInteactiveSimpleListItem,
   InteactiveSimpleList,
 } from './InteactiveSimpleList';
 
@@ -23,9 +23,9 @@ interactiveSimpleList.args = {
   btnLabel: 'Add Exclusion',
   ariaLabelDelete: 'delete exclusion',
   value: [
-    getDefaultListItem(),
+    getDefaultInteactiveSimpleListItem(),
     {
-      ...getDefaultListItem(),
+      ...getDefaultInteactiveSimpleListItem(),
       error: true,
       helperText: 'Something seems wrong',
     },

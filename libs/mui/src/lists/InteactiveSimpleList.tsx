@@ -16,10 +16,8 @@ import { noop, uniqueId } from 'lodash/fp';
 import { Horizontal, Vertical } from '../layouts';
 import React, { useCallback, useEffect } from 'react';
 
-export type ExcludeItem = TextFieldProps;
-
 // utils
-export const getDefaultListItem = (): TextFieldProps => {
+export const getDefaultInteactiveSimpleListItem = (): TextFieldProps => {
   return { id: uniqueId('exclude'), value: '' };
 };
 
@@ -31,7 +29,7 @@ export type InteactiveSimpleListProps = {
   ariaLabelDelete?: string;
   name?: string;
   value?: TextFieldProps[];
-  onChange?: (name: string, value: ExcludeItem[]) => void;
+  onChange?: (name: string, value: TextFieldProps[]) => void;
 };
 
 export const InteactiveSimpleList = ({
@@ -52,7 +50,7 @@ export const InteactiveSimpleList = ({
         if (id) {
           const ctxItem = findById<TextFieldProps, string>(id)(value);
           if (ctxItem) {
-            const updatedItems: ExcludeItem[] =
+            const updatedItems: TextFieldProps[] =
               updateItemWithMatchingId<TextFieldProps>({
                 ...ctxItem,
                 value: $value,
@@ -65,7 +63,7 @@ export const InteactiveSimpleList = ({
   );
 
   const handleClickAdd = useCallback(() => {
-    onChange(name, [...value, getDefaultListItem()]);
+    onChange(name, [...value, getDefaultInteactiveSimpleListItem()]);
   }, [name, onChange, value]);
 
   const handleClickDelete = useCallback<
