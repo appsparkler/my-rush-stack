@@ -9,6 +9,7 @@ import {
 import React, { useCallback, useEffect, useState } from 'react';
 import { getDefaultSynonymItem, SynonymItem, Synonyms } from './Synonyms';
 import {
+  getDefaultInteactiveSimpleListItem,
   Horizontal,
   InteactiveSimpleList,
   SimpleSelect,
@@ -155,11 +156,11 @@ export const KeywordForm = (props = {}) => {
     debug: false,
     diacritics: false,
     element: '',
-    excludes: [],
+    excludes: [getDefaultInteactiveSimpleListItem()],
     iframes: false,
     iframesTimeout: '0',
     ignoreJoiners: false,
-    ignorePunctuation: [],
+    ignorePunctuation: [getDefaultInteactiveSimpleListItem()],
     keyword: '',
     separateWordSearch: false,
     synonyms: [getDefaultSynonymItem()],
@@ -234,6 +235,7 @@ export const KeywordForm = (props = {}) => {
         label="Exclude Item"
         ariaLabelAdd="add exclusion"
         ariaLabelDelete="delete exclusion"
+        value={config.excludes}
         onChange={handleChange}
       />
 
@@ -244,6 +246,7 @@ export const KeywordForm = (props = {}) => {
         label="for ex: ."
         ariaLabelAdd="add punctuation to ignore"
         ariaLabelDelete="delete punctuation to ignore"
+        value={config.ignorePunctuation}
         onChange={handleChange}
       />
 

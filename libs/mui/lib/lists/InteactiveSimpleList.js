@@ -32,7 +32,7 @@ const layouts_1 = require("../layouts");
 const react_1 = __importStar(require("react"));
 // utils
 const getDefaultInteactiveSimpleListItem = () => {
-    return { id: (0, fp_1.uniqueId)('exclude'), value: '' };
+    return { id: (0, fp_1.uniqueId)('interactive-simple-list-item'), value: '' };
 };
 exports.getDefaultInteactiveSimpleListItem = getDefaultInteactiveSimpleListItem;
 const InteactiveSimpleList = ({ title = '', label = '', ariaLabelAdd = '', ariaLabelDelete = '', name = '', onChange = fp_1.noop, value = [], }) => {

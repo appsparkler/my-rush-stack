@@ -18,7 +18,7 @@ import React, { useCallback } from 'react';
 
 // utils
 export const getDefaultInteactiveSimpleListItem = (): TextFieldProps => {
-  return { id: uniqueId('exclude'), value: '' };
+  return { id: uniqueId('interactive-simple-list-item'), value: '' };
 };
 
 // jsx
