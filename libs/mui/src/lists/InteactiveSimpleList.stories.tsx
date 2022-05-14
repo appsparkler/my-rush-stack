@@ -1,6 +1,9 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
-import { InteactiveSimpleList } from './InteactiveSimpleList';
+import {
+  getDefaultListItem,
+  InteactiveSimpleList,
+} from './InteactiveSimpleList';
 
 export default {
   title: 'Lists/Interactive Simple List',
@@ -19,4 +22,12 @@ interactiveSimpleList.args = {
   ariaLabelAdd: 'add exclusion',
   btnLabel: 'Add Exclusion',
   ariaLabelDelete: 'delete exclusion',
+  value: [
+    getDefaultListItem(),
+    {
+      ...getDefaultListItem(),
+      error: true,
+      helperText: 'Something seems wrong',
+    },
+  ],
 };

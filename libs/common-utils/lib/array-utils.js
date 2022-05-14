@@ -9,8 +9,9 @@ const fp_1 = require("lodash/fp");
  */
 const filterOutWithId = (id) => (0, fp_1.filter)((item) => item.id !== id);
 exports.filterOutWithId = filterOutWithId;
-const updateItemWithMatchingId = (updatedItem) => (0, fp_1.map)((item) => item.id === updatedItem.id ? Object.assign({}, updatedItem) : Object.assign({}, item));
+const updateItemWithMatchingId = (updatedItem) => (0, fp_1.map)((item) => Boolean(item.id) && item.id === updatedItem.id
+    ? Object.assign({}, updatedItem) : Object.assign({}, item));
 exports.updateItemWithMatchingId = updateItemWithMatchingId;
-const findById = (id) => (0, fp_1.find)((item) => item.id === id);
+const findById = ($id) => (0, fp_1.find)(({ id }) => Boolean(id) && id === $id);
 exports.findById = findById;
 //# sourceMappingURL=array-utils.js.map

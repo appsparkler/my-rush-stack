@@ -1,5 +1,11 @@
 import { Add, Delete as DeleteIcon } from '@mui/icons-material';
-import { Box, IconButton, TextField, Typography } from '@mui/material';
+import {
+  Box,
+  IconButton,
+  TextField,
+  TextFieldProps,
+  Typography,
+} from '@mui/material';
 import {
   filterOutWithId,
   findById,
@@ -8,25 +14,23 @@ import {
 import { TextFieldChangeEventHandler } from 'common-types';
 import { noop, uniqueId } from 'lodash/fp';
 import { Horizontal, Vertical } from '../layouts';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect } from 'react';
 
-export type ExcludeItem = {
-  id: string;
-  value: string;
-};
+export type ExcludeItem = TextFieldProps;
 
 // utils
-const getDefaultExcludeItem = (): ExcludeItem => {
+export const getDefaultListItem = (): TextFieldProps => {
   return { id: uniqueId('exclude'), value: '' };
 };
 
 // jsx
-export type ExcludesProps = {
+export type InteactiveSimpleListProps = {
   title?: string;
   label?: string;
   ariaLabelAdd?: string;
   ariaLabelDelete?: string;
   name?: string;
+  value?: TextFieldProps[];
   onChange?: (name: string, value: ExcludeItem[]) => void;
 };
 
@@ -37,35 +41,42 @@ export const InteactiveSimpleList = ({
   ariaLabelDelete = '',
   name = '',
   onChange = noop,
-}: ExcludesProps) => {
-  const [value, setValue] = useState<ExcludeItem[]>([getDefaultExcludeItem()]);
+  value = [],
+}: InteactiveSimpleListProps) => {
+  // const [value, setValue] = useState<TextFieldProps[]>([getDefaultListItem()]);
   const handleChangeItem = useCallback<
-    (id: string) => TextFieldChangeEventHandler
+    (id: TextFieldProps['id']) => TextFieldChangeEventHandler
   >(
     (id) =>
       ({ target: { value: $value } }) => {
-        const ctxItem = findById<ExcludeItem>(id)(value);
-        if (ctxItem) {
-          const updatedItems: ExcludeItem[] =
-            updateItemWithMatchingId<ExcludeItem>({
-              ...ctxItem,
-              value: $value,
-            })(value);
-          setValue(updatedItems);
+        if (id) {
+          const ctxItem = findById<TextFieldProps, string>(id)(value);
+          if (ctxItem) {
+            const updatedItems: ExcludeItem[] =
+              updateItemWithMatchingId<TextFieldProps>({
+                ...ctxItem,
+                value: $value,
+              })(value);
+            onChange(name, updatedItems);
+          }
         }
       },
-    [value]
+    [name, onChange, value]
   );
 
   const handleClickAdd = useCallback(() => {
-    setValue((prevValue) => [...prevValue, getDefaultExcludeItem()]);
-  }, []);
+    onChange(name, [...value, getDefaultListItem()]);
+  }, [name, onChange, value]);
 
-  const handleClickDelete = useCallback<(id: string) => () => void>(
+  const handleClickDelete = useCallback<
+    (id: TextFieldProps['id']) => () => void
+  >(
     (id) => () => {
-      setValue((prevValue) => filterOutWithId<ExcludeItem>(id)(prevValue));
+      if (id) {
+        onChange(name, filterOutWithId<TextFieldProps>(id)(value));
+      }
     },
-    []
+    [name, onChange, value]
   );
 
   useEffect(() => {
@@ -84,8 +95,8 @@ export const InteactiveSimpleList = ({
               fullWidth
               type="text"
               key={item.id}
-              value={item.value}
               onChange={handleChangeItem(item.id)}
+              {...item}
             />
             <Box>
               {index === 0 ? (
