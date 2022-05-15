@@ -3,6 +3,7 @@ import { useCallback, useState } from 'react';
 import {
   getDefaultInteactiveSimpleListItem,
   InteactiveSimpleList,
+  SimpleCheckbox,
   SimpleTextField,
   SimpleTextFieldProps,
   Vertical,
@@ -47,11 +48,17 @@ export const RegExpForm = () => {
     ignoreGroups: number;
     className: string;
     iframesTimeout: number;
+    acrossElements: boolean;
+    iframes: boolean;
+    debug: boolean;
     exclude: TextFieldProps[];
   }>({
+    acrossElements: false,
     className: '',
+    debug: false,
     element: 'mark',
     exclude: [getDefaultInteactiveSimpleListItem()],
+    iframes: false,
     iframesTimeout: 5000,
     ignoreGroups: 0,
   });
@@ -125,6 +132,23 @@ export const RegExpForm = () => {
             size="small"
             onChange={handleChange}
           />
+          <Vertical>
+            <SimpleCheckbox
+              label="Across Elements"
+              value={options.acrossElements}
+              onChange={handleChange}
+            />
+            <SimpleCheckbox
+              label="iframes"
+              value={options.iframes}
+              onChange={handleChange}
+            />
+            <SimpleCheckbox
+              label="Debug"
+              value={options.debug}
+              onChange={handleChange}
+            />
+          </Vertical>
         </Vertical>
       </Grid>
     </Grid>

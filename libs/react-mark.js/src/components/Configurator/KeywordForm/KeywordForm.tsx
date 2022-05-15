@@ -322,7 +322,7 @@ export const KeywordForm = ({
               name="className"
               value={config.className}
             />
-            <Vertical gap={1}>
+            <Vertical>
               <SimpleCheckbox
                 label="Separate World Search"
                 checked={config.separateWordSearch}
