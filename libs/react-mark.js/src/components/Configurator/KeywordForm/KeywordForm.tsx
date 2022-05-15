@@ -145,7 +145,6 @@ const getRefinedSynonyms = (
 };
 
 export const getRefinedConfig = ({
-  // keyword,
   exclude,
   element,
   className,
