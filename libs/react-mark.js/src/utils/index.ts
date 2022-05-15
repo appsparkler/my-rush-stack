@@ -16,3 +16,17 @@ export const mapExcludesToValue = <T extends { value?: unknown }>(
   map<{ value?: unknown }, string | undefined>(({ value }) =>
     Boolean(value) && typeof value === 'string' ? String(value) : undefined
   )(values);
+
+// https://stackoverflow.com/a/55258958/4742733
+export const stringToRegex = (str: string) => {
+  const stringMatch = str.match(/\/(.+)\/.*/);
+  // Main regex
+  const main = stringMatch ? stringMatch[1] : '';
+
+  const optionsMatch = str.match(/\/.+\/(.*)/);
+  // Regex options
+  const options = optionsMatch ? optionsMatch[1] : '';
+
+  // Compiled regex
+  return new RegExp(main, options);
+};
