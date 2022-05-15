@@ -249,100 +249,149 @@ export const KeywordForm = ({
     <Vertical gap={2}>
       {/* ROW 1 */}
       <Grid container spacing={2}>
+        {/* COLUMN 1 */}
         <Grid item xs={6} md={6}>
-          <SimpleTextField
-            sx={{ flexBasis: 0 }}
-            label="Keyword"
-            fullWidth
-            size="small"
-            onChange={handleChange}
-            name="keyword"
-            value={keyword}
-          />
+          <Vertical gap={2}>
+            <SimpleTextField
+              sx={{ flexBasis: 0 }}
+              label="Keyword"
+              fullWidth
+              size="small"
+              onChange={handleChange}
+              name="keyword"
+              value={keyword}
+            />
+            <SimpleTextField
+              label="Element"
+              fullWidth
+              size="small"
+              value={config.element}
+              name="element"
+              onChange={handleChange}
+            />
+            <Synonyms name="synonyms" onChange={handleChange} />
+            <InteactiveSimpleList
+              name="exclude"
+              title="Exclusions"
+              label="Exclude Item"
+              ariaLabelAdd="add exclusion"
+              ariaLabelDelete="delete exclusion"
+              value={config.exclude}
+              onChange={handleChange}
+            />
+            <InteactiveSimpleList
+              name="ignorePunctuation"
+              title="Ignore Punctuation"
+              label="for ex: ."
+              ariaLabelAdd="add punctuation to ignore"
+              ariaLabelDelete="delete punctuation to ignore"
+              value={config.ignorePunctuation}
+              onChange={handleChange}
+            />
+            <SimpleTextField
+              type="number"
+              label="IFrames Timeout"
+              fullWidth
+              size="small"
+              name="iframesTimeout"
+              value={config.iframesTimeout}
+              onChange={handleChange}
+            />
+            <SimpleSelect
+              label="Wild Cards"
+              onChange={handleChange}
+              value={config.wildcards}
+              name="wildCards"
+              menuItems={[
+                { id: '1', name: 'disabled', value: 'disabled' },
+                { id: '2', name: 'enabled', value: 'enabled' },
+                { id: '3', name: 'withSpaces', value: 'withSpaces' },
+              ]}
+            />
+          </Vertical>
         </Grid>
+
+        {/* COLUMN 2 */}
         <Grid item xs={6} md={8}>
-          <SimpleSelect
-            label="Accurracy"
-            onChange={handleChange}
-            value={config.accuracy}
-            name="accuracy"
-            menuItems={[
-              { id: '1', name: 'partially', value: 'partially' },
-              { id: '2', name: 'exactly', value: 'exactly' },
-              { id: '3', name: 'complimentary', value: 'complimentary' },
-            ]}
-          />
+          <Vertical gap={2}>
+            <SimpleSelect
+              label="Accurracy"
+              onChange={handleChange}
+              value={config.accuracy}
+              name="accuracy"
+              menuItems={[
+                { id: '1', name: 'partially', value: 'partially' },
+                { id: '2', name: 'exactly', value: 'exactly' },
+                { id: '3', name: 'complimentary', value: 'complimentary' },
+              ]}
+            />
+            <SimpleTextField
+              label="Class name"
+              fullWidth
+              size="small"
+              onChange={handleChange}
+              name="className"
+              value={config.className}
+            />
+            <Vertical gap={1}>
+              <SimpleCheckbox
+                label="Separate World Search"
+                checked={config.separateWordSearch}
+                name="separateWordSearch"
+                onChange={handleChange}
+              />
+              <SimpleCheckbox
+                label="Diacritics"
+                name="diacritics"
+                checked={config.diacritics}
+                onChange={handleChange}
+              />
+              <SimpleCheckbox
+                label="IFrames"
+                name="iframes"
+                onChange={handleChange}
+                checked={config.iframes}
+              />
+              <SimpleCheckbox
+                label="Case Sensitive"
+                name="caseSensitive"
+                onChange={handleChange}
+                checked={config.caseSensitive}
+              />
+              <SimpleCheckbox
+                label="Ignore Joiners"
+                name="ignoreJoiners"
+                onChange={handleChange}
+                checked={config.ignoreJoiners}
+              />
+              <SimpleCheckbox
+                label="Across Elements"
+                name="acrossElements"
+                onChange={handleChange}
+                checked={config.acrossElements}
+              />
+              <SimpleCheckbox
+                label="Debug"
+                name="debug"
+                onChange={handleChange}
+                checked={config.debug}
+              />
+            </Vertical>
+          </Vertical>
         </Grid>
       </Grid>
 
       {/** ROW 2 */}
-      <Horizontal gap={2}>
-        <SimpleTextField
-          label="Element"
-          fullWidth
-          size="small"
-          value={config.element}
-          name="element"
-          onChange={handleChange}
-        />
-        <SimpleTextField
-          label="Class name"
-          fullWidth
-          size="small"
-          onChange={handleChange}
-          name="className"
-          value={config.className}
-        />
-      </Horizontal>
+      <Horizontal gap={2}></Horizontal>
 
       {/* ROW 3 */}
-      <Synonyms name="synonyms" onChange={handleChange} />
 
       {/* ROW 4 */}
-      <InteactiveSimpleList
-        name="exclude"
-        title="Exclusions"
-        label="Exclude Item"
-        ariaLabelAdd="add exclusion"
-        ariaLabelDelete="delete exclusion"
-        value={config.exclude}
-        onChange={handleChange}
-      />
 
       {/* ROW 5 */}
-      <InteactiveSimpleList
-        name="ignorePunctuation"
-        title="Ignore Punctuation"
-        label="for ex: ."
-        ariaLabelAdd="add punctuation to ignore"
-        ariaLabelDelete="delete punctuation to ignore"
-        value={config.ignorePunctuation}
-        onChange={handleChange}
-      />
 
       {/* ROW 6 */}
-      <Horizontal gap={2}>
-        <SimpleTextField
-          type="number"
-          label="IFrames Timeout"
-          fullWidth
-          size="small"
-          name="iframesTimeout"
-          value={config.iframesTimeout}
-          onChange={handleChange}
-        />
-        <SimpleSelect
-          label="Wild Cards"
-          onChange={handleChange}
-          value={config.wildcards}
-          name="wildCards"
-          menuItems={[
-            { id: '1', name: 'disabled', value: 'disabled' },
-            { id: '2', name: 'enabled', value: 'enabled' },
-            { id: '3', name: 'withSpaces', value: 'withSpaces' },
-          ]}
-        />
-      </Horizontal>
+      <Horizontal gap={2}></Horizontal>
 
       {/* ROW 7 */}
       <FormGroup>
@@ -353,50 +402,7 @@ export const KeywordForm = ({
             'repeat(3, 1fr)',
             'repeat(4, 1fr)',
           ]}
-        >
-          <SimpleCheckbox
-            label="Separate World Search"
-            checked={config.separateWordSearch}
-            name="separateWordSearch"
-            onChange={handleChange}
-          />
-          <SimpleCheckbox
-            label="Diacritics"
-            name="diacritics"
-            checked={config.diacritics}
-            onChange={handleChange}
-          />
-          <SimpleCheckbox
-            label="IFrames"
-            name="iframes"
-            onChange={handleChange}
-            checked={config.iframes}
-          />
-          <SimpleCheckbox
-            label="Case Sensitive"
-            name="caseSensitive"
-            onChange={handleChange}
-            checked={config.caseSensitive}
-          />
-          <SimpleCheckbox
-            label="Ignore Joiners"
-            name="ignoreJoiners"
-            onChange={handleChange}
-            checked={config.ignoreJoiners}
-          />
-          <SimpleCheckbox
-            label="Across Elements"
-            name="acrossElements"
-            onChange={handleChange}
-            checked={config.acrossElements}
-          />
-          <SimpleCheckbox
-            label="Debug"
-            name="debug"
-            onChange={handleChange}
-            checked={config.debug}
-          />
-        </Box>
+        ></Box>
       </FormGroup>
     </Vertical>
   );

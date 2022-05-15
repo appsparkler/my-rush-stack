@@ -79,14 +79,14 @@ export const Synonyms = ({ name = '', onChange = noop }: SynonymProps) => {
         {$value.map(({ id, key, value }, index) => (
           <Box key={id} display="flex" gap={2} alignItems="center">
             <TextField
-              label="Word"
+              label="keyword"
               name="key"
               onChange={handleChangeInput(id)}
               size="small"
               value={key}
             />
             <TextField
-              label="Synonym"
+              label="synonym"
               name="value"
               onChange={handleChangeInput(id)}
               size="small"
