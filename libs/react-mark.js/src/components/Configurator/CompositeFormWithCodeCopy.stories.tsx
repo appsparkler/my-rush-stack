@@ -31,7 +31,7 @@ export const CompositeForm = () => {
         mark={mark}
         isMarkArray
         options={keywordConfig}
-        onChange={console.log}
+        onChange={console.log} // TODO - handle the alert as a separate component
       />
     </>
   );
