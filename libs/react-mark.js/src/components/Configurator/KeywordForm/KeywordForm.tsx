@@ -225,17 +225,17 @@ export const KeywordForm = ({
       if (key === 'keyword') {
         setKeyword(value as string);
         onChangeKeyword(value as string);
+      } else {
+        setConfig((prevConfig) => ({
+          ...prevConfig,
+          [key]: value,
+        }));
       }
-      setConfig((prevConfig) => ({
-        ...prevConfig,
-        [key]: value,
-      }));
     },
     [onChangeKeyword]
   );
 
   useEffect(() => {
-    console.log(getRefinedConfig(config), config);
     onChange(getRefinedConfig(config));
   }, [config, onChange]);
 

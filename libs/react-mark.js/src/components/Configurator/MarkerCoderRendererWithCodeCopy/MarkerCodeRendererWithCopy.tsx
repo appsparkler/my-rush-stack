@@ -53,7 +53,10 @@ export const MarkerCodeRendererWithCopy = ({
         open={openSnackbar}
         autoHideDuration={1000}
         onClose={handleClose}
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        anchorOrigin={{
+          horizontal: 'center',
+          vertical: 'top',
+        }}
       >
         <Alert
           onClose={handleClose}
@@ -66,9 +69,7 @@ export const MarkerCodeRendererWithCopy = ({
       </Snackbar>
 
       <Box position="absolute" left={10000}>
-        <textarea ref={textareaRef} value={textToCopy}>
-          {textToCopy}
-        </textarea>
+        <textarea ref={textareaRef} defaultValue={textToCopy}></textarea>
       </Box>
     </Box>
   );
