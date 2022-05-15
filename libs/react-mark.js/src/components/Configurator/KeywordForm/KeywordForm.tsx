@@ -95,8 +95,8 @@ export type TextFieldPropsValue = TextFieldProps['value'];
 export const mapExcludesToValue = <T extends { value?: unknown }>(
   values: T[]
 ) =>
-  map<{ value?: unknown }, string>(({ value }) =>
-    Boolean(value) && typeof value === 'string' ? value : undefined
+  map<{ value?: unknown }, string | undefined>(({ value }) =>
+    Boolean(value) && typeof value === 'string' ? String(value) : undefined
   )(values);
 
 export const filterOutFalsy = filter<string>((item) => Boolean(item));
@@ -185,7 +185,7 @@ export const KeywordForm = ({ onChange }: KeywordFormProps) => {
     iframesTimeout: '0',
     ignoreJoiners: false,
     ignorePunctuation: [getDefaultInteactiveSimpleListItem()],
-    keyword: '',
+    keyword: 'Lorem Ipsum',
     separateWordSearch: false,
     synonyms: [getDefaultSynonymItem()],
     wildCards: 'disabled',
@@ -206,7 +206,6 @@ export const KeywordForm = ({ onChange }: KeywordFormProps) => {
 
   return (
     <Vertical gap={2}>
-      <pre>{JSON.stringify(config, null, 2)}</pre>
       {/* ROW 1 */}
       <Horizontal gap={2}>
         <SimpleTextField
