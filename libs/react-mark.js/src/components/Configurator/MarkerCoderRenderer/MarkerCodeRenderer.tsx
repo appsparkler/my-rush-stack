@@ -2,26 +2,34 @@ import { Box, BoxProps } from '@mui/material';
 import React, { useEffect, useMemo, useRef } from 'react';
 import Prism from './prism.js';
 import './prism.css';
-import { keys } from 'lodash/fp';
+import { keys, noop } from 'lodash/fp';
 import { filterOutFalsy } from '../KeywordForm';
 
 export type MarkerCodeRendererProps = {
   mark?: string;
   options?: {};
   wrapperProps?: BoxProps;
-  onChange: (updatedCode: string) => void;
+  onChange?: (updatedCode: string) => void;
+  isMarkArray?: boolean;
 };
 
 export const MarkerCodeRenderer = ({
   mark = '',
   options = {},
   wrapperProps = {},
-  onChange,
+  onChange = noop,
+  isMarkArray = false,
 }: MarkerCodeRendererProps) => {
   const codeRef = useRef(null);
   const optionsString = useMemo(() => {
     return JSON.stringify(options, null, 4).replace('}', `  }`);
   }, [options]);
+  const markRenderer = useMemo(() => {
+    if (isMarkArray) {
+      return `mark={${mark}}`;
+    }
+    return `mark="${mark}"`;
+  }, [isMarkArray, mark]);
   const optionsRender = useMemo(() => {
     const refinedOptions = filterOutFalsy(options);
     const showOptions = keys(refinedOptions).length > 0 ? true : false;
@@ -35,8 +43,8 @@ export const MarkerCodeRenderer = ({
   }, [options, optionsString]);
   const code = useMemo(
     () => `<Marker
-  mark="${mark}"${optionsRender}`,
-    [mark, optionsRender]
+  ${markRenderer}${optionsRender}`,
+    [markRenderer, optionsRender]
   );
 
   useEffect(() => {

@@ -3,7 +3,7 @@ import { KeywordForm, KeywordFormProps, MarkConfig } from './KeywordForm';
 import { useCallback, useState } from 'react';
 
 export const CompositeForm = () => {
-  const [mark, setMark] = useState('Lorem Ipsum');
+  const [mark, setMark] = useState(JSON.stringify(['Lorem', 'Ipsum']));
   const [keywordConfig, setKeywordConfig] = useState<MarkConfig>({});
 
   const handleChangeKeywordForm = useCallback<KeywordFormProps['onChange']>(
@@ -23,11 +23,13 @@ export const CompositeForm = () => {
   return (
     <>
       <KeywordForm
+        isKeywordsArray
         onChange={handleChangeKeywordForm}
         onChangeKeyword={handleChangeKeyword}
       />
       <MarkerCodeRendererWithCopy
         mark={mark}
+        isMarkArray
         options={keywordConfig}
         onChange={console.log}
       />

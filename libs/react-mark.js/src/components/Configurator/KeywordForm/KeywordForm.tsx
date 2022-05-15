@@ -18,7 +18,7 @@ import {
   Vertical,
 } from 'mui';
 import { SimpleFormControlChange } from 'common-types';
-import { filter, keys, map, noop, pipe, reduce, split } from 'lodash/fp';
+import { filter, isArray, keys, map, noop, pipe, reduce } from 'lodash/fp';
 
 export type SimpleCheckboxProps = Partial<
   Omit<FormControlLabelProps, 'onChange'>
@@ -210,11 +210,11 @@ export const KeywordForm = ({
   onChangeKeyword = noop,
   isKeywordsArray = false,
 }: KeywordFormProps) => {
-  const [_keyword, setKeyword] = useState<string>('Lorem Ipsum');
-  const keyword = useMemo(
-    () => (isKeywordsArray ? JSON.stringify(split(' ')(_keyword)) : _keyword),
-    [_keyword, isKeywordsArray]
+  const [keyword, setKeyword] = useState<string>('Lorem Ipsum');
+  const [keywordArray, setKeywordArray] = useState<string>(
+    JSON.stringify(['Lorem', 'Ipsum'])
   );
+
   const [config, setConfig] = useState<KeywordFormRawConfig>({
     ...defaultConfig,
     accuracy: 'partially',
@@ -229,8 +229,13 @@ export const KeywordForm = ({
   >(
     (key, value) => {
       if (key === 'keyword') {
-        setKeyword(value as string);
-        onChangeKeyword(value as string);
+        if (isKeywordsArray) {
+          setKeywordArray(value as string);
+          onChangeKeyword(value as string);
+        } else {
+          setKeyword(value as string);
+          onChangeKeyword(value as string);
+        }
       } else {
         setConfig((prevConfig) => ({
           ...prevConfig,
@@ -238,12 +243,24 @@ export const KeywordForm = ({
         }));
       }
     },
-    [onChangeKeyword]
+    [isKeywordsArray, onChangeKeyword]
   );
 
   useEffect(() => {
     onChange(getRefinedConfig(config));
   }, [config, onChange]);
+
+  const isErrorKeyword = useMemo(() => {
+    if (isKeywordsArray) {
+      try {
+        const parsedValue = JSON.parse(keywordArray);
+        if (isArray(parsedValue)) return false;
+        return true;
+      } catch (e) {
+        return true;
+      }
+    }
+  }, [isKeywordsArray, keywordArray]);
 
   return (
     <Vertical gap={2}>
@@ -259,7 +276,8 @@ export const KeywordForm = ({
               size="small"
               onChange={handleChange}
               name="keyword"
-              value={keyword}
+              value={isKeywordsArray ? keywordArray : keyword}
+              error={isErrorKeyword}
             />
             <SimpleTextField
               label="Element"

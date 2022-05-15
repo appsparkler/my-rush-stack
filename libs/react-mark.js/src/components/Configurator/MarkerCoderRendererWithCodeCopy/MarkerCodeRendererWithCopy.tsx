@@ -10,6 +10,7 @@ export type MarkerCodeRendererWithCopyProps = MarkerCodeRendererProps & {};
 
 export const MarkerCodeRendererWithCopy = ({
   mark,
+  isMarkArray,
   options,
 }: MarkerCodeRendererWithCopyProps) => {
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
@@ -24,12 +25,11 @@ export const MarkerCodeRendererWithCopy = ({
     setOpenSnackbar(true);
   }, []);
 
-  const handleChange = useCallback<MarkerCodeRendererProps['onChange']>(
-    (textToCopy) => {
-      setTextToCopy(textToCopy);
-    },
-    []
-  );
+  const handleChange = useCallback<
+    NonNullable<MarkerCodeRendererProps['onChange']>
+  >((textToCopy) => {
+    setTextToCopy(textToCopy);
+  }, []);
 
   const handleClose = useCallback(() => {
     setOpenSnackbar(false);
@@ -41,6 +41,7 @@ export const MarkerCodeRendererWithCopy = ({
         mark={mark}
         options={options}
         onChange={handleChange}
+        isMarkArray={isMarkArray}
       />
 
       <Box position="absolute" top={1} right={1}>
