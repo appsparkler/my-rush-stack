@@ -202,15 +202,17 @@ export type KeywordFormProps = {
   onChange?: (keywordFormConfig: MarkConfig) => void;
   onChangeKeyword?: (keyword: string) => void;
   isKeywordsArray?: boolean;
+  keyword?: string;
 };
 
 // JSX
 export const KeywordForm = ({
+  keyword = 'Lorem Ipsum',
   onChange = noop,
   onChangeKeyword = noop,
   isKeywordsArray = false,
 }: KeywordFormProps) => {
-  const [keyword, setKeyword] = useState<string>('Lorem Ipsum');
+  // const [keyword, setKeyword] = useState<string>('Lorem Ipsum');
   const [keywordArray, setKeywordArray] = useState<string>(
     JSON.stringify(['Lorem', 'Ipsum'])
   );
@@ -233,7 +235,7 @@ export const KeywordForm = ({
           setKeywordArray(value as string);
           onChangeKeyword(value as string);
         } else {
-          setKeyword(value as string);
+          // setKeyword(value as string);
           onChangeKeyword(value as string);
         }
       } else {
@@ -276,7 +278,7 @@ export const KeywordForm = ({
               size="small"
               onChange={handleChange}
               name="keyword"
-              value={isKeywordsArray ? keywordArray : keyword}
+              value={keyword}
               error={isErrorKeyword}
             />
             <SimpleTextField
