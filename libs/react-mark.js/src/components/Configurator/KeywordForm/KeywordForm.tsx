@@ -13,19 +13,13 @@ import {
   getDefaultInteactiveSimpleListItem,
   Horizontal,
   InteactiveSimpleList,
+  SimpleCheckbox,
   SimpleSelect,
   SimpleTextField,
   Vertical,
 } from 'mui';
 import { SimpleFormControlChange } from 'common-types';
 import { filter, isArray, keys, map, noop, pipe, reduce } from 'lodash/fp';
-
-export type SimpleCheckboxProps = Partial<
-  Omit<FormControlLabelProps, 'onChange'>
-> & {
-  onChange?: SimpleFormControlChange<boolean>;
-  label?: string;
-};
 
 type WildCards = 'disabled' | 'enabled' | 'withSpaces';
 
@@ -75,30 +69,6 @@ const defaultConfig = {
   separateWordSearch: true,
   synonyms: {},
   wildcards: 'disabled',
-};
-
-//
-const SimpleCheckbox = ({
-  checked,
-  name = '',
-  label = '',
-  onChange = noop,
-}: SimpleCheckboxProps) => {
-  const handleChange = useCallback<
-    (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void
-  >(
-    ({ target: { checked, name } }) => {
-      onChange(name, checked);
-    },
-    [onChange]
-  );
-  return (
-    <FormControlLabel
-      name={name}
-      control={<Checkbox checked={checked} onChange={handleChange} />}
-      label={label}
-    />
-  );
 };
 
 // types
@@ -235,7 +205,6 @@ export const KeywordForm = ({
           setKeywordArray(value as string);
           onChangeKeyword(value as string);
         } else {
-          // setKeyword(value as string);
           onChangeKeyword(value as string);
         }
       } else {
