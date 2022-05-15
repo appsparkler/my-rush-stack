@@ -1,17 +1,8 @@
-import {
-  Box,
-  Checkbox,
-  FormControlLabel,
-  FormControlLabelProps,
-  FormGroup,
-  Grid,
-  TextFieldProps,
-} from '@mui/material';
+import { Grid, TextFieldProps } from '@mui/material';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { getDefaultSynonymItem, SynonymItem, Synonyms } from './Synonyms';
 import {
   getDefaultInteactiveSimpleListItem,
-  Horizontal,
   InteactiveSimpleList,
   SimpleCheckbox,
   SimpleSelect,
@@ -19,7 +10,8 @@ import {
   Vertical,
 } from 'mui';
 import { SimpleFormControlChange } from 'common-types';
-import { filter, isArray, keys, map, noop, pipe, reduce } from 'lodash/fp';
+import { isArray, keys, noop, reduce } from 'lodash/fp';
+import { getValues } from '../../../utils';
 
 type WildCards = 'disabled' | 'enabled' | 'withSpaces';
 
@@ -84,23 +76,6 @@ export type KeywordFormRawConfig = Omit<
 export type TextFieldPropsValue = TextFieldProps['value'];
 
 // utils
-export const mapExcludesToValue = <T extends { value?: unknown }>(
-  values: T[]
-) =>
-  map<{ value?: unknown }, string | undefined>(({ value }) =>
-    Boolean(value) && typeof value === 'string' ? String(value) : undefined
-  )(values);
-
-export const filterOutFalsy = filter<string>((item) => Boolean(item));
-
-const getExcludes = <T extends { value?: ValueType }, ValueType = string>(
-  values: T[]
-) =>
-  pipe<[{ value?: ValueType }[]], (string | undefined)[], string[]>(
-    mapExcludesToValue,
-    filterOutFalsy
-  )(values);
-
 const getRefinedSynonyms = (
   synonyms: SynonymItem[]
 ): Record<string, string> => {
@@ -132,8 +107,8 @@ export const getRefinedConfig = ({
   ignorePunctuation,
   separateWordSearch,
 }: KeywordFormRawConfig): MarkConfig => {
-  const excludesValue = getExcludes<TextFieldProps, unknown>(exclude);
-  const punctuationsValue = getExcludes<TextFieldProps, unknown>(
+  const excludesValue = getValues<TextFieldProps, unknown>(exclude);
+  const punctuationsValue = getValues<TextFieldProps, unknown>(
     ignorePunctuation
   );
   const synonymsValue = getRefinedSynonyms(synonyms);
@@ -182,7 +157,6 @@ export const KeywordForm = ({
   onChangeKeyword = noop,
   isKeywordsArray = false,
 }: KeywordFormProps) => {
-  // const [keyword, setKeyword] = useState<string>('Lorem Ipsum');
   const [keywordArray, setKeywordArray] = useState<string>(
     JSON.stringify(['Lorem', 'Ipsum'])
   );
@@ -369,30 +343,6 @@ export const KeywordForm = ({
           </Vertical>
         </Grid>
       </Grid>
-
-      {/** ROW 2 */}
-      <Horizontal gap={2}></Horizontal>
-
-      {/* ROW 3 */}
-
-      {/* ROW 4 */}
-
-      {/* ROW 5 */}
-
-      {/* ROW 6 */}
-      <Horizontal gap={2}></Horizontal>
-
-      {/* ROW 7 */}
-      <FormGroup>
-        <Box
-          display="grid"
-          gridTemplateColumns={[
-            'repeat(2, 1fr)',
-            'repeat(3, 1fr)',
-            'repeat(4, 1fr)',
-          ]}
-        ></Box>
-      </FormGroup>
     </Vertical>
   );
 };

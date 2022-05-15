@@ -5,7 +5,6 @@ import {
   InteactiveSimpleList,
   SimpleCheckbox,
   SimpleTextField,
-  SimpleTextFieldProps,
   Vertical,
 } from 'mui';
 
