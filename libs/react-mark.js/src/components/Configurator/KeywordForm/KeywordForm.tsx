@@ -4,9 +4,10 @@ import {
   FormControlLabel,
   FormControlLabelProps,
   FormGroup,
+  Grid,
   TextFieldProps,
 } from '@mui/material';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { getDefaultSynonymItem, SynonymItem, Synonyms } from './Synonyms';
 import {
   getDefaultInteactiveSimpleListItem,
@@ -17,7 +18,7 @@ import {
   Vertical,
 } from 'mui';
 import { SimpleFormControlChange } from 'common-types';
-import { filter, keys, map, noop, pipe, reduce } from 'lodash/fp';
+import { filter, keys, map, noop, pipe, reduce, split } from 'lodash/fp';
 
 export type SimpleCheckboxProps = Partial<
   Omit<FormControlLabelProps, 'onChange'>
@@ -198,16 +199,22 @@ export const getRefinedConfig = ({
 };
 
 export type KeywordFormProps = {
-  onChange: (keywordFormConfig: MarkConfig) => void;
-  onChangeKeyword: (keyword: string) => void;
+  onChange?: (keywordFormConfig: MarkConfig) => void;
+  onChangeKeyword?: (keyword: string) => void;
+  isKeywordsArray?: boolean;
 };
 
 // JSX
 export const KeywordForm = ({
-  onChange,
-  onChangeKeyword,
+  onChange = noop,
+  onChangeKeyword = noop,
+  isKeywordsArray = false,
 }: KeywordFormProps) => {
-  const [keyword, setKeyword] = useState<string>('Lorem Ipsum');
+  const [_keyword, setKeyword] = useState<string>('Lorem Ipsum');
+  const keyword = useMemo(
+    () => (isKeywordsArray ? JSON.stringify(split(' ')(_keyword)) : _keyword),
+    [_keyword, isKeywordsArray]
+  );
   const [config, setConfig] = useState<KeywordFormRawConfig>({
     ...defaultConfig,
     accuracy: 'partially',
@@ -241,27 +248,33 @@ export const KeywordForm = ({
   return (
     <Vertical gap={2}>
       {/* ROW 1 */}
-      <Horizontal gap={2}>
-        <SimpleTextField
-          label="Keyword"
-          fullWidth
-          size="small"
-          onChange={handleChange}
-          name="keyword"
-          value={keyword}
-        />
-        <SimpleSelect
-          label="Accurracy"
-          onChange={handleChange}
-          value={config.accuracy}
-          name="accuracy"
-          menuItems={[
-            { id: '1', name: 'partially', value: 'partially' },
-            { id: '2', name: 'exactly', value: 'exactly' },
-            { id: '3', name: 'complimentary', value: 'complimentary' },
-          ]}
-        />
-      </Horizontal>
+      <Grid container spacing={2}>
+        <Grid item xs={6} md={6}>
+          <SimpleTextField
+            sx={{ flexBasis: 0 }}
+            label="Keyword"
+            fullWidth
+            size="small"
+            onChange={handleChange}
+            name="keyword"
+            value={keyword}
+          />
+        </Grid>
+        <Grid item xs={6} md={8}>
+          <SimpleSelect
+            label="Accurracy"
+            onChange={handleChange}
+            value={config.accuracy}
+            name="accuracy"
+            menuItems={[
+              { id: '1', name: 'partially', value: 'partially' },
+              { id: '2', name: 'exactly', value: 'exactly' },
+              { id: '3', name: 'complimentary', value: 'complimentary' },
+            ]}
+          />
+        </Grid>
+      </Grid>
+
       {/** ROW 2 */}
       <Horizontal gap={2}>
         <SimpleTextField
