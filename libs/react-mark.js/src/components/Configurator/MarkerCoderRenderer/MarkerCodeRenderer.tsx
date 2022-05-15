@@ -2,6 +2,8 @@ import { Box, BoxProps } from '@mui/material';
 import React, { useEffect, useMemo, useRef } from 'react';
 import Prism from './prism.js';
 import './prism.css';
+import { keys } from 'lodash/fp';
+import { filterOutFalsy } from '../KeywordForm';
 
 export type MarkerCodeRendererProps = {
   mark?: string;
@@ -17,12 +19,12 @@ export const MarkerCodeRenderer = ({
   onChange,
 }: MarkerCodeRendererProps) => {
   const codeRef = useRef(null);
-  const optionsString = useMemo(
-    () => JSON.stringify(options, null, 4).replace('}', `  }`),
-    [options]
-  );
+  const optionsString = useMemo(() => {
+    return JSON.stringify(options, null, 4).replace('}', `  }`);
+  }, [options]);
   const optionsRender = useMemo(() => {
-    const showOptions = Object.keys(options).length > 0 ? true : false;
+    const refinedOptions = filterOutFalsy(options);
+    const showOptions = keys(refinedOptions).length > 0 ? true : false;
     if (showOptions) {
       return `
   options={${optionsString}}

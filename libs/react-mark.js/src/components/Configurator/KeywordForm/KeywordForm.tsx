@@ -14,7 +14,6 @@ import {
   InteactiveSimpleList,
   SimpleSelect,
   SimpleTextField,
-  SimpleTextFieldProps,
   Vertical,
 } from 'mui';
 import { SimpleFormControlChange } from 'common-types';
@@ -145,8 +144,6 @@ const getRefinedSynonyms = (
   }, {})(synonyms);
 };
 
-const getRefinedBoolean = (value: boolean) => (value ? undefined : false);
-
 export const getRefinedConfig = ({
   // keyword,
   exclude,
@@ -188,7 +185,7 @@ export const getRefinedConfig = ({
     iframesTimeout:
       iframesTimeout === defaultConfig.iframesTimeout
         ? undefined
-        : iframesTimeout,
+        : Number(iframesTimeout),
     ignoreJoiners:
       ignoreJoiners === defaultConfig.ignoreJoiners ? undefined : ignoreJoiners,
     ignorePunctuation: punctuationsValue.length ? punctuationsValue : undefined,
@@ -219,19 +216,6 @@ export const KeywordForm = ({
     ignorePunctuation: [getDefaultInteactiveSimpleListItem()],
     synonyms: [getDefaultSynonymItem()],
     wildcards: 'disabled',
-    // accuracy: 'partially',
-    // acrossElements: false,
-    // caseSensitive: false,
-    // className: '',
-    // debug: false,
-    // diacritics: true,
-    // element: defaultConfig.element,
-    // iframes: false,
-    // iframesTimeout: 5000,
-    // ignoreJoiners: false,
-    // separateWordSearch: false,
-    // synonyms: [getDefaultSynonymItem()],
-    // wildcards: 'disabled',
   });
 
   const handleChange = useCallback<
@@ -251,6 +235,7 @@ export const KeywordForm = ({
   );
 
   useEffect(() => {
+    console.log(getRefinedConfig(config), config);
     onChange(getRefinedConfig(config));
   }, [config, onChange]);
 

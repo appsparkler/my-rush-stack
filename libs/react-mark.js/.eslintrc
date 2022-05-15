@@ -1,6 +1,7 @@
 {
   "extends": "react-app",
   "rules": {
+    "no-console": "warn",
     "sort-keys": [
       "warn",
       "asc",
