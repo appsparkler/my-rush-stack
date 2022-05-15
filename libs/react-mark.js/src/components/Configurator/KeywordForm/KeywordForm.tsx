@@ -14,6 +14,7 @@ import {
   InteactiveSimpleList,
   SimpleSelect,
   SimpleTextField,
+  SimpleTextFieldProps,
   Vertical,
 } from 'mui';
 import { SimpleFormControlChange } from 'common-types';
@@ -24,6 +25,56 @@ export type SimpleCheckboxProps = Partial<
 > & {
   onChange?: SimpleFormControlChange<boolean>;
   label?: string;
+};
+
+type WildCards = 'disabled' | 'enabled' | 'withSpaces';
+
+type Accuracy = 'partially' | 'complimentary' | 'exactly';
+
+export type MarkConfig = Partial<{
+  accuracy: Accuracy;
+  acrossElements: boolean;
+  caseSensitive: boolean;
+  className: string;
+  debug: boolean;
+  diacritics: boolean;
+  done: () => void;
+  each: (_markedDomElement: Element) => void;
+  element: string;
+  exclude: string[];
+  filter: (textNode: Element, term: string, numberOfMarks: number) => void;
+  iframes: boolean;
+  iframesTimeout: number;
+  ignoreJoiners: boolean;
+  ignorePunctuation: string[];
+  log: Console;
+  noMatch: () => void;
+  separateWordSearch: boolean;
+  synonyms: Record<string, string>;
+  wildcards: WildCards;
+}>;
+
+const defaultConfig = {
+  accuracy: 'partially',
+  acrossElements: false,
+  caseSensitive: false,
+  className: '',
+  debug: false,
+  diacritics: true,
+  done: () => {},
+  each: (_markedDomElement: Element) => {},
+  element: 'mark',
+  exclude: [],
+  filter: (textNode: Element, term: string, numberOfMarks: number) => {},
+  iframes: false,
+  iframesTimeout: 5000,
+  ignoreJoiners: false,
+  ignorePunctuation: [],
+  log: console,
+  noMatch: () => {}, // called when there are no matches
+  separateWordSearch: true,
+  synonyms: {},
+  wildcards: 'disabled',
 };
 
 //
@@ -51,42 +102,13 @@ const SimpleCheckbox = ({
 };
 
 // types
-export type KeywordFormRawConfig = {
-  accuracy: string;
-  acrossElements: boolean;
-  caseSensitive: boolean;
-  className: string;
-  debug: boolean;
-  diacritics: boolean;
-  element: string;
-  excludes: TextFieldProps[];
-  iframes: boolean;
-  iframesTimeout: string;
-  ignoreJoiners: boolean;
+export type KeywordFormRawConfig = Omit<
+  MarkConfig,
+  'exclude' | 'ignorePunctuation' | 'synonyms'
+> & {
+  exclude: TextFieldProps[];
   ignorePunctuation: TextFieldProps[];
-  keyword: string;
-  separateWordSearch: boolean;
   synonyms: SynonymItem[];
-  wildCards: string;
-};
-
-export type KeywordFormRefinedConfig = {
-  accuracy?: string;
-  acrossElements?: boolean;
-  caseSensitive?: boolean;
-  className?: string;
-  debug?: boolean;
-  diacritics?: boolean;
-  element?: string;
-  excludes?: string[];
-  iframes?: boolean;
-  iframesTimeout?: string;
-  ignoreJoiners?: boolean;
-  ignorePunctuation?: string[];
-  keyword: string;
-  separateWordSearch?: boolean;
-  synonyms?: Record<string, string>;
-  wildCards?: string;
 };
 
 export type TextFieldPropsValue = TextFieldProps['value'];
@@ -126,79 +148,107 @@ const getRefinedSynonyms = (
 const getRefinedBoolean = (value: boolean) => (value ? undefined : false);
 
 export const getRefinedConfig = ({
-  keyword,
-  excludes,
+  // keyword,
+  exclude,
   element,
   className,
   accuracy,
   synonyms,
   iframesTimeout,
-  wildCards,
+  wildcards,
   iframes,
   ignoreJoiners,
   acrossElements,
   caseSensitive,
   debug,
   diacritics,
-  ignorePunctuation: punctuations,
+  ignorePunctuation,
   separateWordSearch,
-}: KeywordFormRawConfig): KeywordFormRefinedConfig => {
-  const excludesValue = getExcludes<TextFieldProps, unknown>(excludes);
-  const punctuationsValue = getExcludes<TextFieldProps, unknown>(punctuations);
+}: KeywordFormRawConfig): MarkConfig => {
+  const excludesValue = getExcludes<TextFieldProps, unknown>(exclude);
+  const punctuationsValue = getExcludes<TextFieldProps, unknown>(
+    ignorePunctuation
+  );
   const synonymsValue = getRefinedSynonyms(synonyms);
   return {
-    accuracy,
-    acrossElements: getRefinedBoolean(acrossElements),
-    caseSensitive: getRefinedBoolean(caseSensitive),
-    className: className || undefined,
-    debug: getRefinedBoolean(debug),
-    diacritics: getRefinedBoolean(diacritics),
-    element: element || undefined,
-    excludes: excludesValue.length ? excludesValue : undefined,
-    iframes: getRefinedBoolean(iframes),
-    iframesTimeout: Number(iframesTimeout) > 0 ? iframesTimeout : undefined,
-    ignoreJoiners: getRefinedBoolean(ignoreJoiners),
+    accuracy: accuracy === defaultConfig.accuracy ? undefined : accuracy,
+    acrossElements:
+      defaultConfig.acrossElements === acrossElements
+        ? undefined
+        : acrossElements,
+    caseSensitive:
+      defaultConfig.caseSensitive === caseSensitive ? undefined : caseSensitive,
+    className: defaultConfig.className === className ? undefined : className,
+    debug: debug === defaultConfig.debug ? undefined : debug,
+    diacritics:
+      diacritics === defaultConfig.diacritics ? undefined : diacritics,
+    element: defaultConfig.element === element ? undefined : element,
+    exclude: excludesValue.length ? excludesValue : undefined,
+    iframes: iframes === defaultConfig.iframes ? undefined : iframes,
+    iframesTimeout:
+      iframesTimeout === defaultConfig.iframesTimeout
+        ? undefined
+        : iframesTimeout,
+    ignoreJoiners:
+      ignoreJoiners === defaultConfig.ignoreJoiners ? undefined : ignoreJoiners,
     ignorePunctuation: punctuationsValue.length ? punctuationsValue : undefined,
-    keyword: keyword || '',
-    separateWordSearch: getRefinedBoolean(separateWordSearch),
+    separateWordSearch:
+      separateWordSearch === defaultConfig.separateWordSearch
+        ? undefined
+        : separateWordSearch,
     synonyms: keys(synonymsValue).length ? synonymsValue : undefined,
-    wildCards,
+    wildcards: defaultConfig.wildcards === wildcards ? undefined : wildcards,
   };
 };
 
 export type KeywordFormProps = {
-  onChange: (keywordFormConfig: KeywordFormRefinedConfig) => void;
+  onChange: (keywordFormConfig: MarkConfig) => void;
+  onChangeKeyword: (keyword: string) => void;
 };
 
 // JSX
-export const KeywordForm = ({ onChange }: KeywordFormProps) => {
+export const KeywordForm = ({
+  onChange,
+  onChangeKeyword,
+}: KeywordFormProps) => {
+  const [keyword, setKeyword] = useState<string>('Lorem Ipsum');
   const [config, setConfig] = useState<KeywordFormRawConfig>({
-    accuracy: 'complimentary',
-    acrossElements: false,
-    caseSensitive: false,
-    className: '',
-    debug: false,
-    diacritics: false,
-    element: '',
-    excludes: [getDefaultInteactiveSimpleListItem()],
-    iframes: false,
-    iframesTimeout: '0',
-    ignoreJoiners: false,
+    ...defaultConfig,
+    accuracy: 'partially',
+    exclude: [getDefaultInteactiveSimpleListItem()],
     ignorePunctuation: [getDefaultInteactiveSimpleListItem()],
-    keyword: 'Lorem Ipsum',
-    separateWordSearch: false,
     synonyms: [getDefaultSynonymItem()],
-    wildCards: 'disabled',
+    wildcards: 'disabled',
+    // accuracy: 'partially',
+    // acrossElements: false,
+    // caseSensitive: false,
+    // className: '',
+    // debug: false,
+    // diacritics: true,
+    // element: defaultConfig.element,
+    // iframes: false,
+    // iframesTimeout: 5000,
+    // ignoreJoiners: false,
+    // separateWordSearch: false,
+    // synonyms: [getDefaultSynonymItem()],
+    // wildcards: 'disabled',
   });
 
   const handleChange = useCallback<
     SimpleFormControlChange<string | any[] | boolean>
-  >((key, value) => {
-    setConfig((prevConfig) => ({
-      ...prevConfig,
-      [key]: value,
-    }));
-  }, []);
+  >(
+    (key, value) => {
+      if (key === 'keyword') {
+        setKeyword(value as string);
+        onChangeKeyword(value as string);
+      }
+      setConfig((prevConfig) => ({
+        ...prevConfig,
+        [key]: value,
+      }));
+    },
+    [onChangeKeyword]
+  );
 
   useEffect(() => {
     onChange(getRefinedConfig(config));
@@ -214,7 +264,7 @@ export const KeywordForm = ({ onChange }: KeywordFormProps) => {
           size="small"
           onChange={handleChange}
           name="keyword"
-          value={config.keyword}
+          value={keyword}
         />
         <SimpleSelect
           label="Accurracy"
@@ -253,19 +303,19 @@ export const KeywordForm = ({ onChange }: KeywordFormProps) => {
 
       {/* ROW 4 */}
       <InteactiveSimpleList
-        name="excludes"
+        name="exclude"
         title="Exclusions"
         label="Exclude Item"
         ariaLabelAdd="add exclusion"
         ariaLabelDelete="delete exclusion"
-        value={config.excludes}
+        value={config.exclude}
         onChange={handleChange}
       />
 
       {/* ROW 5 */}
       <InteactiveSimpleList
         name="ignorePunctuation"
-        title="Ignore Punctuations"
+        title="Ignore Punctuation"
         label="for ex: ."
         ariaLabelAdd="add punctuation to ignore"
         ariaLabelDelete="delete punctuation to ignore"
@@ -287,7 +337,7 @@ export const KeywordForm = ({ onChange }: KeywordFormProps) => {
         <SimpleSelect
           label="Wild Cards"
           onChange={handleChange}
-          value={config.wildCards}
+          value={config.wildcards}
           name="wildCards"
           menuItems={[
             { id: '1', name: 'disabled', value: 'disabled' },

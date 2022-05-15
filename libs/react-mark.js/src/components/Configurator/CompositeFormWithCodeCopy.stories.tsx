@@ -1,15 +1,11 @@
 import { MarkerCodeRendererWithCopy } from './MarkerCoderRendererWithCodeCopy';
-import {
-  KeywordForm,
-  KeywordFormProps,
-  KeywordFormRefinedConfig,
-} from './KeywordForm';
+import { KeywordForm, KeywordFormProps, MarkConfig } from './KeywordForm';
 import { useCallback, useState } from 'react';
 
 export const CompositeForm = () => {
-  const [keywordConfig, setKeywordConfig] = useState<KeywordFormRefinedConfig>({
-    keyword: 'Lorem Ipsum',
-  });
+  const [mark, setMark] = useState('Lorem Ipsum');
+  const [keywordConfig, setKeywordConfig] = useState<MarkConfig>({});
+
   const handleChangeKeywordForm = useCallback<KeywordFormProps['onChange']>(
     (config) => {
       setKeywordConfig(config);
@@ -17,11 +13,21 @@ export const CompositeForm = () => {
     []
   );
 
+  const handleChangeKeyword = useCallback<KeywordFormProps['onChangeKeyword']>(
+    (keyword) => {
+      setMark(keyword);
+    },
+    []
+  );
+
   return (
     <>
-      <KeywordForm onChange={handleChangeKeywordForm} />
+      <KeywordForm
+        onChange={handleChangeKeywordForm}
+        onChangeKeyword={handleChangeKeyword}
+      />
       <MarkerCodeRendererWithCopy
-        mark={keywordConfig.keyword}
+        mark={mark}
         options={keywordConfig}
         onChange={console.log}
       />
