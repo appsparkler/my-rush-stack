@@ -88,5 +88,5 @@ export const CompositeForm = () => {
 };
 
 export default {
-  title: 'Configurator/Composite',
+  title: 'Configurator/Composite Form',
 };

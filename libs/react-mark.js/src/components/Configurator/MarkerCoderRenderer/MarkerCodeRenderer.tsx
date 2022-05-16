@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useRef } from 'react';
 import Prism from './prism.js';
 import './prism.css';
 import { keys, noop } from 'lodash/fp';
-import { filterOutFalsy } from '../KeywordForm';
+import { filterOutFalsy } from '../../../utils';
 
 export type MarkerCodeRendererProps = {
   mark?: string;
