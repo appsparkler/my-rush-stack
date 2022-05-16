@@ -1,6 +1,6 @@
 import { Grid, TextFieldProps } from '@mui/material';
-import { useCallback, useState } from 'react';
-import { getValues } from '../../../utils';
+import { useCallback, useEffect, useState } from 'react';
+import { getValues, stringToRegex } from '../../../utils';
 import {
   getDefaultInteactiveSimpleListItem,
   InteactiveSimpleList,
@@ -81,7 +81,7 @@ const getRefinedOptions = (options: RegExpFormRawValues): RegExpFormConfig => {
     iframesTimeout:
       iframesTimeout === defaultConfig.iframesTimeout
         ? undefined
-        : iframesTimeout,
+        : Number(iframesTimeout),
     ignoreGroups:
       defaultConfig.ignoreGroups === ignoreGroups
         ? undefined
@@ -92,10 +92,14 @@ const getRefinedOptions = (options: RegExpFormRawValues): RegExpFormConfig => {
 };
 
 export type RegExpFormProps = {
+  onChangeRegExp?: (regExpValue: RegExp) => void;
   onChangeOptions?: (regExpConfig: RegExpFormConfig) => void;
 };
 
-export const RegExpForm = ({ onChangeOptions = noop }: RegExpFormProps) => {
+export const RegExpForm = ({
+  onChangeOptions = noop,
+  onChangeRegExp = noop,
+}: RegExpFormProps) => {
   const [regexp, setRegexp] = useState<string>('/Lorem Ipsum/');
 
   const [options, setOptions] = useState<RegExpFormRawValues>({
@@ -109,22 +113,26 @@ export const RegExpForm = ({ onChangeOptions = noop }: RegExpFormProps) => {
     ignoreGroups: 0,
   });
 
-  const handleChange = useCallback(
-    (key: string, value: any) => {
-      switch (key) {
-        case 'regexp':
-          setRegexp(value);
-          break;
-        default:
-          setOptions((prevState) => ({
-            ...prevState,
-            [key]: value,
-          }));
-          onChangeOptions(getRefinedOptions(options));
-      }
-    },
-    [onChangeOptions, options]
-  );
+  const handleChange = useCallback((key: string, value: any) => {
+    switch (key) {
+      case 'regexp':
+        setRegexp(value);
+        break;
+      default:
+        setOptions((prevState) => ({
+          ...prevState,
+          [key]: value,
+        }));
+    }
+  }, []);
+
+  useEffect(() => {
+    onChangeRegExp(stringToRegex(regexp));
+  }, [onChangeRegExp, regexp]);
+
+  useEffect(() => {
+    onChangeOptions(getRefinedOptions(options));
+  }, [onChangeOptions, options]);
 
   return (
     <Grid container spacing={2}>
@@ -190,7 +198,7 @@ export const RegExpForm = ({ onChangeOptions = noop }: RegExpFormProps) => {
               onChange={handleChange}
             />
             <SimpleCheckbox
-              label="iframes"
+              label="IFrames"
               name="iframes"
               value={options.iframes}
               onChange={handleChange}
