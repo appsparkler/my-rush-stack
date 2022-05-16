@@ -1,5 +1,6 @@
 import { Grid, TextFieldProps } from '@mui/material';
 import { useCallback, useState } from 'react';
+import { getValues } from '../../../utils';
 import {
   getDefaultInteactiveSimpleListItem,
   InteactiveSimpleList,
@@ -7,6 +8,18 @@ import {
   SimpleTextField,
   Vertical,
 } from 'mui';
+import { noop } from 'lodash/fp';
+
+export type RegExpFormRawValues = {
+  element: string;
+  ignoreGroups: number;
+  className: string;
+  iframesTimeout: number;
+  acrossElements: boolean;
+  iframes: boolean;
+  debug: boolean;
+  exclude: TextFieldProps[];
+};
 
 export type RegExpFormConfig = Partial<{
   element: string;
@@ -40,18 +53,52 @@ const defaultConfig = {
   noMatch: () => {},
 };
 
-export const RegExpForm = () => {
+const getRefinedOptions = (options: RegExpFormRawValues): RegExpFormConfig => {
+  const {
+    acrossElements,
+    className,
+    debug,
+    element,
+    exclude,
+    iframes,
+    iframesTimeout,
+    ignoreGroups,
+  } = options;
+  const excludeValue = getValues<TextFieldProps, unknown>(exclude);
+  return {
+    acrossElements:
+      acrossElements === defaultConfig.acrossElements
+        ? undefined
+        : acrossElements,
+    className: className === defaultConfig.className ? undefined : className,
+    debug: debug === defaultConfig.debug ? undefined : debug,
+    done: undefined,
+    each: undefined,
+    element: element === defaultConfig.element ? undefined : element,
+    exclude: excludeValue.length > 0 ? excludeValue : undefined,
+    filter: undefined,
+    iframes: iframes === defaultConfig.iframes ? undefined : iframes,
+    iframesTimeout:
+      iframesTimeout === defaultConfig.iframesTimeout
+        ? undefined
+        : iframesTimeout,
+    ignoreGroups:
+      defaultConfig.ignoreGroups === ignoreGroups
+        ? undefined
+        : Number(ignoreGroups),
+    log: undefined,
+    noMatch: undefined,
+  };
+};
+
+export type RegExpFormProps = {
+  onChangeOptions?: (regExpConfig: RegExpFormConfig) => void;
+};
+
+export const RegExpForm = ({ onChangeOptions = noop }: RegExpFormProps) => {
   const [regexp, setRegexp] = useState<string>('/Lorem Ipsum/');
-  const [options, setOptions] = useState<{
-    element: string;
-    ignoreGroups: number;
-    className: string;
-    iframesTimeout: number;
-    acrossElements: boolean;
-    iframes: boolean;
-    debug: boolean;
-    exclude: TextFieldProps[];
-  }>({
+
+  const [options, setOptions] = useState<RegExpFormRawValues>({
     acrossElements: false,
     className: '',
     debug: false,
@@ -62,18 +109,22 @@ export const RegExpForm = () => {
     ignoreGroups: 0,
   });
 
-  const handleChange = useCallback((key: string, value: any) => {
-    switch (key) {
-      case 'regexp':
-        setRegexp(value);
-        break;
-      default:
-        setOptions((prevState) => ({
-          ...prevState,
-          [key]: value,
-        }));
-    }
-  }, []);
+  const handleChange = useCallback(
+    (key: string, value: any) => {
+      switch (key) {
+        case 'regexp':
+          setRegexp(value);
+          break;
+        default:
+          setOptions((prevState) => ({
+            ...prevState,
+            [key]: value,
+          }));
+          onChangeOptions(getRefinedOptions(options));
+      }
+    },
+    [onChangeOptions, options]
+  );
 
   return (
     <Grid container spacing={2}>
@@ -134,22 +185,26 @@ export const RegExpForm = () => {
           <Vertical>
             <SimpleCheckbox
               label="Across Elements"
+              name="acrossElements"
               value={options.acrossElements}
               onChange={handleChange}
             />
             <SimpleCheckbox
               label="iframes"
+              name="iframes"
               value={options.iframes}
               onChange={handleChange}
             />
             <SimpleCheckbox
               label="Debug"
+              name="debug"
               value={options.debug}
               onChange={handleChange}
             />
           </Vertical>
         </Vertical>
       </Grid>
+      <pre>{JSON.stringify(getRefinedOptions(options), null, 2)}</pre>
     </Grid>
   );
 };

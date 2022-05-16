@@ -1,7 +1,9 @@
 import { RegExpForm } from './RegExpForm';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-const Template = () => <RegExpForm />;
+const Template: ComponentStory<typeof RegExpForm> = (args) => (
+  <RegExpForm {...args} />
+);
 
 export const regExpForm: ComponentStory<typeof RegExpForm> = Template.bind({});
 
