@@ -11,6 +11,7 @@ export type MarkerCodeRendererWithCopyProps = MarkerCodeRendererProps & {};
 export const MarkerCodeRendererWithCopy = ({
   mark,
   isMarkArray,
+  markerType,
   options,
 }: MarkerCodeRendererWithCopyProps) => {
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
@@ -42,6 +43,7 @@ export const MarkerCodeRendererWithCopy = ({
         options={options}
         onChange={handleChange}
         isMarkArray={isMarkArray}
+        markerType={markerType}
       />
 
       <Box position="absolute" top={1} right={1}>
