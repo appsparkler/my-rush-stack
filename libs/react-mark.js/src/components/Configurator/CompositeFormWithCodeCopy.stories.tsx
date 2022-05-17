@@ -7,13 +7,17 @@ import {
   RadioGroup,
   RadioGroupProps,
 } from '@mui/material';
+import { RegExpForm, RegExpFormProps } from './RegExpForm';
+import { MarkerType } from './MarkerCoderRenderer/MarkerCodeRenderer';
 
 export const CompositeForm = () => {
+  const [markerType, setMarkerType] = useState<MarkerType>('Marker');
+
   type ConfigType = 'keyword' | 'keywordArray' | 'regExp';
 
   const [configType, setConfigType] = useState<ConfigType>('keyword');
 
-  const [mark, setMark] = useState('Lorem Ipsum');
+  const [mark, setMark] = useState<string | RegExp>('Lorem Ipsum');
 
   const [keywordConfig, setKeywordConfig] = useState<MarkConfig>({});
 
@@ -24,7 +28,20 @@ export const CompositeForm = () => {
     []
   );
 
+  const handleChangeRegExpForm = useCallback<
+    RegExpFormProps['onChangeOptions']
+  >((config) => {
+    setKeywordConfig(config);
+  }, []);
+
   const handleChangeKeyword = useCallback<KeywordFormProps['onChangeKeyword']>(
+    (keyword) => {
+      setMark(keyword);
+    },
+    []
+  );
+
+  const handleChangeRegExp = useCallback<RegExpFormProps['onChangeRegExp']>(
     (keyword) => {
       setMark(keyword);
     },
@@ -37,15 +54,18 @@ export const CompositeForm = () => {
       setConfigType(valueRef);
       if (valueRef === 'keyword') {
         setMark('Lorem Ipsum');
-      } else {
+      } else if (valueRef === 'keywordArray') {
         setMark(JSON.stringify(['Lorem', 'Ipsum']));
+      } else if (valueRef === 'regExp') {
+        setMark(/Lorem Ipsum/);
+        setMarkerType('RegExpMarker');
       }
     },
     []
   );
 
   const isKeywordsArray = useMemo(
-    () => configType === 'keywordArray',
+    () => configType === 'keywordArray' || configType === 'regExp',
     [configType]
   );
 
@@ -71,17 +91,26 @@ export const CompositeForm = () => {
           label="Custom RegExp"
         />
       </RadioGroup>
-      <KeywordForm
-        keyword={mark}
-        isKeywordsArray={isKeywordsArray}
-        onChange={handleChangeKeywordForm}
-        onChangeKeyword={handleChangeKeyword}
-      />
+      {configType === 'keyword' || configType === 'keywordArray' ? (
+        <KeywordForm
+          keyword={mark as string}
+          isKeywordsArray={isKeywordsArray}
+          onChange={handleChangeKeywordForm}
+          onChangeKeyword={handleChangeKeyword}
+        />
+      ) : null}
+      {configType === 'regExp' ? (
+        <RegExpForm
+          onChangeRegExp={handleChangeRegExp}
+          onChangeOptions={handleChangeRegExpForm}
+        />
+      ) : null}
       <MarkerCodeRendererWithCopy
         mark={mark}
         isMarkArray={isKeywordsArray}
         options={keywordConfig}
         onChange={console.log} // TODO - handle the alert as a separate component
+        markerType={markerType}
       />
     </>
   );

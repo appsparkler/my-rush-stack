@@ -9,6 +9,7 @@ import {
   Vertical,
 } from 'mui';
 import { noop } from 'lodash/fp';
+import React from 'react';
 
 export type RegExpFormRawValues = {
   element: string;
@@ -163,6 +164,7 @@ export const RegExpForm = ({
           />
           <SimpleTextField
             fullWidth
+            type="number"
             label="IFrames Timeout"
             name="iframesTimeout"
             value={options.iframesTimeout}
@@ -212,7 +214,6 @@ export const RegExpForm = ({
           </Vertical>
         </Vertical>
       </Grid>
-      <pre>{JSON.stringify(getRefinedOptions(options), null, 2)}</pre>
     </Grid>
   );
 };

@@ -9,7 +9,7 @@ export type MarkerType = 'RangesMarker' | 'Marker' | 'RegExpMarker';
 
 export type MarkerCodeRendererProps = {
   markerType?: MarkerType;
-  mark?: string;
+  mark?: string | RegExp;
   options?: {};
   wrapperProps?: BoxProps;
   onChange?: (updatedCode: string) => void;
