@@ -5,7 +5,10 @@ import './prism.css';
 import { keys, noop } from 'lodash/fp';
 import { filterOutFalsy } from '../../../utils';
 
+export type MarkerType = 'RangesMarker' | 'Marker' | 'RegExpMarker';
+
 export type MarkerCodeRendererProps = {
+  markerType?: MarkerType;
   mark?: string;
   options?: {};
   wrapperProps?: BoxProps;
@@ -15,6 +18,7 @@ export type MarkerCodeRendererProps = {
 
 export const MarkerCodeRenderer = ({
   mark = '',
+  markerType = 'Marker',
   options = {},
   wrapperProps = {},
   onChange = noop,
@@ -42,9 +46,9 @@ export const MarkerCodeRenderer = ({
 />`;
   }, [options, optionsString]);
   const code = useMemo(
-    () => `<Marker
+    () => `<${markerType}
   ${markRenderer}${optionsRender}`,
-    [markRenderer, optionsRender]
+    [markRenderer, markerType, optionsRender]
   );
 
   useEffect(() => {
