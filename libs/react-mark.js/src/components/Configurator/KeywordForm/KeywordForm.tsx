@@ -212,7 +212,7 @@ export const KeywordForm = ({
       {/* ROW 1 */}
       <Grid container spacing={2}>
         {/* COLUMN 1 */}
-        <Grid item xs={6} md={6}>
+        <Grid item xs={6}>
           <Vertical gap={2}>
             <SimpleTextField
               sx={{ flexBasis: 0 }}
@@ -275,7 +275,7 @@ export const KeywordForm = ({
         </Grid>
 
         {/* COLUMN 2 */}
-        <Grid item xs={6} md={8}>
+        <Grid item xs={6}>
           <Vertical gap={2}>
             <SimpleSelect
               label="Accurracy"
