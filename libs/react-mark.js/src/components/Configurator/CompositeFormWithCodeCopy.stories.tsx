@@ -109,13 +109,15 @@ export const CompositeForm = () => {
         mark={mark}
         isMarkArray={isKeywordsArray}
         options={keywordConfig}
-        onChange={console.log} // TODO - handle the alert as a separate component
+        // onChange={console.log} // TODO - handle the alert as a separate component
         markerType={markerType}
       />
     </>
   );
 };
 
-export default {
+const Story = {
   title: 'Configurator/Composite Form',
 };
+
+export default Story;
