@@ -4,7 +4,7 @@ import {
   getDefaultSynonymItem,
   SynonymItem,
   DynamicKeyValueList,
-} from './Synonyms';
+} from './DynamicKeyValueList';
 import {
   getDefaultInteactiveSimpleListItem,
   InteactiveSimpleList,

@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
-import { DynamicKeyValueList } from './Synonyms';
+import { DynamicKeyValueList } from './DynamicKeyValueList';
 
 export default {
   component: DynamicKeyValueList,
