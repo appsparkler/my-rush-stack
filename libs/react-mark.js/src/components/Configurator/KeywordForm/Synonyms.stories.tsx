@@ -1,14 +1,14 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
-import { Synonyms } from './Synonyms';
+import { DynamicKeyValueList } from './Synonyms';
 
 export default {
-  component: Synonyms,
+  component: DynamicKeyValueList,
   title: 'Web/Configurator/Synonyms',
-} as ComponentMeta<typeof Synonyms>;
+} as ComponentMeta<typeof DynamicKeyValueList>;
 
-const Template: ComponentStory<typeof Synonyms> = (args) => (
-  <Synonyms {...args} />
+const Template: ComponentStory<typeof DynamicKeyValueList> = (args) => (
+  <DynamicKeyValueList {...args} />
 );
 
 export const synonyms = Template.bind({});
@@ -16,9 +16,8 @@ synonyms.args = {
   name: 'synonyms',
 };
 
-export const withNumberType: ComponentStory<typeof Synonyms> = Template.bind(
-  {}
-);
+export const withNumberType: ComponentStory<typeof DynamicKeyValueList> =
+  Template.bind({});
 
 withNumberType.args = {
   keyInputProps: {

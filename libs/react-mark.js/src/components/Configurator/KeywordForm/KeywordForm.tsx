@@ -1,6 +1,10 @@
 import { Grid, TextFieldProps } from '@mui/material';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { getDefaultSynonymItem, SynonymItem, Synonyms } from './Synonyms';
+import {
+  getDefaultSynonymItem,
+  SynonymItem,
+  DynamicKeyValueList,
+} from './Synonyms';
 import {
   getDefaultInteactiveSimpleListItem,
   InteactiveSimpleList,
@@ -232,7 +236,7 @@ export const KeywordForm = ({
               name="element"
               onChange={handleChange}
             />
-            <Synonyms name="synonyms" onChange={handleChange} />
+            <DynamicKeyValueList name="synonyms" onChange={handleChange} />
             <InteactiveSimpleList
               name="exclude"
               title="Exclusions"

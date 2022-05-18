@@ -40,7 +40,7 @@ export const getDefaultSynonymItem = () => ({
 });
 
 // JSX
-export const Synonyms = ({
+export const DynamicKeyValueList = ({
   name = '',
   title = 'Synonyms',
   onChange = noop,
