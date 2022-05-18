@@ -2,7 +2,7 @@ import { Grid, TextFieldProps } from '@mui/material';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   getDefaultSynonymItem,
-  SynonymItem,
+  DynamicKeyValueListItem,
   DynamicKeyValueList,
 } from './DynamicKeyValueList';
 import {
@@ -74,24 +74,27 @@ export type KeywordFormRawConfig = Omit<
 > & {
   exclude: TextFieldProps[];
   ignorePunctuation: TextFieldProps[];
-  synonyms: SynonymItem[];
+  synonyms: DynamicKeyValueListItem[];
 };
 
 export type TextFieldPropsValue = TextFieldProps['value'];
 
 // utils
 const getRefinedSynonyms = (
-  synonyms: SynonymItem[]
+  synonyms: DynamicKeyValueListItem[]
 ): Record<string, string> => {
-  return reduce<SynonymItem, Record<string, string>>((acc, { key, value }) => {
-    if (Boolean(key) && Boolean(value)) {
-      return {
-        ...acc,
-        [key]: value,
-      };
-    }
-    return acc;
-  }, {})(synonyms);
+  return reduce<DynamicKeyValueListItem, Record<string, string>>(
+    (acc, { key, value }) => {
+      if (Boolean(key) && Boolean(value)) {
+        return {
+          ...acc,
+          [key]: value,
+        };
+      }
+      return acc;
+    },
+    {}
+  )(synonyms);
 };
 
 export const getRefinedConfig = ({

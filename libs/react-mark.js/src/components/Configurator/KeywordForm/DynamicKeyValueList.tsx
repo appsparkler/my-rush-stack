@@ -16,25 +16,25 @@ import { noop } from 'lodash';
 import { uniqueId } from 'lodash/fp';
 import React, { useCallback, useEffect, useState } from 'react';
 
-export type SynonymItem = {
+export type DynamicKeyValueListItem = {
   id: string;
   key: string;
   value: string;
 };
 
-export type SynonymProps = {
+export type DynamicKeyValueListProps = {
   title?: string;
   name?: string;
   keyInputProps?: TextFieldProps;
   valueInputProps?: TextFieldProps;
-  onChange?: SimpleFormControlChange<SynonymItem[]>;
+  onChange?: SimpleFormControlChange<DynamicKeyValueListItem[]>;
 };
 
 // Utils
-export const uniqueIdSynonymItem = () => uniqueId('synonym-item');
+export const uniqueIdKeyValueItem = () => uniqueId('synonym-item');
 
 export const getDefaultSynonymItem = () => ({
-  id: uniqueIdSynonymItem(),
+  id: uniqueIdKeyValueItem(),
   key: '',
   value: '',
 });
@@ -56,8 +56,8 @@ export const DynamicKeyValueList = ({
     size: 'small',
     type: 'text',
   },
-}: SynonymProps) => {
-  const [$value, set$value] = useState<SynonymItem[]>([
+}: DynamicKeyValueListProps) => {
+  const [$value, set$value] = useState<DynamicKeyValueListItem[]>([
     getDefaultSynonymItem(),
   ]);
 
@@ -67,7 +67,9 @@ export const DynamicKeyValueList = ({
 
   const handleClickDelete = useCallback(
     (id: string) => () =>
-      set$value((prevValue) => filterOutWithId<SynonymItem>(id)(prevValue)),
+      set$value((prevValue) =>
+        filterOutWithId<DynamicKeyValueListItem>(id)(prevValue)
+      ),
     []
   );
 
@@ -76,12 +78,13 @@ export const DynamicKeyValueList = ({
   >(
     (id) =>
       ({ target: { value, name } }) => {
-        const itemToUpdate = findById<SynonymItem>(id)($value);
+        const itemToUpdate = findById<DynamicKeyValueListItem>(id)($value);
         if (itemToUpdate) {
-          const updatedItems = updateItemWithMatchingId<SynonymItem>({
-            ...itemToUpdate,
-            [name]: value,
-          })($value);
+          const updatedItems =
+            updateItemWithMatchingId<DynamicKeyValueListItem>({
+              ...itemToUpdate,
+              [name]: value,
+            })($value);
           set$value(updatedItems);
         }
       },
