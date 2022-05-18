@@ -7,7 +7,7 @@ import {
 } from 'common-types';
 
 export type SimpleTextFieldProps = {
-  onChange: SimpleFormControlChange<string>;
+  onChange?: SimpleFormControlChange<string>;
 } & Omit<TextFieldProps, 'onChange'>;
 
 export const SimpleTextField = ({
