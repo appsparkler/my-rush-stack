@@ -15,3 +15,24 @@ export const synonyms = Template.bind({});
 synonyms.args = {
   name: 'synonyms',
 };
+
+export const withNumberType: ComponentStory<typeof Synonyms> = Template.bind(
+  {}
+);
+
+withNumberType.args = {
+  keyInputProps: {
+    label: 'start',
+    name: 'key',
+    size: 'small',
+    type: 'number',
+  },
+  name: 'ranges',
+  title: 'Ranges',
+  valueInputProps: {
+    label: 'length',
+    name: 'value',
+    size: 'small',
+    type: 'number',
+  },
+};

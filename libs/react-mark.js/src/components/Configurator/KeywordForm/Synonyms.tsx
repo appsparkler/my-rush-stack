@@ -23,7 +23,10 @@ export type SynonymItem = {
 };
 
 export type SynonymProps = {
+  title?: string;
   name?: string;
+  keyInputProps?: TextFieldProps;
+  valueInputProps?: TextFieldProps;
   onChange?: SimpleFormControlChange<SynonymItem[]>;
 };
 
@@ -37,7 +40,23 @@ export const getDefaultSynonymItem = () => ({
 });
 
 // JSX
-export const Synonyms = ({ name = '', onChange = noop }: SynonymProps) => {
+export const Synonyms = ({
+  name = '',
+  title = 'Synonyms',
+  onChange = noop,
+  keyInputProps = {
+    label: 'keyword',
+    name: 'key',
+    size: 'small',
+    type: 'text',
+  },
+  valueInputProps = {
+    label: 'synonym',
+    name: 'value',
+    size: 'small',
+    type: 'text',
+  },
+}: SynonymProps) => {
   const [$value, set$value] = useState<SynonymItem[]>([
     getDefaultSynonymItem(),
   ]);
@@ -73,7 +92,6 @@ export const Synonyms = ({ name = '', onChange = noop }: SynonymProps) => {
     onChange(name, $value);
   }, [$value, name, onChange]);
 
-  const title = 'Synonyms';
   return (
     <Box display="flex" gap={1} flexDirection="column">
       <Typography variant="h6">{title}</Typography>
@@ -81,17 +99,13 @@ export const Synonyms = ({ name = '', onChange = noop }: SynonymProps) => {
         {$value.map(({ id, key, value }, index) => (
           <Box key={id} display="flex" gap={2} alignItems="center">
             <TextField
-              label="keyword"
-              name="key"
+              {...keyInputProps}
               onChange={handleChangeInput(id)}
-              size="small"
               value={key}
             />
             <TextField
-              label="synonym"
-              name="value"
+              {...valueInputProps}
               onChange={handleChangeInput(id)}
-              size="small"
               value={value}
             />
             {index === 0 ? (
