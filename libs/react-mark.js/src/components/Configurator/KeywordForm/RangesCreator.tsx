@@ -37,7 +37,7 @@ export const getDefaultSynonymItem = () => ({
 });
 
 // JSX
-export const Synonyms = ({ name = '', onChange = noop }: SynonymProps) => {
+export const RangesCreator = ({ name = '', onChange = noop }: SynonymProps) => {
   const [$value, set$value] = useState<SynonymItem[]>([
     getDefaultSynonymItem(),
   ]);
@@ -73,10 +73,9 @@ export const Synonyms = ({ name = '', onChange = noop }: SynonymProps) => {
     onChange(name, $value);
   }, [$value, name, onChange]);
 
-  const title = 'Synonyms';
   return (
     <Box display="flex" gap={1} flexDirection="column">
-      <Typography variant="h6">{title}</Typography>
+      <Typography variant="h6">Synonyms</Typography>
       <Box display="flex" gap={2} flexDirection="column">
         {$value.map(({ id, key, value }, index) => (
           <Box key={id} display="flex" gap={2} alignItems="center">

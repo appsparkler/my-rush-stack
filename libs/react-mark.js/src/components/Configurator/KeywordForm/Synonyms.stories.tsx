@@ -3,8 +3,8 @@ import React from 'react';
 import { Synonyms } from './Synonyms';
 
 export default {
-  title: 'Web/Configurator/Synonyms',
   component: Synonyms,
+  title: 'Web/Configurator/Synonyms',
 } as ComponentMeta<typeof Synonyms>;
 
 const Template: ComponentStory<typeof Synonyms> = (args) => (
