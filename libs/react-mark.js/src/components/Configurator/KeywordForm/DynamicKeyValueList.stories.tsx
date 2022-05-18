@@ -4,22 +4,22 @@ import { DynamicKeyValueList } from './DynamicKeyValueList';
 
 export default {
   component: DynamicKeyValueList,
-  title: 'Web/Configurator/Synonyms',
+  title: 'Web/Common/Dynamic Key Value List',
 } as ComponentMeta<typeof DynamicKeyValueList>;
 
 const Template: ComponentStory<typeof DynamicKeyValueList> = (args) => (
   <DynamicKeyValueList {...args} />
 );
 
-export const synonyms = Template.bind({});
-synonyms.args = {
+export const textType = Template.bind({});
+textType.args = {
   name: 'synonyms',
 };
 
-export const withNumberType: ComponentStory<typeof DynamicKeyValueList> =
+export const numberType: ComponentStory<typeof DynamicKeyValueList> =
   Template.bind({});
 
-withNumberType.args = {
+numberType.args = {
   keyInputProps: {
     label: 'start',
     name: 'key',
