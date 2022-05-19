@@ -99,19 +99,19 @@ export const DynamicKeyValueList = ({
     <Box display="flex" gap={1} flexDirection="column">
       <Typography variant="h6">{title}</Typography>
       <Box display="flex" gap={2} flexDirection="column">
-        {value.map(({ id, key, value }, index) => (
-          <Horizontal gap={2} alignItems="center">
+        {value.map((item, index) => (
+          <Horizontal gap={2} alignItems="center" key={item.id}>
             <TextField
               fullWidth
               {...keyInputProps}
-              onChange={handleChangeInput(id)}
-              value={key}
+              onChange={handleChangeInput(item.id)}
+              value={item[keyInputProps.name || 'key']}
             />
             <TextField
               fullWidth
               {...valueInputProps}
-              onChange={handleChangeInput(id)}
-              value={value}
+              onChange={handleChangeInput(item.id)}
+              value={item[valueInputProps.name || 'value']}
             />
             {index === 0 ? (
               <Box>
@@ -130,7 +130,7 @@ export const DynamicKeyValueList = ({
                   aria-label="delete synonym"
                   color="warning"
                   size="small"
-                  onClick={handleClickDelete(id)}
+                  onClick={handleClickDelete(item.id)}
                 >
                   <Delete />
                 </IconButton>
