@@ -70,10 +70,7 @@ export const RangesMarkerForm = () => {
             size: 'small',
             type: 'number',
           }}
-          value={[
-            { id: uniqueId('range'), length: '20', start: '7' },
-            { id: uniqueId('range'), length: '20', start: '8' },
-          ]}
+          value={[{ id: uniqueId('range'), length: '20', start: '7' }]}
         />
       </Grid>
       <Grid item xs={6} sm={6}>
