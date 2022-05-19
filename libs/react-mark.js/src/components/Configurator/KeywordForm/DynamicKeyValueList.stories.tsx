@@ -11,6 +11,8 @@ const Template: ComponentStory<typeof DynamicKeyValueList> = (args) => (
   <DynamicKeyValueList {...args} />
 );
 
+export const noProps = Template.bind({});
+
 export const textType = Template.bind({});
 textType.args = {
   name: 'synonyms',
