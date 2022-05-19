@@ -1,7 +1,7 @@
 import { Grid, TextFieldProps } from '@mui/material';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
-  getDefaultSynonymItem,
+  getDefaultDynamicKeyValueItem,
   DynamicKeyValueListItem,
   DynamicKeyValueList,
 } from './DynamicKeyValueList';
@@ -173,7 +173,7 @@ export const KeywordForm = ({
     accuracy: 'partially',
     exclude: [getDefaultInteactiveSimpleListItem()],
     ignorePunctuation: [getDefaultInteactiveSimpleListItem()],
-    synonyms: [getDefaultSynonymItem()],
+    synonyms: [getDefaultDynamicKeyValueItem()],
     wildcards: 'disabled',
   });
 

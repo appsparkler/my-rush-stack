@@ -15,13 +15,11 @@ import {
 import { noop } from 'lodash';
 import { uniqueId } from 'lodash/fp';
 import { Horizontal } from 'mui';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback } from 'react';
 
 export type DynamicKeyValueListItem = {
   id: string;
   [key: string]: string;
-  // key: string;
-  // value: string;
 };
 
 export type DynamicKeyValueListProps = {
@@ -36,7 +34,7 @@ export type DynamicKeyValueListProps = {
 // Utils
 export const uniqueIdKeyValueItem = () => uniqueId('synonym-item');
 
-export const getDefaultSynonymItem = (
+export const getDefaultDynamicKeyValueItem = (
   keyName: string = 'key',
   valueName: string = 'value'
 ) => ({
@@ -62,16 +60,14 @@ export const DynamicKeyValueList = ({
     size: 'small',
     type: 'text',
   },
-  value = [getDefaultSynonymItem(keyInputProps.name, valueInputProps.name)],
+  value = [
+    getDefaultDynamicKeyValueItem(keyInputProps.name, valueInputProps.name),
+  ],
 }: DynamicKeyValueListProps) => {
-  // const [$value, set$value] = useState<DynamicKeyValueListItem[]>([
-  //   getDefaultSynonymItem(keyInputProps.name, valueInputProps.name),
-  // ]);
-
   const handleClickAdd = useCallback(() => {
     onChange(name, [
       ...value,
-      getDefaultSynonymItem(keyInputProps.name, valueInputProps.name),
+      getDefaultDynamicKeyValueItem(keyInputProps.name, valueInputProps.name),
     ]);
   }, [keyInputProps.name, name, onChange, value, valueInputProps.name]);
 
@@ -98,10 +94,6 @@ export const DynamicKeyValueList = ({
       },
     [onChange, value]
   );
-
-  // useEffect(() => {
-  //   onChange(name, value);
-  // }, [$value, name, onChange]);
 
   return (
     <Box display="flex" gap={1} flexDirection="column">
