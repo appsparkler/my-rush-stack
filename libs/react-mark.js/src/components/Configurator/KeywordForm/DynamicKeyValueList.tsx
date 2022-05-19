@@ -27,6 +27,7 @@ export type DynamicKeyValueListItem = {
 export type DynamicKeyValueListProps = {
   title?: string;
   name?: string;
+  value?: DynamicKeyValueListItem[];
   keyInputProps?: TextFieldProps;
   valueInputProps?: TextFieldProps;
   onChange?: SimpleFormControlChange<DynamicKeyValueListItem[]>;
@@ -61,53 +62,52 @@ export const DynamicKeyValueList = ({
     size: 'small',
     type: 'text',
   },
+  value = [getDefaultSynonymItem(keyInputProps.name, valueInputProps.name)],
 }: DynamicKeyValueListProps) => {
-  const [$value, set$value] = useState<DynamicKeyValueListItem[]>([
-    getDefaultSynonymItem(keyInputProps.name, valueInputProps.name),
-  ]);
+  // const [$value, set$value] = useState<DynamicKeyValueListItem[]>([
+  //   getDefaultSynonymItem(keyInputProps.name, valueInputProps.name),
+  // ]);
 
   const handleClickAdd = useCallback(() => {
-    set$value((prevValue) => [
-      ...prevValue,
+    onChange(name, [
+      ...value,
       getDefaultSynonymItem(keyInputProps.name, valueInputProps.name),
     ]);
-  }, [keyInputProps.name, valueInputProps.name]);
+  }, [keyInputProps.name, name, onChange, value, valueInputProps.name]);
 
   const handleClickDelete = useCallback(
     (id: string) => () =>
-      set$value((prevValue) =>
-        filterOutWithId<DynamicKeyValueListItem>(id)(prevValue)
-      ),
-    []
+      onChange(name, filterOutWithId<DynamicKeyValueListItem>(id)(value)),
+    [name, onChange, value]
   );
 
   const handleChangeInput = useCallback<
     (id: string) => TextFieldProps['onChange']
   >(
     (id) =>
-      ({ target: { value, name } }) => {
-        const itemToUpdate = findById<DynamicKeyValueListItem>(id)($value);
+      ({ target: { value: $value, name } }) => {
+        const itemToUpdate = findById<DynamicKeyValueListItem>(id)(value);
         if (itemToUpdate) {
           const updatedItems =
             updateItemWithMatchingId<DynamicKeyValueListItem>({
               ...itemToUpdate,
-              [name]: value,
-            })($value);
-          set$value(updatedItems);
+              [name]: $value,
+            })(value);
+          onChange(name, updatedItems);
         }
       },
-    [$value]
+    [onChange, value]
   );
 
-  useEffect(() => {
-    onChange(name, $value);
-  }, [$value, name, onChange]);
+  // useEffect(() => {
+  //   onChange(name, value);
+  // }, [$value, name, onChange]);
 
   return (
     <Box display="flex" gap={1} flexDirection="column">
       <Typography variant="h6">{title}</Typography>
       <Box display="flex" gap={2} flexDirection="column">
-        {$value.map(({ id, key, value }, index) => (
+        {value.map(({ id, key, value }, index) => (
           <Horizontal gap={2} alignItems="center">
             <TextField
               fullWidth
