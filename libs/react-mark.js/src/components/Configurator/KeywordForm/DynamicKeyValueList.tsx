@@ -14,12 +14,14 @@ import {
 } from 'common-utils';
 import { noop } from 'lodash';
 import { uniqueId } from 'lodash/fp';
+import { Horizontal } from 'mui';
 import React, { useCallback, useEffect, useState } from 'react';
 
 export type DynamicKeyValueListItem = {
   id: string;
-  key: string;
-  value: string;
+  [key: string]: string;
+  // key: string;
+  // value: string;
 };
 
 export type DynamicKeyValueListProps = {
@@ -33,10 +35,13 @@ export type DynamicKeyValueListProps = {
 // Utils
 export const uniqueIdKeyValueItem = () => uniqueId('synonym-item');
 
-export const getDefaultSynonymItem = () => ({
+export const getDefaultSynonymItem = (
+  keyName: string = 'key',
+  valueName: string = 'value'
+) => ({
   id: uniqueIdKeyValueItem(),
-  key: '',
-  value: '',
+  [keyName]: '',
+  [valueName]: '',
 });
 
 // JSX
@@ -58,12 +63,15 @@ export const DynamicKeyValueList = ({
   },
 }: DynamicKeyValueListProps) => {
   const [$value, set$value] = useState<DynamicKeyValueListItem[]>([
-    getDefaultSynonymItem(),
+    getDefaultSynonymItem(keyInputProps.name, valueInputProps.name),
   ]);
 
   const handleClickAdd = useCallback(() => {
-    set$value((prevValue) => [...prevValue, getDefaultSynonymItem()]);
-  }, []);
+    set$value((prevValue) => [
+      ...prevValue,
+      getDefaultSynonymItem(keyInputProps.name, valueInputProps.name),
+    ]);
+  }, [keyInputProps.name, valueInputProps.name]);
 
   const handleClickDelete = useCallback(
     (id: string) => () =>
@@ -100,13 +108,15 @@ export const DynamicKeyValueList = ({
       <Typography variant="h6">{title}</Typography>
       <Box display="flex" gap={2} flexDirection="column">
         {$value.map(({ id, key, value }, index) => (
-          <Box key={id} display="flex" gap={2} alignItems="center">
+          <Horizontal gap={2} alignItems="center">
             <TextField
+              fullWidth
               {...keyInputProps}
               onChange={handleChangeInput(id)}
               value={key}
             />
             <TextField
+              fullWidth
               {...valueInputProps}
               onChange={handleChangeInput(id)}
               value={value}
@@ -134,7 +144,7 @@ export const DynamicKeyValueList = ({
                 </IconButton>
               </Box>
             )}
-          </Box>
+          </Horizontal>
         ))}
       </Box>
     </Box>

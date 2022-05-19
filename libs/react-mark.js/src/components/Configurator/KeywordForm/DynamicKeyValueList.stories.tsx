@@ -24,7 +24,7 @@ export const numberType: ComponentStory<typeof DynamicKeyValueList> =
 numberType.args = {
   keyInputProps: {
     label: 'start',
-    name: 'key',
+    name: 'start',
     size: 'small',
     type: 'number',
   },
@@ -32,7 +32,7 @@ numberType.args = {
   title: 'Ranges',
   valueInputProps: {
     label: 'length',
-    name: 'value',
+    name: 'length',
     size: 'small',
     type: 'number',
   },
