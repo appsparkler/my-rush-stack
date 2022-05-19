@@ -81,18 +81,18 @@ export const DynamicKeyValueList = ({
     (id: string) => TextFieldProps['onChange']
   >(
     (id) =>
-      ({ target: { value: $value, name } }) => {
+      ({ target: { value: $value, name: $name } }) => {
         const itemToUpdate = findById<DynamicKeyValueListItem>(id)(value);
         if (itemToUpdate) {
           const updatedItems =
             updateItemWithMatchingId<DynamicKeyValueListItem>({
               ...itemToUpdate,
-              [name]: $value,
+              [$name]: $value,
             })(value);
           onChange(name, updatedItems);
         }
       },
-    [onChange, value]
+    [name, onChange, value]
   );
 
   return (

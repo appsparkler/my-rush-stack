@@ -173,7 +173,7 @@ export const KeywordForm = ({
     accuracy: 'partially',
     exclude: [getDefaultInteactiveSimpleListItem()],
     ignorePunctuation: [getDefaultInteactiveSimpleListItem()],
-    synonyms: [getDefaultDynamicKeyValueItem()],
+    synonyms: [getDefaultDynamicKeyValueItem('key', 'value')],
     wildcards: 'disabled',
   });
 
@@ -239,7 +239,23 @@ export const KeywordForm = ({
               name="element"
               onChange={handleChange}
             />
-            <DynamicKeyValueList name="synonyms" onChange={handleChange} />
+            <DynamicKeyValueList
+              name="synonyms"
+              onChange={handleChange}
+              value={config.synonyms}
+              keyInputProps={{
+                label: 'keyword',
+                name: 'key',
+                size: 'small',
+                type: 'text',
+              }}
+              valueInputProps={{
+                label: 'synonym',
+                name: 'value',
+                size: 'small',
+                type: 'text',
+              }}
+            />
             <InteactiveSimpleList
               name="exclude"
               title="Exclusions"
