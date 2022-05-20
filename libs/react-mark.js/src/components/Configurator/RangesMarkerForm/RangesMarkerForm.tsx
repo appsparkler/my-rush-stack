@@ -6,7 +6,11 @@ import {
   SimpleTextField,
   Vertical,
 } from 'mui';
-import { DynamicKeyValueList } from '../KeywordForm/DynamicKeyValueList';
+import {
+  DynamicKeyValueList,
+  DynamicKeyValueListItem,
+  DynamicKeyValueListProps,
+} from '../KeywordForm/DynamicKeyValueList';
 import { SimpleFormControlChange } from 'common-types';
 import { uniqueId } from 'lodash/fp';
 
@@ -40,6 +44,23 @@ const defaultConfig = {
 
 export const RangesMarkerForm = () => {
   const [config, setConfig] = useState<RangesMarkerRawConfig>(defaultConfig);
+  const [ranges, setRanges] = useState<DynamicKeyValueListItem[]>([
+    {
+      field1: {
+        label: 'start',
+        size: 'small',
+        type: 'number',
+        value: 20,
+      },
+      field2: {
+        label: 'length',
+        size: 'small',
+        type: 'number',
+        value: 30,
+      },
+      id: uniqueId('range'),
+    },
+  ]);
 
   const handleChangeConfig = useCallback<SimpleFormControlChange<any>>(
     (name, value) => {
@@ -51,6 +72,13 @@ export const RangesMarkerForm = () => {
     []
   );
 
+  const handleChangeRange = useCallback<DynamicKeyValueListProps['onChange']>(
+    (name, value) => {
+      setRanges(value);
+    },
+    []
+  );
+
   return (
     <Grid container spacing={2}>
       {/* COLUMN 1 */}
@@ -58,19 +86,8 @@ export const RangesMarkerForm = () => {
         <DynamicKeyValueList
           title="Ranges"
           name="ranges"
-          keyInputProps={{
-            label: 'start',
-            name: 'start',
-            size: 'small',
-            type: 'number',
-          }}
-          valueInputProps={{
-            label: 'length',
-            name: 'length',
-            size: 'small',
-            type: 'number',
-          }}
-          value={[{ id: uniqueId('range'), length: '20', start: '7' }]}
+          value={ranges}
+          onChange={handleChangeRange}
         />
       </Grid>
       <Grid item xs={6} sm={6}>

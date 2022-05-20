@@ -33,20 +33,6 @@ export type DynamicKeyValueListProps = {
 // Utils
 export const uniqueIdKeyValueItem = () => uniqueId('synonym-item');
 
-export const getDefaultDynamicKeyValueItem = (): DynamicKeyValueListItem => ({
-  field1: {
-    name: 'field1',
-    size: 'small',
-    value: '',
-  },
-  field2: {
-    name: 'field2',
-    size: 'small',
-    value: '',
-  },
-  id: uniqueIdKeyValueItem(),
-});
-
 // JSX
 export const DynamicKeyValueList = ({
   name = '',
@@ -55,7 +41,20 @@ export const DynamicKeyValueList = ({
   value = [],
 }: DynamicKeyValueListProps) => {
   const handleClickAdd = useCallback(() => {
-    onChange(name, [...value, getDefaultDynamicKeyValueItem()]);
+    onChange(name, [
+      ...value,
+      {
+        field1: {
+          ...(value[0].field1 as TextFieldProps),
+          value: '',
+        },
+        field2: {
+          ...(value[0].field2 as TextFieldProps),
+          value: '',
+        },
+        id: uniqueIdKeyValueItem(),
+      },
+    ]);
   }, [name, onChange, value]);
 
   const handleClickDelete = useCallback(
