@@ -1,7 +1,6 @@
 import { Grid, TextFieldProps } from '@mui/material';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
-  getDefaultDynamicKeyValueItem,
   DynamicKeyValueListItem,
   DynamicKeyValueList,
 } from './DynamicKeyValueList';
