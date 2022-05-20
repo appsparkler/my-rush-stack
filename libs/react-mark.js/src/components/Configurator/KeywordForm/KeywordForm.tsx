@@ -14,7 +14,7 @@ import {
   Vertical,
 } from 'mui';
 import { SimpleFormControlChange } from 'common-types';
-import { isArray, keys, noop, reduce } from 'lodash/fp';
+import { isArray, keys, noop, reduce, uniqueId } from 'lodash/fp';
 import { getValues } from '../../../utils';
 
 type WildCards = 'disabled' | 'enabled' | 'withSpaces';
@@ -84,11 +84,11 @@ const getRefinedSynonyms = (
   synonyms: DynamicKeyValueListItem[]
 ): Record<string, string> => {
   return reduce<DynamicKeyValueListItem, Record<string, string>>(
-    (acc, { key, value }) => {
-      if (Boolean(key) && Boolean(value)) {
+    (acc, item) => {
+      if (Boolean(item.field1.value) && Boolean(item.field2.value)) {
         return {
           ...acc,
-          [key]: value,
+          [item.field1.value as string]: item.field2.value as string,
         };
       }
       return acc;
@@ -173,7 +173,21 @@ export const KeywordForm = ({
     accuracy: 'partially',
     exclude: [getDefaultInteactiveSimpleListItem()],
     ignorePunctuation: [getDefaultInteactiveSimpleListItem()],
-    synonyms: [getDefaultDynamicKeyValueItem('key', 'value')],
+    synonyms: [
+      {
+        field1: {
+          label: 'keyword',
+          size: 'small',
+          value: '',
+        },
+        field2: {
+          label: 'synonym',
+          size: 'small',
+          value: '',
+        },
+        id: uniqueId('synonym-key'),
+      },
+    ],
     wildcards: 'disabled',
   });
 
@@ -243,18 +257,6 @@ export const KeywordForm = ({
               name="synonyms"
               onChange={handleChange}
               value={config.synonyms}
-              keyInputProps={{
-                label: 'keyword',
-                name: 'key',
-                size: 'small',
-                type: 'text',
-              }}
-              valueInputProps={{
-                label: 'synonym',
-                name: 'value',
-                size: 'small',
-                type: 'text',
-              }}
             />
             <InteactiveSimpleList
               name="exclude"

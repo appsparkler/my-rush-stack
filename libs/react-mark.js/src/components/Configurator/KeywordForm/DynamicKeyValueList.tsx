@@ -36,10 +36,12 @@ export const uniqueIdKeyValueItem = () => uniqueId('synonym-item');
 export const getDefaultDynamicKeyValueItem = (): DynamicKeyValueListItem => ({
   field1: {
     name: 'field1',
+    size: 'small',
     value: '',
   },
   field2: {
     name: 'field2',
+    size: 'small',
     value: '',
   },
   id: uniqueIdKeyValueItem(),
