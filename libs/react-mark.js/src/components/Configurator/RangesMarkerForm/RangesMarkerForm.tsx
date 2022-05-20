@@ -1,8 +1,9 @@
-import React, { useCallback, useState } from 'react';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 import { Grid, TextFieldProps } from '@mui/material';
 import {
   getDefaultInteactiveSimpleListItem,
   InteactiveSimpleList,
+  SimpleCheckbox,
   SimpleTextField,
   Vertical,
 } from 'mui';
@@ -14,36 +15,71 @@ import {
 import { SimpleFormControlChange } from 'common-types';
 import { uniqueId } from 'lodash/fp';
 
+const getRefinedConfig = (
+  rawConfig: RangesMarkerRawConfig,
+  defaultConfig: RangesMarkerRefinedConfig
+): RangesMarkerRefinedConfig => {
+  return {
+    iframes:
+      defaultConfig.iframes === rawConfig.iframes
+        ? undefined
+        : rawConfig.iframes,
+  };
+};
+
 export type RangesMarkerRawConfig = {
   className: string;
   debug: boolean;
-  done: () => void;
-  each: () => void;
+  // done: () => void;
+  // each: () => void;
   element: string;
   exclude: TextFieldProps[];
-  filter: () => void;
+  // filter: () => void;
   iframes: boolean;
   iframesTimeout: number;
-  log: Console;
-  noMatch: () => void;
+  // log: Console;
+  // noMatch: () => void;
 };
 
-const defaultConfig = {
+export type RangesMarkerRefinedConfig = {
+  className?: string;
+  debug?: boolean;
+  // done?: () => void;
+  // each?: () => void;
+  element?: string;
+  exclude?: string[];
+  // filter: () => void;
+  iframes?: boolean;
+  iframesTimeout?: number;
+  // log: Console;
+  // noMatch: () => void;
+};
+
+const defaultConfig: RangesMarkerRefinedConfig = {
   className: '',
   debug: false,
-  done: () => {},
-  each: () => {},
   element: 'mark',
-  exclude: [getDefaultInteactiveSimpleListItem()],
-  filter: () => {},
+  exclude: [],
   iframes: false,
   iframesTimeout: 5000,
-  log: console,
-  noMatch: () => {},
 };
 
-export const RangesMarkerForm = () => {
-  const [config, setConfig] = useState<RangesMarkerRawConfig>(defaultConfig);
+export type RangesMarkerFormProps = {
+  onChangeOptions: (config: RangesMarkerRefinedConfig) => void;
+};
+
+export const RangesMarkerForm: FC<RangesMarkerFormProps> = ({
+  onChangeOptions,
+}) => {
+  const [config, setConfig] = useState<RangesMarkerRawConfig>({
+    ...defaultConfig,
+    className: '',
+    debug: false,
+    element: 'mark',
+    exclude: [getDefaultInteactiveSimpleListItem()],
+    iframes: false,
+    iframesTimeout: 5000,
+  });
   const [ranges, setRanges] = useState<DynamicKeyValueListItem[]>([
     {
       field1: {
@@ -78,6 +114,10 @@ export const RangesMarkerForm = () => {
     },
     []
   );
+
+  useEffect(() => {
+    onChangeOptions(getRefinedConfig(config, defaultConfig));
+  }, [config, onChangeOptions]);
 
   return (
     <Grid container spacing={2}>
@@ -121,15 +161,31 @@ export const RangesMarkerForm = () => {
         </Vertical>
       </Grid>
       <Grid item xs={6} sm={6}>
-        <SimpleTextField
-          fullWidth
-          name="className"
-          label="Class Name"
-          type="text"
-          size="small"
-          value={config.className}
-          onChange={handleChangeConfig}
-        />
+        <Vertical gap={2}>
+          <SimpleTextField
+            fullWidth
+            name="className"
+            label="Class Name"
+            type="text"
+            size="small"
+            value={config.className}
+            onChange={handleChangeConfig}
+          />
+          <Vertical>
+            <SimpleCheckbox
+              label={'Iframes'}
+              name="iframes"
+              checked={config.iframes}
+              onChange={handleChangeConfig}
+            />
+            <SimpleCheckbox
+              label={'Debug'}
+              name="debug"
+              checked={config.debug}
+              onChange={handleChangeConfig}
+            />
+          </Vertical>
+        </Vertical>
       </Grid>
     </Grid>
   );

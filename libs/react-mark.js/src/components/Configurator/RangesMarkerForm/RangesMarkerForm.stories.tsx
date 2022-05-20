@@ -6,10 +6,11 @@ const Story: ComponentMeta<typeof RangesMarkerForm> = {
   title: 'Ranges Marker Form',
 };
 
-const Template: ComponentStory<typeof RangesMarkerForm> = () => (
-  <RangesMarkerForm />
+const Template: ComponentStory<typeof RangesMarkerForm> = (args) => (
+  <RangesMarkerForm {...args} />
 );
 
 export const rangesMarkerForm = Template.bind({});
+rangesMarkerForm.args = {};
 
 export default Story;
