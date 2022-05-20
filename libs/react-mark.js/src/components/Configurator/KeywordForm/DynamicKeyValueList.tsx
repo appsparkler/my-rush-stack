@@ -19,28 +19,30 @@ import React, { useCallback } from 'react';
 
 export type DynamicKeyValueListItem = {
   id: string;
-  [key: string]: string;
+  field1: TextFieldProps;
+  field2: TextFieldProps;
 };
 
 export type DynamicKeyValueListProps = {
   title?: string;
   name?: string;
   value?: DynamicKeyValueListItem[];
-  keyInputProps?: TextFieldProps;
-  valueInputProps?: TextFieldProps;
   onChange?: SimpleFormControlChange<DynamicKeyValueListItem[]>;
 };
 
 // Utils
 export const uniqueIdKeyValueItem = () => uniqueId('synonym-item');
 
-export const getDefaultDynamicKeyValueItem = (
-  keyName: string = 'key',
-  valueName: string = 'value'
-) => ({
+export const getDefaultDynamicKeyValueItem = (): DynamicKeyValueListItem => ({
+  field1: {
+    name: 'field1',
+    value: '',
+  },
+  field2: {
+    name: 'field2',
+    value: '',
+  },
   id: uniqueIdKeyValueItem(),
-  [keyName]: '',
-  [valueName]: '',
 });
 
 // JSX
@@ -48,32 +50,16 @@ export const DynamicKeyValueList = ({
   name = '',
   title = 'Synonyms',
   onChange = noop,
-  keyInputProps = {
-    label: 'keyword',
-    name: 'key',
-    size: 'small',
-    type: 'text',
-  },
-  valueInputProps = {
-    label: 'synonym',
-    name: 'value',
-    size: 'small',
-    type: 'text',
-  },
-  value = [
-    getDefaultDynamicKeyValueItem(keyInputProps.name, valueInputProps.name),
-  ],
+  value = [],
 }: DynamicKeyValueListProps) => {
   const handleClickAdd = useCallback(() => {
-    onChange(name, [
-      ...value,
-      getDefaultDynamicKeyValueItem(keyInputProps.name, valueInputProps.name),
-    ]);
-  }, [keyInputProps.name, name, onChange, value, valueInputProps.name]);
+    onChange(name, [...value, getDefaultDynamicKeyValueItem()]);
+  }, [name, onChange, value]);
 
   const handleClickDelete = useCallback(
-    (id: string) => () =>
-      onChange(name, filterOutWithId<DynamicKeyValueListItem>(id)(value)),
+    (id: string) => () => {
+      onChange(name, filterOutWithId<DynamicKeyValueListItem>(id)(value));
+    },
     [name, onChange, value]
   );
 
@@ -87,7 +73,10 @@ export const DynamicKeyValueList = ({
           const updatedItems =
             updateItemWithMatchingId<DynamicKeyValueListItem>({
               ...itemToUpdate,
-              [$name]: $value,
+              [$name]: {
+                ...itemToUpdate[$name as 'field1' | 'field2'],
+                value: $value,
+              },
             })(value);
           onChange(name, updatedItems);
         }
@@ -103,15 +92,15 @@ export const DynamicKeyValueList = ({
           <Horizontal gap={2} alignItems="center" key={item.id}>
             <TextField
               fullWidth
-              {...keyInputProps}
+              name="field1"
               onChange={handleChangeInput(item.id)}
-              value={item[keyInputProps.name || 'key']}
+              {...item.field1}
             />
             <TextField
               fullWidth
-              {...valueInputProps}
               onChange={handleChangeInput(item.id)}
-              value={item[valueInputProps.name || 'value']}
+              name="field2"
+              {...item.field2}
             />
             {index === 0 ? (
               <Box>

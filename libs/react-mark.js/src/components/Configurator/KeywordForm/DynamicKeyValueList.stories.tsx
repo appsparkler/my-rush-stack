@@ -22,18 +22,21 @@ export const numberType: ComponentStory<typeof DynamicKeyValueList> =
   Template.bind({});
 
 numberType.args = {
-  keyInputProps: {
-    label: 'start',
-    name: 'start',
-    size: 'small',
-    type: 'number',
-  },
   name: 'ranges',
   title: 'Ranges',
-  valueInputProps: {
-    label: 'length',
-    name: 'length',
-    size: 'small',
-    type: 'number',
-  },
+  value: [
+    {
+      field1: {
+        size: 'small',
+        type: 'number',
+        value: 3,
+      },
+      field2: {
+        size: 'small',
+        type: 'number',
+        value: 10,
+      },
+      id: '1',
+    },
+  ],
 };
