@@ -20,39 +20,48 @@ const getRefinedConfig = (
   defaultConfig: RangesMarkerRefinedConfig
 ): RangesMarkerRefinedConfig => {
   return {
+    className:
+      defaultConfig.className === rawConfig.className
+        ? undefined
+        : rawConfig.className,
+
+    debug:
+      defaultConfig.debug === rawConfig.debug ? undefined : rawConfig.debug,
+
+    element:
+      defaultConfig.element === rawConfig.element
+        ? undefined
+        : rawConfig.element,
+
     iframes:
       defaultConfig.iframes === rawConfig.iframes
         ? undefined
         : rawConfig.iframes,
+
+    // exclude:
+    iframesTimeout:
+      defaultConfig.iframesTimeout === rawConfig.iframesTimeout
+        ? undefined
+        : rawConfig.iframesTimeout,
   };
 };
 
 export type RangesMarkerRawConfig = {
   className: string;
   debug: boolean;
-  // done: () => void;
-  // each: () => void;
   element: string;
   exclude: TextFieldProps[];
-  // filter: () => void;
   iframes: boolean;
   iframesTimeout: number;
-  // log: Console;
-  // noMatch: () => void;
 };
 
 export type RangesMarkerRefinedConfig = {
   className?: string;
   debug?: boolean;
-  // done?: () => void;
-  // each?: () => void;
   element?: string;
   exclude?: string[];
-  // filter: () => void;
   iframes?: boolean;
   iframesTimeout?: number;
-  // log: Console;
-  // noMatch: () => void;
 };
 
 const defaultConfig: RangesMarkerRefinedConfig = {
