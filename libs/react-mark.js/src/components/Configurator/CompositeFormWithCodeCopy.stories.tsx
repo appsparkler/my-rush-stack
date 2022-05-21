@@ -22,18 +22,12 @@ export const CompositeForm = () => {
 
   const [keywordConfig, setKeywordConfig] = useState<MarkConfig>({});
 
-  const handleChangeKeywordForm = useCallback<KeywordFormProps['onChange']>(
+  const handleChangeOptions = useCallback<KeywordFormProps['onChange']>(
     (config) => {
       setKeywordConfig(config);
     },
     []
   );
-
-  const handleChangeRegExpForm = useCallback<
-    RegExpFormProps['onChangeOptions']
-  >((config) => {
-    setKeywordConfig(config);
-  }, []);
 
   const handleChangeKeyword = useCallback<KeywordFormProps['onChangeKeyword']>(
     (keyword) => {
@@ -99,17 +93,19 @@ export const CompositeForm = () => {
         <KeywordForm
           keyword={mark as string}
           isKeywordsArray={isKeywordsArray}
-          onChange={handleChangeKeywordForm}
+          onChange={handleChangeOptions}
           onChangeKeyword={handleChangeKeyword}
         />
       ) : null}
       {configType === 'regExp' ? (
         <RegExpForm
           onChangeRegExp={handleChangeRegExp}
-          onChangeOptions={handleChangeRegExpForm}
+          onChangeOptions={handleChangeOptions}
         />
       ) : null}
-      {configType === 'ranges' ? <RangesMarkerForm /> : null}
+      {configType === 'ranges' ? (
+        <RangesMarkerForm onChangeOptions={handleChangeOptions} />
+      ) : null}
       <MarkerCodeRendererWithCopy
         mark={mark}
         isMarkArray={isKeywordsArray}
