@@ -8,17 +8,17 @@ import {
   RadioGroupProps,
 } from '@mui/material';
 import { RegExpForm, RegExpFormProps } from './RegExpForm';
-import { RangesMarkerForm } from './RangesMarkerForm';
+import { RangesMarkerForm, RangesMarkerFormProps } from './RangesMarkerForm';
 import { MarkerType } from './MarkerCoderRenderer/MarkerCodeRenderer';
 
+type ConfigType = 'keyword' | 'keywordArray' | 'regExp' | 'ranges';
+
 export const CompositeForm = () => {
-  const [markerType, setMarkerType] = useState<MarkerType>('Marker');
-
-  type ConfigType = 'keyword' | 'keywordArray' | 'regExp' | 'ranges';
-
   const [configType, setConfigType] = useState<ConfigType>('keyword');
 
   const [mark, setMark] = useState<string | RegExp>('Lorem Ipsum');
+
+  const [ranges, setRanges] = useState<RangesMarkerFormProps['ranges']>();
 
   const [keywordConfig, setKeywordConfig] = useState<MarkConfig>({});
 
@@ -53,18 +53,32 @@ export const CompositeForm = () => {
         setMark(JSON.stringify(['Lorem', 'Ipsum']));
       } else if (valueRef === 'regExp') {
         setMark(/Lorem Ipsum/);
-        setMarkerType('RegExpMarker');
       } else if (valueRef === 'ranges') {
-        setMarkerType('RangesMarker');
+        setRanges([{ length: 7, start: 3 }]);
       }
     },
     []
   );
 
+  const handleChangeRanges = useCallback<
+    RangesMarkerFormProps['onChangeRanges']
+  >((ranges) => {
+    setRanges(ranges);
+  }, []);
+
   const isKeywordsArray = useMemo(
     () => configType === 'keywordArray' || configType === 'regExp',
     [configType]
   );
+
+  const isRangesMarker = useMemo(() => configType === 'ranges', [configType]);
+
+  const markerType: MarkerType = useMemo<MarkerType>(() => {
+    if (configType === 'keyword' || configType === 'keywordArray')
+      return 'Marker';
+    if (configType === 'ranges') return 'RangesMarker';
+    return 'RegExpMarker';
+  }, [configType]);
 
   return (
     <>
@@ -103,8 +117,12 @@ export const CompositeForm = () => {
           onChangeOptions={handleChangeOptions}
         />
       ) : null}
-      {configType === 'ranges' ? (
-        <RangesMarkerForm onChangeOptions={handleChangeOptions} />
+      {isRangesMarker ? (
+        <RangesMarkerForm
+          ranges={ranges}
+          onChangeRanges={handleChangeRanges}
+          onChangeOptions={handleChangeOptions}
+        />
       ) : null}
       <MarkerCodeRendererWithCopy
         mark={mark}
@@ -112,8 +130,8 @@ export const CompositeForm = () => {
         options={keywordConfig}
         // onChange={console.log} // TODO - handle the alert as a separate component
         markerType={markerType}
-        ranges={[]}
-        isRangesMaker={false}
+        ranges={ranges}
+        isRangesMaker={isRangesMarker}
       />
     </>
   );

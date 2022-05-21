@@ -11,6 +11,8 @@ export type MarkerCodeRendererWithCopyProps = MarkerCodeRendererProps & {};
 export const MarkerCodeRendererWithCopy = ({
   mark,
   isMarkArray,
+  isRangesMaker,
+  ranges,
   markerType,
   options,
 }: MarkerCodeRendererWithCopyProps) => {
@@ -44,6 +46,8 @@ export const MarkerCodeRendererWithCopy = ({
         onChange={handleChange}
         isMarkArray={isMarkArray}
         markerType={markerType}
+        isRangesMaker={isRangesMaker}
+        ranges={ranges}
       />
 
       <Box position="absolute" top={1} right={1}>
