@@ -13,35 +13,7 @@ import {
   DynamicKeyValueListProps,
 } from '../KeywordForm/DynamicKeyValueList';
 import { SimpleFormControlChange } from 'common-types';
-import { uniqueId, reduce, LodashReduce1x3, noop } from 'lodash/fp';
-
-type ReduceValueToString = {
-  // <T extends { value?: any }>(items: T[]): string[];
-  <T extends { value?: any }>(items: T[]): LodashReduce1x3<T, string[]>;
-  // <T>LodashReduce1x2<string[]>;
-  // LodashReduce1x2<never[]>
-};
-
-export type ReduceValueToStringV2<T extends { value?: any }> = LodashReduce1x3<
-  T,
-  string[]
->;
-
-// export type ReduceValueToStringV3<T extends {value:any} = {
-//   <T>()
-// }
-
-// type LodashReduce1x3<T, TResult> = (
-//   collection: T[] | lodash.List<T> | null | undefined
-// ) => TResult;
-
-const x = <T extends { value?: any }>(items: T[]) =>
-  reduce<T, string[]>((acc, item) => {
-    if (item.value) {
-      return [...acc, String(item.value)];
-    }
-    return [...acc];
-  }, []);
+import { uniqueId, reduce, noop } from 'lodash/fp';
 
 const reduceValuesToString = reduce<TextFieldProps, string[]>((acc, item) => {
   if (item.value) {
