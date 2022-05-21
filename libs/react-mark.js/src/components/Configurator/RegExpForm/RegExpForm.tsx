@@ -137,7 +137,7 @@ export const RegExpForm = ({
 
   return (
     <Grid container spacing={2}>
-      <Grid item sm={6}>
+      <Grid item xs={6}>
         <Vertical gap={2}>
           <SimpleTextField
             fullWidth
@@ -173,7 +173,7 @@ export const RegExpForm = ({
           />
         </Vertical>
       </Grid>
-      <Grid item sm={6}>
+      <Grid item xs={6}>
         <Vertical gap={2}>
           <SimpleTextField
             fullWidth
