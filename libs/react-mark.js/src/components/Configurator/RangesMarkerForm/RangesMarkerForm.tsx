@@ -13,12 +13,25 @@ import {
   DynamicKeyValueListProps,
 } from '../KeywordForm/DynamicKeyValueList';
 import { SimpleFormControlChange } from 'common-types';
-import { uniqueId } from 'lodash/fp';
+import { uniqueId, reduce } from 'lodash/fp';
+
+type ReduceValueToString = {
+  <T extends { value?: any }>(items: T[]): string[];
+};
+
+const getValues: ReduceValueToString = reduce((acc, item) => {
+  if (item.value) {
+    return [...acc, String(item.value)];
+  }
+  return [...acc];
+}, []);
 
 const getRefinedConfig = (
   rawConfig: RangesMarkerRawConfig,
   defaultConfig: RangesMarkerRefinedConfig
 ): RangesMarkerRefinedConfig => {
+  const excludeValue = getValues<TextFieldProps>(rawConfig.exclude);
+
   return {
     className:
       defaultConfig.className === rawConfig.className
@@ -33,12 +46,16 @@ const getRefinedConfig = (
         ? undefined
         : rawConfig.element,
 
+    exclude:
+      excludeValue.length === defaultConfig.exclude.length
+        ? undefined
+        : excludeValue,
+
     iframes:
       defaultConfig.iframes === rawConfig.iframes
         ? undefined
         : rawConfig.iframes,
 
-    // exclude:
     iframesTimeout:
       defaultConfig.iframesTimeout === rawConfig.iframesTimeout
         ? undefined
