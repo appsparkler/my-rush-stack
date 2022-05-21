@@ -13,7 +13,7 @@ import {
   DynamicKeyValueListProps,
 } from '../KeywordForm/DynamicKeyValueList';
 import { SimpleFormControlChange } from 'common-types';
-import { uniqueId, reduce, noop } from 'lodash/fp';
+import { uniqueId, reduce, noop, map } from 'lodash/fp';
 
 const reduceValuesToString = reduce<TextFieldProps, string[]>((acc, item) => {
   if (item.value) {
@@ -86,12 +86,21 @@ const defaultConfig: RangesMarkerRefinedConfig = {
   iframesTimeout: 5000,
 };
 
+type RangeItem = {
+  start: number;
+  length: number;
+};
+
 export type RangesMarkerFormProps = {
+  ranges?: RangeItem[];
   onChangeOptions?: (config: RangesMarkerRefinedConfig) => void;
+  onChangeRanges?: (ranges: RangeItem[]) => void;
 };
 
 export const RangesMarkerForm: FC<RangesMarkerFormProps> = ({
+  ranges = [{ length: 4, start: 7 }],
   onChangeOptions = noop,
+  onChangeRanges = noop,
 }) => {
   const [config, setConfig] = useState<RangesMarkerRawConfig>({
     ...defaultConfig,
@@ -102,23 +111,23 @@ export const RangesMarkerForm: FC<RangesMarkerFormProps> = ({
     iframes: false,
     iframesTimeout: 5000,
   });
-  const [ranges, setRanges] = useState<DynamicKeyValueListItem[]>([
-    {
+  const [rawRanges, setRawRanges] = useState<DynamicKeyValueListItem[]>(
+    map<RangeItem, DynamicKeyValueListItem>((range) => ({
       field1: {
         label: 'start',
         size: 'small',
         type: 'number',
-        value: 20,
+        value: range.start,
       },
       field2: {
         label: 'length',
         size: 'small',
         type: 'number',
-        value: 30,
+        value: range.length,
       },
       id: uniqueId('range'),
-    },
-  ]);
+    }))(ranges)
+  );
 
   const handleChangeConfig = useCallback<SimpleFormControlChange<any>>(
     (name, value) => {
@@ -132,9 +141,21 @@ export const RangesMarkerForm: FC<RangesMarkerFormProps> = ({
 
   const handleChangeRange = useCallback<
     NonNullable<DynamicKeyValueListProps['onChange']>
-  >((name, value) => {
-    setRanges(value);
-  }, []);
+  >(
+    (name, value) => {
+      setRawRanges(value);
+      const ranges: RangeItem[] = map<DynamicKeyValueListItem, RangeItem>(
+        (item) => {
+          return {
+            length: Number(item.field2.value),
+            start: Number(item.field1.value),
+          };
+        }
+      )(value);
+      onChangeRanges(ranges);
+    },
+    [onChangeRanges]
+  );
 
   useEffect(() => {
     onChangeOptions(getRefinedConfig(config, defaultConfig));
@@ -147,7 +168,7 @@ export const RangesMarkerForm: FC<RangesMarkerFormProps> = ({
         <DynamicKeyValueList
           title="Ranges"
           name="ranges"
-          value={ranges}
+          value={rawRanges}
           onChange={handleChangeRange}
         />
       </Grid>
