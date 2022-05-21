@@ -8,12 +8,13 @@ import {
   RadioGroupProps,
 } from '@mui/material';
 import { RegExpForm, RegExpFormProps } from './RegExpForm';
+import { RangesMarkerForm } from './RangesMarkerForm';
 import { MarkerType } from './MarkerCoderRenderer/MarkerCodeRenderer';
 
 export const CompositeForm = () => {
   const [markerType, setMarkerType] = useState<MarkerType>('Marker');
 
-  type ConfigType = 'keyword' | 'keywordArray' | 'regExp';
+  type ConfigType = 'keyword' | 'keywordArray' | 'regExp' | 'ranges';
 
   const [configType, setConfigType] = useState<ConfigType>('keyword');
 
@@ -59,6 +60,8 @@ export const CompositeForm = () => {
       } else if (valueRef === 'regExp') {
         setMark(/Lorem Ipsum/);
         setMarkerType('RegExpMarker');
+      } else if (valueRef === 'ranges') {
+        setMarkerType('RangesMarker');
       }
     },
     []
@@ -90,6 +93,7 @@ export const CompositeForm = () => {
           control={<Radio />}
           label="Custom RegExp"
         />
+        <FormControlLabel value="ranges" control={<Radio />} label="Ranges" />
       </RadioGroup>
       {configType === 'keyword' || configType === 'keywordArray' ? (
         <KeywordForm
@@ -105,12 +109,15 @@ export const CompositeForm = () => {
           onChangeOptions={handleChangeRegExpForm}
         />
       ) : null}
+      {configType === 'ranges' ? <RangesMarkerForm /> : null}
       <MarkerCodeRendererWithCopy
         mark={mark}
         isMarkArray={isKeywordsArray}
         options={keywordConfig}
         // onChange={console.log} // TODO - handle the alert as a separate component
         markerType={markerType}
+        ranges={[]}
+        isRangesMaker={false}
       />
     </>
   );

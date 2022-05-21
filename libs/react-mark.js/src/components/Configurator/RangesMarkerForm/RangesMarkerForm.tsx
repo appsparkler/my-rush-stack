@@ -13,13 +13,37 @@ import {
   DynamicKeyValueListProps,
 } from '../KeywordForm/DynamicKeyValueList';
 import { SimpleFormControlChange } from 'common-types';
-import { uniqueId, reduce } from 'lodash/fp';
+import { uniqueId, reduce, LodashReduce1x3, noop } from 'lodash/fp';
 
 type ReduceValueToString = {
-  <T extends { value?: any }>(items: T[]): string[];
+  // <T extends { value?: any }>(items: T[]): string[];
+  <T extends { value?: any }>(items: T[]): LodashReduce1x3<T, string[]>;
+  // <T>LodashReduce1x2<string[]>;
+  // LodashReduce1x2<never[]>
 };
 
-const getValues: ReduceValueToString = reduce((acc, item) => {
+export type ReduceValueToStringV2<T extends { value?: any }> = LodashReduce1x3<
+  T,
+  string[]
+>;
+
+// export type ReduceValueToStringV3<T extends {value:any} = {
+//   <T>()
+// }
+
+// type LodashReduce1x3<T, TResult> = (
+//   collection: T[] | lodash.List<T> | null | undefined
+// ) => TResult;
+
+const x = <T extends { value?: any }>(items: T[]) =>
+  reduce<T, string[]>((acc, item) => {
+    if (item.value) {
+      return [...acc, String(item.value)];
+    }
+    return [...acc];
+  }, []);
+
+const reduceValuesToString = reduce<TextFieldProps, string[]>((acc, item) => {
   if (item.value) {
     return [...acc, String(item.value)];
   }
@@ -30,7 +54,7 @@ const getRefinedConfig = (
   rawConfig: RangesMarkerRawConfig,
   defaultConfig: RangesMarkerRefinedConfig
 ): RangesMarkerRefinedConfig => {
-  const excludeValue = getValues<TextFieldProps>(rawConfig.exclude);
+  const excludeValue = reduceValuesToString(rawConfig.exclude);
 
   return {
     className:
@@ -47,7 +71,7 @@ const getRefinedConfig = (
         : rawConfig.element,
 
     exclude:
-      excludeValue.length === defaultConfig.exclude.length
+      excludeValue.length === defaultConfig.exclude?.length
         ? undefined
         : excludeValue,
 
@@ -91,11 +115,11 @@ const defaultConfig: RangesMarkerRefinedConfig = {
 };
 
 export type RangesMarkerFormProps = {
-  onChangeOptions: (config: RangesMarkerRefinedConfig) => void;
+  onChangeOptions?: (config: RangesMarkerRefinedConfig) => void;
 };
 
 export const RangesMarkerForm: FC<RangesMarkerFormProps> = ({
-  onChangeOptions,
+  onChangeOptions = noop,
 }) => {
   const [config, setConfig] = useState<RangesMarkerRawConfig>({
     ...defaultConfig,
@@ -134,12 +158,11 @@ export const RangesMarkerForm: FC<RangesMarkerFormProps> = ({
     []
   );
 
-  const handleChangeRange = useCallback<DynamicKeyValueListProps['onChange']>(
-    (name, value) => {
-      setRanges(value);
-    },
-    []
-  );
+  const handleChangeRange = useCallback<
+    NonNullable<DynamicKeyValueListProps['onChange']>
+  >((name, value) => {
+    setRanges(value);
+  }, []);
 
   useEffect(() => {
     onChangeOptions(getRefinedConfig(config, defaultConfig));
