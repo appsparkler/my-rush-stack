@@ -2,7 +2,6 @@ import {
   KeywordForm,
   KeywordFormPropsOnChange,
   KeywordFormPropsOnChangeKeyword,
-  MarkConfig,
 } from '../KeywordForm';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
@@ -23,11 +22,16 @@ import {
 } from '../MarkerCoderRenderer/MarkerCodeRenderer';
 import React from 'react';
 import { noop } from 'lodash/fp';
+import { MarkOptions } from 'mark.js';
 
-type ConfigType = 'keyword' | 'keywordArray' | 'regExp' | 'ranges';
+export type ConfigType = 'keyword' | 'keywordArray' | 'regExp' | 'ranges';
+
+export type OnChangeCompositeForm = (
+  updatedConfig: Omit<MarkerCodeRendererProps, 'onChange'>
+) => void;
 
 export type CompositeFormProps = {
-  onChange?: (updatedConfig: Omit<MarkerCodeRendererProps, 'onChange'>) => void;
+  onChange?: OnChangeCompositeForm;
 };
 
 export const CompositeForm = ({ onChange = noop }: CompositeFormProps) => {
@@ -37,11 +41,11 @@ export const CompositeForm = ({ onChange = noop }: CompositeFormProps) => {
 
   const [ranges, setRanges] = useState<RangesMarkerFormProps['ranges']>();
 
-  const [keywordConfig, setKeywordConfig] = useState<MarkConfig>({});
+  const [options, setOptions] = useState<MarkOptions>({});
 
   const handleChangeOptions = useCallback<KeywordFormPropsOnChange>(
-    (config) => {
-      setKeywordConfig(config);
+    (options) => {
+      setOptions(options);
     },
     []
   );
@@ -97,13 +101,13 @@ export const CompositeForm = ({ onChange = noop }: CompositeFormProps) => {
       isRangesMarker: isRangesMarker,
       mark,
       markerType,
-      options: keywordConfig,
+      options: options,
       ranges,
     });
   }, [
     isKeywordsArray,
     isRangesMarker,
-    keywordConfig,
+    options,
     mark,
     markerType,
     onChange,

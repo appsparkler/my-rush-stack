@@ -1,16 +1,32 @@
 import { Grid, Typography } from '@mui/material';
-import React from 'react';
-import { CompositeForm } from './CompositeForm';
-import { MarkerCodeRendererWithCopy } from './MarkerCoderRendererWithCodeCopy';
+import React, { useCallback, useState } from 'react';
+import { MarkerProps } from '../Marker';
+import { CompositeForm, OnChangeCompositeForm } from './CompositeForm';
+import {
+  MarkerCodeRendererWithCopy,
+  MarkerCodeRendererWithCopyProps,
+} from './MarkerCoderRendererWithCodeCopy';
 import { MarkerDemo } from './MarkerDemo';
 
 export const Configurator = () => {
+  const [
+    markerCodeRendererWithCopyConfig,
+    setMarkerCodeRendererWithCopyConfig,
+  ] = useState<MarkerCodeRendererWithCopyProps>({
+    // options: {},
+  });
+  const handleChangeConfig = useCallback<OnChangeCompositeForm>((config) => {
+    setMarkerCodeRendererWithCopyConfig(config);
+  }, []);
+
+  const { mark, options = undefined } = markerCodeRendererWithCopyConfig;
+
   return (
     <>
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Typography variant="h2">Configurator</Typography>
-          <Typography variant="h4">
+          <Typography variant="h5">
             The configurator should help you understand{' '}
             <pre style={{ display: 'inline' }}>react-mark.js</pre> and its API.
             Just define your custom options to see what will be marked and view
@@ -18,13 +34,13 @@ export const Configurator = () => {
           </Typography>
         </Grid>
         <Grid item xs={12} sm={6}>
-          <CompositeForm />
+          <CompositeForm onChange={handleChangeConfig} />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <MarkerDemo />
+          <MarkerDemo mark={mark as MarkerProps['mark']} options={options} />
         </Grid>
         <Grid item xs={12}>
-          <MarkerCodeRendererWithCopy />
+          <MarkerCodeRendererWithCopy {...markerCodeRendererWithCopyConfig} />
         </Grid>
       </Grid>
     </>

@@ -13,35 +13,22 @@ import {
   Vertical,
 } from 'mui';
 import { SimpleFormControlChange } from 'common-types';
-import { isArray, keys, noop, reduce, uniqueId } from 'lodash/fp';
+import {
+  filter,
+  isArray,
+  keys,
+  values,
+  noop,
+  reduce,
+  uniqueId,
+  pickAll,
+  pick,
+  pipe,
+  entries,
+  some,
+} from 'lodash/fp';
 import { getValues } from '../../../utils';
-
-type WildCards = 'disabled' | 'enabled' | 'withSpaces';
-
-type Accuracy = 'partially' | 'complimentary' | 'exactly';
-
-export type MarkConfig = Partial<{
-  accuracy: Accuracy;
-  acrossElements: boolean;
-  caseSensitive: boolean;
-  className: string;
-  debug: boolean;
-  diacritics: boolean;
-  done: () => void;
-  each: (_markedDomElement: Element) => void;
-  element: string;
-  exclude: string[];
-  filter: (textNode: Element, term: string, numberOfMarks: number) => void;
-  iframes: boolean;
-  iframesTimeout: number;
-  ignoreJoiners: boolean;
-  ignorePunctuation: string[];
-  log: Console;
-  noMatch: () => void;
-  separateWordSearch: boolean;
-  synonyms: Record<string, string>;
-  wildcards: WildCards;
-}>;
+import { MarkOptions } from 'mark.js';
 
 const defaultConfig = {
   accuracy: 'partially',
@@ -68,7 +55,7 @@ const defaultConfig = {
 
 // types
 export type KeywordFormRawConfig = Omit<
-  MarkConfig,
+  MarkOptions,
   'exclude' | 'ignorePunctuation' | 'synonyms'
 > & {
   exclude: TextFieldProps[];
@@ -112,7 +99,7 @@ export const getRefinedConfig = ({
   diacritics,
   ignorePunctuation,
   separateWordSearch,
-}: KeywordFormRawConfig): MarkConfig => {
+}: KeywordFormRawConfig): MarkOptions => {
   const excludesValue = getValues<TextFieldProps, unknown>(exclude);
   const punctuationsValue = getValues<TextFieldProps, unknown>(
     ignorePunctuation
@@ -149,7 +136,7 @@ export const getRefinedConfig = ({
   };
 };
 
-export type KeywordFormPropsOnChange = (keywordFormConfig: MarkConfig) => void;
+export type KeywordFormPropsOnChange = (keywordFormConfig: MarkOptions) => void;
 
 export type KeywordFormPropsOnChangeKeyword = (keyword: string) => void;
 
@@ -216,7 +203,25 @@ export const KeywordForm = ({
   );
 
   useEffect(() => {
-    onChange(getRefinedConfig(config));
+    const refinedConfig = getRefinedConfig(config);
+    const refinedConfigEntries = entries(refinedConfig);
+    const hasValues = some<typeof refinedConfigEntries>((item) =>
+      Boolean(item)
+    )(refinedConfig);
+    if (hasValues) {
+      const reducedValues = reduce<any, MarkOptions>((acc, [key, value]) => {
+        if (value) {
+          return {
+            ...acc,
+            [key]: value,
+          };
+        }
+        return {
+          ...acc,
+        };
+      }, {})(refinedConfigEntries as any);
+      onChange(reducedValues);
+    }
   }, [config, onChange]);
 
   const isErrorKeyword = useMemo(() => {

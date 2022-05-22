@@ -7,7 +7,7 @@ export type MarkerProps = {
   options?: MarkOptions;
 };
 
-export const Marker = ({ children, mark = '', options }: MarkerProps) => {
+export const Marker = ({ children, mark = '', options = {} }: MarkerProps) => {
   const markerRef = useRef<HTMLDivElement | null>(null);
   const [markInstance, setMarkInstance] = useState<MarkJS>();
 
