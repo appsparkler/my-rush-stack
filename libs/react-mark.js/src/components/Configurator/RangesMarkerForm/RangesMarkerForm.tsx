@@ -91,10 +91,12 @@ type RangeItem = {
   length: number;
 };
 
+export type OnChangeRanges = (ranges: RangeItem[]) => void;
+
 export type RangesMarkerFormProps = {
   ranges?: RangeItem[];
   onChangeOptions?: (config: RangesMarkerRefinedConfig) => void;
-  onChangeRanges?: (ranges: RangeItem[]) => void;
+  onChangeRanges?: OnChangeRanges;
 };
 
 export const RangesMarkerForm: FC<RangesMarkerFormProps> = ({

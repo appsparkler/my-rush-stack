@@ -92,8 +92,10 @@ const getRefinedOptions = (options: RegExpFormRawValues): RegExpFormConfig => {
   };
 };
 
+export type RegExpChangeHandler = (regExpValue: RegExp) => void;
+
 export type RegExpFormProps = {
-  onChangeRegExp?: (regExpValue: RegExp) => void;
+  onChangeRegExp?: RegExpChangeHandler;
   onChangeOptions?: (regExpConfig: RegExpFormConfig) => void;
 };
 

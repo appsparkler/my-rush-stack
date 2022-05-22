@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { CompositeForm } from './CompositeFormWithCodeCopy';
+import { CompositeForm } from './CompositeForm';
 
 const Story = {
   component: CompositeForm,

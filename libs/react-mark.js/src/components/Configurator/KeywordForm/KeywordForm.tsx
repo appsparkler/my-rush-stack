@@ -149,9 +149,13 @@ export const getRefinedConfig = ({
   };
 };
 
+export type KeywordFormPropsOnChange = (keywordFormConfig: MarkConfig) => void;
+
+export type KeywordFormPropsOnChangeKeyword = (keyword: string) => void;
+
 export type KeywordFormProps = {
-  onChange?: (keywordFormConfig: MarkConfig) => void;
-  onChangeKeyword?: (keyword: string) => void;
+  onChange?: KeywordFormPropsOnChange;
+  onChangeKeyword?: KeywordFormPropsOnChangeKeyword;
   isKeywordsArray?: boolean;
   keyword?: string;
 };

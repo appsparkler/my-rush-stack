@@ -3,7 +3,7 @@ import { MarkerDemo } from './MarkerDemo';
 
 const Story = {
   component: MarkerDemo,
-  title: 'Configurator/MarkerDemo',
+  title: 'Configurator/Marker Demo',
 } as ComponentMeta<typeof MarkerDemo>;
 
 const Template: ComponentStory<typeof MarkerDemo> = (args = {}) => (

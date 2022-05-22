@@ -1,5 +1,10 @@
 import { MarkerCodeRendererWithCopy } from '../MarkerCoderRendererWithCodeCopy';
-import { KeywordForm, KeywordFormProps, MarkConfig } from '../KeywordForm';
+import {
+  KeywordForm,
+  KeywordFormPropsOnChange,
+  KeywordFormPropsOnChangeKeyword,
+  MarkConfig,
+} from '../KeywordForm';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   FormControlLabel,
@@ -7,12 +12,18 @@ import {
   RadioGroup,
   RadioGroupProps,
 } from '@mui/material';
-import { RegExpForm, RegExpFormProps } from '../RegExpForm';
-import { RangesMarkerForm, RangesMarkerFormProps } from '../RangesMarkerForm';
+import { RegExpChangeHandler, RegExpForm } from '../RegExpForm';
+import {
+  OnChangeRanges,
+  RangesMarkerForm,
+  RangesMarkerFormProps,
+} from '../RangesMarkerForm';
 import {
   MarkerCodeRendererProps,
   MarkerType,
 } from '../MarkerCoderRenderer/MarkerCodeRenderer';
+import React from 'react';
+import { noop } from 'lodash/fp';
 
 type ConfigType = 'keyword' | 'keywordArray' | 'regExp' | 'ranges';
 
@@ -20,7 +31,7 @@ export type CompositeFormProps = {
   onChange?: (updatedConfig: Omit<MarkerCodeRendererProps, 'onChange'>) => void;
 };
 
-export const CompositeForm = ({ onChange }: CompositeFormProps) => {
+export const CompositeForm = ({ onChange = noop }: CompositeFormProps) => {
   const [configType, setConfigType] = useState<ConfigType>('keyword');
 
   const [mark, setMark] = useState<string | RegExp>('Lorem Ipsum');
@@ -29,47 +40,41 @@ export const CompositeForm = ({ onChange }: CompositeFormProps) => {
 
   const [keywordConfig, setKeywordConfig] = useState<MarkConfig>({});
 
-  const handleChangeOptions = useCallback<KeywordFormProps['onChange']>(
+  const handleChangeOptions = useCallback<KeywordFormPropsOnChange>(
     (config) => {
       setKeywordConfig(config);
     },
     []
   );
 
-  const handleChangeKeyword = useCallback<KeywordFormProps['onChangeKeyword']>(
+  const handleChangeKeyword = useCallback<KeywordFormPropsOnChangeKeyword>(
     (keyword) => {
       setMark(keyword);
     },
     []
   );
 
-  const handleChangeRegExp = useCallback<RegExpFormProps['onChangeRegExp']>(
-    (keyword) => {
-      setMark(keyword);
-    },
-    []
-  );
+  const handleChangeRegExp = useCallback<RegExpChangeHandler>((keyword) => {
+    setMark(keyword);
+  }, []);
 
-  const handleChangeConfigType = useCallback<RadioGroupProps['onChange']>(
-    (_evt, value) => {
-      const valueRef = value as ConfigType;
-      setConfigType(valueRef);
-      if (valueRef === 'keyword') {
-        setMark('Lorem Ipsum');
-      } else if (valueRef === 'keywordArray') {
-        setMark(JSON.stringify(['Lorem', 'Ipsum']));
-      } else if (valueRef === 'regExp') {
-        setMark(/Lorem Ipsum/);
-      } else if (valueRef === 'ranges') {
-        setRanges([{ length: 7, start: 3 }]);
-      }
-    },
-    []
-  );
+  const handleChangeConfigType = useCallback<
+    NonNullable<RadioGroupProps['onChange']>
+  >((_evt, value) => {
+    const valueRef = value as ConfigType;
+    setConfigType(valueRef);
+    if (valueRef === 'keyword') {
+      setMark('Lorem Ipsum');
+    } else if (valueRef === 'keywordArray') {
+      setMark(JSON.stringify(['Lorem', 'Ipsum']));
+    } else if (valueRef === 'regExp') {
+      setMark(/Lorem Ipsum/);
+    } else if (valueRef === 'ranges') {
+      setRanges([{ length: 7, start: 3 }]);
+    }
+  }, []);
 
-  const handleChangeRanges = useCallback<
-    RangesMarkerFormProps['onChangeRanges']
-  >((ranges) => {
+  const handleChangeRanges = useCallback<OnChangeRanges>((ranges) => {
     setRanges(ranges);
   }, []);
 
