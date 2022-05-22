@@ -1,4 +1,3 @@
-import { MarkerCodeRendererWithCopy } from '../MarkerCoderRendererWithCodeCopy';
 import {
   KeywordForm,
   KeywordFormPropsOnChange,
@@ -155,15 +154,6 @@ export const CompositeForm = ({ onChange = noop }: CompositeFormProps) => {
           onChangeOptions={handleChangeOptions}
         />
       ) : null}
-      <MarkerCodeRendererWithCopy
-        mark={mark}
-        isMarkArray={isKeywordsArray}
-        options={keywordConfig}
-        // onChange={console.log} // TODO - handle the alert as a separate component
-        markerType={markerType}
-        ranges={ranges}
-        isRangesMarker={isRangesMarker}
-      />
     </>
   );
 };
