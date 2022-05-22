@@ -7,7 +7,7 @@ declare module 'mark.js' {
     /**
      * An array with exclusion selectors. Matches inside these elements will be ignored. Example: "filter": ["h1", ".ignore"]
      */
-    exclude?: string[];
+    exclude: string[];
     accuracy: Accuracy;
     acrossElements: boolean;
     caseSensitive: boolean;
