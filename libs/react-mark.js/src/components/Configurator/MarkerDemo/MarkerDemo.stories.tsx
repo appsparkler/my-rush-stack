@@ -11,6 +11,11 @@ const Template: ComponentStory<typeof MarkerDemo> = (args = {}) => (
 );
 
 export const markerDemo: ComponentStory<typeof MarkerDemo> = Template.bind({});
-markerDemo.args = {};
+markerDemo.args = {
+  mark: 'sit amet',
+  options: {
+    diacritics: false,
+  },
+};
 
 export default Story;
