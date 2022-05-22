@@ -48,6 +48,7 @@ declare module 'mark.js' {
   export default class MarkJS {
     constructor(context: Element);
     mark: (str: string | string[], options?: MarkOptions) => void;
+    markRegExp: (str: RegExp, options?: RegExpMarkerOptions) => void;
     unmark: () => void;
   }
 }

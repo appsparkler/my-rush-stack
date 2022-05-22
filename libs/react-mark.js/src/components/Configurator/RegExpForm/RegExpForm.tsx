@@ -23,8 +23,9 @@ export type RegExpFormRawValues = {
   exclude: TextFieldProps[];
 };
 
-const defaultConfig = {
-  acrossElements: false,
+const defaultConfig: RegExpMarkerOptions = {
+  // acrossElements: false,
+
   className: '',
   debug: false,
   done: () => {},
