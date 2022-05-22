@@ -3,17 +3,18 @@ import React, { useMemo } from 'react';
 import { Marker, MarkerProps } from '../../Marker';
 
 export type MarkerDemoProps = {
-  mark?: MarkerProps['mark'];
+  mark?: string;
   options?: MarkerProps['options'];
 };
 
 export const MarkerDemo = ({ mark = '', options = {} }: MarkerDemoProps) => {
   const $mark = useMemo(() => {
-    if (Array.isArray(mark)) return mark;
     try {
       const parsed = JSON.parse(mark);
+      // is a valid object
       return parsed;
     } catch (e) {
+      // is most probably a string
       return mark;
     }
   }, [mark]);
