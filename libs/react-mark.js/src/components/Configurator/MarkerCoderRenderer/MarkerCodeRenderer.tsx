@@ -12,7 +12,7 @@ export type MarkerCodeRendererProps = {
   mark?: string | RegExp;
   options?: {};
   ranges?: { start: number; length: number }[];
-  isRangesMaker?: boolean;
+  isRangesMarker?: boolean;
   wrapperProps?: BoxProps;
   onChange?: (updatedCode: string) => void;
   isMarkArray?: boolean;
@@ -21,7 +21,7 @@ export type MarkerCodeRendererProps = {
 export const MarkerCodeRenderer = ({
   mark = '',
   markerType = 'Marker',
-  isRangesMaker = false,
+  isRangesMarker = false,
   options = {},
   ranges = [],
   wrapperProps = {},
@@ -33,7 +33,7 @@ export const MarkerCodeRenderer = ({
     return JSON.stringify(options, null, 4).replace('}', `  }`);
   }, [options]);
   const markRenderer = useMemo(() => {
-    if (isRangesMaker) {
+    if (isRangesMarker) {
       const SPACES_2 = `  `;
       const rangesJSON = JSON.stringify(ranges, null, 4).replace(
         ']',
@@ -45,7 +45,7 @@ export const MarkerCodeRenderer = ({
       return `mark={${mark}}`;
     }
     return `mark="${mark}"`;
-  }, [isMarkArray, isRangesMaker, mark, ranges]);
+  }, [isMarkArray, isRangesMarker, mark, ranges]);
   const optionsRender = useMemo(() => {
     const refinedOptions = filterOutFalsy(options);
     const showOptions = keys(refinedOptions).length > 0 ? true : false;

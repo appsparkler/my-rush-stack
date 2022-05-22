@@ -11,7 +11,7 @@ export type MarkerCodeRendererWithCopyProps = MarkerCodeRendererProps & {};
 export const MarkerCodeRendererWithCopy = ({
   mark,
   isMarkArray,
-  isRangesMaker,
+  isRangesMarker: isRangesMaker,
   ranges,
   markerType,
   options,
@@ -46,7 +46,7 @@ export const MarkerCodeRendererWithCopy = ({
         onChange={handleChange}
         isMarkArray={isMarkArray}
         markerType={markerType}
-        isRangesMaker={isRangesMaker}
+        isRangesMarker={isRangesMaker}
         ranges={ranges}
       />
 
