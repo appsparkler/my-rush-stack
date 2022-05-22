@@ -14,23 +14,20 @@ import {
 } from 'mui';
 import { SimpleFormControlChange } from 'common-types';
 import {
-  filter,
   isArray,
   keys,
-  values,
   noop,
   reduce,
   uniqueId,
-  pickAll,
-  pick,
-  pipe,
   entries,
   some,
+  pickBy,
+  identity,
 } from 'lodash/fp';
 import { getValues } from '../../../utils';
 import { MarkOptions } from 'mark.js';
 
-const defaultConfig = {
+const defaultConfig: MarkOptions = {
   accuracy: 'partially',
   acrossElements: false,
   caseSensitive: false,
@@ -136,7 +133,9 @@ export const getRefinedConfig = ({
   };
 };
 
-export type KeywordFormPropsOnChange = (keywordFormConfig: MarkOptions) => void;
+export type KeywordFormPropsOnChange = (
+  keywordFormConfig: MarkOptions | undefined
+) => void;
 
 export type KeywordFormPropsOnChangeKeyword = (keyword: string) => void;
 
@@ -202,28 +201,6 @@ export const KeywordForm = ({
     [isKeywordsArray, onChangeKeyword]
   );
 
-  useEffect(() => {
-    const refinedConfig = getRefinedConfig(config);
-    const refinedConfigEntries = entries(refinedConfig);
-    const hasValues = some<typeof refinedConfigEntries>((item) =>
-      Boolean(item)
-    )(refinedConfig);
-    if (hasValues) {
-      const reducedValues = reduce<any, MarkOptions>((acc, [key, value]) => {
-        if (value) {
-          return {
-            ...acc,
-            [key]: value,
-          };
-        }
-        return {
-          ...acc,
-        };
-      }, {})(refinedConfigEntries as any);
-      onChange(reducedValues);
-    }
-  }, [config, onChange]);
-
   const isErrorKeyword = useMemo(() => {
     if (isKeywordsArray) {
       try {
@@ -235,6 +212,20 @@ export const KeywordForm = ({
       }
     }
   }, [isKeywordsArray, keywordArray]);
+
+  useEffect(() => {
+    const refinedConfig = getRefinedConfig(config);
+    const refinedConfigEntries = entries(refinedConfig);
+    const hasValues = some<typeof refinedConfigEntries>((item) =>
+      Boolean(item)
+    )(refinedConfig);
+    if (hasValues) {
+      const pickedValues = pickBy<MarkOptions>(identity)(refinedConfig);
+      onChange(pickedValues);
+    } else {
+      onChange(undefined);
+    }
+  }, [config, onChange]);
 
   return (
     <Vertical gap={2}>
