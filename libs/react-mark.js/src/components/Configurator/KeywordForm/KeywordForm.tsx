@@ -19,8 +19,6 @@ import {
   noop,
   reduce,
   uniqueId,
-  entries,
-  some,
   pickBy,
   identity,
 } from 'lodash/fp';
@@ -215,16 +213,8 @@ export const KeywordForm = ({
 
   useEffect(() => {
     const refinedConfig = getRefinedConfig(config);
-    const refinedConfigEntries = entries(refinedConfig);
-    const hasValues = some<typeof refinedConfigEntries>((item) =>
-      Boolean(item)
-    )(refinedConfig);
-    if (hasValues) {
-      const pickedValues = pickBy<MarkOptions>(identity)(refinedConfig);
-      onChange(pickedValues);
-    } else {
-      onChange(undefined);
-    }
+    const pickedValues = pickBy<MarkOptions>(identity)(refinedConfig);
+    onChange(pickedValues);
   }, [config, onChange]);
 
   return (
