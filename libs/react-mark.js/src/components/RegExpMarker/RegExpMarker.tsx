@@ -1,4 +1,10 @@
 import React from 'react';
-export const RegExpMarker = () => {
+
+type RegExpMarkerProps = {
+  mark?: RegExp;
+  options?: {};
+};
+
+export const RegExpMarker = ({ mark, options }: RegExpMarkerProps) => {
   return <div>Reg Exp Marker</div>;
 };

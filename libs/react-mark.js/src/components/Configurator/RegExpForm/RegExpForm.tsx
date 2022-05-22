@@ -10,6 +10,7 @@ import {
 } from 'mui';
 import { noop } from 'lodash/fp';
 import React from 'react';
+import { RegExpMarkerOptions } from 'mark.js';
 
 export type RegExpFormRawValues = {
   element: string;
@@ -21,22 +22,6 @@ export type RegExpFormRawValues = {
   debug: boolean;
   exclude: TextFieldProps[];
 };
-
-export type RegExpFormConfig = Partial<{
-  element: string;
-  className: string;
-  exclude: string[];
-  iframes: boolean;
-  iframesTimeout: number;
-  acrossElements: boolean;
-  ignoreGroups: number;
-  each: () => void;
-  filter: () => void;
-  noMatch: () => void;
-  done: () => void;
-  debug: boolean;
-  log: Console;
-}>;
 
 const defaultConfig = {
   acrossElements: false,
@@ -54,7 +39,9 @@ const defaultConfig = {
   noMatch: () => {},
 };
 
-const getRefinedOptions = (options: RegExpFormRawValues): RegExpFormConfig => {
+const getRefinedOptions = (
+  options: RegExpFormRawValues
+): RegExpMarkerOptions => {
   const {
     acrossElements,
     className,
@@ -96,7 +83,7 @@ export type RegExpChangeHandler = (regExpValue: RegExp) => void;
 
 export type RegExpFormProps = {
   onChangeRegExp?: RegExpChangeHandler;
-  onChangeOptions?: (regExpConfig: RegExpFormConfig) => void;
+  onChangeOptions?: (regExpConfig: RegExpMarkerOptions) => void;
 };
 
 export const RegExpForm = ({

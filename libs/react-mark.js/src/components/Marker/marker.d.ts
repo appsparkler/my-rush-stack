@@ -3,6 +3,22 @@ declare module 'mark.js' {
 
   export type Accuracy = 'partially' | 'complimentary' | 'exactly';
 
+  export type RegExpMarkerOptions = Partial<{
+    element: string;
+    className: string;
+    exclude: string[];
+    iframes: boolean;
+    iframesTimeout: number;
+    acrossElements: boolean;
+    ignoreGroups: number;
+    each: () => void;
+    filter: () => void;
+    noMatch: () => void;
+    done: () => void;
+    debug: boolean;
+    log: Console;
+  }>;
+
   export type MarkOptions = Partial<{
     /**
      * An array with exclusion selectors. Matches inside these elements will be ignored. Example: "filter": ["h1", ".ignore"]
