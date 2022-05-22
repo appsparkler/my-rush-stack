@@ -12,9 +12,7 @@ export const Configurator = () => {
   const [
     markerCodeRendererWithCopyConfig,
     setMarkerCodeRendererWithCopyConfig,
-  ] = useState<MarkerCodeRendererWithCopyProps>({
-    // options: {},
-  });
+  ] = useState<MarkerCodeRendererWithCopyProps>({});
   const handleChangeConfig = useCallback<OnChangeCompositeForm>((config) => {
     setMarkerCodeRendererWithCopyConfig(config);
   }, []);

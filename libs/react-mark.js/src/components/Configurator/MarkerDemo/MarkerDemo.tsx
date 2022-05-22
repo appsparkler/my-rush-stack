@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Marker, MarkerProps } from '../../Marker';
 
 export type MarkerDemoProps = {
@@ -8,8 +8,17 @@ export type MarkerDemoProps = {
 };
 
 export const MarkerDemo = ({ mark = '', options = {} }: MarkerDemoProps) => {
+  const $mark = useMemo(() => {
+    if (Array.isArray(mark)) return mark;
+    try {
+      const parsed = JSON.parse(mark);
+      return parsed;
+    } catch (e) {
+      return mark;
+    }
+  }, [mark]);
   return (
-    <Marker mark={mark} options={options}>
+    <Marker mark={$mark} options={options}>
       <Typography>
         Lorem ipsum dolor sit āmet, consetetur sadipscing elitr, sed diam nonumy
         eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
