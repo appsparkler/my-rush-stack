@@ -1,5 +1,5 @@
-import { MarkerCodeRendererWithCopy } from './MarkerCoderRendererWithCodeCopy';
-import { KeywordForm, KeywordFormProps, MarkConfig } from './KeywordForm';
+import { MarkerCodeRendererWithCopy } from '../MarkerCoderRendererWithCodeCopy';
+import { KeywordForm, KeywordFormProps, MarkConfig } from '../KeywordForm';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   FormControlLabel,
@@ -7,12 +7,12 @@ import {
   RadioGroup,
   RadioGroupProps,
 } from '@mui/material';
-import { RegExpForm, RegExpFormProps } from './RegExpForm';
-import { RangesMarkerForm, RangesMarkerFormProps } from './RangesMarkerForm';
+import { RegExpForm, RegExpFormProps } from '../RegExpForm';
+import { RangesMarkerForm, RangesMarkerFormProps } from '../RangesMarkerForm';
 import {
   MarkerCodeRendererProps,
   MarkerType,
-} from './MarkerCoderRenderer/MarkerCodeRenderer';
+} from '../MarkerCoderRenderer/MarkerCodeRenderer';
 
 type ConfigType = 'keyword' | 'keywordArray' | 'regExp' | 'ranges';
 
