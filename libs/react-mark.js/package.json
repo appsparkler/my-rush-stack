@@ -19,7 +19,7 @@
     "analyze": "size-limit --why",
     "storybook": "start-storybook -p 7000",
     "build-storybook": "build-storybook",
-    "watch:dependencies": "rush build:watch --to-except react-mark.js"
+    "watch:deps": "rush build:watch --to-except react-mark.js"
   },
   "peerDependencies": {
     "react": ">=16",

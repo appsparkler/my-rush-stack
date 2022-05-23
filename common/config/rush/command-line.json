@@ -17,7 +17,8 @@
       "watchForChanges": true,
       "commandKind": "bulk",
       "enableParallelism": true,
-      "summary": "Build projects and watch for changes"
+      "summary": "Build projects and watch for changes",
+      "ignoreMissingScript": true
     }
     // {
     //   /**
