@@ -3,7 +3,6 @@ import React, { useEffect, useMemo, useRef } from 'react';
 import Prism from './prism.js';
 import './prism.css';
 import { keys, noop } from 'lodash/fp';
-import { filterOutFalsy } from '../../../utils';
 
 export type MarkerType = 'RangesMarker' | 'Marker' | 'RegExpMarker';
 
@@ -47,8 +46,7 @@ export const MarkerCodeRenderer = ({
     return `mark="${mark}"`;
   }, [isMarkArray, isRangesMarker, mark, ranges]);
   const optionsRender = useMemo(() => {
-    const refinedOptions = filterOutFalsy(options);
-    const showOptions = keys(refinedOptions).length > 0 ? true : false;
+    const showOptions = keys(options).length > 0 ? true : false;
     if (showOptions) {
       return `
   options={${optionsString}}

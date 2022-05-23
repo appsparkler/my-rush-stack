@@ -13,15 +13,7 @@ import {
   Vertical,
 } from 'mui';
 import { SimpleFormControlChange } from 'common-types';
-import {
-  isArray,
-  keys,
-  noop,
-  reduce,
-  uniqueId,
-  pickBy,
-  identity,
-} from 'lodash/fp';
+import { isArray, keys, noop, reduce, uniqueId, pickBy } from 'lodash/fp';
 import { getValues } from '../../../utils';
 import { MarkOptions } from 'mark.js';
 
@@ -213,7 +205,9 @@ export const KeywordForm = ({
 
   useEffect(() => {
     const refinedConfig = getRefinedConfig(config);
-    const pickedValues = pickBy<MarkOptions>(identity)(refinedConfig);
+    const pickedValues = pickBy<MarkOptions>((x) => typeof x !== 'undefined')(
+      refinedConfig
+    );
     onChange(pickedValues);
   }, [config, onChange]);
 
