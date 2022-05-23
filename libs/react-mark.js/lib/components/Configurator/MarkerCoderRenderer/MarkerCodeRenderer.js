@@ -31,11 +31,27 @@ const material_1 = require("@mui/material");
 const react_1 = __importStar(require("react"));
 const prism_js_1 = __importDefault(require("./prism.js"));
 require("./prism.css");
-const MarkerCodeRenderer = ({ mark = '', options = {}, wrapperProps = {}, onChange, }) => {
+const fp_1 = require("lodash/fp");
+const utils_1 = require("../../../utils");
+const MarkerCodeRenderer = ({ mark = '', markerType = 'Marker', isRangesMarker = false, options = {}, ranges = [], wrapperProps = {}, onChange = fp_1.noop, isMarkArray = false, }) => {
     const codeRef = (0, react_1.useRef)(null);
-    const optionsString = (0, react_1.useMemo)(() => JSON.stringify(options, null, 4).replace('}', `  }`), []);
+    const optionsString = (0, react_1.useMemo)(() => {
+        return JSON.stringify(options, null, 4).replace('}', `  }`);
+    }, [options]);
+    const markRenderer = (0, react_1.useMemo)(() => {
+        if (isRangesMarker) {
+            const SPACES_2 = `  `;
+            const rangesJSON = JSON.stringify(ranges, null, 4).replace(']', `${SPACES_2}]`);
+            return `ranges={${rangesJSON}}`;
+        }
+        if (isMarkArray) {
+            return `mark={${mark}}`;
+        }
+        return `mark="${mark}"`;
+    }, [isMarkArray, isRangesMarker, mark, ranges]);
     const optionsRender = (0, react_1.useMemo)(() => {
-        const showOptions = Object.keys(options).length > 0 ? true : false;
+        const refinedOptions = (0, utils_1.filterOutFalsy)(options);
+        const showOptions = (0, fp_1.keys)(refinedOptions).length > 0 ? true : false;
         if (showOptions) {
             return `
   options={${optionsString}}
@@ -44,8 +60,8 @@ const MarkerCodeRenderer = ({ mark = '', options = {}, wrapperProps = {}, onChan
         return `
 />`;
     }, [options, optionsString]);
-    const code = (0, react_1.useMemo)(() => `<Marker
-  mark="${mark}"${optionsRender}`, [mark, optionsRender]);
+    const code = (0, react_1.useMemo)(() => `<${markerType}
+  ${markRenderer}${optionsRender}`, [markRenderer, markerType, optionsRender]);
     (0, react_1.useEffect)(() => {
         onChange(code);
         const highlightedCode = prism_js_1.default.highlight(code, prism_js_1.default.languages.jsx, 'jsx');

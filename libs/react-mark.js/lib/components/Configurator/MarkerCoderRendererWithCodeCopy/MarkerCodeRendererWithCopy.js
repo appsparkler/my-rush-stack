@@ -28,7 +28,7 @@ const material_1 = require("@mui/material");
 const react_1 = __importStar(require("react"));
 const MarkerCodeRenderer_1 = require("../MarkerCoderRenderer/MarkerCodeRenderer");
 const icons_material_1 = require("@mui/icons-material");
-const MarkerCodeRendererWithCopy = ({ mark, options, }) => {
+const MarkerCodeRendererWithCopy = ({ mark, isMarkArray, isRangesMarker: isRangesMaker, ranges, markerType, options, }) => {
     const textareaRef = (0, react_1.useRef)(null);
     const [openSnackbar, setOpenSnackbar] = (0, react_1.useState)(false);
     const [textToCopy, setTextToCopy] = (0, react_1.useState)('');
@@ -45,14 +45,17 @@ const MarkerCodeRendererWithCopy = ({ mark, options, }) => {
         setOpenSnackbar(false);
     }, []);
     return (react_1.default.createElement(material_1.Box, { position: "relative" },
-        react_1.default.createElement(MarkerCodeRenderer_1.MarkerCodeRenderer, { mark: mark, options: options, onChange: handleChange }),
+        react_1.default.createElement(MarkerCodeRenderer_1.MarkerCodeRenderer, { mark: mark, options: options, onChange: handleChange, isMarkArray: isMarkArray, markerType: markerType, isRangesMarker: isRangesMaker, ranges: ranges }),
         react_1.default.createElement(material_1.Box, { position: "absolute", top: 1, right: 1 },
             react_1.default.createElement(material_1.IconButton, { "aria-label": "copy", color: "primary", onClick: handleClickCopy },
                 react_1.default.createElement(icons_material_1.ContentCopy, null))),
-        react_1.default.createElement(material_1.Snackbar, { open: openSnackbar, autoHideDuration: 1000, onClose: handleClose, anchorOrigin: { vertical: 'top', horizontal: 'center' } },
+        react_1.default.createElement(material_1.Snackbar, { open: openSnackbar, autoHideDuration: 1000, onClose: handleClose, anchorOrigin: {
+                horizontal: 'center',
+                vertical: 'top',
+            } },
             react_1.default.createElement(material_1.Alert, { onClose: handleClose, severity: "success", variant: "filled", sx: { width: '100%' } }, "copied!")),
         react_1.default.createElement(material_1.Box, { position: "absolute", left: 10000 },
-            react_1.default.createElement("textarea", { ref: textareaRef, value: textToCopy }, textToCopy))));
+            react_1.default.createElement("textarea", { ref: textareaRef, defaultValue: textToCopy }))));
 };
 exports.MarkerCodeRendererWithCopy = MarkerCodeRendererWithCopy;
 //# sourceMappingURL=MarkerCodeRendererWithCopy.js.map

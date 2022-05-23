@@ -26,31 +26,30 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Configurator = void 0;
 const material_1 = require("@mui/material");
 const react_1 = __importStar(require("react"));
-// export const Configurator = () => {
-//     return
-// }
+const CompositeForm_1 = require("./CompositeForm");
+const MarkerCoderRendererWithCodeCopy_1 = require("./MarkerCoderRendererWithCodeCopy");
+const MarkerDemo_1 = require("./MarkerDemo");
 const Configurator = () => {
-    const theme = (0, material_1.createTheme)({ palette: { mode: 'light' } });
-    console.log({ theme });
-    const mark = 'hello world';
-    const options = { foo: 'foo', ignore: ['h1', '.hello'] };
-    const optionsString = JSON.stringify(options, null, 4).replace('}', `  }`);
-    const optionsRender = (0, react_1.useMemo)(() => {
-        const showOptions = Object.keys(options).length > 0 ? true : false;
-        if (showOptions) {
-            return `
-  options={${optionsString}}
-/>`;
-        }
-        return `
-/>`;
+    const [markerCodeRendererWithCopyConfig, setMarkerCodeRendererWithCopyConfig,] = (0, react_1.useState)({});
+    const handleChangeConfig = (0, react_1.useCallback)((config) => {
+        setMarkerCodeRendererWithCopyConfig(config);
     }, []);
-    return (react_1.default.createElement(material_1.ThemeProvider, { theme: theme },
-        react_1.default.createElement(material_1.Box, { bgcolor: 'grey.200', p: 2 },
-            react_1.default.createElement("pre", null, `
-<Marker 
-  mark="${mark}"${optionsRender}`),
-            react_1.default.createElement("pre", null, JSON.stringify(theme, null, 2)))));
+    const { mark, options = undefined } = markerCodeRendererWithCopyConfig;
+    return (react_1.default.createElement(react_1.default.Fragment, null,
+        react_1.default.createElement(material_1.Grid, { container: true, spacing: 2 },
+            react_1.default.createElement(material_1.Grid, { item: true, xs: 12 },
+                react_1.default.createElement(material_1.Typography, { variant: "h2" }, "Configurator"),
+                react_1.default.createElement(material_1.Typography, { variant: "h5" },
+                    "The configurator should help you understand",
+                    ' ',
+                    react_1.default.createElement("pre", { style: { display: 'inline' } }, "react-mark.js"),
+                    " and its API. Just define your custom options to see what will be marked and view the generated code for your application.")),
+            react_1.default.createElement(material_1.Grid, { item: true, xs: 12, sm: 6 },
+                react_1.default.createElement(CompositeForm_1.CompositeForm, { onChange: handleChangeConfig })),
+            react_1.default.createElement(material_1.Grid, { item: true, xs: 12, sm: 6 },
+                react_1.default.createElement(MarkerDemo_1.MarkerDemo, { mark: mark, options: options })),
+            react_1.default.createElement(material_1.Grid, { item: true, xs: 12 },
+                react_1.default.createElement(MarkerCoderRendererWithCodeCopy_1.MarkerCodeRendererWithCopy, Object.assign({}, markerCodeRendererWithCopyConfig))))));
 };
 exports.Configurator = Configurator;
 //# sourceMappingURL=Configurator.js.map

@@ -29,7 +29,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Marker = void 0;
 const react_1 = __importStar(require("react"));
 const mark_js_1 = __importDefault(require("mark.js"));
-const Marker = ({ children, mark = '', options, }) => {
+const Marker = ({ children, mark = '', options = {} }) => {
     const markerRef = (0, react_1.useRef)(null);
     const [markInstance, setMarkInstance] = (0, react_1.useState)();
     (0, react_1.useEffect)(() => {

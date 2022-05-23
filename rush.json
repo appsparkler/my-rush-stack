@@ -402,6 +402,11 @@
       "packageName": "react-mark-js-docs",
       "projectFolder": "docs/react-mark.js"
     },
+    // @types/mark.js
+    {
+      "packageName": "@types/mark.js",
+      "projectFolder": "@types/mark.js"
+    },
     // LIBS - COMMON TYPES
     {
       "packageName": "common-types",

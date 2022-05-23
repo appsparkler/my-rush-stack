@@ -1,6 +1,5 @@
 import { Grid, Typography } from '@mui/material';
 import React, { useCallback, useState } from 'react';
-import { MarkerProps } from '../Marker';
 import { CompositeForm, OnChangeCompositeForm } from './CompositeForm';
 import {
   MarkerCodeRendererWithCopy,
@@ -35,7 +34,7 @@ export const Configurator = () => {
           <CompositeForm onChange={handleChangeConfig} />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <MarkerDemo mark={mark as MarkerProps['mark']} options={options} />
+          <MarkerDemo mark={mark as string} options={options} />
         </Grid>
         <Grid item xs={12}>
           <MarkerCodeRendererWithCopy {...markerCodeRendererWithCopyConfig} />

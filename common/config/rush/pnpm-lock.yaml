@@ -5,6 +5,9 @@ importers:
   .:
     specifiers: {}
 
+  ../../@types/mark.js:
+    specifiers: {}
+
   ../../docs/react-mark.js:
     specifiers:
       '@docusaurus/core': 2.0.0-beta.18
@@ -141,6 +144,7 @@ importers:
       '@storybook/addons': ^6.4.22
       '@storybook/react': ^6.4.22
       '@types/lodash': ~4.14.182
+      '@types/mark.js': workspace:*
       '@types/node': ~17.0.31
       '@types/prismjs': ~1.26.0
       '@types/react': 18.0.9
@@ -174,6 +178,7 @@ importers:
       '@storybook/addons': 6.4.22_react-dom@18.1.0+react@18.1.0
       '@storybook/react': 6.4.22_119505dc26cbd948e3fc94bc51897a3c
       '@types/lodash': 4.14.182
+      '@types/mark.js': link:../../@types/mark.js
       '@types/node': 17.0.31
       '@types/prismjs': 1.26.0
       '@types/react': 18.0.9

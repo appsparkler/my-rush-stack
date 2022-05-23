@@ -1,7 +1,7 @@
-declare module 'mark.js' {
-  export type WildCards = 'disabled' | 'enabled' | 'withSpaces';
+declare module "mark.js" {
+  export type WildCards = "disabled" | "enabled" | "withSpaces";
 
-  export type Accuracy = 'partially' | 'complimentary' | 'exactly';
+  export type Accuracy = "partially" | "complimentary" | "exactly";
 
   export type RegExpMarkerOptions = Partial<{
     element: string;

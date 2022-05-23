@@ -31,11 +31,11 @@ export const excludeH1 = Template.bind({});
 excludeH1.args = {
   mark: ['elis', 'facilis', 'omnis', 'ipsum dolor sit'],
   options: {
-    exclude: ['h1']
-  }
+    exclude: ['h1'],
+  },
 };
 
 export default {
-  title: 'Components/Marker',
   component: Marker,
+  title: 'Components/Marker',
 } as ComponentMeta<typeof Marker>;
