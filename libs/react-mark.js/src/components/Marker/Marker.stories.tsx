@@ -1,6 +1,7 @@
 import { Marker } from './Marker';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
+import { Card, Typography } from '@mui/material';
 
 const Template: ComponentStory<typeof Marker> = (args) => (
   <Marker {...args}>
@@ -33,6 +34,8 @@ excludeH1.args = {
   options: {
     exclude: ['h1'],
   },
+  As: Typography,
+  variant: 'h1',
 };
 
 export default {

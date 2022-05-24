@@ -1,13 +1,26 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {
+  createElement,
+  ElementType,
+  FC,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import MarkJS, { MarkOptions } from 'mark.js';
 
 export type MarkerProps = {
   children?: React.ReactNode;
+  As?: string | ElementType;
   mark?: string | string[];
   options?: MarkOptions;
 };
 
-export const Marker = ({ children, mark = '', options = {} }: MarkerProps) => {
+export const Marker: FC<MarkerProps> = ({
+  As = 'div',
+  mark = '',
+  options = {},
+  ...restProps
+}) => {
   const markerRef = useRef<HTMLDivElement | null>(null);
   const [markInstance, setMarkInstance] = useState<MarkJS>();
 
@@ -31,5 +44,6 @@ export const Marker = ({ children, mark = '', options = {} }: MarkerProps) => {
     }
   }, [mark, markInstance, options]);
 
-  return <div ref={markerRef}>{children}</div>;
+  return createElement(As, restProps);
+  // return <div ref={markerRef}>{children}</div>;
 };
