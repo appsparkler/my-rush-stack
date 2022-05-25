@@ -1,10 +1,10 @@
-import { Marker } from './Marker';
+import { Marker, MarkerProps } from './Marker';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
-import { Card, Typography } from '@mui/material';
+import { Typography, TypographyProps } from '@mui/material';
 
 const Template: ComponentStory<typeof Marker> = (args) => (
-  <Marker {...args}>
+  <Marker<TypographyProps> {...args}>
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad eligendi ea
     consequatur doloribus animi accusantium at dicta omnis eius. Voluptas
     consectetur dignissimos modi quos veritatis nisi velit facilis blanditiis
@@ -18,24 +18,25 @@ const Template: ComponentStory<typeof Marker> = (args) => (
   </Marker>
 );
 
-export const marker = Template.bind({});
+export const marker: ComponentStory<typeof Marker> = Template.bind({});
 marker.args = {
-  mark: 'elit',
-};
+  As: Typography,
+  mark: 'Lorem',
+  variant: 'body1',
+} as MarkerProps<TypographyProps>;
 
 export const markWithArrayOfStrings = Template.bind({});
 markWithArrayOfStrings.args = {
   mark: ['elis', 'facilis', 'omnis', 'ipsum dolor sit'],
 };
 
-export const excludeH1 = Template.bind({});
+export const excludeH1: ComponentStory<typeof Marker> = Template.bind({});
 excludeH1.args = {
+  As: Typography,
   mark: ['elis', 'facilis', 'omnis', 'ipsum dolor sit'],
   options: {
     exclude: ['h1'],
   },
-  As: Typography,
-  variant: 'h1',
 };
 
 export default {
