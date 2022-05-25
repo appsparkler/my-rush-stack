@@ -1,7 +1,6 @@
 import React, {
   createElement,
   ElementType,
-  FC,
   HTMLAttributes,
   useEffect,
   useRef,
@@ -11,15 +10,13 @@ import MarkJS, { MarkOptions } from 'mark.js';
 
 export type MarkerProps<T = HTMLAttributes<HTMLDivElement>> = {
   children?: React.ReactNode;
-  As?: string | ElementType;
+  as?: string | ElementType;
   mark?: string | string[];
   options?: MarkOptions;
 } & T;
 
-const X = () => <div about="abcd">Hello</div>;
-
 export const Marker = <T extends {} = HTMLAttributes<HTMLDivElement>>({
-  As = 'div',
+  as = 'div',
   mark = '',
   options = {},
   ...restProps
@@ -42,5 +39,5 @@ export const Marker = <T extends {} = HTMLAttributes<HTMLDivElement>>({
     }
   }, [mark, markInstance, options]);
 
-  return createElement(As, { ref: markerRef, ...restProps });
+  return createElement(as, { ref: markerRef, ...restProps });
 };

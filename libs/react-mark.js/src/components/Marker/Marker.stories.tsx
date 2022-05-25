@@ -4,23 +4,20 @@ import React from 'react';
 import { Typography, TypographyProps } from '@mui/material';
 
 const Template: ComponentStory<typeof Marker> = (args) => (
-  <Marker<TypographyProps> {...args}>
+  <Marker {...args}>
+    <h1>Lorem ipsum dolor sit</h1>
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad eligendi ea
     consequatur doloribus animi accusantium at dicta omnis eius. Voluptas
     consectetur dignissimos modi quos veritatis nisi velit facilis blanditiis
     corporis!
-    <h1>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad eligendi ea
-      consequatur doloribus animi accusantium at dicta omnis eius. Voluptas
-      consectetur dignissimos modi quos veritatis nisi velit facilis blanditiis
-      corporis!
-    </h1>
   </Marker>
 );
+Template.args = {
+  mark: 'Lorem Ipsum',
+};
 
 export const marker: ComponentStory<typeof Marker> = Template.bind({});
 marker.args = {
-  As: Typography,
   mark: 'Lorem',
   variant: 'body1',
 } as MarkerProps<TypographyProps>;
@@ -32,12 +29,18 @@ markWithArrayOfStrings.args = {
 
 export const excludeH1: ComponentStory<typeof Marker> = Template.bind({});
 excludeH1.args = {
-  As: Typography,
-  mark: ['elis', 'facilis', 'omnis', 'ipsum dolor sit'],
+  mark: ['Lorem', 'elis', 'facilis', 'omnis', 'ipsum dolor sit'],
   options: {
     exclude: ['h1'],
   },
 };
+
+export const asTypography: ComponentStory<typeof Marker> = Template.bind({});
+asTypography.args = {
+  as: Typography,
+  mark: 'Lorem Ipsum',
+  variant: 'body1',
+} as MarkerProps<TypographyProps>;
 
 export default {
   component: Marker,
