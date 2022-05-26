@@ -91,7 +91,7 @@ export const RegExpForm = ({
   onChangeOptions = noop,
   onChangeRegExp = noop,
 }: RegExpFormProps) => {
-  const [regexp, setRegexp] = useState<string>('/Lorem Ipsum/');
+  const [regexp, setRegexp] = useState<string>('/Lorem/');
 
   const [options, setOptions] = useState<RegExpFormRawValues>({
     acrossElements: false,

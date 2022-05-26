@@ -71,7 +71,7 @@ export const CompositeForm = ({ onChange = noop }: CompositeFormProps) => {
     } else if (valueRef === 'keywordArray') {
       setMark(JSON.stringify(['Lorem', 'Ipsum']));
     } else if (valueRef === 'regExp') {
-      setMark(/Lorem Ipsum/);
+      setMark(/Lorem/);
     } else if (valueRef === 'ranges') {
       setRanges([{ length: 7, start: 3 }]);
     }

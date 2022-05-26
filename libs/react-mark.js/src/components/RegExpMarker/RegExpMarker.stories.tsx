@@ -23,7 +23,7 @@ regExpMarker.args = {
       exercitationem dicta in.
     </Typography>
   ),
-  mark: /ea/,
+  mark: /adipisicing/,
 };
 
 export default Story;
