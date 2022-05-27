@@ -3,11 +3,7 @@
   "version": "0.1.0",
   "description": "A generator to generate a Typescript React Storybook Library",
   "files": [
-    "generators",
-    "src",
-    ".storybook",
-    "package.json",
-    "tsconfig.json"
+    "app"
   ],
   "keywords": [
     "yeoman-generator",
