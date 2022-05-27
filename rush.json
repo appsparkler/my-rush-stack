@@ -391,6 +391,10 @@
    * 3. It's useful to have a centralized inventory of all projects and their important metadata.
    */
   "projects": [
+    {
+      "packageName": "generator-appsparkler",
+      "projectFolder": "generators/generator-appsparkler"
+    },
     // LIBS - REACT MARK JS
     {
       "packageName": "react-mark.js",

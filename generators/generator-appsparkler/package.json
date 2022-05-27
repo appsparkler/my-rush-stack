@@ -1,5 +1,5 @@
 {
-  "name": "generator-ts-react-storybook",
+  "name": "generator-appsparkler",
   "version": "0.1.0",
   "description": "A generator to generate a Typescript React Storybook Library",
   "files": [
