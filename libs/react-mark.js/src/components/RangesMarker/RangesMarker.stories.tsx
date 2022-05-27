@@ -18,7 +18,11 @@ export const rangesMarker: ComponentStory<typeof RangesMarker> = Template.bind(
   {}
 );
 rangesMarker.args = {
-  children: <mark>Hello World</mark>,
+  mark: [
+    { length: 10, start: 5 },
+    { length: 10, start: 20 },
+    { length: 5, start: 40 },
+  ],
 };
 rangesMarker.storyName = 'RangesMarker';
 
