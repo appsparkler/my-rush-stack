@@ -8,7 +8,7 @@ import {
   SimpleTextField,
   Vertical,
 } from 'mui';
-import { noop } from 'lodash/fp';
+import { noop, some, values } from 'lodash/fp';
 import React from 'react';
 import { RegExpMarkerOptions } from 'mark.js';
 
@@ -23,9 +23,10 @@ export type RegExpFormRawValues = {
   exclude: TextFieldProps[];
 };
 
-const defaultConfig: RegExpMarkerOptions = {
-  // acrossElements: false,
+const someAreTruthy = some((item) => Boolean(item));
 
+const defaultConfig: RegExpMarkerOptions = {
+  acrossElements: false,
   className: '',
   debug: false,
   done: () => {},
@@ -122,7 +123,11 @@ export const RegExpForm = ({
   }, [onChangeRegExp, regexp]);
 
   useEffect(() => {
-    onChangeOptions(getRefinedOptions(options));
+    const refinedOptions = getRefinedOptions(options);
+    const refinedOptionValues = values(refinedOptions);
+    const someHaveDefinedValues = someAreTruthy(refinedOptionValues);
+
+    onChangeOptions(someHaveDefinedValues ? refinedOptions : undefined);
   }, [onChangeOptions, options]);
 
   return (
