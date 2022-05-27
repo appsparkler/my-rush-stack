@@ -14,6 +14,14 @@ npm i -g @microsoft/rush pnpm heft
 rush update
 ```
 
+## Maintenance
+
+### Check if there are multiple versions of a `node_module`
+
+```bash
+rush check
+```
+
 ## Select The Project You Would Like To Develop
 
 1. [React Mark JS][react-mark-js]
@@ -22,7 +30,7 @@ rush update
 [react-mark-js]: libs/react-mark.js#react-mark-js
 [mui]: libs/mui#mui
 
-## Adding a New Project (as per HEFT)
+## Adding a New Project (as per [Heft](https://rushstack.io/pages/heft_tutorials/getting_started/))
 
 1. Create a project-folder in any of the categories (or chosse a new one) - for ex. `widgets/react-mark-js-configurator`
 1. Now, add the project files and folders here. For ex. `package.json` and `tsconfig.json`
@@ -42,3 +50,5 @@ rush update
   /*...*/
 }
 ```
+
+1. Run `rush update` to link this new project into the `rush-stack`.
