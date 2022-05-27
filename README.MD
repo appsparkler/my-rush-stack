@@ -5,7 +5,7 @@
 After cloning the respository; ensure you have the following global dependencies installed:
 
 ```bash
-npm i -g @microsoft/rush pnpm heft
+npm i -g @microsoft/rush @rushstack/heft pnpm
 ```
 
 ## Update Project
@@ -52,3 +52,7 @@ rush check
 ```
 
 1. Run `rush update` to link this new project into the `rush-stack`.
+
+## Generators
+
+A Typescript react-library sample project is available at [@generators/generator-appsparkler](@generators/generator-appsparkler/generators/app/) in this project

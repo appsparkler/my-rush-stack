@@ -393,7 +393,7 @@
   "projects": [
     {
       "packageName": "generator-appsparkler",
-      "projectFolder": "generators/generator-appsparkler"
+      "projectFolder": "@generators/generator-appsparkler"
     },
     // LIBS - REACT MARK JS
     {
