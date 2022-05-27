@@ -14,6 +14,16 @@ importers:
   ../../@types/mark.js:
     specifiers: {}
 
+  ../../awesome-widgets:
+    specifiers:
+      '@types/node': ~17.0.31
+      '@types/react': 18.0.9
+      typescript: ~4.6.4
+    devDependencies:
+      '@types/node': 17.0.35
+      '@types/react': 18.0.9
+      typescript: 4.6.4
+
   ../../docs/react-mark.js:
     specifiers:
       '@docusaurus/core': 2.0.0-beta.18
@@ -7784,6 +7794,10 @@ packages:
 
   /@types/node/17.0.31:
     resolution: {integrity: sha512-AR0x5HbXGqkEx9CadRH3EBYx/VkiUgZIhP4wvPn/+5KIsgpNoyFaRlVe0Zlx9gRtg8fA06a9tskE2MSN7TcG4Q==}
+
+  /@types/node/17.0.35:
+    resolution: {integrity: sha512-vu1SrqBjbbZ3J6vwY17jBs8Sr/BKA+/a/WtjRG+whKg1iuLFOosq872EXS0eXWILdO36DHQQeku/ZcL6hz2fpg==}
+    dev: true
 
   /@types/normalize-package-data/2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}

@@ -35,13 +35,6 @@ const Configurator = () => {
         setMarkerCodeRendererWithCopyConfig(config);
     }, []);
     const { mark, options = undefined } = markerCodeRendererWithCopyConfig;
-    const { showMarker, showRangesMarker } = (0, react_1.useMemo)(() => {
-        const { markerType } = markerCodeRendererWithCopyConfig;
-        return {
-            showMarker: markerType === 'Marker',
-            showRangesMarker: markerType === 'RangesMarker',
-        };
-    }, [markerCodeRendererWithCopyConfig]);
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement(material_1.Grid, { container: true, spacing: 2 },
             react_1.default.createElement(material_1.Grid, { item: true, xs: 12 },
