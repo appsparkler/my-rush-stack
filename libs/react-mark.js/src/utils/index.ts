@@ -28,5 +28,10 @@ export const stringToRegex = (str: string) => {
   const options = optionsMatch ? optionsMatch[1] : '';
 
   // Compiled regex
-  return new RegExp(main, options);
+  try {
+    const re = new RegExp(main, options);
+    return re;
+  } catch (error) {
+    return new RegExp('');
+  }
 };

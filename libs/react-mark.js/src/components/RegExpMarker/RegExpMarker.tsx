@@ -19,7 +19,13 @@ export const RegExpMarker: React.FC<RegExpMarkerProps> = ({
   const [markerInstance, setMarkerInstance] = useState<MarkJS>();
   useEffect(() => {
     if (markerInstance) {
-      markerInstance.markRegExp(mark, options);
+      Promise.resolve(markerInstance.unmark()).then(() => {
+        try {
+          markerInstance.markRegExp(mark, options);
+        } catch (error) {
+          console.error('invalid regex', error);
+        }
+      });
     } else {
       const markerInstance = new MarkJS(markerRef.current);
       setMarkerInstance(markerInstance);
