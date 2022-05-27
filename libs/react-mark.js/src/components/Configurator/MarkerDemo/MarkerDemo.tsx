@@ -1,5 +1,6 @@
 import { Typography } from '@mui/material';
 import {
+  MarkOptions,
   RangeMarkerItem,
   RangesMarkerOptions,
   RegExpMarkerOptions,
@@ -12,7 +13,7 @@ import { MarkerType } from '../MarkerCoderRenderer';
 
 export type MarkerDemoProps = {
   mark?: string | RegExp | RangeMarkerItem[];
-  options?: RegExpMarkerOptions | RangesMarkerOptions;
+  options?: RegExpMarkerOptions | RangesMarkerOptions | MarkOptions;
   markerType?: MarkerType;
 };
 

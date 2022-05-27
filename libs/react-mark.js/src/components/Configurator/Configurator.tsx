@@ -1,5 +1,5 @@
 import { Grid, Typography } from '@mui/material';
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { CompositeForm, OnChangeCompositeForm } from './CompositeForm';
 import {
   MarkerCodeRendererWithCopy,
@@ -17,17 +17,6 @@ export const Configurator = () => {
   }, []);
 
   const { mark, options = undefined } = markerCodeRendererWithCopyConfig;
-
-  const { showMarker, showRangesMarker } = useMemo<{
-    showMarker: boolean;
-    showRangesMarker: boolean;
-  }>(() => {
-    const { markerType } = markerCodeRendererWithCopyConfig;
-    return {
-      showMarker: markerType === 'Marker',
-      showRangesMarker: markerType === 'RangesMarker',
-    };
-  }, [markerCodeRendererWithCopyConfig]);
 
   return (
     <>
