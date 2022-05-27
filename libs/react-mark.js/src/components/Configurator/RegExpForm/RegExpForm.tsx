@@ -1,6 +1,6 @@
 import { Grid, TextFieldProps } from '@mui/material';
 import { useCallback, useEffect, useState } from 'react';
-import { getValues, stringToRegex } from '../../../utils';
+import { getValues, someAreTruthy, stringToRegex } from '../../../utils';
 import {
   getDefaultInteactiveSimpleListItem,
   InteactiveSimpleList,
@@ -8,7 +8,7 @@ import {
   SimpleTextField,
   Vertical,
 } from 'mui';
-import { noop, some, values } from 'lodash/fp';
+import { noop, values } from 'lodash/fp';
 import React from 'react';
 import { RegExpMarkerOptions } from 'mark.js';
 
@@ -22,8 +22,6 @@ export type RegExpFormRawValues = {
   debug: boolean;
   exclude: TextFieldProps[];
 };
-
-const someAreTruthy = some((item) => Boolean(item));
 
 const defaultConfig: RegExpMarkerOptions = {
   acrossElements: false,

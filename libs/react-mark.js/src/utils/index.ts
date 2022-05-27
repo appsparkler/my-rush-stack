@@ -1,4 +1,5 @@
 import { filter, map, pipe } from 'lodash/fp';
+export * from './array-utils';
 
 export const filterOutFalsy = filter<string>((item) => Boolean(item));
 
