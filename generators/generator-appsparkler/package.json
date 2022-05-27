@@ -1,9 +1,9 @@
 {
   "name": "generator-appsparkler",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A generator to generate a Typescript React Storybook Library",
   "files": [
-    "app"
+    "generators"
   ],
   "keywords": [
     "yeoman-generator",
