@@ -9,7 +9,7 @@ rushx storybook
 ## Watch Dependencies
 
 ```bash
-rushx watch:dependencies
+rushx watch:deps
 ```
 
 ## Build The Library
