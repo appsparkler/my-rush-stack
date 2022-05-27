@@ -4,7 +4,7 @@ import { Typography } from '@mui/material';
 
 const Story = {
   component: RegExpMarker,
-  title: 'Components/Reg Exp Marker',
+  title: 'Components/RegExpMarker',
 } as ComponentMeta<typeof RegExpMarker>;
 
 const Template: ComponentStory<typeof RegExpMarker> = (args) => (

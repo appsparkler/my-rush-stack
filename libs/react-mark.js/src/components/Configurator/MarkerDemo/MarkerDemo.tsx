@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material';
 import { RegExpMarkerOptions } from 'mark.js';
 import React, { useMemo } from 'react';
-import { Marker, MarkerProps } from '../../Marker';
+import { Marker } from '../../Marker';
 import { RegExpMarker } from '../../RegExpMarker';
 import { MarkerType } from '../MarkerCoderRenderer';
 
