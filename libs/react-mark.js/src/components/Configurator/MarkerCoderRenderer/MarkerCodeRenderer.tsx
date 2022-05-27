@@ -3,12 +3,13 @@ import React, { useEffect, useMemo, useRef } from 'react';
 import Prism from './prism.js';
 import './prism.css';
 import { keys, noop } from 'lodash/fp';
+import { RangeMarkerItem } from 'mark.js';
 
 export type MarkerType = 'RangesMarker' | 'Marker' | 'RegExpMarker';
 
 export type MarkerCodeRendererProps = {
   markerType?: MarkerType;
-  mark?: string | RegExp;
+  mark?: string | RegExp | RangeMarkerItem[];
   options?: {};
   ranges?: { start: number; length: number }[];
   isRangesMarker?: boolean;

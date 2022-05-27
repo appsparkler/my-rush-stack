@@ -13,8 +13,9 @@ import {
   DynamicKeyValueListProps,
 } from '../KeywordForm/DynamicKeyValueList';
 import { SimpleFormControlChange } from 'common-types';
-import { uniqueId, reduce, noop, map } from 'lodash/fp';
+import { uniqueId, reduce, noop, map, values } from 'lodash/fp';
 import { RangesMarkerOptions } from 'mark.js';
+import { someAreTruthy } from '../../../utils';
 
 const reduceValuesToString = reduce<TextFieldProps, string[]>((acc, item) => {
   if (item.value) {
@@ -152,7 +153,10 @@ export const RangesMarkerForm: FC<RangesMarkerFormProps> = ({
   );
 
   useEffect(() => {
-    onChangeOptions(getRefinedConfig(config, defaultConfig));
+    const refinedConfig = getRefinedConfig(config, defaultConfig);
+    const refinedConfigValues = values(refinedConfig);
+    const someHaveValue = someAreTruthy(refinedConfigValues);
+    onChangeOptions(someHaveValue ? refinedConfig : undefined);
   }, [config, onChangeOptions]);
 
   return (

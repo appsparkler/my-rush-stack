@@ -23,6 +23,7 @@ rangesMarker.args = {
     { length: 10, start: 20 },
     { length: 5, start: 40 },
   ],
+  options: undefined,
 };
 rangesMarker.storyName = 'RangesMarker';
 

@@ -62,6 +62,8 @@ export const MarkerDemo = ({
   }, [markerType]);
   return (
     <>
+      <pre>{JSON.stringify(mark, null, 2)}</pre>
+      <pre>{JSON.stringify(options, null, 2)}</pre>
       {showMarker ? (
         <Marker mark={$mark} options={options}>
           <Content />

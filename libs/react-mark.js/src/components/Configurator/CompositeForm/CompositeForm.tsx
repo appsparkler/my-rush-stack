@@ -22,7 +22,7 @@ import {
 } from '../MarkerCoderRenderer/MarkerCodeRenderer';
 import React from 'react';
 import { noop } from 'lodash/fp';
-import { MarkOptions } from 'mark.js';
+import { MarkOptions, RangeMarkerItem } from 'mark.js';
 
 export type ConfigType = 'keyword' | 'keywordArray' | 'regExp' | 'ranges';
 
@@ -37,7 +37,9 @@ export type CompositeFormProps = {
 export const CompositeForm = ({ onChange = noop }: CompositeFormProps) => {
   const [configType, setConfigType] = useState<ConfigType>('keyword');
 
-  const [mark, setMark] = useState<string | RegExp>('Lorem Ipsum');
+  const [mark, setMark] = useState<string | RegExp | RangeMarkerItem[]>(
+    'Lorem Ipsum'
+  );
 
   const [ranges, setRanges] = useState<RangesMarkerFormProps['ranges']>();
 
@@ -74,11 +76,13 @@ export const CompositeForm = ({ onChange = noop }: CompositeFormProps) => {
       setMark(/Lorem/);
     } else if (valueRef === 'ranges') {
       setRanges([{ length: 7, start: 3 }]);
+      setMark([{ length: 7, start: 3 }]);
     }
   }, []);
 
   const handleChangeRanges = useCallback<OnChangeRanges>((ranges) => {
     setRanges(ranges);
+    setMark(ranges);
   }, []);
 
   const isKeywordsArray = useMemo(
@@ -153,7 +157,7 @@ export const CompositeForm = ({ onChange = noop }: CompositeFormProps) => {
       ) : null}
       {isRangesMarker ? (
         <RangesMarkerForm
-          ranges={ranges}
+          ranges={mark as RangeMarkerItem[]}
           onChangeRanges={handleChangeRanges}
           onChangeOptions={handleChangeOptions}
         />
