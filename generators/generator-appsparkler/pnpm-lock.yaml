@@ -1,9 +1,11 @@
 lockfileVersion: 5.4
 
 specifiers:
+  generator-appsparkler: ^0.1.2
   yeoman-generator: ^5.6.1
 
 devDependencies:
+  generator-appsparkler: 0.1.2
   yeoman-generator: 5.6.1
 
 packages:
@@ -287,6 +289,10 @@ packages:
 
   /function-bind/1.1.1:
     resolution: {integrity: sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A==}
+    dev: true
+
+  /generator-appsparkler/0.1.2:
+    resolution: {integrity: sha512-O/3BiGBy8zaRT2+tmt2gnRA5KNKKLERLkcqTgxkqAdyptyNxmIos5JKXmxdpEeDC1u1rU+Fn12fra3eXOMPjGA==}
     dev: true
 
   /get-stream/5.2.0:
