@@ -36,7 +36,7 @@ rush check
 1. Now, add the project files and folders here. For ex. `package.json` and `tsconfig.json`
 1. Update the `rush.json` in the root of the project with few project details.
 
-```json
+```jsonc
 {
   /*.for ex:..*/
   "projects": [
