@@ -29,6 +29,7 @@ const material_1 = require("@mui/material");
 const mui_1 = require("mui");
 const DynamicKeyValueList_1 = require("../KeywordForm/DynamicKeyValueList");
 const fp_1 = require("lodash/fp");
+const utils_1 = require("../../../utils");
 const reduceValuesToString = (0, fp_1.reduce)((acc, item) => {
     if (item.value) {
         return [...acc, String(item.value)];
@@ -96,7 +97,10 @@ const RangesMarkerForm = ({ ranges = [{ length: 4, start: 7 }], onChangeOptions 
         onChangeRanges(ranges);
     }, [onChangeRanges]);
     (0, react_1.useEffect)(() => {
-        onChangeOptions(getRefinedConfig(config, defaultConfig));
+        const refinedConfig = getRefinedConfig(config, defaultConfig);
+        const refinedConfigValues = (0, fp_1.values)(refinedConfig);
+        const someHaveValue = (0, utils_1.someAreTruthy)(refinedConfigValues);
+        onChangeOptions(someHaveValue ? refinedConfig : undefined);
     }, [config, onChangeOptions]);
     return (react_1.default.createElement(material_1.Grid, { container: true, spacing: 2 },
         react_1.default.createElement(material_1.Grid, { item: true, xs: 12 },

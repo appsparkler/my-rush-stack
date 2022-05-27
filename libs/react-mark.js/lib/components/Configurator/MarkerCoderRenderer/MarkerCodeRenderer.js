@@ -32,7 +32,6 @@ const react_1 = __importStar(require("react"));
 const prism_js_1 = __importDefault(require("./prism.js"));
 require("./prism.css");
 const fp_1 = require("lodash/fp");
-const utils_1 = require("../../../utils");
 const MarkerCodeRenderer = ({ mark = '', markerType = 'Marker', isRangesMarker = false, options = {}, ranges = [], wrapperProps = {}, onChange = fp_1.noop, isMarkArray = false, }) => {
     const codeRef = (0, react_1.useRef)(null);
     const optionsString = (0, react_1.useMemo)(() => {
@@ -50,8 +49,7 @@ const MarkerCodeRenderer = ({ mark = '', markerType = 'Marker', isRangesMarker =
         return `mark="${mark}"`;
     }, [isMarkArray, isRangesMarker, mark, ranges]);
     const optionsRender = (0, react_1.useMemo)(() => {
-        const refinedOptions = (0, utils_1.filterOutFalsy)(options);
-        const showOptions = (0, fp_1.keys)(refinedOptions).length > 0 ? true : false;
+        const showOptions = (0, fp_1.keys)(options).length > 0 ? true : false;
         if (showOptions) {
             return `
   options={${optionsString}}

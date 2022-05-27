@@ -1,10 +1,11 @@
 /// <reference types="react" />
 import { BoxProps } from '@mui/material';
 import './prism.css';
+import { RangeMarkerItem } from 'mark.js';
 export declare type MarkerType = 'RangesMarker' | 'Marker' | 'RegExpMarker';
 export declare type MarkerCodeRendererProps = {
     markerType?: MarkerType;
-    mark?: string | RegExp;
+    mark?: string | RegExp | RangeMarkerItem[];
     options?: {};
     ranges?: {
         start: number;

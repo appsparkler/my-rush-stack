@@ -35,14 +35,16 @@ const CompositeForm = ({ onChange = fp_1.noop }) => {
             setMark(JSON.stringify(['Lorem', 'Ipsum']));
         }
         else if (valueRef === 'regExp') {
-            setMark(/Lorem Ipsum/);
+            setMark(/Lorem/);
         }
         else if (valueRef === 'ranges') {
             setRanges([{ length: 7, start: 3 }]);
+            setMark([{ length: 7, start: 3 }]);
         }
     }, []);
     const handleChangeRanges = (0, react_1.useCallback)((ranges) => {
         setRanges(ranges);
+        setMark(ranges);
     }, []);
     const isKeywordsArray = (0, react_1.useMemo)(() => configType === 'keywordArray' || configType === 'regExp', [configType]);
     const isRangesMarker = (0, react_1.useMemo)(() => configType === 'ranges', [configType]);
@@ -79,7 +81,7 @@ const CompositeForm = ({ onChange = fp_1.noop }) => {
             react_2.default.createElement(material_1.FormControlLabel, { value: "ranges", control: react_2.default.createElement(material_1.Radio, null), label: "Ranges" })),
         configType === 'keyword' || configType === 'keywordArray' ? (react_2.default.createElement(KeywordForm_1.KeywordForm, { keyword: mark, isKeywordsArray: isKeywordsArray, onChange: handleChangeOptions, onChangeKeyword: handleChangeKeyword })) : null,
         configType === 'regExp' ? (react_2.default.createElement(RegExpForm_1.RegExpForm, { onChangeRegExp: handleChangeRegExp, onChangeOptions: handleChangeOptions })) : null,
-        isRangesMarker ? (react_2.default.createElement(RangesMarkerForm_1.RangesMarkerForm, { ranges: ranges, onChangeRanges: handleChangeRanges, onChangeOptions: handleChangeOptions })) : null));
+        isRangesMarker ? (react_2.default.createElement(RangesMarkerForm_1.RangesMarkerForm, { ranges: mark, onChangeRanges: handleChangeRanges, onChangeOptions: handleChangeOptions })) : null));
 };
 exports.CompositeForm = CompositeForm;
 //# sourceMappingURL=CompositeForm.js.map

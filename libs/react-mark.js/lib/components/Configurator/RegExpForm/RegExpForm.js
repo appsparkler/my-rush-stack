@@ -11,7 +11,7 @@ const mui_1 = require("mui");
 const fp_1 = require("lodash/fp");
 const react_2 = __importDefault(require("react"));
 const defaultConfig = {
-    // acrossElements: false,
+    acrossElements: false,
     className: '',
     debug: false,
     done: () => { },
@@ -51,7 +51,7 @@ const getRefinedOptions = (options) => {
     };
 };
 const RegExpForm = ({ onChangeOptions = fp_1.noop, onChangeRegExp = fp_1.noop, }) => {
-    const [regexp, setRegexp] = (0, react_1.useState)('/Lorem Ipsum/');
+    const [regexp, setRegexp] = (0, react_1.useState)('/Lorem/');
     const [options, setOptions] = (0, react_1.useState)({
         acrossElements: false,
         className: '',
@@ -75,7 +75,10 @@ const RegExpForm = ({ onChangeOptions = fp_1.noop, onChangeRegExp = fp_1.noop, }
         onChangeRegExp((0, utils_1.stringToRegex)(regexp));
     }, [onChangeRegExp, regexp]);
     (0, react_1.useEffect)(() => {
-        onChangeOptions(getRefinedOptions(options));
+        const refinedOptions = getRefinedOptions(options);
+        const refinedOptionValues = (0, fp_1.values)(refinedOptions);
+        const someHaveDefinedValues = (0, utils_1.someAreTruthy)(refinedOptionValues);
+        onChangeOptions(someHaveDefinedValues ? refinedOptions : undefined);
     }, [onChangeOptions, options]);
     return (react_2.default.createElement(material_1.Grid, { container: true, spacing: 2 },
         react_2.default.createElement(material_1.Grid, { item: true, xs: 6 },

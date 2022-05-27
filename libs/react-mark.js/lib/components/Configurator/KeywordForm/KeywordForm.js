@@ -137,7 +137,7 @@ const KeywordForm = ({ keyword = 'Lorem Ipsum', onChange = fp_1.noop, onChangeKe
     }, [isKeywordsArray, keywordArray]);
     (0, react_1.useEffect)(() => {
         const refinedConfig = (0, exports.getRefinedConfig)(config);
-        const pickedValues = (0, fp_1.pickBy)(fp_1.identity)(refinedConfig);
+        const pickedValues = (0, fp_1.pickBy)((x) => typeof x !== 'undefined')(refinedConfig);
         onChange(pickedValues);
     }, [config, onChange]);
     return (react_1.default.createElement(mui_1.Vertical, { gap: 2 },

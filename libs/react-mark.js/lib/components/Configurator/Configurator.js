@@ -35,6 +35,13 @@ const Configurator = () => {
         setMarkerCodeRendererWithCopyConfig(config);
     }, []);
     const { mark, options = undefined } = markerCodeRendererWithCopyConfig;
+    const { showMarker, showRangesMarker } = (0, react_1.useMemo)(() => {
+        const { markerType } = markerCodeRendererWithCopyConfig;
+        return {
+            showMarker: markerType === 'Marker',
+            showRangesMarker: markerType === 'RangesMarker',
+        };
+    }, [markerCodeRendererWithCopyConfig]);
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement(material_1.Grid, { container: true, spacing: 2 },
             react_1.default.createElement(material_1.Grid, { item: true, xs: 12 },
@@ -47,7 +54,7 @@ const Configurator = () => {
             react_1.default.createElement(material_1.Grid, { item: true, xs: 12, sm: 6 },
                 react_1.default.createElement(CompositeForm_1.CompositeForm, { onChange: handleChangeConfig })),
             react_1.default.createElement(material_1.Grid, { item: true, xs: 12, sm: 6 },
-                react_1.default.createElement(MarkerDemo_1.MarkerDemo, { mark: mark, options: options })),
+                react_1.default.createElement(MarkerDemo_1.MarkerDemo, { mark: mark, options: options, markerType: markerCodeRendererWithCopyConfig.markerType })),
             react_1.default.createElement(material_1.Grid, { item: true, xs: 12 },
                 react_1.default.createElement(MarkerCoderRendererWithCodeCopy_1.MarkerCodeRendererWithCopy, Object.assign({}, markerCodeRendererWithCopyConfig))))));
 };

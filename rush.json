@@ -391,12 +391,16 @@
    * 3. It's useful to have a centralized inventory of all projects and their important metadata.
    */
   "projects": [
+    // LIBS - REACT MARK JS
     {
       "packageName": "react-mark.js",
       "projectFolder": "libs/react-mark.js"
     },
-    // LIBS - REACT MARK JS
-    // {
+    // WIDGET - REACT MARK JS CONFIGURATOR
+    {
+      "packageName": "@react-mark.js/configurator",
+      "projectFolder": "widgets/react-mark-js-configurator"
+    },
     // DOCS - REACT MARK JS
     {
       "packageName": "react-mark-js-docs",

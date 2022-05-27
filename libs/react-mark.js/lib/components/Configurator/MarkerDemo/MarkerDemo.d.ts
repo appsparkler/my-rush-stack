@@ -1,8 +1,10 @@
 /// <reference types="react" />
-import { MarkerProps } from '../../Marker';
+import { RangeMarkerItem, RangesMarkerOptions, RegExpMarkerOptions } from 'mark.js';
+import { MarkerType } from '../MarkerCoderRenderer';
 export declare type MarkerDemoProps = {
-    mark?: string;
-    options?: MarkerProps['options'];
+    mark?: string | RegExp | RangeMarkerItem[];
+    options?: RegExpMarkerOptions | RangesMarkerOptions;
+    markerType?: MarkerType;
 };
-export declare const MarkerDemo: ({ mark, options }: MarkerDemoProps) => JSX.Element;
+export declare const MarkerDemo: ({ mark, options, markerType, }: MarkerDemoProps) => JSX.Element;
 //# sourceMappingURL=MarkerDemo.d.ts.map
