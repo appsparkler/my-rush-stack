@@ -1,13 +1,18 @@
 import { Typography } from '@mui/material';
-import { RegExpMarkerOptions } from 'mark.js';
+import {
+  RangeMarkerItem,
+  RangesMarkerOptions,
+  RegExpMarkerOptions,
+} from 'mark.js';
 import React, { useMemo } from 'react';
 import { Marker } from '../../Marker';
+import { RangesMarker } from '../../RangesMarker';
 import { RegExpMarker } from '../../RegExpMarker';
 import { MarkerType } from '../MarkerCoderRenderer';
 
 export type MarkerDemoProps = {
-  mark?: string | RegExp;
-  options?: RegExpMarkerOptions;
+  mark?: string | RegExp | RangeMarkerItem[];
+  options?: RegExpMarkerOptions | RangesMarkerOptions;
   markerType?: MarkerType;
 };
 
@@ -66,6 +71,11 @@ export const MarkerDemo = ({
         <RegExpMarker mark={mark as RegExp}>
           <Content />
         </RegExpMarker>
+      ) : null}
+      {showRangesMarker ? (
+        <RangesMarker mark={mark as RangeMarkerItem[]} options={options}>
+          <Content />
+        </RangesMarker>
       ) : null}
     </>
   );

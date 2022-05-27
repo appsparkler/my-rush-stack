@@ -3,4 +3,11 @@ export type RangeMarkerItem = {
   length: number;
 };
 
-export type RangesMarkerOptions = {};
+export type RangesMarkerOptions = {
+  className?: string;
+  debug?: boolean;
+  element?: string;
+  exclude?: string[];
+  iframes?: boolean;
+  iframesTimeout?: number;
+};

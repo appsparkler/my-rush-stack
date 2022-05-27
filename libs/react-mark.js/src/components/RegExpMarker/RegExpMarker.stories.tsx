@@ -25,5 +25,6 @@ regExpMarker.args = {
   ),
   mark: /adipisicing/,
 };
+regExpMarker.storyName = 'RegExpMarker';
 
 export default Story;

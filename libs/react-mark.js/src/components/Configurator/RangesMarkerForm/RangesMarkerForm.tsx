@@ -14,6 +14,7 @@ import {
 } from '../KeywordForm/DynamicKeyValueList';
 import { SimpleFormControlChange } from 'common-types';
 import { uniqueId, reduce, noop, map } from 'lodash/fp';
+import { RangesMarkerOptions } from 'mark.js';
 
 const reduceValuesToString = reduce<TextFieldProps, string[]>((acc, item) => {
   if (item.value) {
@@ -24,8 +25,8 @@ const reduceValuesToString = reduce<TextFieldProps, string[]>((acc, item) => {
 
 const getRefinedConfig = (
   rawConfig: RangesMarkerRawConfig,
-  defaultConfig: RangesMarkerRefinedConfig
-): RangesMarkerRefinedConfig => {
+  defaultConfig: RangesMarkerOptions
+): RangesMarkerOptions => {
   const excludeValue = reduceValuesToString(rawConfig.exclude);
 
   return {
@@ -68,16 +69,7 @@ export type RangesMarkerRawConfig = {
   iframesTimeout: number;
 };
 
-export type RangesMarkerRefinedConfig = {
-  className?: string;
-  debug?: boolean;
-  element?: string;
-  exclude?: string[];
-  iframes?: boolean;
-  iframesTimeout?: number;
-};
-
-const defaultConfig: RangesMarkerRefinedConfig = {
+const defaultConfig: RangesMarkerOptions = {
   className: '',
   debug: false,
   element: 'mark',
@@ -95,7 +87,7 @@ export type OnChangeRanges = (ranges: RangeItem[]) => void;
 
 export type RangesMarkerFormProps = {
   ranges?: RangeItem[];
-  onChangeOptions?: (config: RangesMarkerRefinedConfig) => void;
+  onChangeOptions?: (config: RangesMarkerOptions) => void;
   onChangeRanges?: OnChangeRanges;
 };
 
