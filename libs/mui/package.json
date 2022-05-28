@@ -45,7 +45,7 @@
     "@rushstack/heft": "0.45.2",
     "@size-limit/preset-small-lib": "^7.0.8",
     "@storybook/addon-essentials": "^6.4.22",
-    "@storybook/addon-info": "^5.3.21",
+    "@storybook/addon-docs": "^6.4.22",
     "@storybook/addon-links": "^6.4.22",
     "@storybook/addons": "^6.4.22",
     "@storybook/react": "^6.4.22",

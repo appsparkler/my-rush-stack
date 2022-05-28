@@ -14,5 +14,8 @@
   ],
   "dependencies": {
     "yeoman-generator": "^5.6.1"
+  },
+  "scripts": {
+    "build": "echo TODO"
   }
 }

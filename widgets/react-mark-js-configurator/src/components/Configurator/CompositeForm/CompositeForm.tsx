@@ -2,32 +2,32 @@ import {
   KeywordForm,
   KeywordFormPropsOnChange,
   KeywordFormPropsOnChangeKeyword,
-} from '../KeywordForm';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+} from "../KeywordForm";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   FormControlLabel,
   Radio,
   RadioGroup,
   RadioGroupProps,
-} from '@mui/material';
-import { RegExpChangeHandler, RegExpForm } from '../RegExpForm';
+} from "@mui/material";
+import { RegExpChangeHandler, RegExpForm } from "../RegExpForm";
 import {
   OnChangeRanges,
   RangesMarkerForm,
   RangesMarkerFormProps,
-} from '../RangesMarkerForm';
+} from "../RangesMarkerForm";
 import {
   MarkerCodeRendererProps,
   MarkerType,
-} from '../MarkerCoderRenderer/MarkerCodeRenderer';
-import React from 'react';
-import { noop } from 'lodash/fp';
-import { MarkOptions, RangeMarkerItem } from 'mark.js';
+} from "../MarkerCoderRenderer/MarkerCodeRenderer";
+import React from "react";
+import { noop } from "lodash/fp";
+import { MarkOptions, RangeMarkerItem } from "mark.js";
 
-export type ConfigType = 'keyword' | 'keywordArray' | 'regExp' | 'ranges';
+export type ConfigType = "keyword" | "keywordArray" | "regExp" | "ranges";
 
 export type OnChangeCompositeForm = (
-  updatedConfig: Omit<MarkerCodeRendererProps, 'onChange'>
+  updatedConfig: Omit<MarkerCodeRendererProps, "onChange">
 ) => void;
 
 export type CompositeFormProps = {
@@ -35,15 +35,15 @@ export type CompositeFormProps = {
 };
 
 export const CompositeForm = ({ onChange = noop }: CompositeFormProps) => {
-  const [configType, setConfigType] = useState<ConfigType>('keyword');
+  const [configType, setConfigType] = useState<ConfigType>("keyword");
 
   const [mark, setMark] = useState<string | RegExp | RangeMarkerItem[]>(
-    'Lorem Ipsum'
+    "Lorem Ipsum"
   );
 
-  const [ranges, setRanges] = useState<RangesMarkerFormProps['ranges']>();
+  const [ranges, setRanges] = useState<RangesMarkerFormProps["ranges"]>();
 
-  const [options, setOptions] = useState<MarkOptions>({});
+  const [options, setOptions] = useState<MarkOptions | undefined>();
 
   const handleChangeOptions = useCallback<KeywordFormPropsOnChange>(
     (options) => {
@@ -64,17 +64,17 @@ export const CompositeForm = ({ onChange = noop }: CompositeFormProps) => {
   }, []);
 
   const handleChangeConfigType = useCallback<
-    NonNullable<RadioGroupProps['onChange']>
+    NonNullable<RadioGroupProps["onChange"]>
   >((_evt, value) => {
     const valueRef = value as ConfigType;
     setConfigType(valueRef);
-    if (valueRef === 'keyword') {
-      setMark('Lorem Ipsum');
-    } else if (valueRef === 'keywordArray') {
-      setMark(JSON.stringify(['Lorem', 'Ipsum']));
-    } else if (valueRef === 'regExp') {
+    if (valueRef === "keyword") {
+      setMark("Lorem Ipsum");
+    } else if (valueRef === "keywordArray") {
+      setMark(JSON.stringify(["Lorem", "Ipsum"]));
+    } else if (valueRef === "regExp") {
       setMark(/Lorem/);
-    } else if (valueRef === 'ranges') {
+    } else if (valueRef === "ranges") {
       setRanges([{ length: 7, start: 3 }]);
       setMark([{ length: 7, start: 3 }]);
     }
@@ -86,17 +86,17 @@ export const CompositeForm = ({ onChange = noop }: CompositeFormProps) => {
   }, []);
 
   const isKeywordsArray = useMemo(
-    () => configType === 'keywordArray' || configType === 'regExp',
+    () => configType === "keywordArray" || configType === "regExp",
     [configType]
   );
 
-  const isRangesMarker = useMemo(() => configType === 'ranges', [configType]);
+  const isRangesMarker = useMemo(() => configType === "ranges", [configType]);
 
   const markerType: MarkerType = useMemo<MarkerType>(() => {
-    if (configType === 'keyword' || configType === 'keywordArray')
-      return 'Marker';
-    if (configType === 'ranges') return 'RangesMarker';
-    return 'RegExpMarker';
+    if (configType === "keyword" || configType === "keywordArray")
+      return "Marker";
+    if (configType === "ranges") return "RangesMarker";
+    return "RegExpMarker";
   }, [configType]);
 
   useEffect(() => {
@@ -141,7 +141,7 @@ export const CompositeForm = ({ onChange = noop }: CompositeFormProps) => {
         />
         <FormControlLabel value="ranges" control={<Radio />} label="Ranges" />
       </RadioGroup>
-      {configType === 'keyword' || configType === 'keywordArray' ? (
+      {configType === "keyword" || configType === "keywordArray" ? (
         <KeywordForm
           keyword={mark as string}
           isKeywordsArray={isKeywordsArray}
@@ -149,7 +149,7 @@ export const CompositeForm = ({ onChange = noop }: CompositeFormProps) => {
           onChangeKeyword={handleChangeKeyword}
         />
       ) : null}
-      {configType === 'regExp' ? (
+      {configType === "regExp" ? (
         <RegExpForm
           onChangeRegExp={handleChangeRegExp}
           onChangeOptions={handleChangeOptions}

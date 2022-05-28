@@ -1,21 +1,21 @@
-import React, { FC, useCallback, useEffect, useState } from 'react';
-import { Grid, TextFieldProps } from '@mui/material';
+import React, { FC, useCallback, useEffect, useState } from "react";
+import { Grid, TextFieldProps } from "@mui/material";
 import {
   getDefaultInteactiveSimpleListItem,
   InteactiveSimpleList,
   SimpleCheckbox,
   SimpleTextField,
   Vertical,
-} from 'mui';
+} from "mui";
 import {
   DynamicKeyValueList,
   DynamicKeyValueListItem,
   DynamicKeyValueListProps,
-} from '../KeywordForm/DynamicKeyValueList';
-import { SimpleFormControlChange } from 'common';
-import { uniqueId, reduce, noop, map, values } from 'lodash/fp';
-import { RangesMarkerOptions } from 'mark.js';
-import { someAreTruthy } from '../../../utils';
+} from "../KeywordForm/DynamicKeyValueList";
+import { SimpleFormControlChange } from "common";
+import { uniqueId, reduce, noop, map, values } from "lodash/fp";
+import { RangesMarkerOptions } from "mark.js";
+import { someAreTruthy } from "../../../utils";
 
 const reduceValuesToString = reduce<TextFieldProps, string[]>((acc, item) => {
   if (item.value) {
@@ -71,9 +71,9 @@ export type RangesMarkerRawConfig = {
 };
 
 const defaultConfig: RangesMarkerOptions = {
-  className: '',
+  className: "",
   debug: false,
-  element: 'mark',
+  element: "mark",
   exclude: [],
   iframes: false,
   iframesTimeout: 5000,
@@ -88,7 +88,7 @@ export type OnChangeRanges = (ranges: RangeItem[]) => void;
 
 export type RangesMarkerFormProps = {
   ranges?: RangeItem[];
-  onChangeOptions?: (config: RangesMarkerOptions) => void;
+  onChangeOptions?: (config: RangesMarkerOptions | undefined) => void;
   onChangeRanges?: OnChangeRanges;
 };
 
@@ -99,9 +99,9 @@ export const RangesMarkerForm: FC<RangesMarkerFormProps> = ({
 }) => {
   const [config, setConfig] = useState<RangesMarkerRawConfig>({
     ...defaultConfig,
-    className: '',
+    className: "",
     debug: false,
-    element: 'mark',
+    element: "mark",
     exclude: [getDefaultInteactiveSimpleListItem()],
     iframes: false,
     iframesTimeout: 5000,
@@ -109,18 +109,18 @@ export const RangesMarkerForm: FC<RangesMarkerFormProps> = ({
   const [rawRanges, setRawRanges] = useState<DynamicKeyValueListItem[]>(
     map<RangeItem, DynamicKeyValueListItem>((range) => ({
       field1: {
-        label: 'start',
-        size: 'small',
-        type: 'number',
+        label: "start",
+        size: "small",
+        type: "number",
         value: range.start,
       },
       field2: {
-        label: 'length',
-        size: 'small',
-        type: 'number',
+        label: "length",
+        size: "small",
+        type: "number",
         value: range.length,
       },
-      id: uniqueId('range'),
+      id: uniqueId("range"),
     }))(ranges)
   );
 
@@ -135,7 +135,7 @@ export const RangesMarkerForm: FC<RangesMarkerFormProps> = ({
   );
 
   const handleChangeRange = useCallback<
-    NonNullable<DynamicKeyValueListProps['onChange']>
+    NonNullable<DynamicKeyValueListProps["onChange"]>
   >(
     (name, value) => {
       setRawRanges(value);
@@ -213,13 +213,13 @@ export const RangesMarkerForm: FC<RangesMarkerFormProps> = ({
           />
           <Vertical>
             <SimpleCheckbox
-              label={'Iframes'}
+              label={"Iframes"}
               name="iframes"
               checked={config.iframes}
               onChange={handleChangeConfig}
             />
             <SimpleCheckbox
-              label={'Debug'}
+              label={"Debug"}
               name="debug"
               checked={config.debug}
               onChange={handleChangeConfig}

@@ -1,15 +1,13 @@
-import { Typography } from '@mui/material';
+import { Typography } from "@mui/material";
 import {
   MarkOptions,
   RangeMarkerItem,
   RangesMarkerOptions,
   RegExpMarkerOptions,
-} from 'mark.js';
-import React, { useMemo } from 'react';
-import { Marker } from '../../Marker';
-import { RangesMarker } from '../../RangesMarker';
-import { RegExpMarker } from '../../RegExpMarker';
-import { MarkerType } from '../MarkerCoderRenderer';
+} from "mark.js";
+import React, { useMemo } from "react";
+import { Marker, RangesMarker, RegExpMarker } from "react-mark.js";
+import { MarkerType } from "../MarkerCoderRenderer";
 
 export type MarkerDemoProps = {
   mark?: string | RegExp | RangeMarkerItem[];
@@ -37,13 +35,13 @@ const Content = () => (
 );
 
 export const MarkerDemo = ({
-  mark = '',
+  mark = "",
   options = {},
-  markerType = 'Marker',
+  markerType = "Marker",
 }: MarkerDemoProps) => {
   const $mark = useMemo(() => {
     try {
-      if (typeof mark === 'string') {
+      if (typeof mark === "string") {
         const parsed = JSON.parse(mark);
         return parsed;
       }
@@ -56,9 +54,9 @@ export const MarkerDemo = ({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const { showMarker, showRangesMarker, showRegExpMarker } = useMemo(() => {
     return {
-      showMarker: markerType === 'Marker',
-      showRangesMarker: markerType === 'RangesMarker',
-      showRegExpMarker: markerType === 'RegExpMarker',
+      showMarker: markerType === "Marker",
+      showRangesMarker: markerType === "RangesMarker",
+      showRegExpMarker: markerType === "RegExpMarker",
     };
   }, [markerType]);
   return (

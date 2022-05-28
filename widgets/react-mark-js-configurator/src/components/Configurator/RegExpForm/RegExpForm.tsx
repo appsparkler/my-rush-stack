@@ -1,16 +1,16 @@
-import { Grid, TextFieldProps } from '@mui/material';
-import { useCallback, useEffect, useState } from 'react';
-import { getValues, someAreTruthy, stringToRegex } from '../../../utils';
+import { Grid, TextFieldProps } from "@mui/material";
+import { useCallback, useEffect, useState } from "react";
+import { getValues, someAreTruthy, stringToRegex } from "../../../utils";
 import {
   getDefaultInteactiveSimpleListItem,
   InteactiveSimpleList,
   SimpleCheckbox,
   SimpleTextField,
   Vertical,
-} from 'mui';
-import { noop, values } from 'lodash/fp';
-import React from 'react';
-import { RegExpMarkerOptions } from 'mark.js';
+} from "mui";
+import { noop, values } from "lodash/fp";
+import React from "react";
+import { RegExpMarkerOptions } from "mark.js";
 
 export type RegExpFormRawValues = {
   element: string;
@@ -25,11 +25,11 @@ export type RegExpFormRawValues = {
 
 const defaultConfig: RegExpMarkerOptions = {
   acrossElements: false,
-  className: '',
+  className: "",
   debug: false,
   done: () => {},
   each: () => {},
-  element: 'mark',
+  element: "mark",
   exclude: [],
   filter: () => {},
   iframes: false,
@@ -83,20 +83,20 @@ export type RegExpChangeHandler = (regExpValue: RegExp) => void;
 
 export type RegExpFormProps = {
   onChangeRegExp?: RegExpChangeHandler;
-  onChangeOptions?: (regExpConfig: RegExpMarkerOptions) => void;
+  onChangeOptions?: (regExpConfig: RegExpMarkerOptions | undefined) => void;
 };
 
 export const RegExpForm = ({
   onChangeOptions = noop,
   onChangeRegExp = noop,
 }: RegExpFormProps) => {
-  const [regexp, setRegexp] = useState<string>('/Lorem/');
+  const [regexp, setRegexp] = useState<string>("/Lorem/");
 
   const [options, setOptions] = useState<RegExpFormRawValues>({
     acrossElements: false,
-    className: '',
+    className: "",
     debug: false,
-    element: 'mark',
+    element: "mark",
     exclude: [getDefaultInteactiveSimpleListItem()],
     iframes: false,
     iframesTimeout: 5000,
@@ -105,7 +105,7 @@ export const RegExpForm = ({
 
   const handleChange = useCallback((key: string, value: any) => {
     switch (key) {
-      case 'regexp':
+      case "regexp":
         setRegexp(value);
         break;
       default:
