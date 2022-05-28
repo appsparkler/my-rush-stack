@@ -17,6 +17,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.RegExpMarker = void 0;
 const react_1 = require("react");
 const mark_js_1 = __importDefault(require("mark.js"));
+/**
+ * @public
+ */
 const RegExpMarker = (_a) => {
     var { mark = new RegExp(''), options = {}, As = 'div', children } = _a, restProps = __rest(_a, ["mark", "options", "As", "children"]);
     const markerRef = (0, react_1.useRef)(null);

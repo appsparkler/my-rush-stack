@@ -17,6 +17,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Marker = void 0;
 const react_1 = require("react");
 const mark_js_1 = __importDefault(require("mark.js"));
+/**
+ * @public
+ */
 const Marker = (_a) => {
     var { as = 'div', mark = '', options = {} } = _a, restProps = __rest(_a, ["as", "mark", "options"]);
     const markerRef = (0, react_1.useRef)(null);

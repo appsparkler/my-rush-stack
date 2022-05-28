@@ -8,12 +8,18 @@ import {
 } from 'react';
 import MarkJS, { RangeMarkerItem, RangesMarkerOptions } from 'mark.js';
 
-type RangesMarkerProps<T = HTMLAttributes<HTMLDivElement>> = {
+/**
+ * @public
+ */
+export type RangesMarkerProps<T = HTMLAttributes<HTMLDivElement>> = {
   as?: string | ElementType;
   mark?: RangeMarkerItem[];
   options?: RangesMarkerOptions;
 } & T;
 
+/**
+ * @public
+ */
 export const RangesMarker = ({
   as = 'div',
   mark = [],

@@ -8,6 +8,9 @@ import React, {
 } from 'react';
 import MarkJS, { MarkOptions } from 'mark.js';
 
+/**
+ * @public
+ */
 export type MarkerProps<T = HTMLAttributes<HTMLDivElement>> = {
   children?: React.ReactNode;
   as?: string | ElementType;
@@ -15,6 +18,9 @@ export type MarkerProps<T = HTMLAttributes<HTMLDivElement>> = {
   options?: MarkOptions;
 } & T;
 
+/**
+ * @public
+ */
 export const Marker = <T extends {} = HTMLAttributes<HTMLDivElement>>({
   as = 'div',
   mark = '',

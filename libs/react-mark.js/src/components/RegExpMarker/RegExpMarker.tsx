@@ -1,13 +1,19 @@
 import React, { createElement, useEffect, useRef, useState } from 'react';
 import MarkJS, { RegExpMarkerOptions } from 'mark.js';
 
-type RegExpMarkerProps = {
+/**
+ * @public
+ */
+export type RegExpMarkerProps = {
   mark?: RegExp;
   options?: RegExpMarkerOptions;
   As?: string;
   children: React.ReactNode;
 };
 
+/**
+ * @public
+ */
 export const RegExpMarker: React.FC<RegExpMarkerProps> = ({
   mark = new RegExp(''),
   options = {},
