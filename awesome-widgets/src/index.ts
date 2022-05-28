@@ -1,10 +1,10 @@
-export * from "./mark-options";
-export * from "./mark-regexp-options";
+export * from "./mark";
+export * from "./mark-regexp";
 export * from "./mark-ranges";
 
-import { MarkOptions } from "./mark-options";
+import { MarkOptions } from "./mark";
 import { RangeMarkerItem, RangesMarkerOptions } from "./mark-ranges";
-import { RegExpMarkerOptions } from "./mark-regexp-options";
+import { RegExpMarkerOptions } from "./mark-regexp";
 
 /**
  * @public

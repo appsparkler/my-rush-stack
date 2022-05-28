@@ -5,7 +5,7 @@
 After cloning the respository; ensure you have the following global dependencies installed:
 
 ```bash
-npm i -g @microsoft/rush @rushstack/heft pnpm
+npm i -g @microsoft/rush @rushstack/heft pnpm @rushstack/api-extractor @rushstack/api-documenter
 ```
 
 ## Update Project

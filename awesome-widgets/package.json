@@ -2,10 +2,20 @@
   "name": "awesome-widgets",
   "version": "1.0.0",
   "main": "./lib/index.js",
-  "typings": "./lib/index.d.ts",
+  "typings": "./dist/awesome-widgets.d.ts",
   "devDependencies": {
-    "typescript": "~4.6.4",
     "@types/react": "18.0.9",
-    "@types/node": "~17.0.31"
+    "typescript": "~4.6.4",
+    "@microsoft/api-extractor": "~7.24.2"
+  },
+  "dependencies": {
+    "@types/node": "~17.0.35"
+  },
+  "scripts": {
+    "build": "heft build",
+    "build:watch": "heft build --watch",
+    "extract": "api-extractor run --local --verbose",
+    "diagnose": "api-extractor run --local --diagnostics",
+    "document": "api-documenter markdown"
   }
 }
