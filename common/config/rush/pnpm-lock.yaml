@@ -107,6 +107,7 @@ importers:
       '@babel/core': ^7.17.10
       '@emotion/react': ~11.9.0
       '@emotion/styled': ~11.8.1
+      '@microsoft/api-extractor': ~7.24.2
       '@mui/icons-material': ~5.6.2
       '@mui/material': ~5.6.4
       '@rushstack/heft': 0.45.2
@@ -141,6 +142,7 @@ importers:
       '@babel/core': 7.18.2
       '@emotion/react': 11.9.0_b6102fabd8e4850ab0d17c8e8bd2165e
       '@emotion/styled': 11.8.1_afc8419877fdd37f8210ebf093c185c5
+      '@microsoft/api-extractor': 7.24.2
       '@mui/icons-material': 5.6.2_0991d5596f3fcc8ee58e8e679d08e1a4
       '@mui/material': 5.6.4_e5e28a2031fc018063ccc89f0e979b61
       '@rushstack/heft': 0.45.2
