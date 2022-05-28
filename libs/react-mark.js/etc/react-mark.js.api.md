@@ -14,16 +14,10 @@ import { default as React_2 } from 'react';
 import { ReactElement } from 'react';
 import { RegExpMarkerOptions } from 'mark.js';
 
+// Warning: (ae-forgotten-export) The symbol "MarkerProps" needs to be exported by the entry point index.d.ts
+//
 // @public (undocumented)
 export const Marker: <T extends {} = React_2.HTMLAttributes<HTMLDivElement>>({ as, mark, options, ...restProps }: MarkerProps<T>) => React_2.ReactElement<any, string | React_2.JSXElementConstructor<any>>;
-
-// @public (undocumented)
-export type MarkerProps<T = HTMLAttributes<HTMLDivElement>> = {
-    children?: React_2.ReactNode;
-    as?: string | ElementType;
-    mark?: string | string[];
-    options?: MarkOptions;
-} & T;
 
 // @public (undocumented)
 export const RangesMarker: ({ as, mark, options, ...restProps }: RangesMarkerProps) => ReactElement<any, string | JSXElementConstructor<any>>;
