@@ -395,11 +395,6 @@
       "packageName": "generator-appsparkler",
       "projectFolder": "@generators/generator-appsparkler"
     },
-    // awesome-widgets (temp)
-    {
-      "packageName": "awesome-widgets",
-      "projectFolder": "awesome-widgets"
-    },
     // LIBS - REACT MARK JS
     {
       "packageName": "react-mark.js",
