@@ -26,9 +26,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.MarkerDemo = void 0;
 const material_1 = require("@mui/material");
 const react_1 = __importStar(require("react"));
-const Marker_1 = require("../../Marker");
-const RangesMarker_1 = require("../../RangesMarker");
-const RegExpMarker_1 = require("../../RegExpMarker");
+const index_1 = require("../../../index");
 const Content = () => (react_1.default.createElement(material_1.Typography, null, "Lorem ipsum dolor sit \u0101met, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, one, n\u00F2 sea takimata 1 sanctus est Lorem ipsum dolor sit amet. L\u00F6rem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam lor\u00ADem ipsum nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy. Lore'm ipsu%m dolor sit amet. Lo!rem ipsum."));
 const MarkerDemo = ({ mark = '', options = {}, markerType = 'Marker', }) => {
     const $mark = (0, react_1.useMemo)(() => {
@@ -53,11 +51,11 @@ const MarkerDemo = ({ mark = '', options = {}, markerType = 'Marker', }) => {
         };
     }, [markerType]);
     return (react_1.default.createElement(react_1.default.Fragment, null,
-        showMarker ? (react_1.default.createElement(Marker_1.Marker, { mark: $mark, options: options },
+        showMarker ? (react_1.default.createElement(index_1.Marker, { mark: $mark, options: options },
             react_1.default.createElement(Content, null))) : null,
-        showRegExpMarker ? (react_1.default.createElement(RegExpMarker_1.RegExpMarker, { mark: mark },
+        showRegExpMarker ? (react_1.default.createElement(index_1.RegExpMarker, { mark: mark },
             react_1.default.createElement(Content, null))) : null,
-        showRangesMarker ? (react_1.default.createElement(RangesMarker_1.RangesMarker, { mark: mark, options: options },
+        showRangesMarker ? (react_1.default.createElement(index_1.RangesMarker, { mark: mark, options: options },
             react_1.default.createElement(Content, null))) : null));
 };
 exports.MarkerDemo = MarkerDemo;
