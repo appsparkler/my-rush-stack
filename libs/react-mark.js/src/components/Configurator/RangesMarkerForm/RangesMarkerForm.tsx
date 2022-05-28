@@ -15,7 +15,7 @@ import {
 import { SimpleFormControlChange } from 'common';
 import { uniqueId, reduce, noop, map, values } from 'lodash/fp';
 import { RangesMarkerOptions } from 'mark.js';
-import { someAreTruthy } from '../../../../utils';
+import { someAreTruthy } from '../../../utils';
 
 const reduceValuesToString = reduce<TextFieldProps, string[]>((acc, item) => {
   if (item.value) {

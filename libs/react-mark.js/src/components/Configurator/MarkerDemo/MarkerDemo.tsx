@@ -6,7 +6,7 @@ import {
   RegExpMarkerOptions,
 } from 'mark.js';
 import React, { useMemo } from 'react';
-import { Marker, RangesMarker, RegExpMarker } from '../../../../index';
+import { Marker, RangesMarker, RegExpMarker } from '../../../index';
 import { MarkerType } from '../MarkerCoderRenderer';
 
 export type MarkerDemoProps = {

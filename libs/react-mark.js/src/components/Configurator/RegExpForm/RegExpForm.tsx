@@ -1,6 +1,6 @@
 import { Grid, TextFieldProps } from '@mui/material';
 import { useCallback, useEffect, useState } from 'react';
-import { getValues, someAreTruthy, stringToRegex } from '../../../../utils';
+import { getValues, someAreTruthy, stringToRegex } from '../../../utils';
 import {
   getDefaultInteactiveSimpleListItem,
   InteactiveSimpleList,
