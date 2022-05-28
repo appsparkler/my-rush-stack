@@ -11,7 +11,7 @@ import {
   findById,
   updateItemWithMatchingId,
 } from 'common-utils';
-import { TextFieldChangeEventHandler } from 'common-types';
+import { TextFieldChangeEventHandler } from 'common';
 import { noop, uniqueId } from 'lodash/fp';
 import { Horizontal, Vertical } from '../layouts';
 import React, { useCallback } from 'react';

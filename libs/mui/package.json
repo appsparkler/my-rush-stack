@@ -65,7 +65,7 @@
     "eslint": "~8.14.0",
     "@mui/icons-material": "~5.6.2",
     "lodash": "~4.17.21",
-    "common-types": "workspace:*",
+    "@types/common": "workspace:*",
     "common-utils": "workspace:*",
     "@types/node": "~17.0.31"
   },
@@ -75,7 +75,7 @@
     "@emotion/react": "~11.9.0",
     "@emotion/styled": "~11.8.1",
     "lodash": "~4.17.21",
-    "common-types": "workspace:*",
+    "@types/common": "workspace:*",
     "common-utils": "workspace:*"
   }
 }

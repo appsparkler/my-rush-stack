@@ -6,7 +6,7 @@ import {
   Typography,
   TextFieldProps,
 } from '@mui/material';
-import { SimpleFormControlChange } from 'common-types';
+import { SimpleFormControlChange } from '@types/common';
 import {
   filterOutWithId,
   updateItemWithMatchingId,

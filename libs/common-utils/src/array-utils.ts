@@ -1,4 +1,4 @@
-import { StringOrNumber } from 'common-types';
+import { StringOrNumber } from '@types/common';
 import { filter, find, map } from 'lodash/fp';
 
 /**

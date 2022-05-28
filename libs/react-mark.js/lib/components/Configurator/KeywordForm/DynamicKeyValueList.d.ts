@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import { TextFieldProps } from '@mui/material';
-import { SimpleFormControlChange } from 'common-types';
+import { SimpleFormControlChange } from 'common';
 export declare type DynamicKeyValueListItem = {
     id: string;
     field1: TextFieldProps;

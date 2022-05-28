@@ -67,7 +67,7 @@
     "eslint": "~8.14.0",
     "eslint-config-react-app": "~7.0.1",
     "@types/node": "~17.0.31",
-    "common-types": "workspace:*",
+    "@types/common": "workspace:*",
     "common-utils": "workspace:*",
     "@emotion/styled": "~11.8.1",
     "mui": "workspace:*",

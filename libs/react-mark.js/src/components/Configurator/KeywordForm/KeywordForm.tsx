@@ -12,7 +12,7 @@ import {
   SimpleTextField,
   Vertical,
 } from 'mui';
-import { SimpleFormControlChange } from 'common-types';
+import { SimpleFormControlChange } from 'common';
 import { isArray, keys, noop, reduce, uniqueId, pickBy } from 'lodash/fp';
 import { getValues } from '../../../utils';
 import { MarkOptions } from 'mark.js';

@@ -417,8 +417,8 @@
     },
     // LIBS - COMMON TYPES
     {
-      "packageName": "common-types",
-      "projectFolder": "libs/common-types"
+      "packageName": "@types/common",
+      "projectFolder": "types/common"
     },
     // LIBS - COMMON UTILS
     {

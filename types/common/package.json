@@ -24,7 +24,7 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "common-types",
+  "name": "@types/common",
   "author": "Aakash Shah",
   "module": "lib/index.js",
   "size-limit": [

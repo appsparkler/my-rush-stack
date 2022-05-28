@@ -3,7 +3,7 @@ import {
   FormControlLabel,
   FormControlLabelProps,
 } from '@mui/material';
-import { SimpleFormControlChange } from 'common-types';
+import { SimpleFormControlChange } from 'common';
 import { noop } from 'lodash/fp';
 import React from 'react';
 import { useCallback } from 'react';

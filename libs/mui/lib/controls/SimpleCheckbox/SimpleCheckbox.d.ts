@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import { FormControlLabelProps } from '@mui/material';
-import { SimpleFormControlChange } from 'common-types';
+import { SimpleFormControlChange } from 'common';
 export declare type SimpleCheckboxProps = Partial<Omit<FormControlLabelProps, 'onChange'>> & {
     onChange?: SimpleFormControlChange<boolean>;
     label?: string;

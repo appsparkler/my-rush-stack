@@ -12,7 +12,7 @@ import {
   DynamicKeyValueListItem,
   DynamicKeyValueListProps,
 } from '../KeywordForm/DynamicKeyValueList';
-import { SimpleFormControlChange } from 'common-types';
+import { SimpleFormControlChange } from 'common';
 import { uniqueId, reduce, noop, map, values } from 'lodash/fp';
 import { RangesMarkerOptions } from 'mark.js';
 import { someAreTruthy } from '../../../utils';
