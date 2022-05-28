@@ -20,12 +20,12 @@ export type RangesMarkerProps<T = HTMLAttributes<HTMLDivElement>> = {
 /**
  * @public
  */
-export const RangesMarker = ({
+export const RangesMarker = <T,>({
   as = 'div',
   mark = [],
   options = {},
   ...restProps
-}: RangesMarkerProps) => {
+}: RangesMarkerProps<T>) => {
   const ref = useRef(null);
 
   const [markJSInstance, setMarkJSInstance] = useState<MarkJS>();

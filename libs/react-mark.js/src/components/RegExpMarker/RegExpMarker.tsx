@@ -1,26 +1,32 @@
-import React, { createElement, useEffect, useRef, useState } from 'react';
+import React, {
+  createElement,
+  ElementType,
+  HTMLAttributes,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import MarkJS, { RegExpMarkerOptions } from 'mark.js';
 
 /**
  * @public
  */
-export type RegExpMarkerProps = {
+export type RegExpMarkerProps<T = HTMLAttributes<HTMLDivElement>> = {
   mark?: RegExp;
   options?: RegExpMarkerOptions;
-  As?: string;
+  as?: string | ElementType;
   children: React.ReactNode;
-};
+} & T;
 
 /**
  * @public
  */
-export const RegExpMarker: React.FC<RegExpMarkerProps> = ({
+export const RegExpMarker = <T,>({
   mark = new RegExp(''),
   options = {},
-  As = 'div',
-  children,
+  as = 'div',
   ...restProps
-}) => {
+}: RegExpMarkerProps<T>) => {
   const markerRef = useRef<HTMLDivElement>(null);
   const [markerInstance, setMarkerInstance] = useState<MarkJS>();
   useEffect(() => {
@@ -37,5 +43,5 @@ export const RegExpMarker: React.FC<RegExpMarkerProps> = ({
       setMarkerInstance(markerInstance);
     }
   }, [mark, markerInstance, options]);
-  return createElement(As, { children, ref: markerRef, ...restProps });
+  return createElement(as, { ref: markerRef, ...restProps });
 };
