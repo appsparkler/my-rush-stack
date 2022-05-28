@@ -1,11 +1,11 @@
-import { Box, BoxProps } from '@mui/material';
-import React, { useEffect, useMemo, useRef } from 'react';
-import Prism from './prism.js';
-import './prism.css';
-import { keys, noop } from 'lodash/fp';
-import { RangeMarkerItem } from 'mark.js';
+import { Box, BoxProps } from "@mui/material";
+import React, { useEffect, useMemo, useRef } from "react";
+import * as Prism from "prismjs";
+import "./prism.css";
+import { keys, noop } from "lodash/fp";
+import { RangeMarkerItem } from "mark.js";
 
-export type MarkerType = 'RangesMarker' | 'Marker' | 'RegExpMarker';
+export type MarkerType = "RangesMarker" | "Marker" | "RegExpMarker";
 
 export type MarkerCodeRendererProps = {
   markerType?: MarkerType;
@@ -19,8 +19,8 @@ export type MarkerCodeRendererProps = {
 };
 
 export const MarkerCodeRenderer = ({
-  mark = '',
-  markerType = 'Marker',
+  mark = "",
+  markerType = "Marker",
   isRangesMarker = false,
   options = {},
   ranges = [],
@@ -30,13 +30,13 @@ export const MarkerCodeRenderer = ({
 }: MarkerCodeRendererProps) => {
   const codeRef = useRef(null);
   const optionsString = useMemo(() => {
-    return JSON.stringify(options, null, 4).replace('}', `  }`);
+    return JSON.stringify(options, null, 4).replace("}", `  }`);
   }, [options]);
   const markRenderer = useMemo(() => {
     if (isRangesMarker) {
       const SPACES_2 = `  `;
       const rangesJSON = JSON.stringify(ranges, null, 4).replace(
-        ']',
+        "]",
         `${SPACES_2}]`
       );
       return `ranges={${rangesJSON}}`;
@@ -64,10 +64,11 @@ export const MarkerCodeRenderer = ({
 
   useEffect(() => {
     onChange(code);
+
     const highlightedCode = Prism.highlight(
       code,
       (Prism.languages as any).jsx,
-      'jsx'
+      "jsx"
     );
     (codeRef.current as any).innerHTML = highlightedCode;
   }, [code, mark, onChange, options]);

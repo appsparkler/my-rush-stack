@@ -1,9 +1,9 @@
-import { Grid, TextFieldProps } from '@mui/material';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { Grid, TextFieldProps } from "@mui/material";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import {
   DynamicKeyValueListItem,
   DynamicKeyValueList,
-} from './DynamicKeyValueList';
+} from "./DynamicKeyValueList";
 import {
   getDefaultInteactiveSimpleListItem,
   InteactiveSimpleList,
@@ -11,20 +11,20 @@ import {
   SimpleSelect,
   SimpleTextField,
   Vertical,
-} from 'mui';
-import { SimpleFormControlChange } from 'common';
-import { isArray, keys, noop, reduce, uniqueId, pickBy } from 'lodash/fp';
-import { getValues } from '../../../utils';
-import { MarkOptions } from 'mark.js';
+} from "mui";
+import { SimpleFormControlChange } from "common";
+import { isArray, keys, noop, reduce, uniqueId, pickBy } from "lodash/fp";
+import { getValues } from "../../../utils";
+import { MarkOptions } from "mark.js";
 
 const defaultConfig: MarkOptions = {
-  accuracy: 'partially',
+  accuracy: "partially",
   acrossElements: false,
   caseSensitive: false,
-  className: '',
+  className: "",
   debug: false,
   diacritics: true,
-  element: 'mark',
+  element: "mark",
   exclude: [],
   iframes: false,
   iframesTimeout: 5000,
@@ -33,20 +33,20 @@ const defaultConfig: MarkOptions = {
   log: console,
   separateWordSearch: true,
   synonyms: {},
-  wildcards: 'disabled',
+  wildcards: "disabled",
 };
 
 // types
 export type KeywordFormRawConfig = Omit<
   MarkOptions,
-  'exclude' | 'ignorePunctuation' | 'synonyms'
+  "exclude" | "ignorePunctuation" | "synonyms"
 > & {
   exclude: TextFieldProps[];
   ignorePunctuation: TextFieldProps[];
   synonyms: DynamicKeyValueListItem[];
 };
 
-export type TextFieldPropsValue = TextFieldProps['value'];
+export type TextFieldPropsValue = TextFieldProps["value"];
 
 // utils
 const getRefinedSynonyms = (
@@ -134,43 +134,43 @@ export type KeywordFormProps = {
 
 // JSX
 export const KeywordForm = ({
-  keyword = 'Lorem Ipsum',
+  keyword = "Lorem Ipsum",
   onChange = noop,
   onChangeKeyword = noop,
   isKeywordsArray = false,
 }: KeywordFormProps) => {
   const [keywordArray, setKeywordArray] = useState<string>(
-    JSON.stringify(['Lorem', 'Ipsum'])
+    JSON.stringify(["Lorem", "Ipsum"])
   );
 
   const [config, setConfig] = useState<KeywordFormRawConfig>({
     ...defaultConfig,
-    accuracy: 'partially',
+    accuracy: "partially",
     exclude: [getDefaultInteactiveSimpleListItem()],
     ignorePunctuation: [getDefaultInteactiveSimpleListItem()],
     synonyms: [
       {
         field1: {
-          label: 'keyword',
-          size: 'small',
-          value: '',
+          label: "keyword",
+          size: "small",
+          value: "",
         },
         field2: {
-          label: 'synonym',
-          size: 'small',
-          value: '',
+          label: "synonym",
+          size: "small",
+          value: "",
         },
-        id: uniqueId('synonym-key'),
+        id: uniqueId("synonym-key"),
       },
     ],
-    wildcards: 'disabled',
+    wildcards: "disabled",
   });
 
   const handleChange = useCallback<
     SimpleFormControlChange<string | any[] | boolean>
   >(
     (key, value) => {
-      if (key === 'keyword') {
+      if (key === "keyword") {
         if (isKeywordsArray) {
           setKeywordArray(value as string);
           onChangeKeyword(value as string);
@@ -201,7 +201,7 @@ export const KeywordForm = ({
 
   useEffect(() => {
     const refinedConfig = getRefinedConfig(config);
-    const pickedValues = pickBy<MarkOptions>((x) => typeof x !== 'undefined')(
+    const pickedValues = pickBy<MarkOptions>((x) => typeof x !== "undefined")(
       refinedConfig
     );
     onChange(pickedValues);
@@ -270,9 +270,9 @@ export const KeywordForm = ({
               value={config.wildcards}
               name="wildCards"
               menuItems={[
-                { id: '1', name: 'disabled', value: 'disabled' },
-                { id: '2', name: 'enabled', value: 'enabled' },
-                { id: '3', name: 'withSpaces', value: 'withSpaces' },
+                { id: "1", name: "disabled", value: "disabled" },
+                { id: "2", name: "enabled", value: "enabled" },
+                { id: "3", name: "withSpaces", value: "withSpaces" },
               ]}
             />
           </Vertical>
@@ -287,9 +287,9 @@ export const KeywordForm = ({
               value={config.accuracy}
               name="accuracy"
               menuItems={[
-                { id: '1', name: 'partially', value: 'partially' },
-                { id: '2', name: 'exactly', value: 'exactly' },
-                { id: '3', name: 'complimentary', value: 'complimentary' },
+                { id: "1", name: "partially", value: "partially" },
+                { id: "2", name: "exactly", value: "exactly" },
+                { id: "3", name: "complimentary", value: "complimentary" },
               ]}
             />
             <SimpleTextField

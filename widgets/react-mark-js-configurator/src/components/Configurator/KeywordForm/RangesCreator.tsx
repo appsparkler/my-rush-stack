@@ -1,20 +1,20 @@
-import { Add, Delete } from '@mui/icons-material';
+import { Add, Delete } from "@mui/icons-material";
 import {
   Box,
   IconButton,
   TextField,
   Typography,
   TextFieldProps,
-} from '@mui/material';
-import { SimpleFormControlChange } from '@types/common';
+} from "@mui/material";
+import { SimpleFormControlChange } from "common";
 import {
   filterOutWithId,
   updateItemWithMatchingId,
   findById,
-} from 'common-utils';
-import { noop } from 'lodash';
-import { uniqueId } from 'lodash/fp';
-import React, { useCallback, useEffect, useState } from 'react';
+} from "common-utils";
+import { noop } from "lodash";
+import { uniqueId } from "lodash/fp";
+import React, { useCallback, useEffect, useState } from "react";
 
 export type SynonymItem = {
   id: string;
@@ -28,16 +28,16 @@ export type SynonymProps = {
 };
 
 // Utils
-export const uniqueIdSynonymItem = () => uniqueId('synonym-item');
+export const uniqueIdSynonymItem = () => uniqueId("synonym-item");
 
 export const getDefaultSynonymItem = () => ({
   id: uniqueIdSynonymItem(),
-  key: '',
-  value: '',
+  key: "",
+  value: "",
 });
 
 // JSX
-export const RangesCreator = ({ name = '', onChange = noop }: SynonymProps) => {
+export const RangesCreator = ({ name = "", onChange = noop }: SynonymProps) => {
   const [$value, set$value] = useState<SynonymItem[]>([
     getDefaultSynonymItem(),
   ]);
@@ -53,7 +53,7 @@ export const RangesCreator = ({ name = '', onChange = noop }: SynonymProps) => {
   );
 
   const handleChangeInput = useCallback<
-    (id: string) => TextFieldProps['onChange']
+    (id: string) => TextFieldProps["onChange"]
   >(
     (id) =>
       ({ target: { value, name } }) => {
