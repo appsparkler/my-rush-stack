@@ -6,7 +6,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import MarkJS, { MarkOptions } from 'mark.js';
+import MarkJS, { MarkOptions, UnmarkOptions } from 'mark.js';
 
 /**
  * @public
@@ -16,6 +16,7 @@ export type MarkerProps<T = HTMLAttributes<HTMLDivElement>> = {
   as?: string | ElementType;
   mark?: string | string[];
   options?: MarkOptions;
+  unmarkOptions?: UnmarkOptions;
 } & T;
 
 /**
@@ -25,6 +26,7 @@ export const Marker = <T extends {} = HTMLAttributes<HTMLDivElement>>({
   as = 'div',
   mark = '',
   options = {},
+  unmarkOptions = {},
   ...restProps
 }: MarkerProps<T>) => {
   const markerRef = useRef<HTMLDivElement | null>(null);
@@ -39,11 +41,11 @@ export const Marker = <T extends {} = HTMLAttributes<HTMLDivElement>>({
 
   useEffect(() => {
     if (markInstance) {
-      Promise.resolve(markInstance.unmark()).then(() => {
+      Promise.resolve(markInstance.unmark(unmarkOptions)).then(() => {
         markInstance.mark(mark, options);
       });
     }
-  }, [mark, markInstance, options]);
+  }, [mark, markInstance, options, unmarkOptions]);
 
   return createElement(as, { ref: markerRef, ...restProps });
 };
