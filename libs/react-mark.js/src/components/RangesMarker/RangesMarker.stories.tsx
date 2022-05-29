@@ -3,7 +3,7 @@ import { RangesMarker } from './RangesMarker';
 
 const Story = {
   component: RangesMarker,
-  title: 'Components/RangesMarker',
+  title: 'Stories/Components/RangesMarker',
 } as ComponentMeta<typeof RangesMarker>;
 
 const Template: ComponentStory<typeof RangesMarker> = (args = {}) => (
