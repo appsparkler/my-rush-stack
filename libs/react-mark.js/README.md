@@ -653,11 +653,12 @@ You can pass any of these options to the options props (source - [mark.js](https
 
 <hr />
 
-## ⚡️ `options` for `unmark` to use with `useMarker` hook. (optional prop)
+## ⚡️ `unmark-options`
 
-Any of the following options can be passed
-to the `unmarkOptions prop` in the available components
-or hook (source - [mark.js](https://markjs.io#unmark)):.
+These can be passed via `unmarkOptions` prop to the components.
+If you're using `useMarker`; these options can be passed to `marker.unmark()` method.
+
+Source : [mark.js](https://markjs.io#unmark)
 
 <br />
 <table class="table table-bordered table-striped">

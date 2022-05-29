@@ -21,7 +21,7 @@ const mark_js_1 = __importDefault(require("mark.js"));
  * @public
  */
 const Marker = (_a) => {
-    var { as = 'div', mark = '', options = {} } = _a, restProps = __rest(_a, ["as", "mark", "options"]);
+    var { as = 'div', mark = '', options = {}, unmarkOptions = {} } = _a, restProps = __rest(_a, ["as", "mark", "options", "unmarkOptions"]);
     const markerRef = (0, react_1.useRef)(null);
     const [markInstance, setMarkInstance] = (0, react_1.useState)();
     (0, react_1.useEffect)(() => {
@@ -32,11 +32,11 @@ const Marker = (_a) => {
     }, []);
     (0, react_1.useEffect)(() => {
         if (markInstance) {
-            Promise.resolve(markInstance.unmark()).then(() => {
+            Promise.resolve(markInstance.unmark(unmarkOptions)).then(() => {
                 markInstance.mark(mark, options);
             });
         }
-    }, [mark, markInstance, options]);
+    }, [mark, markInstance, options, unmarkOptions]);
     return (0, react_1.createElement)(as, Object.assign({ ref: markerRef }, restProps));
 };
 exports.Marker = Marker;

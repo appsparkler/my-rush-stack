@@ -21,12 +21,12 @@ const mark_js_1 = __importDefault(require("mark.js"));
  * @public
  */
 const RegExpMarker = (_a) => {
-    var { mark = new RegExp(''), options = {}, as = 'div' } = _a, restProps = __rest(_a, ["mark", "options", "as"]);
+    var { mark = new RegExp(''), options = {}, as = 'div', unmarkOptions = {} } = _a, restProps = __rest(_a, ["mark", "options", "as", "unmarkOptions"]);
     const markerRef = (0, react_1.useRef)(null);
     const [markerInstance, setMarkerInstance] = (0, react_1.useState)();
     (0, react_1.useEffect)(() => {
         if (markerInstance) {
-            Promise.resolve(markerInstance.unmark()).then(() => {
+            Promise.resolve(markerInstance.unmark(unmarkOptions)).then(() => {
                 try {
                     markerInstance.markRegExp(mark, options);
                 }
@@ -39,7 +39,7 @@ const RegExpMarker = (_a) => {
             const markerInstance = new mark_js_1.default(markerRef.current);
             setMarkerInstance(markerInstance);
         }
-    }, [mark, markerInstance, options]);
+    }, [mark, markerInstance, options, unmarkOptions]);
     return (0, react_1.createElement)(as, Object.assign({ ref: markerRef }, restProps));
 };
 exports.RegExpMarker = RegExpMarker;

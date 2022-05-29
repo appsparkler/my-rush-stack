@@ -14,9 +14,10 @@ import { RangesMarkerOptions } from 'mark.js';
 import { default as React_2 } from 'react';
 import { ReactElement } from 'react';
 import { RegExpMarkerOptions } from 'mark.js';
+import { UnmarkOptions } from 'mark.js';
 
 // @public (undocumented)
-export const Marker: <T extends {} = React_2.HTMLAttributes<HTMLDivElement>>({ as, mark, options, ...restProps }: MarkerProps<T>) => React_2.ReactElement<any, string | React_2.JSXElementConstructor<any>>;
+export const Marker: <T extends {} = React_2.HTMLAttributes<HTMLDivElement>>({ as, mark, options, unmarkOptions, ...restProps }: MarkerProps<T>) => React_2.ReactElement<any, string | React_2.JSXElementConstructor<any>>;
 
 // @public (undocumented)
 export type MarkerProps<T = HTMLAttributes<HTMLDivElement>> = {
@@ -24,27 +25,29 @@ export type MarkerProps<T = HTMLAttributes<HTMLDivElement>> = {
     as?: string | ElementType;
     mark?: string | string[];
     options?: MarkOptions;
+    unmarkOptions?: UnmarkOptions;
 } & T;
 
 // @public (undocumented)
-export const RangesMarker: <T>({ as, mark, options, ...restProps }: RangesMarkerProps<T>) => ReactElement<any, string | JSXElementConstructor<any>>;
+export const RangesMarker: <T>({ as, mark, options, unmarkOptions, ...restProps }: RangesMarkerProps<T>) => ReactElement<any, string | JSXElementConstructor<any>>;
 
 // @public (undocumented)
 export type RangesMarkerProps<T = HTMLAttributes<HTMLDivElement>> = {
     as?: string | ElementType;
     mark?: RangeMarkerItem[];
     options?: RangesMarkerOptions;
+    unmarkOptions?: UnmarkOptions;
 } & T;
 
 // @public (undocumented)
-export const RegExpMarker: <T>({ mark, options, as, ...restProps }: RegExpMarkerProps<T>) => React_2.ReactElement<any, string | React_2.JSXElementConstructor<any>>;
+export const RegExpMarker: <T>({ mark, options, as, unmarkOptions, ...restProps }: RegExpMarkerProps<T>) => React_2.ReactElement<any, string | React_2.JSXElementConstructor<any>>;
 
 // @public (undocumented)
 export type RegExpMarkerProps<T = HTMLAttributes<HTMLDivElement>> = {
     mark?: RegExp;
     options?: RegExpMarkerOptions;
     as?: string | ElementType;
-    children: React_2.ReactNode;
+    unmarkOptions?: UnmarkOptions;
 } & T;
 
 // @public (undocumented)

@@ -199,7 +199,7 @@
             },
             {
               "kind": "Content",
-              "text": ">>({ as, mark, options, ...restProps }: "
+              "text": ">>({ as, mark, options, unmarkOptions, ...restProps }: "
             },
             {
               "kind": "Reference",
@@ -296,6 +296,15 @@
             },
             {
               "kind": "Content",
+              "text": ";\n    unmarkOptions?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "UnmarkOptions",
+              "canonicalReference": "@types/mark.js!UnmarkOptions:type"
+            },
+            {
+              "kind": "Content",
               "text": ";\n} & T"
             },
             {
@@ -320,7 +329,7 @@
           ],
           "typeTokenRange": {
             "startIndex": 6,
-            "endIndex": 13
+            "endIndex": 15
           }
         },
         {
@@ -334,7 +343,7 @@
             },
             {
               "kind": "Content",
-              "text": "<T>({ as, mark, options, ...restProps }: "
+              "text": "<T>({ as, mark, options, unmarkOptions, ...restProps }: "
             },
             {
               "kind": "Reference",
@@ -431,6 +440,15 @@
             },
             {
               "kind": "Content",
+              "text": ";\n    unmarkOptions?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "UnmarkOptions",
+              "canonicalReference": "@types/mark.js!UnmarkOptions:type"
+            },
+            {
+              "kind": "Content",
               "text": ";\n} & T"
             },
             {
@@ -455,7 +473,7 @@
           ],
           "typeTokenRange": {
             "startIndex": 6,
-            "endIndex": 13
+            "endIndex": 15
           }
         },
         {
@@ -469,7 +487,7 @@
             },
             {
               "kind": "Content",
-              "text": "<T>({ mark, options, as, ...restProps }: "
+              "text": "<T>({ mark, options, as, unmarkOptions, ...restProps }: "
             },
             {
               "kind": "Reference",
@@ -566,12 +584,12 @@
             },
             {
               "kind": "Content",
-              "text": ";\n    children: "
+              "text": ";\n    unmarkOptions?: "
             },
             {
               "kind": "Reference",
-              "text": "React.ReactNode",
-              "canonicalReference": "@types/react!~React.ReactNode:type"
+              "text": "UnmarkOptions",
+              "canonicalReference": "@types/mark.js!UnmarkOptions:type"
             },
             {
               "kind": "Content",

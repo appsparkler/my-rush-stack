@@ -21,7 +21,7 @@ const mark_js_1 = __importDefault(require("mark.js"));
  * @public
  */
 const RangesMarker = (_a) => {
-    var { as = 'div', mark = [], options = {} } = _a, restProps = __rest(_a, ["as", "mark", "options"]);
+    var { as = 'div', mark = [], options = {}, unmarkOptions = {} } = _a, restProps = __rest(_a, ["as", "mark", "options", "unmarkOptions"]);
     const ref = (0, react_1.useRef)(null);
     const [markJSInstance, setMarkJSInstance] = (0, react_1.useState)();
     (0, react_1.useEffect)(() => {
@@ -30,11 +30,11 @@ const RangesMarker = (_a) => {
     }, []);
     (0, react_1.useEffect)(() => {
         if (markJSInstance) {
-            Promise.resolve(markJSInstance.unmark()).then((res) => {
+            Promise.resolve(markJSInstance.unmark(unmarkOptions)).then((res) => {
                 markJSInstance.markRanges(mark, options);
             });
         }
-    }, [mark, markJSInstance, options]);
+    }, [mark, markJSInstance, options, unmarkOptions]);
     return (0, react_1.createElement)(as, Object.assign({ ref }, restProps));
 };
 exports.RangesMarker = RangesMarker;
