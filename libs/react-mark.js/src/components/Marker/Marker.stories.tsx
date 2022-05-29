@@ -19,8 +19,7 @@ Template.args = {
 export const marker: ComponentStory<typeof Marker> = Template.bind({});
 marker.args = {
   mark: 'Lorem',
-  variant: 'body1',
-} as MarkerProps<TypographyProps>;
+} as MarkerProps;
 
 export const markWithArrayOfStrings = Template.bind({});
 markWithArrayOfStrings.args = {
@@ -44,5 +43,5 @@ asTypography.args = {
 
 export default {
   component: Marker,
-  title: 'Components/Marker',
+  title: 'Stories/Components/Marker',
 } as ComponentMeta<typeof Marker>;
