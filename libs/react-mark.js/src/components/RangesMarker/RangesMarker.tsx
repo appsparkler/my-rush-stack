@@ -6,7 +6,11 @@ import {
   useRef,
   useState,
 } from 'react';
-import MarkJS, { RangeMarkerItem, RangesMarkerOptions } from 'mark.js';
+import MarkJS, {
+  RangeMarkerItem,
+  RangesMarkerOptions,
+  UnmarkOptions,
+} from 'mark.js';
 
 /**
  * @public
@@ -15,6 +19,7 @@ export type RangesMarkerProps<T = HTMLAttributes<HTMLDivElement>> = {
   as?: string | ElementType;
   mark?: RangeMarkerItem[];
   options?: RangesMarkerOptions;
+  unmarkOptions?: UnmarkOptions;
 } & T;
 
 /**
@@ -24,6 +29,7 @@ export const RangesMarker = <T,>({
   as = 'div',
   mark = [],
   options = {},
+  unmarkOptions = {},
   ...restProps
 }: RangesMarkerProps<T>) => {
   const ref = useRef(null);
@@ -37,11 +43,11 @@ export const RangesMarker = <T,>({
 
   useEffect(() => {
     if (markJSInstance) {
-      Promise.resolve(markJSInstance.unmark()).then((res) => {
+      Promise.resolve(markJSInstance.unmark(unmarkOptions)).then((res) => {
         markJSInstance.markRanges(mark, options);
       });
     }
-  }, [mark, markJSInstance, options]);
+  }, [mark, markJSInstance, options, unmarkOptions]);
 
   return createElement(as, {
     ref,
