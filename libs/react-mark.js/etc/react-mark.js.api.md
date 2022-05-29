@@ -47,10 +47,14 @@ export type RegExpMarkerProps<T = HTMLAttributes<HTMLDivElement>> = {
     children: React_2.ReactNode;
 } & T;
 
-// Warning: (ae-forgotten-export) The symbol "UseMarkerRes" needs to be exported by the entry point index.d.ts
-//
 // @public (undocumented)
 export const useMarker: () => UseMarkerRes;
+
+// @public (undocumented)
+export type UseMarkerRes = {
+    marker: MarkJS;
+    markerRef: React.MutableRefObject<any>;
+};
 
 // (No @packageDocumentation comment for this package)
 

@@ -605,7 +605,7 @@
         {
           "kind": "Variable",
           "canonicalReference": "react-mark.js!useMarker:var",
-          "docComment": "",
+          "docComment": "/**\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -618,7 +618,7 @@
             {
               "kind": "Reference",
               "text": "UseMarkerRes",
-              "canonicalReference": "react-mark.js!~UseMarkerRes:type"
+              "canonicalReference": "react-mark.js!UseMarkerRes:type"
             }
           ],
           "releaseTag": "Public",
@@ -626,6 +626,49 @@
           "variableTypeTokenRange": {
             "startIndex": 1,
             "endIndex": 3
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "react-mark.js!UseMarkerRes:type",
+          "docComment": "/**\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type UseMarkerRes = "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    marker: "
+            },
+            {
+              "kind": "Reference",
+              "text": "MarkJS",
+              "canonicalReference": "@types/mark.js!~MarkJS:class"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    markerRef: "
+            },
+            {
+              "kind": "Reference",
+              "text": "React.MutableRefObject",
+              "canonicalReference": "@types/react!~React.MutableRefObject:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<any>;\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "UseMarkerRes",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 6
           }
         }
       ]
