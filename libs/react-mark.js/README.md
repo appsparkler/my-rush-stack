@@ -39,16 +39,12 @@ You can choose to import single components like `react-mark.js/Marker` rather
 than the entire component library.
 
 ```jsx
-import Marker from 'react-mark.js/Marker';
-// or; if you prefer
 import { Marker } from 'react-marker.js';
 ```
 
 # 🖌 Basic Example
 
 ```jsx
-import Marker from 'react-mark.js/Marker';
-// or; if you prefer
 import { Marker } from 'react-mark.js';
 
 export default () => (
@@ -160,7 +156,7 @@ export const LightGreenMarker = styled(Marker)`
 
 ```jsx
 import React from 'react';
-import Marker from 'react-mark.js/Marker'; // or, import {Marker} from 'react-mark.js'
+import { Marker } from 'react-mark.js/libs/components/Marker'; // or, import {Marker} from 'react-mark.js'
 
 const MarkerExamples = () => {
   return (
@@ -237,8 +233,8 @@ export default RegExpMarkerExamples;
 
 ```jsx
 import React from 'react';
-import RangesMarker from 'react-mark.js/RangesMarker';
-// or import {RangesMarker} from 'react-mark.js'
+import { RangesMarker } from 'react-mark.js';
+
 const blue = { color: 'blue' };
 export const RangesExample = () => {
   return (
@@ -349,7 +345,7 @@ export default MyContent;
 
 # Options
 
-## ⚡️ `options` (optional prop)
+## ⚡️ `options` for `<Marker />` (optional prop)
 
 You can pass any of these options to the options props (source - [mark.js](https://markjs.io#mark)):
 
@@ -379,9 +375,285 @@ You can pass any of these options to the options props (source - [mark.js](https
     </tbody>
 </table>
 
+## ⚡️ `options` for `<RangesMarker />` (optional prop)
+
+<div class="table-responsive">
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Option</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>element</td>
+        <td>string</td>
+        <td>"mark"</td>
+        <td>
+          HTML element to wrap matches, e.g. <code>span</code>
+        </td>
+      </tr>
+      <tr>
+        <td>className</td>
+        <td>string</td>
+        <td>""</td>
+        <td>
+          A class name that will be appended to <code>element</code>
+        </td>
+      </tr>
+      <tr>
+        <td>exclude</td>
+        <td>array</td>
+        <td>[ ]</td>
+        <td>
+          An array with exclusion selectors. Matches inside these elements will
+          be ignored. Example:
+          <code>"filter": ["h1", ".ignore"]</code>
+        </td>
+      </tr>
+      <tr>
+        <td>iframes</td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>
+          Whether to search also inside iframes. If you don't have permissions
+          to some iframes (e.g. because they have a [different origin][SOP])
+          they will be silently skipped. If you don't want to search inside
+          specific iframes (e.g. facebook share), you can pass an{' '}
+          <code>exclude</code> selector that matches these iframes
+        </td>
+      </tr>
+      <tr>
+        <td>iframesTimeout</td>
+        <td>number</td>
+        <td>5000</td>
+        <td>
+          The maximum ms to wait for a <code>load</code> event before skipping
+          an iframe. Especially important when there's no internet connection or
+          a browser "offline" mode is enabled and an iframe has an online{' '}
+          <code>src</code> – then the <code>load</code> event is never fired
+        </td>
+      </tr>
+      <tr>
+        <td>each</td>
+        <td>function</td>
+        <td></td>
+        <td>
+          A callback for each marked element. Receives the marked DOM element
+          and the corresponding range as a parameter
+        </td>
+      </tr>
+      <tr>
+        <td>filter</td>
+        <td>function</td>
+        <td></td>
+        <td>
+          A callback to filter or limit matches. It will be called for each
+          match and receives the following parameters:
+          <ol>
+            <li>The text node which includes the range</li>
+            <li>The current range</li>
+            <li>The extracted term from the matching range</li>
+            <li>
+              A counter indicating the total number of all marks at the time of
+              the function call
+            </li>
+          </ol>
+          The function must return false if the mark should be stopped,
+          otherwise true
+        </td>
+      </tr>
+      <tr>
+        <td>noMatch</td>
+        <td>function</td>
+        <td></td>
+        <td>
+          A callback function that will be called when there are no matches.
+          Receives the not found range as a parameter
+        </td>
+      </tr>
+      <tr>
+        <td>done</td>
+        <td>function</td>
+        <td></td>
+        <td>
+          A callback function after all marks are done. Receives the total
+          number of marks as a parameter
+        </td>
+      </tr>
+      <tr>
+        <td>debug</td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>
+          Set this option to <code>true</code> if you want to log messages
+        </td>
+      </tr>
+      <tr>
+        <td>log</td>
+        <td>object</td>
+        <td>console</td>
+        <td>
+          Log messages to a specific object (only if <code>debug</code> is true)
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <hr />
 
-## ⚡️ `unmarkOptions` (optional prop)
+## ⚡️ `options` for `<RegExpMarker />` (optional prop)
+
+<div class="table-responsive">
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Option</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>element</td>
+        <td>string</td>
+        <td>"mark"</td>
+        <td>
+          HTML element to wrap matches, e.g. <code>span</code>
+        </td>
+      </tr>
+      <tr>
+        <td>className</td>
+        <td>string</td>
+        <td>""</td>
+        <td>
+          A class name that will be appended to <code>element</code>
+        </td>
+      </tr>
+      <tr>
+        <td>exclude</td>
+        <td>array</td>
+        <td>[ ]</td>
+        <td>
+          An array with exclusion selectors. Matches inside these elements will
+          be ignored. Example: <code>"filter": ["h1", ".ignore"]</code>
+        </td>
+      </tr>
+      <tr>
+        <td>iframes</td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>
+          Whether to search also inside iframes. If you don't have permissions
+          to some iframes (e.g. because they have a{' '}
+          <a href="https://en.wikipedia.org/wiki/Same-origin_policy">
+            different origin
+          </a>
+          ) they will be silently skipped. If you don't want to search inside specific
+          iframes (e.g. facebook share), you can pass an <code>exclude</code> selector
+          that matches these iframes
+        </td>
+      </tr>
+      <tr>
+        <td>iframesTimeout</td>
+        <td>number</td>
+        <td>5000</td>
+        <td>
+          The maximum ms to wait for a <code>load</code> event before skipping
+          an iframe. Especially important when there's no internet connection or
+          a browser "offline" mode is enabled and an iframe has an online{' '}
+          <code>src</code> – then the <code>load</code> event is never fired
+        </td>
+      </tr>
+      <tr>
+        <td>acrossElements</td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>Whether to search for matches across elements</td>
+      </tr>
+      <tr>
+        <td>ignoreGroups</td>
+        <td>number</td>
+        <td>0</td>
+        <td>
+          Indicates the number of matching groups to ignore in the replacement.
+          Can be used e.g. to implement non-capturing lookbehind groups. Note
+          that when the value is &gt; 0 (when groups should be ignored), it
+          expects a total amount of groups in the RegExp of{' '}
+          <code>ignoreGroups</code> + 1
+        </td>
+      </tr>
+      <tr>
+        <td>each</td>
+        <td>function</td>
+        <td></td>
+        <td>
+          A callback for each marked element. Receives the marked DOM element as
+          a parameter
+        </td>
+      </tr>
+      <tr>
+        <td>filter</td>
+        <td>function</td>
+        <td></td>
+        <td>
+          A callback to filter or limit matches. It will be called for each
+          match and receives the following parameters:
+          <ol>
+            <li>The text node which includes the match</li>
+            <li>The matching string that has been found</li>
+            <li>A counter indicating the number of all marks</li>
+          </ol>
+          The function must return false if the mark should be stopped,
+          otherwise true
+        </td>
+      </tr>
+      <tr>
+        <td>noMatch</td>
+        <td>function</td>
+        <td></td>
+        <td>
+          A callback function that will be called when there are no matches.
+          Receives the not found term as a parameter
+        </td>
+      </tr>
+      <tr>
+        <td>done</td>
+        <td>function</td>
+        <td></td>
+        <td>
+          A callback function after all marks are done. Receives the total
+          number of marks as a parameter
+        </td>
+      </tr>
+      <tr>
+        <td>debug</td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>
+          Set this option to <code>true</code> if you want to log messages
+        </td>
+      </tr>
+      <tr>
+        <td>log</td>
+        <td>object</td>
+        <td>console</td>
+        <td>
+          Log messages to a specific object (only if <code>debug</code> is true)
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<hr />
+
+## ⚡️ `options` for `unmark` to use with `useMarker` hook. (optional prop)
 
 Any of the following options can be passed
 to the `unmarkOptions prop` in the available components
