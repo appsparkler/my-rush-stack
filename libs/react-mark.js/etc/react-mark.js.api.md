@@ -7,6 +7,7 @@
 import { ElementType } from 'react';
 import { HTMLAttributes } from 'react';
 import { JSXElementConstructor } from 'react';
+import MarkJS from 'mark.js';
 import { MarkOptions } from 'mark.js';
 import { RangeMarkerItem } from 'mark.js';
 import { RangesMarkerOptions } from 'mark.js';
@@ -26,7 +27,7 @@ export type MarkerProps<T = HTMLAttributes<HTMLDivElement>> = {
 } & T;
 
 // @public (undocumented)
-export const RangesMarker: ({ as, mark, options, ...restProps }: RangesMarkerProps) => ReactElement<any, string | JSXElementConstructor<any>>;
+export const RangesMarker: <T>({ as, mark, options, ...restProps }: RangesMarkerProps<T>) => ReactElement<any, string | JSXElementConstructor<any>>;
 
 // @public (undocumented)
 export type RangesMarkerProps<T = HTMLAttributes<HTMLDivElement>> = {
@@ -36,15 +37,20 @@ export type RangesMarkerProps<T = HTMLAttributes<HTMLDivElement>> = {
 } & T;
 
 // @public (undocumented)
-export const RegExpMarker: React_2.FC<RegExpMarkerProps>;
+export const RegExpMarker: <T>({ mark, options, as, ...restProps }: RegExpMarkerProps<T>) => React_2.ReactElement<any, string | React_2.JSXElementConstructor<any>>;
 
 // @public (undocumented)
-export type RegExpMarkerProps = {
+export type RegExpMarkerProps<T = HTMLAttributes<HTMLDivElement>> = {
     mark?: RegExp;
     options?: RegExpMarkerOptions;
-    As?: string;
+    as?: string | ElementType;
     children: React_2.ReactNode;
-};
+} & T;
+
+// Warning: (ae-forgotten-export) The symbol "UseMarkerRes" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export const useMarker: () => UseMarkerRes;
 
 // (No @packageDocumentation comment for this package)
 

@@ -1,17 +1,22 @@
 import MarkJS from 'mark.js';
 import { useEffect, useRef, useState } from 'react';
 
-export const useMarker = () => {
-  const ref = useRef(null);
+type UseMarkerRes = {
+  marker: MarkJS;
+  markerRef: React.MutableRefObject<any>;
+};
+
+export const useMarker = (): UseMarkerRes => {
+  const markerRef = useRef(null);
   const [marker, setMarker] = useState<MarkJS>();
 
   useEffect(() => {
-    const markJSInstance = new MarkJS(ref.current);
+    const markJSInstance = new MarkJS(markerRef.current);
     setMarker(markJSInstance);
   }, []);
 
   return {
     marker,
-    ref,
+    markerRef,
   };
 };

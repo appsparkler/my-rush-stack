@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { ElementType, HTMLAttributes } from 'react';
 import { RegExpMarkerOptions } from 'mark.js';
 /**
  * @public
  */
-export declare type RegExpMarkerProps = {
+export declare type RegExpMarkerProps<T = HTMLAttributes<HTMLDivElement>> = {
     mark?: RegExp;
     options?: RegExpMarkerOptions;
-    As?: string;
+    as?: string | ElementType;
     children: React.ReactNode;
-};
+} & T;
 /**
  * @public
  */
-export declare const RegExpMarker: React.FC<RegExpMarkerProps>;
+export declare const RegExpMarker: <T>({ mark, options, as, ...restProps }: RegExpMarkerProps<T>) => React.ReactElement<any, string | React.JSXElementConstructor<any>>;
 //# sourceMappingURL=RegExpMarker.d.ts.map

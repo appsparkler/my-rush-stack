@@ -2,11 +2,11 @@ import { useCallback } from 'react';
 import { useMarker } from './useMarker';
 
 const Story = {
-  title: 'Hooks/useMarker',
+  title: 'Stories/Hooks/useMarker',
 };
 
 const Template = () => {
-  const { marker, ref } = useMarker();
+  const { marker, markerRef } = useMarker();
 
   const handleClickMark = useCallback(() => {
     marker.mark('Lorem Ipsum');
@@ -18,7 +18,7 @@ const Template = () => {
 
   return (
     <div>
-      <div ref={ref}>
+      <div ref={markerRef}>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam
         dolorum sit, commodi dolor, aperiam, veritatis deleniti est et possimus
         rem error animi omnis reiciendis vero magnam ipsa explicabo laudantium

@@ -11,5 +11,5 @@ export declare type RangesMarkerProps<T = HTMLAttributes<HTMLDivElement>> = {
 /**
  * @public
  */
-export declare const RangesMarker: ({ as, mark, options, ...restProps }: RangesMarkerProps) => import("react").ReactElement<any, string | import("react").JSXElementConstructor<any>>;
+export declare const RangesMarker: <T>({ as, mark, options, ...restProps }: RangesMarkerProps<T>) => import("react").ReactElement<any, string | import("react").JSXElementConstructor<any>>;
 //# sourceMappingURL=RangesMarker.d.ts.map

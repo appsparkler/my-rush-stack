@@ -334,7 +334,7 @@
             },
             {
               "kind": "Content",
-              "text": "({ as, mark, options, ...restProps }: "
+              "text": "<T>({ as, mark, options, ...restProps }: "
             },
             {
               "kind": "Reference",
@@ -343,7 +343,7 @@
             },
             {
               "kind": "Content",
-              "text": ") => import(\"react\")."
+              "text": "<T>) => import(\"react\")."
             },
             {
               "kind": "Reference",
@@ -468,13 +468,8 @@
               "text": "RegExpMarker: "
             },
             {
-              "kind": "Reference",
-              "text": "React.FC",
-              "canonicalReference": "@types/react!~React.FC:type"
-            },
-            {
               "kind": "Content",
-              "text": "<"
+              "text": "<T>({ mark, options, as, ...restProps }: "
             },
             {
               "kind": "Reference",
@@ -483,14 +478,32 @@
             },
             {
               "kind": "Content",
-              "text": ">"
+              "text": "<T>) => "
+            },
+            {
+              "kind": "Reference",
+              "text": "React.ReactElement",
+              "canonicalReference": "@types/react!~React.ReactElement:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<any, string | "
+            },
+            {
+              "kind": "Reference",
+              "text": "React.JSXElementConstructor",
+              "canonicalReference": "@types/react!~React.JSXElementConstructor:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<any>>"
             }
           ],
           "releaseTag": "Public",
           "name": "RegExpMarker",
           "variableTypeTokenRange": {
             "startIndex": 1,
-            "endIndex": 5
+            "endIndex": 8
           }
         },
         {
@@ -500,7 +513,29 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare type RegExpMarkerProps = "
+              "text": "export declare type RegExpMarkerProps<T = "
+            },
+            {
+              "kind": "Reference",
+              "text": "HTMLAttributes",
+              "canonicalReference": "@types/react!~React.HTMLAttributes:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "HTMLDivElement",
+              "canonicalReference": "!HTMLDivElement:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ">"
+            },
+            {
+              "kind": "Content",
+              "text": "> = "
             },
             {
               "kind": "Content",
@@ -522,7 +557,16 @@
             },
             {
               "kind": "Content",
-              "text": ";\n    As?: string;\n    children: "
+              "text": ";\n    as?: string | "
+            },
+            {
+              "kind": "Reference",
+              "text": "ElementType",
+              "canonicalReference": "@types/react!~React.ElementType:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    children: "
             },
             {
               "kind": "Reference",
@@ -531,7 +575,7 @@
             },
             {
               "kind": "Content",
-              "text": ";\n}"
+              "text": ";\n} & T"
             },
             {
               "kind": "Content",
@@ -540,9 +584,48 @@
           ],
           "releaseTag": "Public",
           "name": "RegExpMarkerProps",
+          "typeParameters": [
+            {
+              "typeParameterName": "T",
+              "constraintTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 5
+              }
+            }
+          ],
           "typeTokenRange": {
+            "startIndex": 6,
+            "endIndex": 15
+          }
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "react-mark.js!useMarker:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "useMarker: "
+            },
+            {
+              "kind": "Content",
+              "text": "() => "
+            },
+            {
+              "kind": "Reference",
+              "text": "UseMarkerRes",
+              "canonicalReference": "react-mark.js!~UseMarkerRes:type"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "useMarker",
+          "variableTypeTokenRange": {
             "startIndex": 1,
-            "endIndex": 8
+            "endIndex": 3
           }
         }
       ]

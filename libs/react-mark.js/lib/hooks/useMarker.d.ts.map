@@ -1,0 +1,1 @@
+{"version":3,"file":"useMarker.d.ts","sourceRoot":"","sources":["../../src/hooks/useMarker.ts"],"names":[],"mappings":"AAAA,OAAO,MAAM,MAAM,SAAS,CAAC;AAG7B,aAAK,YAAY,GAAG;IAClB,MAAM,EAAE,MAAM,CAAC;IACf,SAAS,EAAE,KAAK,CAAC,gBAAgB,CAAC,GAAG,CAAC,CAAC;CACxC,CAAC;AAEF,eAAO,MAAM,SAAS,QAAO,YAa5B,CAAC"}
