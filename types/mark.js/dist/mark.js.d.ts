@@ -10,7 +10,7 @@ declare class MarkJS {
     constructor(context: Element);
     mark: (str: string | string[], options?: MarkOptions) => void;
     markRegExp: (str: RegExp, options?: RegExpMarkerOptions) => void;
-    unmark: () => void;
+    unmark: (options?: UnmarkOptions) => void;
     markRanges: (ranges: RangeMarkerItem[], options?: RangesMarkerOptions) => void;
 }
 export default MarkJS;
@@ -81,6 +81,14 @@ export declare type RegExpMarkerOptions = Partial<{
     done: () => void;
     debug: boolean;
     log: Console;
+}>;
+
+/**
+ * @public
+ */
+export declare type UnmarkOptions = Partial<{
+    /**Will remove only marked elements with this specific element */
+    element: string;
 }>;
 
 /**

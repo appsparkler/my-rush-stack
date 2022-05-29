@@ -17,7 +17,7 @@ class MarkJS {
     // (undocumented)
     markRegExp: (str: RegExp, options?: RegExpMarkerOptions) => void;
     // (undocumented)
-    unmark: () => void;
+    unmark: (options?: UnmarkOptions) => void;
 }
 export default MarkJS;
 
@@ -76,6 +76,11 @@ export type RegExpMarkerOptions = Partial<{
     done: () => void;
     debug: boolean;
     log: Console;
+}>;
+
+// @public (undocumented)
+export type UnmarkOptions = Partial<{
+    element: string;
 }>;
 
 // @public (undocumented)

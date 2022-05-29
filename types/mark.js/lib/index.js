@@ -17,6 +17,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./mark"), exports);
 __exportStar(require("./mark-regexp"), exports);
 __exportStar(require("./mark-ranges"), exports);
+__exportStar(require("./unmark"), exports);
 /**
  * @public
  */

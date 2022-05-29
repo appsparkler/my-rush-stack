@@ -377,7 +377,16 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "() => void"
+                  "text": "(options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "UnmarkOptions",
+                  "canonicalReference": "@types/mark.js!UnmarkOptions:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ") => void"
                 },
                 {
                   "kind": "Content",
@@ -389,7 +398,7 @@
               "name": "unmark",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 2
+                "endIndex": 4
               },
               "isStatic": false
             }
@@ -567,6 +576,36 @@
           "typeTokenRange": {
             "startIndex": 1,
             "endIndex": 5
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@types/mark.js!UnmarkOptions:type",
+          "docComment": "/**\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type UnmarkOptions = "
+            },
+            {
+              "kind": "Reference",
+              "text": "Partial",
+              "canonicalReference": "!Partial:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<{\n    element: string;\n}>"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "UnmarkOptions",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 3
           }
         },
         {
