@@ -138,6 +138,8 @@ importers:
       react-is: ^17.0.2
       size-limit: ^7.0.8
       typescript: ~4.6.4
+    dependencies:
+      mark.js: 8.11.1
     devDependencies:
       '@babel/core': 7.18.2
       '@emotion/react': 11.9.0_b6102fabd8e4850ab0d17c8e8bd2165e
@@ -164,7 +166,6 @@ importers:
       eslint: 8.14.0
       eslint-config-react-app: 7.0.1_eslint@8.14.0+typescript@4.6.4
       lodash: 4.17.21
-      mark.js: 8.11.1
       mui: link:../mui
       prettier: 2.6.2
       prism: 4.1.2_react@18.1.0
@@ -10867,7 +10868,6 @@ packages:
 
   /mark.js/8.11.1:
     resolution: {integrity: sha1-GA8fnr74sOY45BZq1S24eb6y/8U=}
-    dev: true
 
   /markdown-escapes/1.0.4:
     resolution: {integrity: sha512-8z4efJYk43E0upd0NbVXwgSTQs6cT3T06etieCMEg7dRbzCbxUCK/GHlX8mhHRDcp+OLlHkPKsvqQTCvsRl2cg==}
