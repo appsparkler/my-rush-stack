@@ -1,6 +1,6 @@
 {
   "name": "react-mark.js",
-  "version": "4.0.0-alpha-5",
+  "version": "4.0.0-alpha-6",
   "description": "Customizable Date Picker for React",
   "author": "Giampaolo Bellavite <io@gpbl.dev>",
   "homepage": "http://react-day-picker.js.org",
@@ -44,6 +44,7 @@
     "@testing-library/react-hooks": "^7.0.2",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.4.1",
+    "@types/mark.js": "workspace:*",
     "@types/node": "^17.0.23",
     "@types/react": "^17.0.44",
     "@typescript-eslint/eslint-plugin": "^5.18.0",
@@ -51,6 +52,7 @@
     "eslint": "^8.13.0",
     "eslint-config-rdp": "1.0.0",
     "jest": "^27.5.1",
+    "mark.js": "^8.11.1",
     "prettier": "^2.6.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
