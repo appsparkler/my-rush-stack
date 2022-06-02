@@ -20,5 +20,5 @@
     "skipLibCheck": true,
     "resolveJsonModule": true
   },
-  "include": ["test", "src"]
+  "include": ["test", "src", "@node_modules/@types/mark.js"]
 }

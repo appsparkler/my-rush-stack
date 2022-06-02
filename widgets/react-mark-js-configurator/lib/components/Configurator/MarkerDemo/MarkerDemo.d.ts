@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { MarkOptions, RangeMarkerItem, RangesMarkerOptions, RegExpMarkerOptions } from 'mark.js';
 import { MarkerType } from '../MarkerCoderRenderer';
 export declare type MarkerDemoProps = {

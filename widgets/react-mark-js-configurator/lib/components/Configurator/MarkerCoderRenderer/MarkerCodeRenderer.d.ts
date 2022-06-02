@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { BoxProps } from "@mui/material";
 import "./prism.css";
 import { RangeMarkerItem } from "mark.js";

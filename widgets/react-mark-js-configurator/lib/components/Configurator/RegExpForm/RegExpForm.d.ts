@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { TextFieldProps } from '@mui/material';
 import { RegExpMarkerOptions } from 'mark.js';
 export declare type RegExpFormRawValues = {

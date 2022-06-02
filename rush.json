@@ -398,13 +398,13 @@
     // LIBS - REACT MARK JS
     {
       "packageName": "react-mark.js",
-      "projectFolder": "libs/react-mark.js"
+      "projectFolder": "react-mark.js/react-day-picker"
     },
     // WIDGET - REACT MARK JS CONFIGURATOR
-    {
-      "packageName": "@react-mark.js/configurator",
-      "projectFolder": "widgets/react-mark-js-configurator"
-    },
+    // {
+    //   "packageName": "@react-mark.js/configurator",
+    //   "projectFolder": "widgets/react-mark-js-configurator"
+    // },
     // DOCS - REACT MARK JS
     {
       "packageName": "react-mark-js-docs",

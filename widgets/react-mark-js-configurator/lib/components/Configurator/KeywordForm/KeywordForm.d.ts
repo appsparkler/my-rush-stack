@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { TextFieldProps } from '@mui/material';
 import { DynamicKeyValueListItem } from './DynamicKeyValueList';
 import { MarkOptions } from 'mark.js';

@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { MarkerCodeRendererProps } from "../MarkerCoderRenderer/MarkerCodeRenderer";
 export declare type ConfigType = "keyword" | "keywordArray" | "regExp" | "ranges";
 export declare type OnChangeCompositeForm = (updatedConfig: Omit<MarkerCodeRendererProps, "onChange">) => void;
