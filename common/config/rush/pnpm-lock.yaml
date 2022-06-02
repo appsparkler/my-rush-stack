@@ -127,6 +127,7 @@ importers:
       eslint-plugin-prettier: ^4.0.0
       eslint-plugin-react-hooks: ^4.4.0
       jest: ^27.5.1
+      mark.js: ~8.11.1
       prettier: ^2.6.2
       react: ^17.0.2
       react-dom: ^17.0.2
@@ -169,6 +170,7 @@ importers:
       eslint-plugin-prettier: 4.0.0_665eb419c9d7860ca0c224f7f6dcdace
       eslint-plugin-react-hooks: 4.5.0_eslint@8.14.0
       jest: 27.5.1_ts-node@10.8.0
+      mark.js: 8.11.1
       prettier: 2.6.2
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
@@ -9155,6 +9157,10 @@ packages:
     resolution: {integrity: sha512-JmqCvUhmt43madlpFzG4BQzG2Z3m6tvQDNKdClZnO3VbIudJYmxsT0FNJMeiB2+JTSlTQTSbU8QdesVmwJcmLg==}
     dependencies:
       tmpl: 1.0.5
+    dev: true
+
+  /mark.js/8.11.1:
+    resolution: {integrity: sha512-1I+1qpDt4idfgLQG+BNWmrqku+7/2bi5nLf4YwF8y8zXvmfiTBY3PV3ZibfrjBueCByROpuBjLLFCajqkgYoLQ==}
     dev: true
 
   /markdown-escapes/1.0.4:
