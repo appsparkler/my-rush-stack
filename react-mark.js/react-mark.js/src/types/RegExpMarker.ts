@@ -1,3 +1,6 @@
+import { ElementType } from "react";
+import { UnmarkOptions } from "./UnmarkOptions";
+
 /**
  * @public
  */
@@ -16,3 +19,15 @@ export type RegExpMarkerOptions = Partial<{
   debug: boolean;
   log: Console;
 }>;
+
+/**
+ * @public
+ */
+export type RegExpMarkerProps<T> = {
+  mark?: RegExp;
+  options?: RegExpMarkerOptions;
+  as?: string | ElementType;
+  unmarkOptions?: UnmarkOptions;
+  children: React.ReactNode;
+  elementProps?: T;
+};
