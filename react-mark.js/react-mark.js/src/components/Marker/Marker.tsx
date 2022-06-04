@@ -1,14 +1,6 @@
-import React, {
-  createElement,
-  ElementType,
-  HTMLAttributes,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { createElement, useEffect, useRef, useState } from "react";
 import MarkJS from "mark.js";
-import { DivAttributes, MarkOptions, UnmarkOptions } from "types";
-import { MarkerProps } from "types/Marker";
+import { DivAttributes, MarkerProps } from "types";
 
 /**
  * @public
@@ -23,7 +15,7 @@ export function Marker<T = DivAttributes>({
 }: MarkerProps<T>): JSX.Element {
   <div></div>;
   const markerRef = useRef<HTMLDivElement | null>(null);
-  const [markInstance, setMarkInstance] = useState<any>();
+  const [markInstance, setMarkInstance] = useState<MarkJS>();
 
   useEffect(() => {
     if (markerRef.current) {
