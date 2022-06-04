@@ -22,6 +22,7 @@
     "build-watch": "rollup -c -w --no-watch.clearScreen",
     "css-types": "yarn tcm -p src/style.css",
     "lint": "eslint --ext .ts,.tsx src",
+    "publish:canary": "yarn version --prerelease --preid=canary && npm publish --tag canary",
     "test": "jest",
     "test-watch": "jest --watch",
     "typecheck": "tsc --project ./tsconfig.json --noEmit",

@@ -13,7 +13,6 @@ export function Marker<T = DivAttributes>({
   unmarkOptions = {},
   elementProps,
 }: MarkerProps<T>): JSX.Element {
-  <div></div>;
   const markerRef = useRef<HTMLDivElement | null>(null);
   const [markInstance, setMarkInstance] = useState<MarkJS>();
 
