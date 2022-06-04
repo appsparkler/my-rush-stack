@@ -1,4 +1,4 @@
-import React, { createElement, useEffect, useRef, useState } from "react";
+import { createElement, useEffect, useRef, useState } from "react";
 import MarkJS from "mark.js";
 import { DivAttributes, MarkerProps } from "types";
 
