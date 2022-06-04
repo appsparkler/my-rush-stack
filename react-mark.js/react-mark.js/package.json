@@ -1,6 +1,6 @@
 {
   "name": "react-mark.js",
-  "version": "4.0.0-canary.6",
+  "version": "4.0.0-canary.7",
   "description": "Customizable Date Picker for React",
   "author": "Giampaolo Bellavite <io@gpbl.dev>",
   "homepage": "http://react-day-picker.js.org",
@@ -37,6 +37,7 @@
     "@reach/auto-id": "0.16.0"
   },
   "devDependencies": {
+    "@jest/types": "^27.5.1",
     "@rollup/plugin-alias": "^3.1.9",
     "@rollup/plugin-commonjs": "^21.1.0",
     "@rollup/plugin-typescript": "^8.3.1",
