@@ -1,3 +1,6 @@
+import { ElementType } from "react";
+import { UnmarkOptions } from "./UnmarkOptions";
+
 /**
  * @public
  */
@@ -17,3 +20,15 @@ export type RangesMarkerOptions = {
   iframes?: boolean;
   iframesTimeout?: number;
 };
+
+/**
+ * @public
+ */
+export interface RangesMarkerProps<T> {
+  children?: React.ReactNode;
+  as?: string | ElementType;
+  ranges?: RangeMarkerItem[];
+  options?: RangesMarkerOptions;
+  unmarkOptions?: UnmarkOptions;
+  elementProps?: T;
+}

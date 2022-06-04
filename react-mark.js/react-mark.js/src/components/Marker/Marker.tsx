@@ -5,6 +5,7 @@ import { DivAttributes, MarkerProps } from "types";
 /**
  * @public
  */
+
 export function Marker<T = DivAttributes>({
   as = "div",
   mark = "",
