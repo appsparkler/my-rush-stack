@@ -7,24 +7,8 @@ import React, {
   useState,
 } from "react";
 import MarkJS from "mark.js";
-import { MarkOptions, UnmarkOptions } from "types";
-
-/**
- * @public
- */
-export type MarkerProps<T> = {
-  children?: React.ReactNode;
-  as?: string | ElementType;
-  mark?: string | string[];
-  options?: MarkOptions;
-  unmarkOptions?: UnmarkOptions;
-  elementProps?: T;
-};
-
-type DivAttributes = React.DetailedHTMLProps<
-  React.HTMLAttributes<HTMLDivElement>,
-  HTMLDivElement
->;
+import { DivAttributes, MarkOptions, UnmarkOptions } from "types";
+import { MarkerProps } from "types/Marker";
 
 /**
  * @public
