@@ -10,6 +10,7 @@ export function RangesMarker<T = DivAttributes>({
   ranges = [],
   options = {},
   unmarkOptions = {},
+  children,
   elementProps,
 }: RangesMarkerProps<T>) {
   const markerRef = useRef<null | HTMLDivElement>(null);
@@ -33,6 +34,7 @@ export function RangesMarker<T = DivAttributes>({
 
   return createElement(as, {
     ref: markerRef,
+    children,
     ...elementProps,
   });
 }
