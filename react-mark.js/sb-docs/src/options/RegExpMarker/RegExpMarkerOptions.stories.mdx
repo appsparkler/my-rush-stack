@@ -1,25 +1,27 @@
 import { Meta, Canvas, Story } from "@storybook/addon-docs/blocks";
-import { RangesMarkerOptions } from "./ranges-marker-options";
+import { Marker } from "react-mark.js";
+import { RegExpMarkerOptions } from "./reg-exp-marker-options";
 
-<Meta title="Options/RangesMarker options" />
+<Meta title="Options/RegExpMarker options" />
 
-# ⚡️ `options` for `RangesMarker`
+# ⚡️ `options` object for Marker
 
-These options can be used with Marker. For ex:
+These options can be used with `<RegExpMarker>`. For ex:
 
 ```tsx
-<RangesMarker
-  mark="consectetur"
+<RegExpMarker
+  mark={/ipsum/g}
   options={{
     accuracy: "exactly",
-    diacritics: false,
+    exclude: ["h1"],
+    iframes: false,
   }}
 >
   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus
   voluptas, tempora similique ratione explicabo cumque ex itaque vero
   repudiandae. Non, molestias! Alias vitae facilis ut ducimus voluptates quod
   repellat unde?
-</RangesMarker>
+</RegExpMarker>
 ```
 
 ...and also with the hook for advanced usage:
@@ -28,11 +30,11 @@ These options can be used with Marker. For ex:
 const { marker, markerRef } = useMarker();
 useEffect(() => {
   if (marker) {
-    marker.markRanges([{ start: 3, length: 10 }], {
+    marker.markRegExp(/ipsum/g, {
       /* any of the options mentioned below */
     });
   }
 }, []);
 ```
 
-<RangesMarkerOptions />
+<RegExpMarkerOptions />
