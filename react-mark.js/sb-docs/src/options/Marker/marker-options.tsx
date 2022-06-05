@@ -1,5 +1,5 @@
 export const MarkerOptions = () => (
-  <table class="sbdocs sbdocs-table table table-bordered  css-10n01gg">
+  <table class="options-table">
     <thead>
       <tr>
         <th>Option</th>

@@ -7,7 +7,7 @@ import { RangesMarkerProps, DivAttributes } from "types";
  */
 export function RangesMarker<T = DivAttributes>({
   as = "div",
-  ranges = [],
+  mark: ranges = [],
   options = {},
   unmarkOptions = {},
   children,

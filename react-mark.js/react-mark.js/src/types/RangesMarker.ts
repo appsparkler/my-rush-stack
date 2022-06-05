@@ -27,7 +27,7 @@ export type RangesMarkerOptions = {
 export interface RangesMarkerProps<T> {
   children?: React.ReactNode;
   as?: string | ElementType;
-  ranges?: RangeMarkerItem[];
+  mark?: RangeMarkerItem[];
   options?: RangesMarkerOptions;
   unmarkOptions?: UnmarkOptions;
   elementProps?: T;
