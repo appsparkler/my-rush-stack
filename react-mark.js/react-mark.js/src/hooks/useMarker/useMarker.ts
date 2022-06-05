@@ -1,25 +1,12 @@
 import MarkJS from "mark.js";
+import { MarkJS as MarkJSType } from "types";
 import { useEffect, useRef, useState } from "react";
-import {
-  MarkOptions,
-  RangeMarkerItem,
-  RangesMarkerOptions,
-  RegExpMarkerOptions,
-  UnmarkOptions,
-} from "types";
-
-type _MarkJS = {
-  mark(str: string | string[], options?: MarkOptions): void;
-  markRanges(ranges: RangeMarkerItem[], options?: RangesMarkerOptions): void;
-  markRegExp(regExp: RegExp, options?: RegExpMarkerOptions): void;
-  unmark(markOptions?: UnmarkOptions): void;
-};
 
 /**
  * @public
  */
 export interface UseMarkerRes<T = HTMLDivElement> {
-  marker: _MarkJS | undefined;
+  marker: MarkJSType | undefined;
   markerRef: React.MutableRefObject<T | null>;
 }
 
@@ -28,7 +15,7 @@ export interface UseMarkerRes<T = HTMLDivElement> {
  */
 export const useMarker = <T extends Element>(): UseMarkerRes<T> => {
   const markerRef = useRef<null | T>(null);
-  const [marker, setMarker] = useState<_MarkJS>();
+  const [marker, setMarker] = useState<MarkJSType>();
 
   useEffect(() => {
     if (markerRef.current) {

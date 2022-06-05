@@ -4,6 +4,6 @@
     "rootDir": "./src",
     "declarationDir": "."
   },
-  "exclude": ["**/*.test.*"],
+  "exclude": ["**/*.test.*", "**/*.stories.*"],
   "include": ["./src/**/*"]
 }
