@@ -1,0 +1,26 @@
+import { Meta, Canvas, Story } from "@storybook/addon-docs/blocks";
+import { Marker } from "react-mark.js";
+import { MarkerOptions } from "./marker-options";
+
+<Meta title="Options/Marker" component={Marker} />
+
+# ⚡️ `options` object for Marker
+
+These options can be used with Marker. For ex:
+
+```tsx
+<Marker
+  mark="consectetur"
+  options={{
+    accuracy: "exactly",
+    diacritics: false,
+  }}
+>
+  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus
+  voluptas, tempora similique ratione explicabo cumque ex itaque vero
+  repudiandae. Non, molestias! Alias vitae facilis ut ducimus voluptates quod
+  repellat unde?
+</Marker>
+```
+
+<MarkerOptions />
