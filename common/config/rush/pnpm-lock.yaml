@@ -104,6 +104,7 @@ importers:
 
   ../../react-mark.js/react-mark.js:
     specifiers:
+      '@jest/types': ^27.5.1
       '@reach/auto-id': 0.16.0
       '@rollup/plugin-alias': ^3.1.9
       '@rollup/plugin-commonjs': ^21.1.0
@@ -148,6 +149,7 @@ importers:
     dependencies:
       '@reach/auto-id': 0.16.0_react-dom@17.0.2+react@17.0.2
     devDependencies:
+      '@jest/types': 27.5.1
       '@rollup/plugin-alias': 3.1.9_rollup@2.75.5
       '@rollup/plugin-commonjs': 21.1.0_rollup@2.75.5
       '@rollup/plugin-typescript': 8.3.2_e045357c198df0de936c7bd0ea44d728
@@ -9469,7 +9471,7 @@ packages:
     dev: true
 
   /object-assign/4.1.1:
-    resolution: {integrity: sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM=}
+    resolution: {integrity: sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==}
     engines: {node: '>=0.10.0'}
 
   /object-inspect/1.12.2:
