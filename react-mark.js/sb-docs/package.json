@@ -25,7 +25,7 @@
     "babel-loader": "^8.2.5"
   },
   "scripts": {
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook": "start-storybook -p 5000 -s ./static --docs",
+    "build-storybook": "build-storybook -s ./static --docs"
   }
 }
