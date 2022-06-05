@@ -400,6 +400,10 @@
       "packageName": "react-mark.js",
       "projectFolder": "react-mark.js/react-mark.js"
     },
+    {
+      "packageName": "react-mark-js-sb-docs",
+      "projectFolder": "react-mark.js/sb-docs"
+    },
     // WIDGET - REACT MARK JS CONFIGURATOR
     // {
     //   "packageName": "@react-mark.js/configurator",
