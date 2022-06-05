@@ -4,7 +4,7 @@ import { addons } from "@storybook/addons";
 
 const DarkTheme = create({
     base: "dark",
-    brandTitle: "React Mark JS Docs",
+    brandTitle: "My custom storybook",
     brandUrl: "http://localhost:2000",
     brandImage: LogoPNG
 });
