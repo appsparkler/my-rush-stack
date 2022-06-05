@@ -1,42 +1,37 @@
 import { Meta, Canvas, Story } from "@storybook/addon-docs/blocks";
+import { linkTo } from "@storybook/addon-links";
 import LinkTo from "@storybook/addon-links/react";
 import { RegExpMarker } from "react-mark.js";
 import { RegExpMarkerOptions } from "./options";
-<Meta title="Components/RegEx Marker" component={RegExpMarker} />;
+
+<Meta title="Components/RegExpMarker" component={RegExpMarker} />
 
 # ⚡️ `<RegExpMarker />`
 
 A wrapper component to higlight strings matching a regular expression.
 
-export const Template = (args) => <RegExpMarker {...args} />;
-const args = {
-  children: [
-    "Cillum proident eu eiusmod incididunt pariatur. ",
-    "Ullamco qui deserunt ut reprehenderit cupidatat ",
-    "cupidatat nisi non occaecat non commodo. ",
-    "Magna incididunt eu laboris laboris labore. ",
-  ],
-  mark: /qui/,
-};
-
 ## [Stack Blitz Demo ↗](https://stackblitz.com/edit/react-mark-js?file=src/examples/RegExpMarkerExamples/index.js)
+
+export const args = {
+  mark: /Cillum/,
+  children: `Cillum proident eu eiusmod incididunt  pariatur. Ullamco qui deserunt ut reprehenderit cupidatat cupidatat nisi non occaecat non commodo. Magna incididunt eu laboris laboris labore.`,
+};
 
 ## ‣ Marking With RegExp
 
 <Canvas>
-  <Story name="String" args={args}>
+  <Story name="marking-with-regexp" args={args}>
     {(args) => <RegExpMarker {...args} />}
   </Story>
 </Canvas>
 
-## ‣ Configure Wrapper Element with `as` prop
+## ‣ Configure Wrapper Element
 
-This will render the wrapper element as a section instead
-of the default `<div />`.
+This will render the wrapper element as a section instead of the default `<div />`.
 
 <Canvas>
   <Story
-    name="Section Element Wrapper"
+    name="multiple ranges marker"
     args={{
       ...args,
       as: "section",
@@ -46,20 +41,21 @@ of the default `<div />`.
   </Story>
 </Canvas>
 
-## ‣ With Options
+>
 
-You can find a list of all options at the end of this section.
+export const linkFn = linkTo("Options/Mark Options");
+export const style = { cursor: "pointer" };
+
+## ‣ With Options
 
 <Canvas>
   <Story
-    name="With Options"
+    name="marking-with-regexp-3"
     args={{
       ...args,
-      mark: /Magna/,
       as: "section",
-      options: {
-        className: "custom-marker-1",
-      },
+      options: { element: "strong" },
+      unmarkOptions: { exclude: "h4" },
     }}
   >
     {(args) => <RegExpMarker {...args} />}
@@ -69,5 +65,3 @@ You can find a list of all options at the end of this section.
 ## ‣ _Optional_ Options
 
 <RegExpMarkerOptions />
-
-hello world

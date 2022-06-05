@@ -9,7 +9,7 @@ These options can be used with Marker. For ex:
 
 ```tsx
 <RangesMarker
-  mark="consectetur"
+  mark=[{start: 10, length: 4}]
   options={{
     accuracy: "exactly",
     diacritics: false,
@@ -29,7 +29,7 @@ const { marker, markerRef } = useMarker();
 useEffect(() => {
   if (marker) {
     marker.markRanges([{ start: 3, length: 10 }], {
-      /* any of the options mentioned below */
+      /* any of the options mentioned below as the second argument */
     });
   }
 }, []);
