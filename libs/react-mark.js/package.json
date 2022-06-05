@@ -18,7 +18,7 @@
     "prepare": "heft build",
     "size": "size-limit",
     "analyze": "size-limit --why",
-    "storybook": "start-storybook -p 7000",
+    "storybook": "start-storybook -p 7000 -",
     "docs": "start-storybook --docs --no-manager-cache",
     "build-storybook": "build-storybook",
     "watch:deps": "rush build:watch --to-except react-mark.js"
