@@ -5,15 +5,14 @@ import { DivAttributes, MarkerProps } from "types";
 /**
  * @public
  */
-
-export function Marker<T = DivAttributes>({
+export const Marker = <T extends {} = DivAttributes>({
   as = "div",
   mark = "",
   options = {},
   children,
   unmarkOptions = {},
   elementProps,
-}: MarkerProps<T>): JSX.Element {
+}: MarkerProps<T>): JSX.Element => {
   const markerRef = useRef<HTMLDivElement | null>(null);
   const [markInstance, setMarkInstance] = useState<MarkJS>();
 
@@ -33,4 +32,4 @@ export function Marker<T = DivAttributes>({
   }, [mark, markInstance, options, unmarkOptions]);
 
   return createElement(as, { ref: markerRef, children, ...elementProps });
-}
+};
