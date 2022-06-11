@@ -22,18 +22,8 @@ These options can be used with Marker. For ex:
 </Marker>
 ```
 
-```tsx
-const { marker, markerRef } = useMarker();
-useEffect(() => {
-  if (marker) {
-    marker.mark("Hello", {
-      /* any of the options mentioned below */
-    });
-  }
-}, []);
-```
-
-...and also with the hook for advanced usage:
+...and also with the `useMarker` hook for advanced usage by passing an `object` of `options`
+as the second argument of `marker.mark()` method:
 
 ```tsx
 const { marker, markerRef } = useMarker();
