@@ -2,6 +2,11 @@
 
 🍬 A React wrapper around the popular [mark.js](https://markjs.io) library.
 
+# ⚡️ Quick Links
+
+- [Docs](https://www.appsparkler.com/docs/react-mark-js/?path=/docs/introduction--single-string)
+- [Stack Blitz Demo](https://stackblitz.com/edit/react-mark-js?file=src/examples/MarkerExamples/index.js)
+
 # ⚡️ Installation
 
 The best way to install `react-mark.js` is via the
