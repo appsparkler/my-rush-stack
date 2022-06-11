@@ -1,37 +1,42 @@
-# React DayPicker v8
+<img src="../sb-docs/static/react-mark-js-logo.png" />
 
-DayPicker is a date picker component for [React](https://reactjs.org).
+🍬 A React wrapper around the popular [mark.js](https://markjs.io) library.
 
-```bash
-$ npm install react-day-picker date-fns  # using npm
-$ pnpm install react-day-picker date-fns # using pnpm
-$ yarn add react-day-picker date-fns     # using yarn
+# ⚡️ Installation
+
+The best way to install `react-mark.js` is via the
+`npm` package which you can install with `npm` (or `yarn` if you prefer)
+
+## 📦 NPM
+
+```sh
+npm install -S mark.js react-mark.js
 ```
 
-<a href="https://www.npmjs.com/package/react-day-picker">
-  <img src="https://img.shields.io/npm/v/react-day-picker.svg?style=flat-square" alt="npm version"/>
-</a> <a href="http://npm-stat.com/charts.html?package=react-day-picker">
-  <img src="https://img.shields.io/npm/dm/react-day-picker.svg?style=flat-square" alt="npm downloads"/>
-</a> <a href="https://github.com/gpbl/react-day-picker/stargazers">
-<img src="https://img.shields.io/github/stars/gpbl/react-day-picker?style=flat-square" alt="stars"/>
-</a> <a href="https://github.com/sponsors/gpbl">
-  <img src="https://img.shields.io/github/sponsors/gpbl?style=flat-square" alt="sponsors"/>
-</a>
+## 📦 Yarn
 
-## Main features
+```sh
+yarn add mark.js react-mark.js
+```
 
-- ☀️ Select days, ranges or whatever
-- 🌎 Localizable into any language
-- ➡️ Keyboard navigation
-- ♿️ [WAI-ARIA](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) support
-- 🤖 Native TypeScript support
-- 🧘‍♀️ using [date-fns](http://date-fns.org) as date library
-- 🗓 Create multiple calendars
-- 🎨 Easy to style and customize
-- 📄 Native integration with input elements
+# ↘️ Importing Components
 
-## Documentation
+```jsx
+import { Marker } from "react-marker.js";
+```
 
-- See ➡️ **[react-day-picker.js.org](http://react-day-picker.js.org)** for guides, examples and API reference.
+# 🖌 Basic Example
 
-<small>Looking for v7 docs? Go to <a href="https://react-day-picker-v7.netlify.app" target="_blank">react-day-picker-v7.netlify.app</a>.</small>
+```jsx
+import { Marker } from "react-mark.js";
+
+export default () => (
+  <Marker mark="reprehenderit">
+    Cillum proident eu eiusmod incididunt pariatur. Ullamco qui deserunt ut
+    reprehenderit cupidatat cupidatat nisi non occaecat non commodo. Magna
+    incididunt eu laboris laboris labore. Sit duis ullamco qui nostrud aliqua do
+    consectetur do incididunt eiusmod nulla consectetur. Sint reprehenderit
+    culpa consectetur irure commodo magna. Officia Lorem veniam est cillum.
+  </Marker>
+);
+```
