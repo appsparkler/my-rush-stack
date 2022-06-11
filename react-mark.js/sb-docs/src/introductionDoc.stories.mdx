@@ -26,11 +26,11 @@ yarn add mark.js react-mark.js
 
 # ↘️ Importing Components
 
-You can choose to import single components like `react-mark.js/Marker` rather
+You can choose to import single components like `react-mark.js/dist/components/Marker` rather
 than the entire component library.
 
 ```jsx
-import Marker from "react-mark.js/lib/components/Marker";
+import Marker from "react-mark.js/dist/components/Marker";
 // or; if you prefer
 import { Marker } from "react-marker.js";
 ```
@@ -38,7 +38,7 @@ import { Marker } from "react-marker.js";
 # 🖌 Basic Example
 
 ```jsx
-import Marker from "react-mark.js/Marker";
+import Marker from "react-mark.js/dist/components/Marker";
 // or; if you prefer
 import { Marker } from "react-mark.js";
 
@@ -64,12 +64,15 @@ export const Template = (args) => (
 );
 const args = {
   mark: "reprehenderit",
-  children:
-    "Cillum proident eu eiusmod incididunt pariatur. Ullamco qui deserunt ut reprehenderit cupidatat cupidatat nisi non occaecat non commodo. Magna incididunt eu laboris laboris labore. Sit duis ullamco qui nostrud aliqua do consectetur do incididunt eiusmod nulla consectetur.  Sint reprehenderit culpa consectetur irure commodo magna. Officia Lorem veniam est cillum.",
+  children: `Cillum proident eu eiusmod incididunt pariatur. Ullamco qui deserunt ut
+reprehenderit cupidatat cupidatat nisi non occaecat non commodo. Magna
+incididunt eu laboris laboris labore. Sit duis ullamco qui nostrud aliqua do
+consectetur do incididunt eiusmod nulla consectetur. Sint reprehenderit
+culpa consectetur irure commodo magna. Officia Lorem veniam est cillum.`,
 };
 
 <Canvas>
-  <Story name="singleString" args={{ ...args, mark: "rit" }}>
+  <Story name="singleString" args={{ ...args, mark: "reprehenderit" }}>
     {(args) => <Marker {...args} />}
   </Story>
 </Canvas>
