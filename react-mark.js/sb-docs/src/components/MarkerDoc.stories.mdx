@@ -10,18 +10,18 @@ A wrapper component to higlight text-content matching strings.
 
 export const Template = (args) => <Marker {...args} />;
 const args = {
-  children: [
-    "Cillum proident eu eiusmod incididunt pariatur. ",
-    "Ullamco qui deserunt ut reprehenderit cupidatat ",
-    "cupidatat nisi non occaecat non commodo. ",
-    "Magna incididunt eu laboris laboris labore. ",
-  ],
+  children: `Cillum proident eu eiusmod incididunt pariatur. Ullamco qui 
+deserunt ut reprehenderit cupidatat cupidatat nisi 
+non occaecat non commodo. Magna incididunt eu laboris laboris labore.`,
   mark: "Ullamco qui deserunt ut reprehenderit",
 };
 
 ## [Stack Blitz Demo ↗](https://stackblitz.com/edit/react-mark-js?file=src/examples/MarkerExamples/index.js)
 
 ## ‣ Mark A Text String
+
+This is the most common use case where you want to mark a particular string
+in any given context. For ex. search fields, etc.
 
 <Canvas>
   <Story name="String" args={args}>
@@ -31,16 +31,21 @@ const args = {
 
 ## ‣ Mark Multiple Text Strings
 
+Sometimes you may want to mark multiple strings in a paragraph.
+You can simply pass it an array of strings:
+
 <Canvas>
   <Story
     name="Multiple Strings"
-    args={{ ...args, mark: ["eiusmod incididunt", "commodo. Magna"] }}
+    args={{ ...args, mark: ["eiusmod", "magna", "cupidatat"] }}
   >
     {(args) => <Marker {...args} />}
   </Story>
 </Canvas>
 
 ## ‣ Configure Wrapper Element
+
+By default; the `<Marker />` is a `div` element. If you want you different wrapper element like `span`, `p` or `section`; you can pass it in the `as` prop:
 
 <Canvas>
   <Story
