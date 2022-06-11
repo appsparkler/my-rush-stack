@@ -1,4 +1,6 @@
 import { Meta, Canvas, Story } from "@storybook/addon-docs/blocks";
+import { UnmarkOptions } from "./options";
+import { TargetBlankLink } from "./TargetBlankLink";
 
 <Meta title="Hooks/useMarker" />
 
@@ -13,12 +15,15 @@ access the `markerRef` and `marker` (which is a [MarkJS](https://markjs.io) inst
 
 Lets dive into an example which will make things more clearer.
 
-## [Stack Blitz Demo ↗️](https://stackblitz.com/edit/react-mark-js?file=src/examples/HookExample/index.js)
+<h2>
+  <TargetBlankLink href="https://stackblitz.com/edit/react-mark-js?file=src/examples/HookExample/index.js">
+    Stack Blitz Demo ↗️
+  </TargetBlankLink>
+</h2>
 
 ```js
 import React from "react";
-import { useMarker } from "react-mark.js"; // OR
-// import {useMarker} from 'react-mark.js/lib/hooks/useMarker'
+import { useMarker } from "react-mark.js";
 
 const MyContent = () => {
   const { markerRef, marker } = useMarker();
@@ -61,3 +66,5 @@ export default MyContent;
 ```
 
 ## ‣ _Optional_ Options (for `unmark`)
+
+<UnmarkOptions />
