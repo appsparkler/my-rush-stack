@@ -3,6 +3,7 @@ import { linkTo } from "@storybook/addon-links";
 import LinkTo from "@storybook/addon-links/react";
 import { RegExpMarker } from "react-mark.js";
 import { RegExpMarkerOptions } from "../options";
+import { TargetBlankLink } from "../TargetBlankLink";
 
 <Meta title="Components/RegExpMarker" component={RegExpMarker} />
 
@@ -10,11 +11,18 @@ import { RegExpMarkerOptions } from "../options";
 
 A wrapper component to higlight strings matching a regular expression.
 
-## [Stack Blitz Demo ↗](https://stackblitz.com/edit/react-mark-js?file=src/examples/RegExpMarkerExamples/index.js)
+<h2>
+  <TargetBlankLink href="https://stackblitz.com/edit/react-mark-js?file=src/examples/RegExpMarkerExamples/index.js">
+    Stack Blitz Demo ↗
+  </TargetBlankLink>
+</h2>
 
 export const args = {
   mark: /Cillum/,
-  children: `Cillum proident eu eiusmod incididunt  pariatur. Ullamco qui deserunt ut reprehenderit cupidatat cupidatat nisi non occaecat non commodo. Magna incididunt eu laboris laboris labore.`,
+  children: `Cillum proident eu eiusmod incididunt  pariatur. 
+Ullamco qui deserunt ut reprehenderit cupidatat 
+cupidatat nisi non occaecat non commodo. Magna 
+incididunt eu laboris laboris labore.`,
 };
 
 ## ‣ Marking With RegExp
