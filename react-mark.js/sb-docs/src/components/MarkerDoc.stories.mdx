@@ -1,6 +1,7 @@
 import { Meta, Canvas, Story } from "@storybook/addon-docs/blocks";
 import { Marker } from "react-mark.js";
 import { MarkerOptions } from "../options";
+import { TargetBlankLink } from "../TargetBlankLink";
 
 <Meta title="Components/Marker" component={Marker} />
 
@@ -16,7 +17,11 @@ non occaecat non commodo. Magna incididunt eu laboris laboris labore.`,
   mark: "Ullamco qui deserunt ut reprehenderit",
 };
 
-## [Stack Blitz Demo ↗](https://stackblitz.com/edit/react-mark-js?file=src/examples/MarkerExamples/index.js)
+<h2>
+  <TargetBlankLink href="https://stackblitz.com/edit/react-mark-js?file=src/examples/MarkerExamples/index.js">
+    Stack Blitz Demo ↗
+  </TargetBlankLink>
+</h2>
 
 ## ‣ Mark A Text String
 
@@ -81,6 +86,6 @@ You can find a list of all options below this section
 
 ## ‣ _Optional_ Options
 
-Copied from https://markjs.io/#parameters
+Referenced from https://markjs.io/#parameters
 
 <MarkerOptions />
