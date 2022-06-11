@@ -40,3 +40,5 @@ export default () => (
   </Marker>
 );
 ```
+
+<img src="../sb-docs/static/short-demo.png" />
