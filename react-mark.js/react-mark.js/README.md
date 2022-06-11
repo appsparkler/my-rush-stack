@@ -1,11 +1,11 @@
-<img src="../sb-docs/static/react-mark-js-logo.png" />
+<img src="https://raw.githubusercontent.com/appsparkler/my-rush-stack/setup/react-mark-js-storybook/react-mark.js/sb-docs/static/react-mark-js-logo.png" />
 
 🍬 A React wrapper around the popular [mark.js](https://markjs.io) library.
 
 # ⚡️ Quick Links
 
 - [Docs](https://www.appsparkler.com/docs/react-mark-js/?path=/docs/introduction--single-string)
-- [Stack Blitz Demo](https://stackblitz.com/edit/react-mark-js?file=src/examples/MarkerExamples/index.js)
+- [Stack Blitz Demo](https://stackblitz.com/edit/react-mark-js-tqjcef?file=src/examples/MarkerExamples/index.js)
 
 # ⚡️ Installation
 
@@ -46,4 +46,4 @@ export default () => (
 );
 ```
 
-<img src="../sb-docs/static/short-demo.png" />
+<img src="https://raw.githubusercontent.com/appsparkler/my-rush-stack/setup/react-mark-js-storybook/react-mark.js/sb-docs/static//short-demo.png" />

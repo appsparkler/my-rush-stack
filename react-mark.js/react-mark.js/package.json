@@ -30,6 +30,7 @@
     "css-types": "yarn tcm -p src/style.css",
     "lint": "eslint --ext .ts,.tsx src",
     "publish:canary": "yarn build && yarn version --prerelease --preid=canary && npm publish --tag canary",
+    "publish:major": "rushx build && yarn version --patch && npm publish",
     "test": "jest",
     "test-watch": "jest --watch",
     "typecheck": "tsc --project ./tsconfig.json --noEmit",
