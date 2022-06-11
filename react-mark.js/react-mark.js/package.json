@@ -1,16 +1,16 @@
 {
   "name": "react-mark.js",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "Customizable Date Picker for React",
   "author": "Giampaolo Bellavite <io@gpbl.dev>",
-  "homepage": "http://react-day-picker.js.org",
+  "homepage": "https://www.appsparkler.com/docs/react-mark-js/?path=/docs/introduction--single-string",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/gpbl/react-day-picker"
+    "url": "https://github.com/appsparkler/my-rush-stack/tree/setup/react-mark-js-storybook"
   },
   "bugs": {
-    "url": "https://github.com/gpbl/react-day-picker/issues"
+    "url": "https://github.com/appsparkler/my-rush-stack/issues"
   },
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
