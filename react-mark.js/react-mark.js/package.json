@@ -1,6 +1,6 @@
 {
   "name": "react-mark.js",
-  "version": "4.0.6",
+  "version": "4.0.7",
   "description": "Customizable Date Picker for React",
   "author": "Giampaolo Bellavite <io@gpbl.dev>",
   "homepage": "https://www.appsparkler.com/docs/react-mark-js/?path=/docs/introduction--single-string",
@@ -30,7 +30,7 @@
     "css-types": "yarn tcm -p src/style.css",
     "lint": "eslint --ext .ts,.tsx src",
     "publish:canary": "yarn build && yarn version --prerelease --preid=canary && npm publish --tag canary",
-    "publish:major": "rushx build && yarn version --patch && npm publish",
+    "publish:patch": "rushx build && yarn version --patch && npm publish",
     "test": "jest",
     "test-watch": "jest --watch",
     "typecheck": "tsc --project ./tsconfig.json --noEmit",
