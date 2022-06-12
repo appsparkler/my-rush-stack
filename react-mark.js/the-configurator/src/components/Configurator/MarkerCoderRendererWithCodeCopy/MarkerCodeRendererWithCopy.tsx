@@ -1,10 +1,10 @@
-import { Alert, Box, IconButton, Snackbar } from "@mui/material";
-import React, { useCallback, useRef, useState } from "react";
+import { Alert, Box, IconButton, Snackbar } from '@mui/material';
+import React, { useCallback, useRef, useState } from 'react';
 import {
   MarkerCodeRenderer,
   MarkerCodeRendererProps,
-} from "../MarkerCoderRenderer/MarkerCodeRenderer";
-import { ContentCopy as ContentCopyIcon } from "@mui/icons-material";
+} from '../MarkerCoderRenderer/MarkerCodeRenderer';
+import { ContentCopy as ContentCopyIcon } from '@mui/icons-material';
 
 export type MarkerCodeRendererWithCopyProps = MarkerCodeRendererProps & {};
 
@@ -20,16 +20,16 @@ export const MarkerCodeRendererWithCopy = ({
 
   const [openSnackbar, setOpenSnackbar] = useState(false);
 
-  const [textToCopy, setTextToCopy] = useState<string>("");
+  const [textToCopy, setTextToCopy] = useState<string>('');
 
   const handleClickCopy = useCallback(() => {
     textareaRef.current?.select();
-    document.execCommand("copy");
+    document.execCommand('copy');
     setOpenSnackbar(true);
   }, []);
 
   const handleChange = useCallback<
-    NonNullable<MarkerCodeRendererProps["onChange"]>
+    NonNullable<MarkerCodeRendererProps['onChange']>
   >((textToCopy) => {
     setTextToCopy(textToCopy);
   }, []);
@@ -61,21 +61,21 @@ export const MarkerCodeRendererWithCopy = ({
         autoHideDuration={1000}
         onClose={handleClose}
         anchorOrigin={{
-          horizontal: "center",
-          vertical: "top",
+          horizontal: 'center',
+          vertical: 'top',
         }}
       >
         <Alert
           onClose={handleClose}
           severity="success"
           variant="filled"
-          sx={{ width: "100%" }}
+          sx={{ width: '100%' }}
         >
           copied!
         </Alert>
       </Snackbar>
 
-      <Box position="absolute" left={10000}>
+      <Box position="absolute" right={10000}>
         <textarea ref={textareaRef} defaultValue={textToCopy}></textarea>
       </Box>
     </Box>

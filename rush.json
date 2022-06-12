@@ -405,10 +405,10 @@
       "projectFolder": "react-mark.js/sb-docs"
     },
     // WIDGET - REACT MARK JS CONFIGURATOR
-    // {
-    //   "packageName": "@react-mark.js/configurator",
-    //   "projectFolder": "widgets/react-mark-js-configurator"
-    // },
+    {
+      "packageName": "@react-mark.js/configurator",
+      "projectFolder": "react-mark.js/the-configurator"
+    },
     // DOCS - REACT MARK JS
     {
       "packageName": "react-mark-js-docs",
