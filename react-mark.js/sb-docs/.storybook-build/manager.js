@@ -1,7 +1,7 @@
 import { create } from "@storybook/theming";
 import { addons } from "@storybook/addons";
 
-const siteDir = "https://www.appsparkler.com/docs/react-mark-js-v1";
+const siteDir = "https://www.appsparkler.com/docs/react-mark-js";
 
 
 const DarkTheme = create({
