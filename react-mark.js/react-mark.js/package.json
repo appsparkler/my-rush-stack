@@ -1,6 +1,6 @@
 {
   "name": "react-mark.js",
-  "version": "9.0.0",
+  "version": "9.0.1",
   "description": "Customizable Date Picker for React",
   "author": "Giampaolo Bellavite <io@gpbl.dev>",
   "homepage": "https://www.appsparkler.com/docs/react-mark-js/?path=/docs/introduction--single-string",
@@ -43,9 +43,6 @@
     "src",
     "tsconfig.json"
   ],
-  "dependencies": {
-    "@reach/auto-id": "0.16.0"
-  },
   "devDependencies": {
     "@babel/core": "^7.18.2",
     "@jest/types": "^27.5.1",
