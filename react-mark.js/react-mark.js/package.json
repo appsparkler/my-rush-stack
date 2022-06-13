@@ -100,9 +100,5 @@
   "peerDependencies": {
     "mark.js": "~8.11.1",
     "react": "^16.8.0 || ^17.0.0 || ^18.0.0"
-  },
-  "funding": {
-    "type": "individual",
-    "url": "https://github.com/sponsors/gpbl"
   }
 }
