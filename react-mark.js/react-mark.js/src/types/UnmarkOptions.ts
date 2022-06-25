@@ -1,7 +1,6 @@
+import { BaseOptions } from "./BaseOptions";
+
 /**
  * @public
  */
-export type UnmarkOptions = Partial<{
-  /**Will remove only marked elements with this specific element */
-  element: string;
-}>;
+export type UnmarkOptions = Omit<BaseOptions, "each" | "filter" | "noMatch">;
