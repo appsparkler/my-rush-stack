@@ -89,7 +89,7 @@ const browserConfig = {
     {
       file: pkg.unpkg,
       format: "umd",
-      name: "DatePicker",
+      name: "ReactMarker",
       globals,
     },
   ],
