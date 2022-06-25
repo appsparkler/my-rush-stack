@@ -1,8 +1,9 @@
 /// <reference types="react" />
-import { BoxProps } from "@mui/material";
-import "./prism.css";
-import { RangeMarkerItem } from "mark.js";
-export declare type MarkerType = "RangesMarker" | "Marker" | "RegExpMarker";
+import { BoxProps } from '@mui/material';
+import 'prismjs/components/prism-jsx.js';
+import 'prismjs/themes/prism-tomorrow.css';
+import { RangeMarkerItem } from 'mark.js';
+export declare type MarkerType = 'RangesMarker' | 'Marker' | 'RegExpMarker';
 export declare type MarkerCodeRendererProps = {
     markerType?: MarkerType;
     mark?: string | RegExp | RangeMarkerItem[];

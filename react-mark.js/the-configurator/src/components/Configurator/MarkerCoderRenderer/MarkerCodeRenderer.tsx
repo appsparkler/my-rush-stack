@@ -2,7 +2,7 @@ import { Box, BoxProps } from '@mui/material';
 import React, { useEffect, useMemo, useRef } from 'react';
 import * as Prism from 'prismjs';
 import 'prismjs/components/prism-jsx.js';
-import './prism.css';
+import 'prismjs/themes/prism-tomorrow.css';
 import { keys, noop } from 'lodash/fp';
 import { RangeMarkerItem } from 'mark.js';
 

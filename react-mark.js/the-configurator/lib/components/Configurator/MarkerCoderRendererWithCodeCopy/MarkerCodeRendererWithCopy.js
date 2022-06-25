@@ -31,11 +31,11 @@ const icons_material_1 = require("@mui/icons-material");
 const MarkerCodeRendererWithCopy = ({ mark, isMarkArray, isRangesMarker: isRangesMaker, ranges, markerType, options, }) => {
     const textareaRef = (0, react_1.useRef)(null);
     const [openSnackbar, setOpenSnackbar] = (0, react_1.useState)(false);
-    const [textToCopy, setTextToCopy] = (0, react_1.useState)("");
+    const [textToCopy, setTextToCopy] = (0, react_1.useState)('');
     const handleClickCopy = (0, react_1.useCallback)(() => {
         var _a;
         (_a = textareaRef.current) === null || _a === void 0 ? void 0 : _a.select();
-        document.execCommand("copy");
+        document.execCommand('copy');
         setOpenSnackbar(true);
     }, []);
     const handleChange = (0, react_1.useCallback)((textToCopy) => {
@@ -50,11 +50,11 @@ const MarkerCodeRendererWithCopy = ({ mark, isMarkArray, isRangesMarker: isRange
             react_1.default.createElement(material_1.IconButton, { "aria-label": "copy", color: "primary", onClick: handleClickCopy },
                 react_1.default.createElement(icons_material_1.ContentCopy, null))),
         react_1.default.createElement(material_1.Snackbar, { open: openSnackbar, autoHideDuration: 1000, onClose: handleClose, anchorOrigin: {
-                horizontal: "center",
-                vertical: "top",
+                horizontal: 'center',
+                vertical: 'top',
             } },
-            react_1.default.createElement(material_1.Alert, { onClose: handleClose, severity: "success", variant: "filled", sx: { width: "100%" } }, "copied!")),
-        react_1.default.createElement(material_1.Box, { position: "absolute", left: 10000 },
+            react_1.default.createElement(material_1.Alert, { onClose: handleClose, severity: "success", variant: "filled", sx: { width: '100%' } }, "copied!")),
+        react_1.default.createElement(material_1.Box, { position: "absolute", right: 10000 },
             react_1.default.createElement("textarea", { ref: textareaRef, defaultValue: textToCopy }))));
 };
 exports.MarkerCodeRendererWithCopy = MarkerCodeRendererWithCopy;

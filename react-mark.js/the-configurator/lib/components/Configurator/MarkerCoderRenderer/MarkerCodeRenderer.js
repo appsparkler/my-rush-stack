@@ -27,18 +27,19 @@ exports.MarkerCodeRenderer = void 0;
 const material_1 = require("@mui/material");
 const react_1 = __importStar(require("react"));
 const Prism = __importStar(require("prismjs"));
-require("./prism.css");
+require("prismjs/components/prism-jsx.js");
+require("prismjs/themes/prism-tomorrow.css");
 const fp_1 = require("lodash/fp");
-const MarkerCodeRenderer = ({ mark = "", markerType = "Marker", isRangesMarker = false, options = {}, ranges = [], wrapperProps = {}, onChange = fp_1.noop, isMarkArray = false, }) => {
+const MarkerCodeRenderer = ({ mark = '', markerType = 'Marker', isRangesMarker = false, options = {}, ranges = [], wrapperProps = {}, onChange = fp_1.noop, isMarkArray = false, }) => {
     const codeRef = (0, react_1.useRef)(null);
     const optionsString = (0, react_1.useMemo)(() => {
-        return JSON.stringify(options, null, 4).replace("}", `  }`);
+        return JSON.stringify(options, null, 4).replace('}', `  }`);
     }, [options]);
     const markRenderer = (0, react_1.useMemo)(() => {
         if (isRangesMarker) {
             const SPACES_2 = `  `;
-            const rangesJSON = JSON.stringify(ranges, null, 4).replace("]", `${SPACES_2}]`);
-            return `ranges={${rangesJSON}}`;
+            const rangesJSON = JSON.stringify(ranges, null, 4).replace(']', `${SPACES_2}]`);
+            return `mark={${rangesJSON}}`;
         }
         if (isMarkArray) {
             return `mark={${mark}}`;
@@ -59,7 +60,7 @@ const MarkerCodeRenderer = ({ mark = "", markerType = "Marker", isRangesMarker =
   ${markRenderer}${optionsRender}`, [markRenderer, markerType, optionsRender]);
     (0, react_1.useEffect)(() => {
         onChange(code);
-        const highlightedCode = Prism.highlight(code, Prism.languages.jsx, "jsx");
+        const highlightedCode = Prism.highlight(code, Prism.languages.jsx, 'jsx');
         codeRef.current.innerHTML = highlightedCode;
     }, [code, mark, onChange, options]);
     return (react_1.default.createElement(material_1.Box, Object.assign({}, wrapperProps, { sx: { pre: { borderRadius: 4 } } }),
