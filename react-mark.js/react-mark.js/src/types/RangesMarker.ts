@@ -1,4 +1,5 @@
 import { ElementType } from "react";
+import { BaseOptions } from "vm";
 import { UnmarkOptions } from "./UnmarkOptions";
 
 /**
@@ -12,14 +13,20 @@ export type RangeMarkerItem = {
 /**
  * @public
  */
-export type RangesMarkerOptions = {
-  className?: string;
-  debug?: boolean;
-  element?: string;
-  exclude?: string[];
-  iframes?: boolean;
-  iframesTimeout?: number;
-};
+interface UniqueRangesMarkerOptions {
+  className: string;
+  debug: boolean;
+  element: string;
+  exclude: string[];
+  iframes: boolean;
+  iframesTimeout: number;
+}
+
+/**
+ * @public
+ */
+export type RangesMarkerOptions = Partial<UniqueRangesMarkerOptions> &
+  Partial<BaseOptions>;
 
 /**
  * @public

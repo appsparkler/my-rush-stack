@@ -2,6 +2,9 @@ import { ElementType } from "react";
 import { BaseOptions } from "./BaseOptions";
 import { UnmarkOptions } from "./UnmarkOptions";
 
+/**
+ * @public
+ */
 interface UniqueRegExpMarkerOptions {
   /**
    * Whether to search for matches across elements
