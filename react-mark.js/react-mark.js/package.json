@@ -1,6 +1,6 @@
 {
   "name": "react-mark.js",
-  "version": "9.0.2",
+  "version": "9.0.3",
   "description": "Customizable Date Picker for React",
   "author": "Giampaolo Bellavite <io@gpbl.dev>",
   "homepage": "https://www.appsparkler.com/docs/react-mark-js/?path=/docs/introduction--single-string",
@@ -21,7 +21,7 @@
   },
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
-  "unpkg": "dist/react-day-picker.min.js",
+  "unpkg": "dist/react-markjs.min.js",
   "types": "dist/index.d.ts",
   "style": "dist/style.css",
   "scripts": {
