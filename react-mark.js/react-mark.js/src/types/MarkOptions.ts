@@ -13,7 +13,7 @@ export type WildCards = "disabled" | "enabled" | "withSpaces";
 /**
  * @public
  */
-export type MarkOptions = BaseOptions &
+export type MarkOptions = Partial<BaseOptions> &
   Partial<{
     /**
      * Whether to search for matches across elements

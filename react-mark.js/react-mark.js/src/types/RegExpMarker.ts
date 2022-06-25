@@ -1,24 +1,24 @@
 import { ElementType } from "react";
+import { BaseOptions } from "./BaseOptions";
 import { UnmarkOptions } from "./UnmarkOptions";
+
+interface UniqueRegExpMarkerOptions {
+  /**
+   * Whether to search for matches across elements
+   * @defaultValue `false`
+   */
+  acrossElements: boolean;
+  /**
+   * Indicates the number of matching groups to ignore in the replacement. Can be used e.g. to implement non-capturing lookbehind groups. Note that when the value is > 0 (when groups should be ignored), it expects a total amount of groups in the RegExp of `ignoreGroups` + 1
+   */
+  ignoreGroups: number;
+}
 
 /**
  * @public
  */
-export type RegExpMarkerOptions = Partial<{
-  element: string;
-  className: string;
-  exclude: string[];
-  iframes: boolean;
-  iframesTimeout: number;
-  acrossElements: boolean;
-  ignoreGroups: number;
-  each: () => void;
-  filter: () => void;
-  noMatch: () => void;
-  done: () => void;
-  debug: boolean;
-  log: Console;
-}>;
+export type RegExpMarkerOptions = Partial<BaseOptions> &
+  Partial<UniqueRegExpMarkerOptions>;
 
 /**
  * @public
