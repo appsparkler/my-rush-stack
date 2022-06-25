@@ -1,5 +1,5 @@
 import { ElementType } from "react";
-import { BaseOptions } from "vm";
+import { BaseOptions } from "./BaseOptions";
 import { UnmarkOptions } from "./UnmarkOptions";
 
 /**

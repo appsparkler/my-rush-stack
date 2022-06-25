@@ -1,4 +1,4 @@
-import { BaseOptions } from "vm";
+import { BaseOptions } from "./BaseOptions";
 
 /**
  * @public

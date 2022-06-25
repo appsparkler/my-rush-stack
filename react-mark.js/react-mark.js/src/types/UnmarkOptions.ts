@@ -3,4 +3,6 @@ import { BaseOptions } from "./BaseOptions";
 /**
  * @public
  */
-export type UnmarkOptions = Omit<BaseOptions, "each" | "filter" | "noMatch">;
+export type UnmarkOptions = Partial<
+  Omit<BaseOptions, "each" | "filter" | "noMatch">
+>;
