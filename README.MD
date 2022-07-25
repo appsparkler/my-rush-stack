@@ -53,6 +53,10 @@ rush check
 
 1. Run `rush update` to link this new project into the `rush-stack`.
 
+## What if `rush update` fails:
+
+You can simply open the failed package in integrated terminal and run the `rushx build` command for a more clear diagnosis.
+
 ## Generators
 
 A Typescript react-library sample project is available at [@generators/generator-appsparkler](@generators/generator-appsparkler/generators/app/) in this project

@@ -36,7 +36,7 @@
     "@rushstack/heft": "0.45.2",
     "@size-limit/preset-small-lib": "^7.0.8",
     "size-limit": "^7.0.8",
-    "@types/common": "workspace:*",
+    "common-types": "workspace:*",
     "typescript": "~4.6.4",
     "@types/lodash": "~4.14.182",
     "lodash": "~4.17.21",
@@ -44,6 +44,6 @@
   },
   "peerDependencies": {
     "lodash": "~4.17.21",
-    "@types/common": "workspace:*"
+    "common-types": "workspace:*"
   }
 }

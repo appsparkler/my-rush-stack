@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import { TextFieldProps } from '@mui/material';
-import { SimpleFormControlChange } from 'common';
+import { SimpleFormControlChange } from 'common-types';
 export declare type SimpleTextFieldProps = {
     onChange?: SimpleFormControlChange<string>;
 } & Omit<TextFieldProps, 'onChange'>;

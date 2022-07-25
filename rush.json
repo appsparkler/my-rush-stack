@@ -391,10 +391,10 @@
    * 3. It's useful to have a centralized inventory of all projects and their important metadata.
    */
   "projects": [
-    {
-      "packageName": "generator-appsparkler",
-      "projectFolder": "generators/generator-appsparkler"
-    },
+    // {
+    //   "packageName": "generator-appsparkler",
+    //   "projectFolder": "generators/generator-appsparkler"
+    // },
     // LIBS - REACT MARK JS
     {
       "packageName": "react-mark.js",
@@ -410,18 +410,18 @@
       "projectFolder": "react-mark.js/the-configurator"
     },
     // DOCS - REACT MARK JS
-    {
-      "packageName": "react-mark-js-docs",
-      "projectFolder": "docs/react-mark.js"
-    },
+    // {
+    //   "packageName": "react-mark-js-docs",
+    //   "projectFolder": "docs/react-mark.js"
+    // },
     // @types/mark.js
     {
       "packageName": "@types/mark.js",
-      "projectFolder": "types/mark.js"
+      "projectFolder": "react-mark.js/types"
     },
     // LIBS - COMMON TYPES
     {
-      "packageName": "@types/common",
+      "packageName": "common-types",
       "projectFolder": "types/common"
     },
     // LIBS - COMMON UTILS
