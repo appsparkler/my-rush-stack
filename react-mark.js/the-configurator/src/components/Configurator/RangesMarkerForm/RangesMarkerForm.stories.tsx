@@ -4,7 +4,7 @@ import { RangesMarkerForm } from './RangesMarkerForm';
 
 const Story: ComponentMeta<typeof RangesMarkerForm> = {
   component: RangesMarkerForm,
-  title: 'Configurator/Ranges Marker Form',
+  title: 'Web/Configurator/Forms/Ranges Marker Form',
 };
 
 const Template: ComponentStory<typeof RangesMarkerForm> = (args) => (

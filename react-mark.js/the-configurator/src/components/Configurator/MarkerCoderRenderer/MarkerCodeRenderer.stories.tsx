@@ -4,7 +4,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 
 export default {
   component: MarkerCodeRenderer,
-  title: 'Web/Configurator/Marker Code Renderer',
+  title: 'Web/Configurator/Prisms',
 } as ComponentMeta<typeof MarkerCodeRenderer>;
 
 const Template: ComponentStory<typeof MarkerCodeRenderer> = (args) => (

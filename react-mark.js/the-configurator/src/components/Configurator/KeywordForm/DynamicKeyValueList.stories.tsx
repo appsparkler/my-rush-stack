@@ -4,7 +4,7 @@ import { DynamicKeyValueList } from './DynamicKeyValueList';
 
 export default {
   component: DynamicKeyValueList,
-  title: 'Web/Common/Dynamic Key Value List',
+  title: 'Common/Dynamic Key Value List',
 } as ComponentMeta<typeof DynamicKeyValueList>;
 
 const Template: ComponentStory<typeof DynamicKeyValueList> = (args) => (

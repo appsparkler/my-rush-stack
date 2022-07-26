@@ -4,7 +4,7 @@ import { KeywordForm } from './KeywordForm';
 
 export default {
   component: KeywordForm,
-  title: 'Web/Common/Keyword Form',
+  title: 'Common/Keyword Form',
 } as ComponentMeta<typeof KeywordForm>;
 
 const Template: ComponentStory<typeof KeywordForm> = (args) => (

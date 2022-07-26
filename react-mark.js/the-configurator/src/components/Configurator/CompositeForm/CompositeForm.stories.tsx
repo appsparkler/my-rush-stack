@@ -1,9 +1,10 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+import React from 'react';
 import { CompositeForm } from './CompositeForm';
 
 const Story = {
   component: CompositeForm,
-  title: 'Configurator/Composite Form',
+  title: 'Web/Configurator/Forms/Composite Form',
 } as ComponentMeta<typeof CompositeForm>;
 
 const Template: ComponentStory<typeof CompositeForm> = (args) => (

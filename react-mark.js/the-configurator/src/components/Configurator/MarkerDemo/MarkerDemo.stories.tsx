@@ -1,9 +1,10 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+import React from 'react';
 import { MarkerDemo } from './MarkerDemo';
 
 const Story = {
   component: MarkerDemo,
-  title: 'Configurator/Marker Demo',
+  title: 'Web/Configurator/Marker Demo',
 } as ComponentMeta<typeof MarkerDemo>;
 
 const Template: ComponentStory<typeof MarkerDemo> = (args = {}) => (
