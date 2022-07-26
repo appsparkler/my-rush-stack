@@ -1,9 +1,10 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+import React from 'react';
 import { RangesMarkerForm } from './RangesMarkerForm';
 
 const Story: ComponentMeta<typeof RangesMarkerForm> = {
   component: RangesMarkerForm,
-  title: 'Ranges Marker Form',
+  title: 'Configurator/Ranges Marker Form',
 };
 
 const Template: ComponentStory<typeof RangesMarkerForm> = (args) => (

@@ -3,8 +3,8 @@ import React from 'react';
 import { KeywordForm } from './KeywordForm';
 
 export default {
-  title: 'Web/Configurator/Keyword Form',
   component: KeywordForm,
+  title: 'Web/Common/Keyword Form',
 } as ComponentMeta<typeof KeywordForm>;
 
 const Template: ComponentStory<typeof KeywordForm> = (args) => (

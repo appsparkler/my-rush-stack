@@ -37,7 +37,7 @@ export const uniqueIdKeyValueItem = () => uniqueId('synonym-item');
 // JSX
 export const DynamicKeyValueList = ({
   name = '',
-  title = 'Synonyms',
+  title = '',
   onChange = noop,
   value = [],
 }: DynamicKeyValueListProps) => {

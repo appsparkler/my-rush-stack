@@ -236,6 +236,7 @@ export const KeywordForm = ({
               name="synonyms"
               onChange={handleChange}
               value={config.synonyms}
+              title="Synonyms"
             />
             <InteactiveSimpleList
               name="exclude"

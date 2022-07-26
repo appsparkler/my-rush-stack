@@ -12,6 +12,7 @@ const Template: ComponentStory<typeof DynamicKeyValueList> = (args) => (
 );
 
 export const noProps = Template.bind({});
+noProps.args = {};
 
 export const textType = Template.bind({});
 textType.args = {
