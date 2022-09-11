@@ -66,3 +66,15 @@ common/autoinstallers/*/.npmrc
 
 # Heft
 .heft
+
+
+*/dist 
+
+# ENV files
+.env.development
+.env.production
+.env
+
+
+checkin-dev-*
+hfn-checkin-*

@@ -1,0 +1,102 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { TargetBlankLink } from "./TargetBlankLink";
+
+<Meta title="Styling" />
+
+# 💇‍♂️ Styling
+
+When you wrap a component with `<Marker />`; the text-content
+that you are trying to highlight will automatically be wrapped
+with `<mark /> HTML Element`.
+
+<mark>Mark Elements usual</mark>ly comes with default styles and that may be
+enough for some use cases.
+
+Custom configuration for this inline `<mark />` element depends on
+the style-framework that is integrated in your application.
+
+<h2>
+  CSS - Single Element&nbsp;
+  <TargetBlankLink href="https://stackblitz.com/edit/react-mark-js-tqjcef?file=src/examples/CSSExample/index.js">
+    demo ↗
+  </TargetBlankLink>
+</h2>
+
+If you have your styles in a CSS file; you can simply add styles for
+the `mark element` in your CSS stylesheet:
+
+```CSS
+mark {
+    background-color: deeppink;
+}
+```
+
+<h2>
+  CSS - Multiple Elements{" "}
+  <TargetBlankLink href="https://stackblitz.com/edit/react-mark-js-tqjcef?file=src/examples/CSSExample/index.js">
+    demo ↗
+  </TargetBlankLink>
+</h2>
+
+If you have multiple markers on your page and want to style each one
+differently you need to pass a `className` in the options object to
+`<Marker />` element and then add the styles for each class.
+
+<div id="react-mark-js-css-example"></div>
+
+```jsx
+<Marker
+    options={{className: 'custom-marker-1'}}
+    mark="hello"
+>
+    Hello World
+</Marker>
+
+<Marker
+    options={{className: 'custom-marker-2'}}
+    mark="hello"
+>
+    Hello World
+</Marker>
+```
+
+Now, add the CSS styles for each class
+
+```css
+mark.custom-marker-1 {
+  background-color: orange;
+  padding: 2px;
+}
+
+mark.custom-marker-2 {
+  background-color: lightgreen;
+  padding: 2px;
+}
+```
+
+<h2>
+  Styled Components{" "}
+  <TargetBlankLink href="https://stackblitz.com/edit/react-mark-js-tqjcef?file=src/examples/StyledComponentsExample/index.js">
+    demo ↗
+  </TargetBlankLink>
+</h2>
+
+You can simply pass the `Marker` to the styled component
+and style it. For ex:
+
+```jsx
+import styled from "styled-components";
+import { Marker } from "react-mark.js";
+
+export const OrangeMarker = styled(Marker)`
+  mark {
+    background-color: orange !important;
+  }
+`;
+
+export const LightGreenMarker = styled(Marker)`
+  mark {
+    background-color: lightgreen;
+  }
+`;
+```

@@ -1,0 +1,12 @@
+{
+  "extends": ["react-app"],
+  "rules": {
+    "no-console": "warn",
+    "react-hooks/exhaustive-deps": [
+      "error",
+      {
+        "enableDangerousAutofixThisMayCauseInfiniteLoops": true
+      }
+    ]
+  }
+}

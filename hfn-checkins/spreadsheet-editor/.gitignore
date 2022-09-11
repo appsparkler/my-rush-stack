@@ -1,0 +1,5 @@
+node_modules
+appsparkler-sheet-editor*
+creds.json
+.vscode
+.heft

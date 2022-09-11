@@ -1,0 +1,21 @@
+{
+  "name": "@types/mark.js",
+  "version": "1.0.0",
+  "main": "./lib/index.js",
+  "typings": "./dist/mark.js.d.ts",
+  "devDependencies": {
+    "@types/react": "18.0.9",
+    "typescript": "~4.6.4",
+    "@microsoft/api-extractor": "~7.24.2"
+  },
+  "dependencies": {
+    "@types/node": "~17.0.45"
+  },
+  "scripts": {
+    "build": "heft build --clean",
+    "build:watch": "heft build",
+    "extract": "api-extractor run --local --verbose",
+    "diagnose": "api-extractor run --local --diagnostics",
+    "document": "api-documenter markdown"
+  }
+}

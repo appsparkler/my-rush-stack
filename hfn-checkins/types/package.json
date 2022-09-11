@@ -1,0 +1,21 @@
+{
+  "name": "@hfn-checkins/types",
+  "version": "2.0.1",
+  "description": "Types for hfn-checkin-repo",
+  "main": "lib/index.js",
+  "repository": "https://github.com/appsparkler/my-rush-stack",
+  "author": "Aakash Shah",
+  "license": "MIT",
+  "scripts": {
+    "build": "heft build --clean",
+    "build:watch": "heft build",
+    "clean": "heft clean"
+  },
+  "devDependencies": {
+    "@rushstack/eslint-config": "^2.6.2",
+    "@rushstack/heft": "0.45.2",
+    "@rushstack/heft-node-rig": "^1.9.22",
+    "@types/heft-jest": "^1.0.3",
+    "@types/node": "~17.0.45"
+  }
+}

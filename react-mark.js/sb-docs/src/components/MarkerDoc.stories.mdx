@@ -1,0 +1,91 @@
+import { Meta, Canvas, Story } from "@storybook/addon-docs/blocks";
+import { Marker } from "react-mark.js";
+import { MarkerOptions } from "../options";
+import { TargetBlankLink } from "../TargetBlankLink";
+
+<Meta title="Components/Marker" component={Marker} />
+
+# ⚡️ `<Marker />`
+
+A wrapper component to higlight text-content matching strings.
+
+export const Template = (args) => <Marker {...args} />;
+const args = {
+  children: `Cillum proident eu eiusmod incididunt pariatur. Ullamco qui 
+deserunt ut reprehenderit cupidatat cupidatat nisi 
+non occaecat non commodo. Magna incididunt eu laboris laboris labore.`,
+  mark: "Ullamco qui deserunt ut reprehenderit",
+};
+
+<h2>
+  <TargetBlankLink href="https://stackblitz.com/edit/react-mark-js-tqjcef?file=src/examples/MarkerExamples/index.js">
+    Stack Blitz Demo ↗
+  </TargetBlankLink>
+</h2>
+
+## ‣ Mark A Text String
+
+This is the most common use case where you want to mark a particular string
+in any given context. For ex. search fields, etc.
+
+<Canvas>
+  <Story name="String" args={args}>
+    {(args) => <Marker {...args} />}
+  </Story>
+</Canvas>
+
+## ‣ Mark Multiple Text Strings
+
+Sometimes you may want to mark multiple strings in a paragraph.
+You can simply pass it an array of strings:
+
+<Canvas>
+  <Story
+    name="Multiple Strings"
+    args={{ ...args, mark: ["eiusmod", "magna", "cupidatat"] }}
+  >
+    {(args) => <Marker {...args} />}
+  </Story>
+</Canvas>
+
+## ‣ Configure Wrapper Element
+
+By default; the `<Marker />` is a `div` element. If you want you different wrapper element like `span`, `p` or `section`; you can pass it in the `as` prop:
+
+<Canvas>
+  <Story
+    name="Section Element Wrapper"
+    args={{
+      ...args,
+      as: "section",
+    }}
+  >
+    {(args) => <Marker {...args} />}
+  </Story>
+</Canvas>
+
+## ‣ With Options
+
+You can find a list of all options below this section
+
+<Canvas>
+  <Story
+    name="With Options"
+    args={{
+      ...args,
+      mark: "nisi non occaecat",
+      as: "section",
+      options: {
+        className: "custom-marker-1",
+      },
+    }}
+  >
+    {(args) => <Marker {...args} />}
+  </Story>
+</Canvas>
+
+## ‣ _Optional_ Options
+
+Referenced from https://markjs.io/#parameters
+
+<MarkerOptions />

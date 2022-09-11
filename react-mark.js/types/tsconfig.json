@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "declaration": true,
+    "sourceMap": true,
+    "declarationMap": true,
+    "types": ["node"],
+    "lib": ["es2018", "DOM"],
+    "outDir": "lib"
+  },
+  "include": ["src/**/*.ts"]
+}
