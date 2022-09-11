@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "dev": "checkin-dev-98729",
+    "prod": "hfn-checkin"
+  },
+  "targets": {},
+  "etags": {}
+}

@@ -1,0 +1,39 @@
+import { Meta, Canvas, Story } from "@storybook/addon-docs/blocks";
+import { RangesMarkerOptions } from "./ranges-marker-options";
+
+<Meta title="Options/RangesMarker options" />
+
+# ⚡️ `options` for `RangesMarker`
+
+These options can be used with Marker. For ex:
+
+```tsx
+<RangesMarker
+  mark={[{ start: 10, length: 4 }]}
+  options={{
+    accuracy: "exactly",
+    diacritics: false,
+  }}
+>
+  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus
+  voluptas, tempora similique ratione explicabo cumque ex itaque vero
+  repudiandae. Non, molestias! Alias vitae facilis ut ducimus voluptates quod
+  repellat unde?
+</RangesMarker>
+```
+
+...and also with the `useMarker` hook for advanced usage by passing an `object` of `options`
+as the second argument of `marker.markRanges()` method:
+
+```tsx
+const { marker, markerRef } = useMarker();
+useEffect(() => {
+  if (marker) {
+    marker.markRanges([{ start: 3, length: 10 }], {
+      /* any of the options mentioned below as the second argument */
+    });
+  }
+}, []);
+```
+
+<RangesMarkerOptions />

@@ -1,0 +1,41 @@
+import { Meta, Canvas, Story } from "@storybook/addon-docs/blocks";
+import { Marker } from "react-mark.js";
+import { RegExpMarkerOptions } from "./reg-exp-marker-options";
+
+<Meta title="Options/RegExpMarker options" />
+
+# ⚡️ `options` object for Marker
+
+These options can be used with `<RegExpMarker>`. For ex:
+
+```tsx
+<RegExpMarker
+  mark={/ipsum/g}
+  options={{
+    accuracy: "exactly",
+    exclude: ["h1"],
+    iframes: false,
+  }}
+>
+  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus
+  voluptas, tempora similique ratione explicabo cumque ex itaque vero
+  repudiandae. Non, molestias! Alias vitae facilis ut ducimus voluptates quod
+  repellat unde?
+</RegExpMarker>
+```
+
+...and also with the `useMarker` hook for advanced usage by passing an `object` of `options`
+as the second argument of `marker.markRegExp()` method:
+
+```tsx
+const { marker, markerRef } = useMarker();
+useEffect(() => {
+  if (marker) {
+    marker.markRegExp(/ipsum/g, {
+      /* any of the options mentioned below */
+    });
+  }
+}, []);
+```
+
+<RegExpMarkerOptions />

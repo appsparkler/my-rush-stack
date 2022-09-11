@@ -1,0 +1,39 @@
+import { Meta, Canvas, Story } from "@storybook/addon-docs/blocks";
+import { MarkerOptions } from "./marker-options";
+
+<Meta title="Options/Marker options" />
+
+# ⚡️ `options` for `Marker`
+
+These options can be used with Marker. For ex:
+
+```tsx
+<Marker
+  mark="consectetur"
+  options={{
+    accuracy: "exactly",
+    diacritics: false,
+  }}
+>
+  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus
+  voluptas, tempora similique ratione explicabo cumque ex itaque vero
+  repudiandae. Non, molestias! Alias vitae facilis ut ducimus voluptates quod
+  repellat unde?
+</Marker>
+```
+
+...and also with the `useMarker` hook for advanced usage by passing an `object` of `options`
+as the second argument of `marker.mark()` method:
+
+```tsx
+const { marker, markerRef } = useMarker();
+useEffect(() => {
+  if (marker) {
+    marker.mark("Hello", {
+      /* any of the options mentioned below */
+    });
+  }
+}, []);
+```
+
+<MarkerOptions />

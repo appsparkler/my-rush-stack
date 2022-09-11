@@ -1,0 +1,38 @@
+import { Meta, Canvas, Story } from "@storybook/addon-docs/blocks";
+import { Marker } from "react-mark.js";
+import { UnmarkOptions } from "./un-mark-options";
+
+<Meta title="Options/Unmark options" />
+
+# ⚡️ `options` to use while `unmarking`
+
+These options can be used with any of the markers. For ex:
+
+```tsx
+// example
+<RegExpMarker
+  mark={/ipsum/g}
+  unmarkOptions={{
+    element: "span",
+  }}
+>
+  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus
+  voluptas, tempora similique ratione explicabo cumque ex itaque vero
+  repudiandae. Non, molestias! Alias vitae facilis ut ducimus voluptates quod
+  repellat unde?
+</RegExpMarker>
+```
+
+...and also with the `useMarker` hook for advanced usage by passing an `object` of `options`
+as the first argument of `marker.unmark()` method:
+
+```tsx
+const { marker, markerRef } = useMarker();
+const unmark = useCallback(() => {
+  marker.unmark({
+    /* any of the options mentioned below*/
+  });
+}, [marker]);
+```
+
+<UnmarkOptions />

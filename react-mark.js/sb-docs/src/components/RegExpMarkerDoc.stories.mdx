@@ -1,0 +1,75 @@
+import { Meta, Canvas, Story } from "@storybook/addon-docs/blocks";
+import { linkTo } from "@storybook/addon-links";
+import LinkTo from "@storybook/addon-links/react";
+import { RegExpMarker } from "react-mark.js";
+import { RegExpMarkerOptions } from "../options";
+import { TargetBlankLink } from "../TargetBlankLink";
+
+<Meta title="Components/RegExpMarker" component={RegExpMarker} />
+
+# ⚡️ `<RegExpMarker />`
+
+A wrapper component to higlight strings matching a regular expression.
+
+<h2>
+  <TargetBlankLink href="https://stackblitz.com/edit/react-mark-js-tqjcef?file=src/examples/RegExpMarkerExamples/index.js">
+    Stack Blitz Demo ↗
+  </TargetBlankLink>
+</h2>
+
+export const args = {
+  mark: /Cillum/,
+  children: `Cillum proident eu eiusmod incididunt  pariatur. 
+Ullamco qui deserunt ut reprehenderit cupidatat 
+cupidatat nisi non occaecat non commodo. Magna 
+incididunt eu laboris laboris labore.`,
+};
+
+## ‣ Marking With RegExp
+
+<Canvas>
+  <Story name="marking-with-regexp" args={args}>
+    {(args) => <RegExpMarker {...args} />}
+  </Story>
+</Canvas>
+
+## ‣ Configure Wrapper Element
+
+This will render the wrapper element as a section instead of the default `<div />`.
+
+<Canvas>
+  <Story
+    name="multiple ranges marker"
+    args={{
+      ...args,
+      as: "section",
+    }}
+  >
+    {(args) => <RegExpMarker {...args} />}
+  </Story>
+</Canvas>
+
+>
+
+export const linkFn = linkTo("Options/Mark Options");
+export const style = { cursor: "pointer" };
+
+## ‣ With Options
+
+<Canvas>
+  <Story
+    name="marking-with-regexp-3"
+    args={{
+      ...args,
+      as: "section",
+      options: { element: "strong" },
+      unmarkOptions: { exclude: "h4" },
+    }}
+  >
+    {(args) => <RegExpMarker {...args} />}
+  </Story>
+</Canvas>
+
+## ‣ _Optional_ Options
+
+<RegExpMarkerOptions />
