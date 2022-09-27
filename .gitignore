@@ -77,4 +77,4 @@ common/autoinstallers/*/.npmrc
 
 
 checkin-dev-*
-hfn-checkin-*
+checkin-prod-*
