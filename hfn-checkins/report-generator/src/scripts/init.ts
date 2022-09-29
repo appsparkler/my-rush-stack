@@ -1,14 +1,4 @@
-import dotenv from "dotenv";
-
-const initializeEnv = () => {
-dotenv.config().parsed;
-dotenv.config({
-  path: `.env.${process.env.NODE_ENV}`,
-}).parsed;
-dotenv.config({
-  path: `.env.${process.env.NODE_ENV}.local`,
-}).parsed;
-}
+import { initializeEnv } from "./initializeEnv";
 
 export const init = () => {
   initializeEnv();
