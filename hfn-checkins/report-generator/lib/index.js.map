@@ -1,1 +1,1 @@
-{"version":3,"file":"index.js","sourceRoot":"","sources":["../src/index.ts"],"names":[],"mappings":";AAAA,OAAO,CAAC,GAAG,CAAC,aAAa,CAAC,CAAC","sourcesContent":["console.log('hello world');"]}
+{"version":3,"file":"index.js","sourceRoot":"","sources":["../src/index.ts"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;AAAA,kDAAmC;AAEnC,OAAO,CAAC,GAAG,CAAC,EAAE,CAAC,CAAC,CAAC,CAAA;AACjB,MAAM,CAAC,GAAW,EAAE,CAAC","sourcesContent":["import * as hw from './hello-world'\n\nconsole.log(hw.x)\nconst x: number = 10;\n"]}
