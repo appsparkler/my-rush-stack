@@ -2,3 +2,4 @@
 .env.development.local
 creds-development.json
 creds-productions.json
+creds-*.json

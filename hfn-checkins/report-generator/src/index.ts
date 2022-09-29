@@ -1,15 +1,11 @@
-import dotenv from 'dotenv';
+import { app } from './firebase-app'
+import { init } from './scripts/init';
 
-const baseEnv = dotenv.config().parsed;
-const env = dotenv.config({
-  path: `.env.${process.env.NODE_ENV}`,
-}).parsed;
-const localEnv = dotenv.config({
-  path: `.env.${process.env.NODE_ENV}.local`,
-}).parsed;
+init();
 
-console.log({
-  ...env,
-  ...baseEnv,
-  ...localEnv
+app.firestore()
+  .collection('checkins')
+  .get()
+  .then((snapshot) => {
+  console.log(snapshot.docs.map((doc) => doc.data()));
 })
