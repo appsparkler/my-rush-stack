@@ -406,6 +406,9 @@
     },{
       "packageName": "@hfn-checkins/report-generator",
       "projectFolder": "hfn-checkins/report-generator"
+    },{
+      "packageName": "@hfn-checkins/report-generator-app",
+      "projectFolder": "hfn-checkins/report-generator-app"
     }
     // {
     //   /**
