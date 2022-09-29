@@ -4,6 +4,10 @@ import { map } from 'lodash/fp'
 import {google, sheets_v4 as sheetsV4} from "googleapis";
 import { QueryDocumentSnapshot } from '@google-cloud/firestore';
 
+const chalk = {
+  green: (str: string) => str
+}
+
 const CHECKINS_COLLECTION_NAME = "checkins";
 const NUMBER_OF_RECORDS = 500;
 
@@ -33,7 +37,6 @@ const fetchCheckinsNotUpdatedInReport: FetchAbhyasiIdCheckinsNotUpdatedInReport 
         .where("updatedInReport", "==", false)
         .limit(NUMBER_OF_RECORDS)
         .get()) as FirebaseFirestore.QuerySnapshot<T>;
-      console.log(abhyasiIdCheckinsNotUpdatedInReport.size);
       const docsAndData = abhyasiIdCheckinsNotUpdatedInReport.docs.map(
         (doc) => ({
           doc,
@@ -93,7 +96,6 @@ export const mapAbhyasiIdCheckinDataToCellValues: (
   }
   );
 
-
 const appendSpreadsheet = async (
   spreadsheetId: string,
   range: string,
@@ -144,20 +146,24 @@ const updateDocsWithUpdatedInReport = async (docs: QueryDocumentSnapshot[]) => {
 const updateReportForAbhyasiIdCheckins = async () => {
   try {
     const { data, docs } = await fetchCheckinsNotUpdatedInReport<IAbhyasiCheckinApiStoreData>(CheckinTypesEnum.AbhyasiId);
-    const formattedDataForSheet = mapAbhyasiIdCheckinDataToCellValues(data);
+    const mappedData = mapAbhyasiIdCheckinDataToCellValues(data);
     const response = await appendSpreadsheet(
       process.env.SHEET_ID,
       "AbhyasiIdCheckins!A1",
-      formattedDataForSheet
+      mappedData
     );
     if (response.status === "success") {
       await updateDocsWithUpdatedInReport(docs);
+      console.log(
+        chalk.green(
+          `${mappedData.length} AbhyasiId checkins updated in report`
+        )
+      );
     }
   } catch (error) {
     console.log("Error in updateReportForAbhyasiIdCheckins", error);
   }
 }
-
 
 const getGender = (gender: "M" | "F" | "U"): string => {
   switch (gender) {
@@ -210,6 +216,7 @@ const updateReportForEmailOrMobileCheckins = async () => {
     );
     if (response.status === "success") {
       await updateDocsWithUpdatedInReport(docs);
+      console.log(chalk.green(`${mappedData.length} EmailOrMobile checkins updated in report`));
     }
   } catch (e) {
     console.error(e);

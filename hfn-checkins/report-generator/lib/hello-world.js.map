@@ -1,1 +1,0 @@
-{"version":3,"file":"hello-world.js","sourceRoot":"","sources":["../src/hello-world.ts"],"names":[],"mappings":";;;AAAa,QAAA,CAAC,GAAG,aAAa,CAAA","sourcesContent":["export const x = 'hello world'"]}

@@ -1,0 +1,505 @@
+[
+  {
+    "email": "arunkumarvemula48@gmail.com",
+    "city": "HYDERABAD",
+    "mobile": "+916281479554",
+    "type": "EmailOrMobile",
+    "gender": "M",
+    "ageGroup": "24",
+    "deviceId": "73aea58c-dd40-4d64-a6e5-d1074de19dad",
+    "country": "INDIA",
+    "fullName": "ARUNKUMAR VEMULA",
+    "timestamp": 1662100036980,
+    "state": "TELANGANA "
+  },
+  {
+    "timestamp": 1662182893318,
+    "abhyasiId": "B00385172",
+    "deviceId": "8fbdb844-02b4-4bea-ada1-ac0d9a9bca6e",
+    "type": "AbhyasiId"
+  },
+  {
+    "type": "AbhyasiId",
+    "timestamp": 1662182935706,
+    "abhyasiId": "INPKAF061",
+    "deviceId": "1bbac64f-d1c8-4995-b6ea-1335bf657eb2"
+  },
+  {
+    "abhyasiId": "INMRAD222",
+    "timestamp": 1662264042112,
+    "deviceId": "1859cf6b-dbab-44a6-9280-c57a07cf0091",
+    "type": "AbhyasiId"
+  },
+  {
+    "abhyasiId": "H00452839",
+    "deviceId": "294774c1-d397-47aa-9c85-8e338cf94a13",
+    "type": "AbhyasiId",
+    "timestamp": 1662825571744
+  },
+  {
+    "type": "AbhyasiId",
+    "abhyasiId": "CHBHAA001",
+    "timestamp": 1663857694080,
+    "deviceId": "264e85ea-9154-4d7d-81ca-42ad53374994"
+  },
+  {
+    "timestamp": 1664100632122,
+    "deviceId": "402adad6-c667-46c3-b1d0-82c748bc4d94",
+    "type": "AbhyasiId",
+    "abhyasiId": "B01304505"
+  },
+  {
+    "timestamp": 1664104175172,
+    "deviceId": "98c2f234-8b64-40e4-ad07-ada98c93d24f",
+    "type": "AbhyasiId",
+    "abhyasiId": "INAMAE390"
+  },
+  {
+    "timestamp": 1664104189143,
+    "type": "AbhyasiId",
+    "deviceId": "98c2f234-8b64-40e4-ad07-ada98c93d24f",
+    "abhyasiId": "INPCAE116"
+  },
+  {
+    "type": "AbhyasiId",
+    "timestamp": 1664109162541,
+    "abhyasiId": "INSPAF365",
+    "deviceId": "14dde08f-29f0-4a7a-8370-fae4b2dd658b"
+  },
+  {
+    "timestamp": 1664109719581,
+    "abhyasiId": "INMAAE238",
+    "deviceId": "572cf53d-f1f6-4080-a655-c544dbaf985f",
+    "type": "AbhyasiId"
+  },
+  {
+    "type": "AbhyasiId",
+    "timestamp": 1664110477915,
+    "deviceId": "14dde08f-29f0-4a7a-8370-fae4b2dd658b",
+    "abhyasiId": "INAGAE315"
+  },
+  {
+    "deviceId": "14dde08f-29f0-4a7a-8370-fae4b2dd658b",
+    "abhyasiId": "INRPAD129",
+    "timestamp": 1664110494450,
+    "type": "AbhyasiId"
+  },
+  {
+    "timestamp": 1664110559365,
+    "type": "AbhyasiId",
+    "abhyasiId": "INAMAD178",
+    "deviceId": "14dde08f-29f0-4a7a-8370-fae4b2dd658b"
+  },
+  {
+    "type": "AbhyasiId",
+    "timestamp": 1664111308253,
+    "abhyasiId": "INNSAB205",
+    "deviceId": "14dde08f-29f0-4a7a-8370-fae4b2dd658b"
+  },
+  {
+    "abhyasiId": "B01330470",
+    "type": "AbhyasiId",
+    "timestamp": 1664111793164,
+    "deviceId": "14dde08f-29f0-4a7a-8370-fae4b2dd658b"
+  },
+  {
+    "email": "",
+    "country": "INDIA",
+    "city": "BHARTPUR",
+    "deviceId": "14dde08f-29f0-4a7a-8370-fae4b2dd658b",
+    "type": "EmailOrMobile",
+    "ageGroup": "24",
+    "state": "RAJESTHAN",
+    "timestamp": 1664111862284,
+    "gender": "M",
+    "mobile": "+917732801876",
+    "fullName": "SURESH"
+  },
+  {
+    "deviceId": "14dde08f-29f0-4a7a-8370-fae4b2dd658b",
+    "abhyasiId": "INAVAD132",
+    "timestamp": 1664112584227,
+    "type": "AbhyasiId"
+  },
+  {
+    "deviceId": "14dde08f-29f0-4a7a-8370-fae4b2dd658b",
+    "abhyasiId": "INNBAB133",
+    "timestamp": 1664114118438,
+    "type": "AbhyasiId"
+  },
+  {
+    "deviceId": "14dde08f-29f0-4a7a-8370-fae4b2dd658b",
+    "type": "AbhyasiId",
+    "abhyasiId": "INAWAD100",
+    "timestamp": 1664114417759
+  },
+  {
+    "timestamp": 1664120028726,
+    "deviceId": "194aa1e1-302b-4641-9062-dac463d22a42",
+    "abhyasiId": "INUUAE007",
+    "type": "AbhyasiId"
+  },
+  {
+    "timestamp": 1664120045803,
+    "deviceId": "194aa1e1-302b-4641-9062-dac463d22a42",
+    "type": "AbhyasiId",
+    "abhyasiId": "INBNAE177"
+  },
+  {
+    "abhyasiId": "INGSAE639",
+    "timestamp": 1664120105886,
+    "type": "AbhyasiId",
+    "deviceId": "194aa1e1-302b-4641-9062-dac463d22a42"
+  },
+  {
+    "timestamp": 1664158427978,
+    "type": "AbhyasiId",
+    "deviceId": "9714c498-074f-4b5d-bf67-414aa7205bfa",
+    "abhyasiId": "INVSAD117"
+  },
+  {
+    "timestamp": 1664160845255,
+    "abhyasiId": "H00161331",
+    "deviceId": "63863cac-0847-4410-bfd2-e85fbd590c7e",
+    "type": "AbhyasiId"
+  },
+  {
+    "deviceId": "63863cac-0847-4410-bfd2-e85fbd590c7e",
+    "type": "AbhyasiId",
+    "abhyasiId": "INCRAE093",
+    "timestamp": 1664160875967
+  },
+  {
+    "timestamp": 1664160894944,
+    "deviceId": "63863cac-0847-4410-bfd2-e85fbd590c7e",
+    "abhyasiId": "H00111017",
+    "type": "AbhyasiId"
+  },
+  {
+    "timestamp": 1664160912156,
+    "deviceId": "63863cac-0847-4410-bfd2-e85fbd590c7e",
+    "type": "AbhyasiId",
+    "abhyasiId": "B01293444"
+  },
+  {
+    "type": "AbhyasiId",
+    "timestamp": 1664160929383,
+    "deviceId": "63863cac-0847-4410-bfd2-e85fbd590c7e",
+    "abhyasiId": "B01334291"
+  },
+  {
+    "timestamp": 1664172391012,
+    "type": "AbhyasiId",
+    "deviceId": "cad39f6b-a9ec-446a-9d16-e1eadae6ee8c",
+    "abhyasiId": "INDKAB103"
+  },
+  {
+    "ageGroup": "64",
+    "gender": "F",
+    "mobile": "+919868242414",
+    "deviceId": "cad39f6b-a9ec-446a-9d16-e1eadae6ee8c",
+    "country": "INDIA",
+    "email": "",
+    "timestamp": 1664172571907,
+    "state": "DELHI",
+    "type": "EmailOrMobile",
+    "city": "NEW DELHI",
+    "fullName": "LEELA "
+  },
+  {
+    "deviceId": "cad39f6b-a9ec-446a-9d16-e1eadae6ee8c",
+    "type": "EmailOrMobile",
+    "fullName": "DHARMENDER KUMAR KAUSHIK",
+    "email": "dkkaushik2006@gmail.com",
+    "state": "DELHI",
+    "gender": "M",
+    "timestamp": 1664172668182,
+    "ageGroup": "64",
+    "country": "INDIA",
+    "mobile": "+918920092423",
+    "city": "NEW DELHI"
+  },
+  {
+    "deviceId": "51618910-571b-417c-a336-e713557252ce",
+    "abhyasiId": "INDTAE054",
+    "timestamp": 1664176788966,
+    "type": "AbhyasiId"
+  },
+  {
+    "abhyasiId": "INATAE125",
+    "timestamp": 1664176830933,
+    "deviceId": "51618910-571b-417c-a336-e713557252ce",
+    "type": "AbhyasiId"
+  },
+  {
+    "ageGroup": "9",
+    "state": "RAJASTHAN",
+    "mobile": "+919983340005",
+    "timestamp": 1664177211418,
+    "type": "EmailOrMobile",
+    "gender": "M",
+    "city": "BHILWARA",
+    "country": "INDIA",
+    "fullName": "VIHAAN SUWALKA",
+    "deviceId": "51618910-571b-417c-a336-e713557252ce",
+    "email": ""
+  },
+  {
+    "abhyasiId": "INRKAE779",
+    "deviceId": "51618910-571b-417c-a336-e713557252ce",
+    "type": "AbhyasiId",
+    "timestamp": 1664177890764
+  },
+  {
+    "deviceId": "51618910-571b-417c-a336-e713557252ce",
+    "timestamp": 1664178110743,
+    "type": "AbhyasiId",
+    "abhyasiId": "INSVAB122"
+  },
+  {
+    "abhyasiId": "INBPAD116",
+    "type": "AbhyasiId",
+    "deviceId": "51618910-571b-417c-a336-e713557252ce",
+    "timestamp": 1664178381201
+  },
+  {
+    "timestamp": 1664178870679,
+    "abhyasiId": "INPGAB105",
+    "deviceId": "51618910-571b-417c-a336-e713557252ce",
+    "type": "AbhyasiId"
+  },
+  {
+    "timestamp": 1664179595677,
+    "deviceId": "51618910-571b-417c-a336-e713557252ce",
+    "type": "AbhyasiId",
+    "abhyasiId": "INKSAF198"
+  },
+  {
+    "timestamp": 1664179721245,
+    "type": "AbhyasiId",
+    "abhyasiId": "INMKAE580",
+    "deviceId": "26de4ecc-d6ab-405f-9ada-a2d48eeb6ae6"
+  },
+  {
+    "timestamp": 1664179805245,
+    "abhyasiId": "B01334902",
+    "deviceId": "51618910-571b-417c-a336-e713557252ce",
+    "type": "AbhyasiId"
+  },
+  {
+    "deviceId": "51618910-571b-417c-a336-e713557252ce",
+    "timestamp": 1664179877671,
+    "type": "AbhyasiId",
+    "abhyasiId": "INSBAB111"
+  },
+  {
+    "type": "AbhyasiId",
+    "deviceId": "51618910-571b-417c-a336-e713557252ce",
+    "timestamp": 1664179918154,
+    "abhyasiId": "INSBAA196"
+  },
+  {
+    "timestamp": 1664181303992,
+    "abhyasiId": "INDCAA102",
+    "deviceId": "51618910-571b-417c-a336-e713557252ce",
+    "type": "AbhyasiId"
+  },
+  {
+    "deviceId": "51618910-571b-417c-a336-e713557252ce",
+    "type": "AbhyasiId",
+    "timestamp": 1664181340865,
+    "abhyasiId": "INSUAA103"
+  },
+  {
+    "timestamp": 1664181430105,
+    "deviceId": "51618910-571b-417c-a336-e713557252ce",
+    "abhyasiId": "B00398544",
+    "type": "AbhyasiId"
+  },
+  {
+    "timestamp": 1664181450679,
+    "deviceId": "51618910-571b-417c-a336-e713557252ce",
+    "type": "AbhyasiId",
+    "abhyasiId": "B00398546"
+  },
+  {
+    "abhyasiId": "INYPAA105",
+    "deviceId": "51618910-571b-417c-a336-e713557252ce",
+    "timestamp": 1664185051726,
+    "type": "AbhyasiId"
+  },
+  {
+    "deviceId": "51618910-571b-417c-a336-e713557252ce",
+    "timestamp": 1664186024197,
+    "abhyasiId": "INRCAE333",
+    "type": "AbhyasiId"
+  },
+  {
+    "type": "AbhyasiId",
+    "timestamp": 1664186092073,
+    "abhyasiId": "INSPAF802",
+    "deviceId": "51618910-571b-417c-a336-e713557252ce"
+  },
+  {
+    "timestamp": 1664186586151,
+    "abhyasiId": "INRSAD112",
+    "deviceId": "51618910-571b-417c-a336-e713557252ce",
+    "type": "AbhyasiId"
+  },
+  {
+    "abhyasiId": "INCRAD144",
+    "timestamp": 1664187480552,
+    "type": "AbhyasiId",
+    "deviceId": "51618910-571b-417c-a336-e713557252ce"
+  },
+  {
+    "type": "AbhyasiId",
+    "abhyasiId": "INCSAB176",
+    "timestamp": 1664188083087,
+    "deviceId": "51618910-571b-417c-a336-e713557252ce"
+  },
+  {
+    "timestamp": 1664188743599,
+    "type": "AbhyasiId",
+    "abhyasiId": "INKUAA109",
+    "deviceId": "51618910-571b-417c-a336-e713557252ce"
+  },
+  {
+    "timestamp": 1664188774380,
+    "abhyasiId": "INVRAD170",
+    "deviceId": "51618910-571b-417c-a336-e713557252ce",
+    "type": "AbhyasiId"
+  },
+  {
+    "timestamp": 1664188810558,
+    "type": "AbhyasiId",
+    "deviceId": "51618910-571b-417c-a336-e713557252ce",
+    "abhyasiId": "INBMAE193"
+  },
+  {
+    "deviceId": "51618910-571b-417c-a336-e713557252ce",
+    "timestamp": 1664188855804,
+    "type": "AbhyasiId",
+    "abhyasiId": "INCNAE058"
+  },
+  {
+    "deviceId": "5041cf8b-f93a-4a2f-b6e0-847be2151899",
+    "timestamp": 1664199226260,
+    "abhyasiId": "INMPAE345",
+    "type": "AbhyasiId"
+  },
+  {
+    "timestamp": 1664199515921,
+    "deviceId": "5041cf8b-f93a-4a2f-b6e0-847be2151899",
+    "type": "AbhyasiId",
+    "abhyasiId": "INDJAD110"
+  },
+  {
+    "deviceId": "5041cf8b-f93a-4a2f-b6e0-847be2151899",
+    "abhyasiId": "INASAE491",
+    "type": "AbhyasiId",
+    "timestamp": 1664200025181
+  },
+  {
+    "deviceId": "5041cf8b-f93a-4a2f-b6e0-847be2151899",
+    "type": "AbhyasiId",
+    "abhyasiId": "INGIAE021",
+    "timestamp": 1664200069536
+  },
+  {
+    "deviceId": "5041cf8b-f93a-4a2f-b6e0-847be2151899",
+    "type": "AbhyasiId",
+    "timestamp": 1664200260843,
+    "abhyasiId": "INSSAH110"
+  },
+  {
+    "timestamp": 1664200361181,
+    "deviceId": "5041cf8b-f93a-4a2f-b6e0-847be2151899",
+    "abhyasiId": "INVKAD134",
+    "type": "AbhyasiId"
+  },
+  {
+    "deviceId": "5041cf8b-f93a-4a2f-b6e0-847be2151899",
+    "type": "AbhyasiId",
+    "timestamp": 1664200428890,
+    "abhyasiId": "INKKAE294"
+  },
+  {
+    "timestamp": 1664200536430,
+    "type": "AbhyasiId",
+    "abhyasiId": "INARAE472",
+    "deviceId": "5041cf8b-f93a-4a2f-b6e0-847be2151899"
+  },
+  {
+    "deviceId": "5041cf8b-f93a-4a2f-b6e0-847be2151899",
+    "abhyasiId": "INNPAA110",
+    "type": "AbhyasiId",
+    "timestamp": 1664200740390
+  },
+  {
+    "deviceId": "5041cf8b-f93a-4a2f-b6e0-847be2151899",
+    "type": "AbhyasiId",
+    "abhyasiId": "INTVAA108",
+    "timestamp": 1664200771960
+  },
+  {
+    "deviceId": "5041cf8b-f93a-4a2f-b6e0-847be2151899",
+    "type": "AbhyasiId",
+    "abhyasiId": "INNVAD130",
+    "timestamp": 1664200818669
+  },
+  {
+    "deviceId": "5041cf8b-f93a-4a2f-b6e0-847be2151899",
+    "type": "AbhyasiId",
+    "abhyasiId": "INPCAA119",
+    "timestamp": 1664200915795
+  },
+  {
+    "type": "AbhyasiId",
+    "deviceId": "5041cf8b-f93a-4a2f-b6e0-847be2151899",
+    "abhyasiId": "INVAAE579",
+    "timestamp": 1664202278322
+  },
+  {
+    "deviceId": "5041cf8b-f93a-4a2f-b6e0-847be2151899",
+    "type": "AbhyasiId",
+    "timestamp": 1664202815720,
+    "abhyasiId": "INTPAE180"
+  },
+  {
+    "abhyasiId": "INMKAB173",
+    "deviceId": "5041cf8b-f93a-4a2f-b6e0-847be2151899",
+    "timestamp": 1664202987379,
+    "type": "AbhyasiId"
+  },
+  {
+    "type": "AbhyasiId",
+    "deviceId": "5041cf8b-f93a-4a2f-b6e0-847be2151899",
+    "timestamp": 1664204457821,
+    "abhyasiId": "INSTAE310"
+  },
+  {
+    "deviceId": "5041cf8b-f93a-4a2f-b6e0-847be2151899",
+    "type": "AbhyasiId",
+    "timestamp": 1664204526952,
+    "abhyasiId": "INDIAD100"
+  },
+  {
+    "deviceId": "5041cf8b-f93a-4a2f-b6e0-847be2151899",
+    "timestamp": 1664204939462,
+    "abhyasiId": "INANAE185",
+    "type": "AbhyasiId"
+  },
+  {
+    "type": "AbhyasiId",
+    "timestamp": 1664208850252,
+    "abhyasiId": "INMCAA128",
+    "deviceId": "001c856c-2704-40b3-bce4-c90cce4ef996"
+  },
+  {
+    "deviceId": "69211f36-01eb-48f4-8b82-cc377690348c",
+    "type": "AbhyasiId",
+    "timestamp": 1664248626074,
+    "abhyasiId": "INVKAE995"
+  }
+]

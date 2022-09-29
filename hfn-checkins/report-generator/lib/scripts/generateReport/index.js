@@ -5,6 +5,9 @@ const firebase_app_1 = require("./firebase-app");
 const types_1 = require("@hfn-checkins/types");
 const fp_1 = require("lodash/fp");
 const googleapis_1 = require("googleapis");
+const chalk = {
+    green: (str) => str
+};
 const CHECKINS_COLLECTION_NAME = "checkins";
 const NUMBER_OF_RECORDS = 500;
 const fetchCheckinsNotUpdatedInReport = async (type) => {
@@ -16,7 +19,6 @@ const fetchCheckinsNotUpdatedInReport = async (type) => {
             .where("updatedInReport", "==", false)
             .limit(NUMBER_OF_RECORDS)
             .get());
-        console.log(abhyasiIdCheckinsNotUpdatedInReport.size);
         const docsAndData = abhyasiIdCheckinsNotUpdatedInReport.docs.map((doc) => ({
             doc,
             data: doc.data(),
@@ -106,10 +108,11 @@ const updateDocsWithUpdatedInReport = async (docs) => {
 const updateReportForAbhyasiIdCheckins = async () => {
     try {
         const { data, docs } = await fetchCheckinsNotUpdatedInReport(types_1.CheckinTypesEnum.AbhyasiId);
-        const formattedDataForSheet = (0, exports.mapAbhyasiIdCheckinDataToCellValues)(data);
-        const response = await appendSpreadsheet(process.env.SHEET_ID, "AbhyasiIdCheckins!A1", formattedDataForSheet);
+        const mappedData = (0, exports.mapAbhyasiIdCheckinDataToCellValues)(data);
+        const response = await appendSpreadsheet(process.env.SHEET_ID, "AbhyasiIdCheckins!A1", mappedData);
         if (response.status === "success") {
             await updateDocsWithUpdatedInReport(docs);
+            console.log(chalk.green(`${mappedData.length} AbhyasiId checkins updated in report`));
         }
     }
     catch (error) {
@@ -155,6 +158,7 @@ const updateReportForEmailOrMobileCheckins = async () => {
         const response = await appendSpreadsheet(process.env.SHEET_ID, "EmailOrMobileCheckins!A1", mappedData);
         if (response.status === "success") {
             await updateDocsWithUpdatedInReport(docs);
+            console.log(chalk.green(`${mappedData.length} EmailOrMobile checkins updated in report`));
         }
     }
     catch (e) {
