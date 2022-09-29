@@ -403,6 +403,9 @@
     {
       "packageName": "@types/jest",
       "projectFolder": "hfn-checkins/jest"
+    },{
+      "packageName": "@hfn-checkins/report-generator",
+      "projectFolder": "hfn-checkins/report-generator"
     }
     // {
     //   /**

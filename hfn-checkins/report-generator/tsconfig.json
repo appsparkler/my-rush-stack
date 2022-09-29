@@ -1,0 +1,10 @@
+{
+  "extends": "@rushstack/heft-node-rig/profiles/default/tsconfig-base.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "lib": ["es2017", "dom"],
+  },
+  "exclude": ["node_modules"],
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+
+}
