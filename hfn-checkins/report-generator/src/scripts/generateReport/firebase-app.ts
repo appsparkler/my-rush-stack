@@ -6,14 +6,15 @@ export const app = admin.initializeApp({
 });
 
 
-app.firestore().collection('checkins').where('type', "==", "AbhyasiId")
-  .limit(10).get().then(docs => {
-    docs.forEach(doc => {
-      console.log(doc.data())
-    })
-  })
-  .catch(err => {
-    console.error('oops!!');
-   }
-  )
-    ;
+// Script to test Firebase
+// app.firestore().collection('checkins').where('type', "==", "AbhyasiId")
+//   .limit(10).get().then(docs => {
+//     docs.forEach(doc => {
+//       console.log(doc.data())
+//     })
+//   })
+//   .catch(err => {
+//     console.error('oops!!');
+//    }
+//   )
+//     ;
