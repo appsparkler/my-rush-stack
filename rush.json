@@ -396,20 +396,22 @@
    * 3. It's useful to have a centralized inventory of all projects and their important metadata.
    */
   "projects": [
+    // {
+    //   "packageName": "@hfn-checkins/app",
+    //   "projectFolder": "hfn-checkins/app"
+    // },
+    // {
+    //   "packageName": "@types/jest",
+    //   "projectFolder": "hfn-checkins/jest"
+    // },
     {
-      "packageName": "@hfn-checkins/app",
-      "projectFolder": "hfn-checkins/app"
-    },
-    {
-      "packageName": "@types/jest",
-      "projectFolder": "hfn-checkins/jest"
-    },{
       "packageName": "@hfn-checkins/report-generator",
       "projectFolder": "hfn-checkins/report-generator"
-    },{
-      "packageName": "@hfn-checkins/report-generator-app",
-      "projectFolder": "hfn-checkins/report-generator-app"
     }
+    // {
+    //   "packageName": "@hfn-checkins/report-generator-app",
+    //   "projectFolder": "hfn-checkins/report-generator-app"
+    // }
     // {
     //   /**
     //    * The NPM package name of the project (must match package.json)
