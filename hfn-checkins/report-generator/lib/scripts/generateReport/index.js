@@ -4,8 +4,9 @@ exports.generateReport = exports.mapAbhyasiIdCheckinDataToCellValues = exports.g
 const firebase_app_1 = require("./firebase-app");
 const types_1 = require("@hfn-checkins/types");
 const fp_1 = require("lodash/fp");
+const googleapis_1 = require("googleapis");
 const CHECKINS_COLLECTION_NAME = "checkins";
-const NUMBER_OF_RECORDS = 1;
+const NUMBER_OF_RECORDS = 500;
 const fetchAbhyasiIdCheckinsNotUpdatedInReport = async () => {
     try {
         const db = firebase_app_1.app.firestore();
@@ -62,14 +63,58 @@ exports.mapAbhyasiIdCheckinDataToCellValues = (0, fp_1.map)((abhyasiIdData = get
         abhyasiIdData.deviceId,
     ];
 });
-const updateReportForAbhyasiIdCheckins = async () => {
+const appendSpreadsheet = async (spreadsheetId, range, values) => {
     try {
-        const { data } = await fetchAbhyasiIdCheckinsNotUpdatedInReport();
-        const formattedDataForSheet = (0, exports.mapAbhyasiIdCheckinDataToCellValues)(data);
-        console.log({ formattedDataForSheet });
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const auth = new googleapis_1.google.auth.GoogleAuth({
+            keyFile: `./creds-${process.env.NODE_ENV}.json`,
+            scopes: [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/drive",
+                "https://www.googleapis.com/auth/spreadsheets",
+            ],
+        });
+        const service = googleapis_1.google.sheets({ version: "v4", auth });
+        const resource = {
+            spreadsheetId,
+            range,
+            valueInputOption: "USER_ENTERED",
+            requestBody: {
+                values,
+            },
+        };
+        await service.spreadsheets.values.append(resource);
+        return { status: "success" };
     }
     catch (error) {
-        console.log('Error in updating report for abhyasiIdCheckins', error);
+        console.log('Error in appending spreadsheet', error);
+        return { status: "error", message: error.message };
+    }
+};
+const updateDocsWithUpdatedInReport = async (docs) => {
+    try {
+        const db = firebase_app_1.app.firestore();
+        const batch = db.batch();
+        docs.forEach((doc) => {
+            batch.update(doc.ref, { updatedInReport: true });
+        });
+        await batch.commit();
+    }
+    catch (error) {
+        console.log("Error in updateDocsWithUpdatedInReport", error);
+    }
+};
+const updateReportForAbhyasiIdCheckins = async () => {
+    try {
+        const { data, docs } = await fetchAbhyasiIdCheckinsNotUpdatedInReport();
+        const formattedDataForSheet = (0, exports.mapAbhyasiIdCheckinDataToCellValues)(data);
+        const response = await appendSpreadsheet("1ByRuxAUL01phUtN2f_3Dxk9jt8EZtXSjofZIXsPX818", "AbhyasiIdCheckins!A1", formattedDataForSheet);
+        if (response.status === "success") {
+            await updateDocsWithUpdatedInReport(docs);
+        }
+    }
+    catch (error) {
+        console.log("Error in updateReportForAbhyasiIdCheckins", error);
     }
 };
 const generateReport = async () => {
