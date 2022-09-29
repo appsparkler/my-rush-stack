@@ -43,6 +43,7 @@ importers:
 
   ../../hfn-checkins/report-generator:
     specifiers:
+      '@hfn-checkins/types': ~2.0.1
       '@rushstack/heft-node-rig': ~1.10.13
       '@typescript-eslint/eslint-plugin': ~5.38.1
       '@typescript-eslint/parser': ~5.38.1
@@ -51,6 +52,7 @@ importers:
       eslint-config-google: ~0.14.0
       firebase-admin: ~11.0.1
     dependencies:
+      '@hfn-checkins/types': 2.0.1
       '@rushstack/heft-node-rig': 1.10.13
       dotenv: 16.0.2
       firebase-admin: 11.0.1
@@ -2408,6 +2410,10 @@ packages:
       long: 4.0.0
       protobufjs: 7.1.2
       yargs: 16.2.0
+    dev: false
+
+  /@hfn-checkins/types/2.0.1:
+    resolution: {integrity: sha512-bSwuDrSdcl9CDUDksEmoGR27T9vrROc6dMFQfoAu3GLM8O2p/izQgsuP5/9DxiVnfQA58zJk0sQEjcJVLbI79A==}
     dev: false
 
   /@humanwhocodes/config-array/0.10.5:
