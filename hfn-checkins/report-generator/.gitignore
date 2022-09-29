@@ -1,0 +1,4 @@
+.env.development
+.env.development.local
+creds-development.json
+creds-productions.json

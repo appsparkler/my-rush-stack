@@ -44,9 +44,11 @@ importers:
   ../../hfn-checkins/report-generator:
     specifiers:
       '@rushstack/heft-node-rig': ~1.10.13
+      dotenv: ~16.0.2
       firebase-admin: ~11.0.1
     dependencies:
       '@rushstack/heft-node-rig': 1.10.13
+      dotenv: 16.0.2
       firebase-admin: 11.0.1
 
   ../../hfn-checkins/report-generator-app:
@@ -5507,6 +5509,11 @@ packages:
   /dotenv/10.0.0:
     resolution: {integrity: sha512-rlBi9d8jpv9Sf1klPjNfFAuWDjKLwTIJJ/VxtoTwIR6hnZxcEOQCZg2oIL3MWBYw5GpUDKOEnND7LXTbIpQ03Q==}
     engines: {node: '>=10'}
+    dev: false
+
+  /dotenv/16.0.2:
+    resolution: {integrity: sha512-JvpYKUmzQhYoIFgK2MOnF3bciIZoItIIoryihy0rIA+H4Jy0FmgyKYAHCTN98P5ybGSJcIFbh6QKeJdtZd1qhA==}
+    engines: {node: '>=12'}
     dev: false
 
   /duplexer/0.1.2:
