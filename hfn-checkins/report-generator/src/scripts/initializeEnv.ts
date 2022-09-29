@@ -9,9 +9,13 @@ export const initializeEnv = () => {
     path: `.env.${process.env.NODE_ENV}.local`,
   }).parsed;
 
-  process.env = {
+  const processEnv = {
+    ...process.env,
     ...baseEnv,
     ...env,
     ...localEnv,
-  } as NodeJS.ProcessEnv
+  } as NodeJS.ProcessEnv;
+
+  process.env = processEnv
 };
+

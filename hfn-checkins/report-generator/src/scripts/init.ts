@@ -1,7 +1,7 @@
 import { initializeEnv } from "./initializeEnv";
 import { generateReport } from "./generateReport";
 
-export const init = () => {
+export const init = async() => {
   initializeEnv();
-  generateReport();
+  await generateReport();
 };

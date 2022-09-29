@@ -26,8 +26,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.app = void 0;
 const admin = __importStar(require("firebase-admin"));
 const serviceAccount = require(`../../../creds-${process.env.NODE_ENV}`);
-console.log(process.env);
 exports.app = admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
+});
+exports.app.firestore().collection('checkins').where('type', "==", "AbhyasiId")
+    .limit(10).get().then(docs => {
+    docs.forEach(doc => {
+        console.log(doc.data());
+    });
+})
+    .catch(err => {
+    console.error('oops!!');
 });
 //# sourceMappingURL=firebase-app.js.map

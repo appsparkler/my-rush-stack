@@ -13,7 +13,8 @@ const initializeEnv = () => {
     const localEnv = dotenv_1.default.config({
         path: `.env.${process.env.NODE_ENV}.local`,
     }).parsed;
-    process.env = Object.assign(Object.assign(Object.assign({}, baseEnv), env), localEnv);
+    const processEnv = Object.assign(Object.assign(Object.assign(Object.assign({}, process.env), baseEnv), env), localEnv);
+    process.env = processEnv;
 };
 exports.initializeEnv = initializeEnv;
 //# sourceMappingURL=initializeEnv.js.map

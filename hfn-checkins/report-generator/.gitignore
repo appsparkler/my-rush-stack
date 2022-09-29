@@ -1,5 +1,7 @@
 .env.development
 .env.development.local
+.env.production
+.env.production.local
 creds-development.json
 creds-productions.json
 creds-*.json
