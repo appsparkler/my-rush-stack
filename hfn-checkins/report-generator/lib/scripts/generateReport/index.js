@@ -1,18 +1,18 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.generateReport = exports.mapAbhyasiIdCheckinDataToCellValues = exports.getISTDateTimeFromTimestamp = void 0;
+exports.generateReport = exports.mapEmailOrMobileCheckinDataToCellValues = exports.mapAbhyasiIdCheckinDataToCellValues = exports.getISTDateTimeFromTimestamp = void 0;
 const firebase_app_1 = require("./firebase-app");
 const types_1 = require("@hfn-checkins/types");
 const fp_1 = require("lodash/fp");
 const googleapis_1 = require("googleapis");
 const CHECKINS_COLLECTION_NAME = "checkins";
 const NUMBER_OF_RECORDS = 500;
-const fetchAbhyasiIdCheckinsNotUpdatedInReport = async () => {
+const fetchCheckinsNotUpdatedInReport = async (type) => {
     try {
         const db = firebase_app_1.app.firestore();
         const abhyasiIdCheckinsNotUpdatedInReport = (await db
             .collection(CHECKINS_COLLECTION_NAME)
-            .where("type", "==", types_1.CheckinTypesEnum.AbhyasiId)
+            .where("type", "==", type)
             .where("updatedInReport", "==", false)
             .limit(NUMBER_OF_RECORDS)
             .get());
@@ -53,7 +53,6 @@ exports.getISTDateTimeFromTimestamp = getISTDateTimeFromTimestamp;
 exports.mapAbhyasiIdCheckinDataToCellValues = (0, fp_1.map)((abhyasiIdData = getDefaultAbhyasiData()) => {
     const [date, time] = getISTDateTimeFromTimestamp(abhyasiIdData.timestamp);
     const [reportDate, reportTime] = getISTDateTimeFromTimestamp(Date.now());
-    console.log({ abhyasiIdData });
     return [
         reportDate,
         reportTime,
@@ -106,9 +105,9 @@ const updateDocsWithUpdatedInReport = async (docs) => {
 };
 const updateReportForAbhyasiIdCheckins = async () => {
     try {
-        const { data, docs } = await fetchAbhyasiIdCheckinsNotUpdatedInReport();
+        const { data, docs } = await fetchCheckinsNotUpdatedInReport(types_1.CheckinTypesEnum.AbhyasiId);
         const formattedDataForSheet = (0, exports.mapAbhyasiIdCheckinDataToCellValues)(data);
-        const response = await appendSpreadsheet("1ByRuxAUL01phUtN2f_3Dxk9jt8EZtXSjofZIXsPX818", "AbhyasiIdCheckins!A1", formattedDataForSheet);
+        const response = await appendSpreadsheet(process.env.SHEET_ID, "AbhyasiIdCheckins!A1", formattedDataForSheet);
         if (response.status === "success") {
             await updateDocsWithUpdatedInReport(docs);
         }
@@ -117,8 +116,59 @@ const updateReportForAbhyasiIdCheckins = async () => {
         console.log("Error in updateReportForAbhyasiIdCheckins", error);
     }
 };
+const getGender = (gender) => {
+    switch (gender) {
+        case "M":
+            return "Male";
+        case "F":
+            return "Female";
+        case "U":
+            return "Unspecified";
+        default:
+            return "Not Updated";
+    }
+};
+const getValue = (emailOrMobile) => emailOrMobile;
+exports.mapEmailOrMobileCheckinDataToCellValues = (0, fp_1.map)((data) => {
+    const [date, time] = getISTDateTimeFromTimestamp(data.timestamp);
+    const [reportDate, reportTime] = getISTDateTimeFromTimestamp(Date.now());
+    return [
+        reportDate,
+        reportTime,
+        date,
+        time,
+        data.fullName,
+        getGender(data.gender),
+        data.ageGroup,
+        getValue(data.mobile),
+        getValue(data.email),
+        data.city,
+        data.state,
+        data.country,
+        data.deviceId,
+    ];
+});
+const updateReportForEmailOrMobileCheckins = async () => {
+    try {
+        const { docs, data } = (await fetchCheckinsNotUpdatedInReport(types_1.CheckinTypesEnum.EmailOrMobile));
+        const mappedData = (0, exports.mapEmailOrMobileCheckinDataToCellValues)(data);
+        const response = await appendSpreadsheet(process.env.SHEET_ID, "EmailOrMobileCheckins!A1", mappedData);
+        if (response.status === "success") {
+            await updateDocsWithUpdatedInReport(docs);
+        }
+    }
+    catch (e) {
+        console.error(e);
+    }
+};
 const generateReport = async () => {
-    await updateReportForAbhyasiIdCheckins();
+    try {
+        await updateReportForAbhyasiIdCheckins();
+        await updateReportForEmailOrMobileCheckins();
+    }
+    catch (error) {
+        console.log('Error in generateReport', error);
+    }
 };
 exports.generateReport = generateReport;
 //# sourceMappingURL=index.js.map

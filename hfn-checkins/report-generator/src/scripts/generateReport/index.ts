@@ -1,12 +1,15 @@
 import { app } from './firebase-app'
-import { CheckinTypesEnum, IAbhyasiCheckinApiStoreData, } from '@hfn-checkins/types';
+import { CheckinTypesEnum, CheckinWithEmailOrMobileApiStoreData, IAbhyasiCheckinApiStoreData, } from '@hfn-checkins/types';
 import { map } from 'lodash/fp'
 import {google, sheets_v4 as sheetsV4} from "googleapis";
+import { QueryDocumentSnapshot } from '@google-cloud/firestore';
 
 const CHECKINS_COLLECTION_NAME = "checkins";
 const NUMBER_OF_RECORDS = 500;
 
-type AbhyasiIdCheckinDataSnapshot = FirebaseFirestore.QueryDocumentSnapshot<IAbhyasiCheckinApiStoreData>;
+interface IMapEmailOrMobileCheckinDataToCellValues {
+  (data: CheckinWithEmailOrMobileApiStoreData[]): (string | undefined)[][];
+}
 
 interface IResponse  {
   status: "success" | "error";
@@ -14,27 +17,29 @@ interface IResponse  {
 }
 
 interface FetchAbhyasiIdCheckinsNotUpdatedInReport {
-  (): Promise<{
-    docs: AbhyasiIdCheckinDataSnapshot[];
-    data: IAbhyasiCheckinApiStoreData[];
+  <T>(type: CheckinTypesEnum): Promise<{
+    docs: QueryDocumentSnapshot<T>[];
+    data: T[];
   }>;
 }
 
-const fetchAbhyasiIdCheckinsNotUpdatedInReport: FetchAbhyasiIdCheckinsNotUpdatedInReport =
-  async () => {
+const fetchCheckinsNotUpdatedInReport: FetchAbhyasiIdCheckinsNotUpdatedInReport =
+  async <T>(type: CheckinTypesEnum) => {
     try {
       const db = app.firestore();
       const abhyasiIdCheckinsNotUpdatedInReport = (await db
         .collection(CHECKINS_COLLECTION_NAME)
-        .where("type", "==", CheckinTypesEnum.AbhyasiId)
+        .where("type", "==", type)
         .where("updatedInReport", "==", false)
         .limit(NUMBER_OF_RECORDS)
-        .get()) as FirebaseFirestore.QuerySnapshot<IAbhyasiCheckinApiStoreData>;
+        .get()) as FirebaseFirestore.QuerySnapshot<T>;
       console.log(abhyasiIdCheckinsNotUpdatedInReport.size);
-      const docsAndData = abhyasiIdCheckinsNotUpdatedInReport.docs.map((doc) => ({
-        doc,
-        data: doc.data() as IAbhyasiCheckinApiStoreData,
-      }));
+      const docsAndData = abhyasiIdCheckinsNotUpdatedInReport.docs.map(
+        (doc) => ({
+          doc,
+          data: doc.data(),
+        })
+      );
 
       return docsAndData.reduce(
         (acc, { doc, data }) => {
@@ -44,13 +49,12 @@ const fetchAbhyasiIdCheckinsNotUpdatedInReport: FetchAbhyasiIdCheckinsNotUpdated
           };
         },
         {
-          docs: [] as AbhyasiIdCheckinDataSnapshot[],
-          data: [] as IAbhyasiCheckinApiStoreData[],
+          docs: [] as QueryDocumentSnapshot<T>[],
+          data: [] as T[],
         }
       );
     } catch (error) {
-
-      throw new Error("Error in fetching abhyasiIdCheckinsNotUpdatedInReport")
+      throw new Error("Error in fetching abhyasiIdCheckinsNotUpdatedInReport");
     }
   };
 
@@ -77,9 +81,7 @@ export const mapAbhyasiIdCheckinDataToCellValues: (
     const [date, time]: string[] = getISTDateTimeFromTimestamp(
       abhyasiIdData.timestamp
     );
-
     const [reportDate, reportTime] = getISTDateTimeFromTimestamp(Date.now());
-    console.log({ abhyasiIdData });
     return [
       reportDate,
       reportTime,
@@ -126,7 +128,7 @@ const appendSpreadsheet = async (
   }
 }
 
-const updateDocsWithUpdatedInReport = async (docs: AbhyasiIdCheckinDataSnapshot[]) => {
+const updateDocsWithUpdatedInReport = async (docs: QueryDocumentSnapshot[]) => {
   try {
     const db = app.firestore();
     const batch = db.batch();
@@ -141,10 +143,10 @@ const updateDocsWithUpdatedInReport = async (docs: AbhyasiIdCheckinDataSnapshot[
 
 const updateReportForAbhyasiIdCheckins = async () => {
   try {
-    const { data, docs } = await fetchAbhyasiIdCheckinsNotUpdatedInReport();
+    const { data, docs } = await fetchCheckinsNotUpdatedInReport<IAbhyasiCheckinApiStoreData>(CheckinTypesEnum.AbhyasiId);
     const formattedDataForSheet = mapAbhyasiIdCheckinDataToCellValues(data);
     const response = await appendSpreadsheet(
-      "1ByRuxAUL01phUtN2f_3Dxk9jt8EZtXSjofZIXsPX818",
+      process.env.SHEET_ID,
       "AbhyasiIdCheckins!A1",
       formattedDataForSheet
     );
@@ -156,6 +158,69 @@ const updateReportForAbhyasiIdCheckins = async () => {
   }
 }
 
+
+const getGender = (gender: "M" | "F" | "U"): string => {
+  switch (gender) {
+    case "M":
+      return "Male";
+    case "F":
+      return "Female";
+    case "U":
+      return "Unspecified";
+    default:
+      return "Not Updated";
+  }
+};
+
+const getValue = (emailOrMobile: string | undefined): string | undefined => emailOrMobile;
+
+export const mapEmailOrMobileCheckinDataToCellValues: IMapEmailOrMobileCheckinDataToCellValues =
+  map((data) => {
+    const [date, time]: string[] = getISTDateTimeFromTimestamp(data.timestamp);
+
+    const [reportDate, reportTime] = getISTDateTimeFromTimestamp(Date.now());
+
+    return [
+      reportDate,
+      reportTime,
+      date,
+      time,
+      data.fullName,
+      getGender(data.gender),
+      data.ageGroup,
+      getValue((data as { mobile?: string }).mobile),
+      getValue((data as { email?: string }).email),
+      data.city,
+      data.state,
+      data.country,
+      data.deviceId,
+    ];
+  });
+
+const updateReportForEmailOrMobileCheckins = async () => {
+  try {
+    const { docs, data } =
+      (await fetchCheckinsNotUpdatedInReport<
+      CheckinWithEmailOrMobileApiStoreData>(CheckinTypesEnum.EmailOrMobile));
+    const mappedData = mapEmailOrMobileCheckinDataToCellValues(data);
+    const response = await appendSpreadsheet(
+      process.env.SHEET_ID,
+      "EmailOrMobileCheckins!A1",
+      mappedData
+    );
+    if (response.status === "success") {
+      await updateDocsWithUpdatedInReport(docs);
+    }
+  } catch (e) {
+    console.error(e);
+  }
+}
+
 export const generateReport = async() => {
-  await updateReportForAbhyasiIdCheckins();
+  try {
+    await updateReportForAbhyasiIdCheckins();
+    await updateReportForEmailOrMobileCheckins();
+  } catch (error) {
+    console.log('Error in generateReport', error);
+  }
 }
