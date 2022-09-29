@@ -1,11 +1,17 @@
 import dotenv from "dotenv";
 
 export const initializeEnv = () => {
-  dotenv.config().parsed;
-  dotenv.config({
+  const baseEnv = dotenv.config().parsed;
+  const env = dotenv.config({
     path: `.env.${process.env.NODE_ENV}`,
   }).parsed;
-  dotenv.config({
+  const localEnv = dotenv.config({
     path: `.env.${process.env.NODE_ENV}.local`,
   }).parsed;
+
+  process.env = {
+    ...baseEnv,
+    ...env,
+    ...localEnv,
+  } as NodeJS.ProcessEnv
 };

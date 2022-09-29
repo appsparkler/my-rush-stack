@@ -1,0 +1,15 @@
+@startuml Generate Report
+title Generate Report
+start
+group AbhyasiId Checkins
+  :FETCH all **AbhyasiId** checkins that do not have **updatedInReport** set;
+  :MAP the data to organize it for sheet-column mapping;
+  :APPEND the data to the sheet;
+end group
+group MobileOrEmail Checkins
+  :FETCH all **AbhyasiId** checkins that do not have **updatedInReport** set;
+  :MAP the data to organize it for sheet-column mapping;
+  :APPEND the data to the sheet;
+end group
+stop
+@enduml
