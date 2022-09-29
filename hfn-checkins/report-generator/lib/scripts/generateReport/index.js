@@ -5,6 +5,7 @@ const firebase_app_1 = require("./firebase-app");
 const types_1 = require("@hfn-checkins/types");
 const fp_1 = require("lodash/fp");
 const CHECKINS_COLLECTION_NAME = "checkins";
+const NUMBER_OF_RECORDS = 1;
 const fetchAbhyasiIdCheckinsNotUpdatedInReport = async () => {
     try {
         const db = firebase_app_1.app.firestore();
@@ -12,7 +13,7 @@ const fetchAbhyasiIdCheckinsNotUpdatedInReport = async () => {
             .collection(CHECKINS_COLLECTION_NAME)
             .where("type", "==", types_1.CheckinTypesEnum.AbhyasiId)
             .where("updatedInReport", "==", false)
-            .limit(10)
+            .limit(NUMBER_OF_RECORDS)
             .get());
         console.log(abhyasiIdCheckinsNotUpdatedInReport.size);
         const docsAndData = abhyasiIdCheckinsNotUpdatedInReport.docs.map((doc) => ({
@@ -63,7 +64,6 @@ exports.mapAbhyasiIdCheckinDataToCellValues = (0, fp_1.map)((abhyasiIdData = get
 });
 const updateReportForAbhyasiIdCheckins = async () => {
     try {
-        // console.log('try to update report');
         const { data } = await fetchAbhyasiIdCheckinsNotUpdatedInReport();
         const formattedDataForSheet = (0, exports.mapAbhyasiIdCheckinDataToCellValues)(data);
         console.log({ formattedDataForSheet });

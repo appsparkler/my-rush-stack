@@ -3,6 +3,7 @@ import { CheckinTypesEnum, IAbhyasiCheckinApiStoreData, } from '@hfn-checkins/ty
 import { map } from 'lodash/fp'
 
 const CHECKINS_COLLECTION_NAME = "checkins";
+const NUMBER_OF_RECORDS = 1;
 
 type AbhyasiIdCheckinDataSnapshot = FirebaseFirestore.QueryDocumentSnapshot<IAbhyasiCheckinApiStoreData>;
 
@@ -22,7 +23,7 @@ const fetchAbhyasiIdCheckinsNotUpdatedInReport: FetchAbhyasiIdCheckinsNotUpdated
         .collection(CHECKINS_COLLECTION_NAME)
         .where("type", "==", CheckinTypesEnum.AbhyasiId)
         .where("updatedInReport", "==", false)
-        .limit(10)
+        .limit(NUMBER_OF_RECORDS)
         .get()) as FirebaseFirestore.QuerySnapshot<IAbhyasiCheckinApiStoreData>;
       console.log(abhyasiIdCheckinsNotUpdatedInReport.size);
       const docsAndData = abhyasiIdCheckinsNotUpdatedInReport.docs.map((doc) => ({
@@ -87,7 +88,6 @@ export const mapAbhyasiIdCheckinDataToCellValues: (
 
 const updateReportForAbhyasiIdCheckins = async () => {
   try {
-    // console.log('try to update report');
     const { data } = await fetchAbhyasiIdCheckinsNotUpdatedInReport();
     const formattedDataForSheet = mapAbhyasiIdCheckinDataToCellValues(data);
     console.log({ formattedDataForSheet })
