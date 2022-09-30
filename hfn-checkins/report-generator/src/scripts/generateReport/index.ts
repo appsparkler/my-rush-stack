@@ -9,7 +9,7 @@ const chalk = {
 }
 
 const CHECKINS_COLLECTION_NAME = "checkins";
-const NUMBER_OF_RECORDS = 500;
+const NUMBER_OF_RECORDS = 500; // max limit is 500 on Google Sheets API
 
 interface IMapEmailOrMobileCheckinDataToCellValues {
   (data: CheckinWithEmailOrMobileApiStoreData[]): (string | undefined)[][];
@@ -20,14 +20,9 @@ interface IResponse  {
   message?: string;
 }
 
-interface FetchAbhyasiIdCheckinsNotUpdatedInReport {
-  <T>(type: CheckinTypesEnum): Promise<{
-    docs: QueryDocumentSnapshot<T>[];
-    data: T[];
-  }>;
-}
 
-const fetchCheckinsNotUpdatedInReport: FetchAbhyasiIdCheckinsNotUpdatedInReport =
+
+const fetchCheckinsNotUpdatedInReport =
   async <T>(type: CheckinTypesEnum) => {
     try {
       const db = app.firestore();

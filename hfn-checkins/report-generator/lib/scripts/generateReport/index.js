@@ -9,7 +9,7 @@ const chalk = {
     green: (str) => str
 };
 const CHECKINS_COLLECTION_NAME = "checkins";
-const NUMBER_OF_RECORDS = 500;
+const NUMBER_OF_RECORDS = 500; // max limit is 500 on Google Sheets API
 const fetchCheckinsNotUpdatedInReport = async (type) => {
     try {
         const db = firebase_app_1.app.firestore();
