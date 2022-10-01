@@ -20,8 +20,6 @@ interface IResponse  {
   message?: string;
 }
 
-
-
 const fetchCheckinsNotUpdatedInReport =
   async <T>(type: CheckinTypesEnum) => {
     try {
