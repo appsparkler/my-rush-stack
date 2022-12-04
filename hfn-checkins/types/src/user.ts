@@ -25,6 +25,7 @@ export interface IAbhyasiCheckinApiStoreData {
   timestamp: number;
   type: CheckinTypesEnum.AbhyasiId;
   updatedInReport: boolean;
+  dormAndBirthAllocation: string;
 }
 
 export type CheckinWithEmailOrMobileApiStoreData =
@@ -33,6 +34,7 @@ export type CheckinWithEmailOrMobileApiStoreData =
     timestamp: number;
     type: CheckinTypesEnum.EmailOrMobile;
     updatedInReport: boolean;
+    dormAndBirthAllocation: string;
   };
 
 export type CheckinData =

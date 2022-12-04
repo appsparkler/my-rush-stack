@@ -25,12 +25,14 @@ export interface IAbhyasiCheckinApiStoreData {
     timestamp: number;
     type: CheckinTypesEnum.AbhyasiId;
     updatedInReport: boolean;
+    dormAndBirthAllocation: string;
 }
 export declare type CheckinWithEmailOrMobileApiStoreData = CheckinEmailOrMobileUserDetails & {
     deviceId: string;
     timestamp: number;
     type: CheckinTypesEnum.EmailOrMobile;
     updatedInReport: boolean;
+    dormAndBirthAllocation: string;
 };
 export declare type CheckinData = IAbhyasiCheckinApiStoreData | CheckinWithEmailOrMobileApiStoreData;
 export {};

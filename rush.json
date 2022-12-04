@@ -396,52 +396,52 @@
     //   "projectFolder": "generators/generator-appsparkler"
     // },
     // LIBS - REACT MARK JS
-    {
-      "packageName": "react-mark.js",
-      "projectFolder": "react-mark.js/react-mark.js"
-    },
-    {
-      "packageName": "react-mark-js-sb-docs",
-      "projectFolder": "react-mark.js/sb-docs"
-    },
+    // {
+    //   "packageName": "react-mark.js",
+    //   "projectFolder": "react-mark.js/react-mark.js"
+    // },
+    // {
+    //   "packageName": "react-mark-js-sb-docs",
+    //   "projectFolder": "react-mark.js/sb-docs"
+    // },
     // WIDGET - REACT MARK JS CONFIGURATOR
-    {
-      "packageName": "@react-mark.js/configurator",
-      "projectFolder": "react-mark.js/the-configurator"
-    },
+    // {
+    //   "packageName": "@react-mark.js/configurator",
+    //   "projectFolder": "react-mark.js/the-configurator"
+    // },
     // DOCS - REACT MARK JS
     // {
     //   "packageName": "react-mark-js-docs",
     //   "projectFolder": "docs/react-mark.js"
     // },
     // @types/mark.js
-    {
-      "packageName": "@types/mark.js",
-      "projectFolder": "react-mark.js/types"
-    },
+    // {
+    //   "packageName": "@types/mark.js",
+    //   "projectFolder": "react-mark.js/types"
+    // },
     // LIBS - COMMON TYPES
-    {
-      "packageName": "common-types",
-      "projectFolder": "types/common"
-    },
+    // {
+    //   "packageName": "common-types",
+    //   "projectFolder": "types/common"
+    // },
     // LIBS - COMMON UTILS
-    {
-      "packageName": "common-utils",
-      "projectFolder": "libs/common-utils"
-    },
+    // {
+    //   "packageName": "common-utils",
+    //   "projectFolder": "libs/common-utils"
+    // },
     // LIBS - MUI
-    {
-      "packageName": "mui",
-      "projectFolder": "libs/mui"
-    },
-    {
-      "packageName": "@hfn-checkins/cloud-functions",
-      "projectFolder": "hfn-checkins/cloud-functions"
-    },
-    {
-      "packageName": "@hfn-checkins/spreadsheet-editor",
-      "projectFolder": "hfn-checkins/spreadsheet-editor"
-    },
+    // {
+    //   "packageName": "mui",
+    //   "projectFolder": "libs/mui"
+    // },
+    // {
+    //   "packageName": "@hfn-checkins/cloud-functions",
+    //   "projectFolder": "hfn-checkins/cloud-functions"
+    // },
+    // {
+    //   "packageName": "@hfn-checkins/spreadsheet-editor",
+    //   "projectFolder": "hfn-checkins/spreadsheet-editor"
+    // },
     {
       "packageName": "@hfn-checkins/types",
       "projectFolder": "hfn-checkins/types"
