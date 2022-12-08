@@ -1,6 +1,7 @@
 export enum CheckinTypesEnum {
   AbhyasiId = "AbhyasiId",
   EmailOrMobile = "EmailOrMobile",
+  QR = "QR",
 }
 
 type EmailOrMobileDetail =
@@ -41,3 +42,15 @@ export type CheckinWithEmailOrMobileApiStoreData =
 export type CheckinData =
   | IAbhyasiCheckinApiStoreData
   | CheckinWithEmailOrMobileApiStoreData;
+
+export interface IQRCheckinUser {
+  regId: number;
+  eventName: string;
+  abhyasiId: string;
+  pnr: string;
+  name: string;
+  dormName: string;
+  birth: string;
+  allottedBed: string;
+  type: CheckinTypesEnum;
+}

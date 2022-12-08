@@ -1,6 +1,7 @@
 export declare enum CheckinTypesEnum {
     AbhyasiId = "AbhyasiId",
-    EmailOrMobile = "EmailOrMobile"
+    EmailOrMobile = "EmailOrMobile",
+    QR = "QR"
 }
 declare type EmailOrMobileDetail = {
     mobile: string;
@@ -36,5 +37,16 @@ export declare type CheckinWithEmailOrMobileApiStoreData = CheckinEmailOrMobileU
     dormAndBirthAllocation: string;
 };
 export declare type CheckinData = IAbhyasiCheckinApiStoreData | CheckinWithEmailOrMobileApiStoreData;
+export interface IQRCheckinUser {
+    regId: number;
+    eventName: string;
+    abhyasiId: string;
+    pnr: string;
+    name: string;
+    dormName: string;
+    birth: string;
+    allottedBed: string;
+    type: CheckinTypesEnum;
+}
 export {};
 //# sourceMappingURL=user.d.ts.map
