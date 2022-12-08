@@ -1,4 +1,4 @@
-export interface CheckinsAggregateData {
+export interface ICheckinsAggregateData {
     emailOrMobileCheckin: number;
     abhyasiIdCheckin: number;
     city: Record<string, number>;
@@ -12,5 +12,5 @@ export interface CheckinsAggregateData {
     unspecified: number;
     dataAppendedForPreviousCheckins: boolean;
 }
-export declare type EmailOrMobileDeletedAggregateData = Pick<CheckinsAggregateData, "city" | "state" | "country" | "checkinsWithEmail" | "checkinsWithMobile" | "checkinsWithEmailAndMobile" | "emailOrMobileCheckin" | "unspecified" | "male" | "female">;
+export declare type EmailOrMobileDeletedAggregateData = Pick<ICheckinsAggregateData, "city" | "state" | "country" | "checkinsWithEmail" | "checkinsWithMobile" | "checkinsWithEmailAndMobile" | "emailOrMobileCheckin" | "unspecified" | "male" | "female">;
 //# sourceMappingURL=aggreagations.d.ts.map

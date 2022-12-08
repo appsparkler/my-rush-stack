@@ -1,4 +1,4 @@
-export interface CheckinsAggregateData {
+export interface ICheckinsAggregateData {
   emailOrMobileCheckin: number;
   abhyasiIdCheckin: number;
   city: Record<string, number>;
@@ -14,7 +14,7 @@ export interface CheckinsAggregateData {
 }
 
 export type EmailOrMobileDeletedAggregateData = Pick<
-  CheckinsAggregateData,
+  ICheckinsAggregateData,
   | "city"
   | "state"
   | "country"

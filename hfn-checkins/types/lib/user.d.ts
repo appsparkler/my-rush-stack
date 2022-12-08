@@ -18,6 +18,7 @@ export declare type CheckinEmailOrMobileUserDetails = {
     city: string;
     state: string;
     country: string;
+    dormAndBirthAllocation: string;
 } & EmailOrMobileDetail;
 export interface IAbhyasiCheckinApiStoreData {
     abhyasiId: string;
