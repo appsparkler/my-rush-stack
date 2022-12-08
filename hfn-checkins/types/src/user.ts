@@ -44,11 +44,11 @@ export type CheckinData =
   | CheckinWithEmailOrMobileApiStoreData;
 
 export interface IQRCheckinUser {
-  regId: number;
+  regId: string;
   eventName: string;
   abhyasiId: string;
   pnr: string;
-  name: string;
+  fullName: string;
   dormPreference: string;
   birthPreference: string;
   dormAndBirthAllocation: string;

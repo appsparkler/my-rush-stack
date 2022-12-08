@@ -38,11 +38,11 @@ export declare type CheckinWithEmailOrMobileApiStoreData = CheckinEmailOrMobileU
 };
 export declare type CheckinData = IAbhyasiCheckinApiStoreData | CheckinWithEmailOrMobileApiStoreData;
 export interface IQRCheckinUser {
-    regId: number;
+    regId: string;
     eventName: string;
     abhyasiId: string;
     pnr: string;
-    name: string;
+    fullName: string;
     dormPreference: string;
     birthPreference: string;
     dormAndBirthAllocation: string;
