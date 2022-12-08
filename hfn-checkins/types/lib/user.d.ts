@@ -43,8 +43,8 @@ export interface IQRCheckinUser {
     abhyasiId: string;
     pnr: string;
     name: string;
-    dormName: string;
-    birth: string;
+    dormPreference: string;
+    birthPreference: string;
     dormAndBirthAllocation: string;
     type: CheckinTypesEnum;
 }
