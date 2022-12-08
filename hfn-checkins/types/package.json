@@ -1,6 +1,6 @@
 {
   "name": "@hfn-checkins/types",
-  "version": "3.0.1",
+  "version": "3.0.5",
   "description": "Types for hfn-checkin-repo",
   "main": "lib/index.js",
   "repository": "https://github.com/appsparkler/my-rush-stack",
@@ -9,7 +9,8 @@
   "scripts": {
     "build": "heft build --clean",
     "build:watch": "heft build",
-    "clean": "heft clean"
+    "clean": "heft clean",
+    "publish2Npm": "heft build && yarn publish"
   },
   "devDependencies": {
     "@rushstack/eslint-config": "^2.6.2",
