@@ -1,6 +1,6 @@
 {
   "name": "@hfn-checkins/types",
-  "version": "3.0.8",
+  "version": "3.0.9",
   "description": "Types for hfn-checkin-repo",
   "main": "lib/index.js",
   "repository": "https://github.com/appsparkler/my-rush-stack",
