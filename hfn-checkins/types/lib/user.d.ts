@@ -45,7 +45,7 @@ export interface IQRCheckinUser {
     name: string;
     dormName: string;
     birth: string;
-    allottedBed: string;
+    dormAndBirthAllocation: string;
     type: CheckinTypesEnum;
 }
 export {};
