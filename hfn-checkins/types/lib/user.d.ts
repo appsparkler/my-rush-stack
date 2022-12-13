@@ -20,6 +20,7 @@ export declare type CheckinEmailOrMobileUserDetails = {
     state: string;
     country: string;
     dormAndBirthAllocation: string;
+    batch: string;
 } & EmailOrMobileDetail;
 export interface IAbhyasiCheckinApiStoreData {
     abhyasiId: string;
@@ -28,6 +29,7 @@ export interface IAbhyasiCheckinApiStoreData {
     type: CheckinTypesEnum.AbhyasiId;
     updatedInReport: boolean;
     dormAndBirthAllocation: string;
+    batch: string;
 }
 export declare type CheckinWithEmailOrMobileApiStoreData = CheckinEmailOrMobileUserDetails & {
     deviceId: string;
@@ -35,6 +37,7 @@ export declare type CheckinWithEmailOrMobileApiStoreData = CheckinEmailOrMobileU
     type: CheckinTypesEnum.EmailOrMobile;
     updatedInReport: boolean;
     dormAndBirthAllocation: string;
+    batch: string;
 };
 export declare type CheckinData = IAbhyasiCheckinApiStoreData | CheckinWithEmailOrMobileApiStoreData;
 export interface IQRCheckinUser {
@@ -47,6 +50,7 @@ export interface IQRCheckinUser {
     birthPreference: string;
     dormAndBirthAllocation: string;
     type: CheckinTypesEnum;
+    batch: string;
 }
 export {};
 //# sourceMappingURL=user.d.ts.map
