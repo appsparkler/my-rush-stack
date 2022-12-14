@@ -19,7 +19,7 @@ export type CheckinEmailOrMobileUserDetails = {
   state: string;
   country: string;
   dormAndBirthAllocation: string;
-  batch: string;
+  eventName: string;
 } & EmailOrMobileDetail;
 
 export interface IAbhyasiCheckinApiStoreData {
@@ -29,7 +29,7 @@ export interface IAbhyasiCheckinApiStoreData {
   type: CheckinTypesEnum.AbhyasiId;
   updatedInReport: boolean;
   dormAndBirthAllocation: string;
-  batch: string;
+  eventName: string;
 }
 
 export type CheckinWithEmailOrMobileApiStoreData =
@@ -39,7 +39,7 @@ export type CheckinWithEmailOrMobileApiStoreData =
     type: CheckinTypesEnum.EmailOrMobile;
     updatedInReport: boolean;
     dormAndBirthAllocation: string;
-    batch: string;
+    eventName: string;
   };
 
 export type CheckinData =
@@ -56,5 +56,4 @@ export interface IQRCheckinUser {
   birthPreference: string;
   dormAndBirthAllocation: string;
   type: CheckinTypesEnum;
-  batch: string;
 }
