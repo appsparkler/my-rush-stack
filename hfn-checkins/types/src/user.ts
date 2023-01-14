@@ -42,6 +42,21 @@ export type CheckinWithEmailOrMobileApiStoreData =
     eventName: string;
   };
 
+export type ICheckinWIthQRApiStoreData = {
+  deviceId: string;
+  timestamp: number;
+  regId: string;
+  updatedInReport: false;
+  eventName: string;
+  abhyasiId: string;
+  pnr: string;
+  fullName: string;
+  dormPreference: string;
+  berthPreference: string;
+  dormAndBerthAllocation: string;
+  type: CheckinTypesEnum.QR;
+};
+
 export type CheckinData =
   | IAbhyasiCheckinApiStoreData
   | CheckinWithEmailOrMobileApiStoreData;
@@ -55,5 +70,5 @@ export interface IQRCheckinUser {
   dormPreference: string;
   berthPreference: string;
   dormAndBerthAllocation: string;
-  type: CheckinTypesEnum;
+  type: CheckinTypesEnum.QR;
 }
